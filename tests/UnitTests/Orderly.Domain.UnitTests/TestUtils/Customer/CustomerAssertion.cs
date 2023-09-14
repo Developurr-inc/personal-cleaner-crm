@@ -24,7 +24,6 @@ public static class CustomerAssertion
         Assert.Equal(expected.Landline, actual.Landline);
         Assert.Equal(expected.Mobile, actual.Mobile);
         Assert.Equal(expected.Observation, actual.Observation);
-        Assert.NotNull(actual.CreatedAt);
         Assert.NotEqual(actual.CreatedAt, default);
     }
     
