@@ -71,9 +71,9 @@ public static partial class ValidationRules
             return input.Distinct().Count() == 1;
         }
 
-        bool IsValidCpf(string cpfNumbers)
+        bool IsValidCpf(string cpfDigits)
         {
-            var digits = cpfNumbers.Select(c => int.Parse(c.ToString())).ToArray();
+            var digits = cpfDigits.Select(c => int.Parse(c.ToString())).ToArray();
             
             var checksum1 = 0;
             var checksum2 = digits[9] * (11 - 9);
@@ -111,9 +111,9 @@ public static partial class ValidationRules
             return input.Distinct().Count() == 1;
         }
 
-        bool IsValidCnpj(string cnpjNumbers)
+        bool IsValidCnpj(string cnpjDigits)
         {
-            var digits = cnpjNumbers.Select(c => int.Parse(c.ToString())).ToArray();
+            var digits = cnpjDigits.Select(c => int.Parse(c.ToString())).ToArray();
             
             var weights1 = new[] { 5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2 };
             var weights2 = new[] { 6, 5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2 };
