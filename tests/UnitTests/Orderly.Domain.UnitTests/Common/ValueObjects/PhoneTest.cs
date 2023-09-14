@@ -6,19 +6,13 @@ namespace Orderly.Domain.UnitTests.Common.ValueObjects;
 public sealed class PhoneTest
 {
     [Theory]
-    [MemberData(
-        nameof(PhoneGenerator.CreatePhones),
-        MemberType = typeof(PhoneGenerator)
-    )]
-    public void WhenCreatingPhone_GivenValidInput_ShouldInstantiatePhone(
+    [MemberData(nameof(PhoneGenerator.CreatePhones), MemberType = typeof(PhoneGenerator))]
+    public void GivenValidInput_WhenCreatingPhone_ThenShouldInstantiatePhone(
         Phone phone
     )
     {
-        // Arrange
-        var phoneNumber = phone.Value;
-
         // Act
-        var newPhone = Phone.Create(phoneNumber);
+        var newPhone = Phone.Create(phone.Value);
 
         // Assert
         PhoneAssertion.AssertPhone(phone, newPhone);
@@ -26,11 +20,8 @@ public sealed class PhoneTest
 
 
     [Theory]
-    [MemberData(
-        nameof(PhoneGenerator.CreateInvalidPhones),
-        MemberType = typeof(PhoneGenerator)
-    )]
-    public void WhenCreatingPhone_GivenInvalidInput_ShouldThrowException(
+    [MemberData(nameof(PhoneGenerator.CreateInvalidPhones), MemberType = typeof(PhoneGenerator))]
+    public void GivenInvalidInput_WhenCreatingPhone_ThenShouldThrowEntityValidationException(
         string invalidPhone
     )
     {
