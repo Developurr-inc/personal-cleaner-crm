@@ -6,73 +6,48 @@ namespace Orderly.Domain.UnitTests.Common.ValueObjects;
 public sealed class AddressTest
 {
     [Theory]
-    [MemberData(
-        nameof(AddressGenerator.CreateAddresses),
-        MemberType = typeof(AddressGenerator)
-    )]
-    public void WhenCreatingAddress_GivenValidInput_ShouldInstantiateAddress(
+    [MemberData(nameof(AddressGenerator.CreateAddresses), MemberType = typeof(AddressGenerator))]
+    public void GivenValidInput_WhenCreatingAddress_ThenShouldInstantiateAddress(
         Address address
     )
     {
-        // Arrange
-        var street = address.Street;
-        var number = address.Number;
-        var complement = address.Complement;
-        var zipCode = address.ZipCode;
-        var neighborhood = address.Neighborhood;
-        var city = address.City;
-        var state = address.State;
-        var country = address.Country;
-
-
         // Act
         var newAddress = Address.Create(
-            street,
-            number,
-            complement,
-            zipCode,
-            neighborhood,
-            city,
-            state,
-            country
+            address.Street,
+            address.Number,
+            address.Complement,
+            address.ZipCode,
+            address.Neighborhood,
+            address.City,
+            address.State,
+            address.Country
         );
 
-        //Assert
+        // Assert
         AddressAssertion.AssertAddress(address, newAddress);
     }
 
 
     [Theory]
-    [MemberData(
-        nameof(AddressGenerator.CreateInvalidStreets),
-        MemberType = typeof(AddressGenerator)
-    )]
-    public void WhenCreatingAddress_GivenInvalidStreet_ShouldThrowException(
+    [MemberData(nameof(AddressGenerator.CreateInvalidStreets), MemberType = typeof(AddressGenerator))]
+    public void GivenInvalidStreet_WhenCreatingAddress_ThenShouldThrowEntityValidationException(
         string invalidStreet
     )
     {
         // Arrange
         var address = AddressFixture.CreateAddress();
-        var street = invalidStreet;
-        var number = address.Number;
-        var complement = address.Complement;
-        var zipCode = address.ZipCode;
-        var neighborhood = address.Neighborhood;
-        var city = address.City;
-        var state = address.State;
-        var country = address.Country;
 
         void Action()
         {
             _ = Address.Create(
-                street,
-                number,
-                complement,
-                zipCode,
-                neighborhood,
-                city,
-                state,
-                country
+                invalidStreet,
+                address.Number,
+                address.Complement,
+                address.ZipCode,
+                address.Neighborhood,
+                address.City,
+                address.State,
+                address.Country
             );
         }
 
@@ -85,36 +60,25 @@ public sealed class AddressTest
 
 
     [Theory]
-    [MemberData(
-        nameof(AddressGenerator.CreateInvalidNumbers),
-        MemberType = typeof(AddressGenerator)
-    )]
-    public void WhenCreatingAddress_GivenInvalidNumber_ShouldThrowException(
+    [MemberData(nameof(AddressGenerator.CreateInvalidNumbers), MemberType = typeof(AddressGenerator))]
+    public void GivenInvalidNumber_WhenCreatingAddress_ThenShouldThrowEntityValidationException(
         int invalidNumber
     )
     {
         // Arrange
         var address = AddressFixture.CreateAddress();
-        var street = address.Street;
-        var number = invalidNumber;
-        var complement = address.Complement;
-        var zipCode = address.ZipCode;
-        var neighborhood = address.Neighborhood;
-        var city = address.City;
-        var state = address.State;
-        var country = address.Country;
 
         void Action()
         {
             _ = Address.Create(
-                street,
-                number,
-                complement,
-                zipCode,
-                neighborhood,
-                city,
-                state,
-                country
+                address.Street,
+                invalidNumber,
+                address.Complement,
+                address.ZipCode,
+                address.Neighborhood,
+                address.City,
+                address.State,
+                address.Country
             );
         }
 
@@ -127,36 +91,25 @@ public sealed class AddressTest
 
 
     [Theory]
-    [MemberData(
-        nameof(AddressGenerator.CreateInvalidComplements),
-        MemberType = typeof(AddressGenerator)
-    )]
-    public void WhenCreatingAddress_GivenInvalidComplement_ShouldThrowException(
+    [MemberData(nameof(AddressGenerator.CreateInvalidComplements), MemberType = typeof(AddressGenerator))]
+    public void GivenInvalidComplement_WhenCreatingAddress_ThenShouldThrowEntityValidationException(
         string invalidComplement
     )
     {
         // Arrange
         var address = AddressFixture.CreateAddress();
-        var street = address.Street;
-        var number = address.Number;
-        var complement = invalidComplement;
-        var zipCode = address.ZipCode;
-        var neighborhood = address.Neighborhood;
-        var city = address.City;
-        var state = address.State;
-        var country = address.Country;
-
+        
         void Action()
         {
             _ = Address.Create(
-                street,
-                number,
-                complement,
-                zipCode,
-                neighborhood,
-                city,
-                state,
-                country
+                address.Street,
+                address.Number,
+                invalidComplement,
+                address.ZipCode,
+                address.Neighborhood,
+                address.City,
+                address.State,
+                address.Country
             );
         }
 
@@ -169,36 +122,25 @@ public sealed class AddressTest
 
 
     [Theory]
-    [MemberData(
-        nameof(AddressGenerator.CreateInvalidZipCodes),
-        MemberType = typeof(AddressGenerator)
-    )]
-    public void WhenCreatingAddress_GivenInvalidZipCode_ShouldThrowException(
+    [MemberData(nameof(AddressGenerator.CreateInvalidZipCodes), MemberType = typeof(AddressGenerator))]
+    public void GivenInvalidZipCode_WhenCreatingAddress_ThenShouldThrowEntityValidationException(
         string invalidZipCode
     )
     {
         // Arrange
         var address = AddressFixture.CreateAddress();
-        var street = address.Street;
-        var number = address.Number;
-        var complement = address.Complement;
-        var zipCode = invalidZipCode;
-        var neighborhood = address.Neighborhood;
-        var city = address.City;
-        var state = address.State;
-        var country = address.Country;
 
         void Action()
         {
             _ = Address.Create(
-                street,
-                number,
-                complement,
-                zipCode,
-                neighborhood,
-                city,
-                state,
-                country
+                address.Street,
+                address.Number,
+                address.Complement,
+                invalidZipCode,
+                address.Neighborhood,
+                address.City,
+                address.State,
+                address.Country
             );
         }
 
@@ -211,36 +153,25 @@ public sealed class AddressTest
 
 
     [Theory]
-    [MemberData(
-        nameof(AddressGenerator.CreateInvalidNeighborhoods),
-        MemberType = typeof(AddressGenerator)
-    )]
-    public void WhenCreatingAddress_GivenInvalidNeighborhoodShouldThrowException(
+    [MemberData(nameof(AddressGenerator.CreateInvalidNeighborhoods), MemberType = typeof(AddressGenerator))]
+    public void GivenInvalidNeighborhood_WhenCreatingAddress_ThenShouldThrowEntityValidationException(
         string invalidNeighborhood
     )
     {
         // Arrange
         var address = AddressFixture.CreateAddress();
-        var street = address.Street;
-        var number = address.Number;
-        var complement = address.Complement;
-        var zipCode = address.ZipCode;
-        var neighborhood = invalidNeighborhood;
-        var city = address.City;
-        var state = address.State;
-        var country = address.Country;
 
         void Action()
         {
             _ = Address.Create(
-                street,
-                number,
-                complement,
-                zipCode,
-                neighborhood,
-                city,
-                state,
-                country
+                address.Street,
+                address.Number,
+                address.Complement,
+                address.ZipCode,
+                invalidNeighborhood,
+                address.City,
+                address.State,
+                address.Country
             );
         }
 
@@ -253,36 +184,25 @@ public sealed class AddressTest
 
 
     [Theory]
-    [MemberData(
-        nameof(AddressGenerator.CreateInvalidCities),
-        MemberType = typeof(AddressGenerator)
-    )]
-    public void WhenCreatingAddress_GivenInvalidCity_ShouldThrowException(
+    [MemberData(nameof(AddressGenerator.CreateInvalidCities), MemberType = typeof(AddressGenerator))]
+    public void GivenInvalidCity_WhenCreatingAddress_ThenShouldThrowEntityValidationException(
         string invalidCity
     )
     {
         // Arrange
         var address = AddressFixture.CreateAddress();
-        var street = address.Street;
-        var number = address.Number;
-        var complement = address.Complement;
-        var zipCode = address.ZipCode;
-        var neighborhood = address.Neighborhood;
-        var city = invalidCity;
-        var state = address.State;
-        var country = address.Country;
 
         void Action()
         {
             _ = Address.Create(
-                street,
-                number,
-                complement,
-                zipCode,
-                neighborhood,
-                city,
-                state,
-                country
+                address.Street,
+                address.Number,
+                address.Complement,
+                address.ZipCode,
+                address.Neighborhood,
+                invalidCity,
+                address.State,
+                address.Country
             );
         }
 
@@ -295,36 +215,25 @@ public sealed class AddressTest
 
 
     [Theory]
-    [MemberData(
-        nameof(AddressGenerator.CreateInvalidStates),
-        MemberType = typeof(AddressGenerator)
-    )]
-    public void WhenCreatingAddress_GivenInvalidState_ShouldThrowException(
+    [MemberData(nameof(AddressGenerator.CreateInvalidStates), MemberType = typeof(AddressGenerator))]
+    public void GivenInvalidState_WhenCreatingAddress_ThenShouldThrowEntityValidationException(
         string invalidState
     )
     {
         // Arrange
         var address = AddressFixture.CreateAddress();
-        var street = address.Street;
-        var number = address.Number;
-        var complement = address.Complement;
-        var zipCode = address.ZipCode;
-        var neighborhood = address.Neighborhood;
-        var city = address.City;
-        var state = invalidState;
-        var country = address.Country;
 
         void Action()
         {
             _ = Address.Create(
-                street,
-                number,
-                complement,
-                zipCode,
-                neighborhood,
-                city,
-                state,
-                country
+                address.Street,
+                address.Number,
+                address.Complement,
+                address.ZipCode,
+                address.Neighborhood,
+                address.City,
+                invalidState,
+                address.Country
             );
         }
 
@@ -337,36 +246,25 @@ public sealed class AddressTest
 
 
     [Theory]
-    [MemberData(
-        nameof(AddressGenerator.CreateInvalidCountries),
-        MemberType = typeof(AddressGenerator)
-    )]
-    public void WhenCreatingAddress_GivenInvalidCountry_ShouldThrowException(
+    [MemberData(nameof(AddressGenerator.CreateInvalidCountries), MemberType = typeof(AddressGenerator))]
+    public void GivenInvalidCountry_WhenCreatingAddress_ThenShouldThrowEntityValidationException(
         string invalidCountry
     )
     {
         // Arrange
         var address = AddressFixture.CreateAddress();
-        var street = address.Street;
-        var number = address.Number;
-        var complement = address.Complement;
-        var zipCode = address.ZipCode;
-        var neighborhood = address.Neighborhood;
-        var city = address.City;
-        var state = address.State;
-        var country = invalidCountry;
 
         void Action()
         {
             _ = Address.Create(
-                street,
-                number,
-                complement,
-                zipCode,
-                neighborhood,
-                city,
-                state,
-                country
+                address.Street,
+                address.Number,
+                address.Complement,
+                address.ZipCode,
+                address.Neighborhood,
+                address.City,
+                address.State,
+                invalidCountry
             );
         }
 
