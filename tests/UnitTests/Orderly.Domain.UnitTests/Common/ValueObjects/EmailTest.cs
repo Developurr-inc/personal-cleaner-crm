@@ -32,13 +32,13 @@ public sealed class EmailTest
         MemberType = typeof(EmailGenerator)
     )]
     public void WhenCreatingEmail_GivenInvalidEmail_ShouldThrowException(
-        string emailAddress
+        string invalidEmail
     )
     {
         // Arrange
         void Action()
         {
-            _ = Email.Create(emailAddress);
+            _ = Email.Create(invalidEmail);
         }
 
         // Act
@@ -55,13 +55,13 @@ public sealed class EmailTest
         MemberType = typeof(StringGenerator)
     )]
     public void WhenCreatingEmail_GivenInvalidString_ShouldThrowException(
-        string str
+        string invalidString
     )
     {
         // Arrange
         void Action()
         {
-            _ = Email.Create(str);
+            _ = Email.Create(invalidString);
         }
 
         // Act

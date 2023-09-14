@@ -31,13 +31,13 @@ public sealed class PriceTest
         MemberType = typeof(PriceGenerator)
     )]
     public void WhenCreatingPrice_GivenInvalidInput_ShouldThrowException(
-        decimal value
+        decimal invalidPrice
     )
     {
         // Arrange
         void Action()
         {
-            _ = Price.Create(value);
+            _ = Price.Create(invalidPrice);
         }
 
         // Act

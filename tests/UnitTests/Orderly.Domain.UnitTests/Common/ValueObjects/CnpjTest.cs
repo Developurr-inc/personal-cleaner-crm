@@ -31,13 +31,13 @@ public sealed class CnpjTest
         MemberType = typeof(CnpjGenerator)
     )]
     public void WhenCreatingCnpj_GivenInvalidCnpj_ShouldThrowException(
-        string cnpjValue
+        string invalidCnpj
     )
     {
         // Arrange
         void Action()
         {
-            _ = Cnpj.Create(cnpjValue);
+            _ = Cnpj.Create(invalidCnpj);
         }
 
         // Act

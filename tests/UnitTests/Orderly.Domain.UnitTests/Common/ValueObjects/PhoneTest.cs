@@ -31,13 +31,13 @@ public sealed class PhoneTest
         MemberType = typeof(PhoneGenerator)
     )]
     public void WhenCreatingPhone_GivenInvalidInput_ShouldThrowException(
-        string phoneValue
+        string invalidPhone
     )
     {
         // Arrange
         void Action()
         {
-            _ = Phone.Create(phoneValue);
+            _ = Phone.Create(invalidPhone);
         }
 
         // Act
