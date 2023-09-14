@@ -17,11 +17,10 @@ public class ManagerTest
         // Arrange
         var cpf = manager.Cpf;
         var address = manager.Address;
-        var managerName = manager.ManagerName;
-        var nfeEmail = manager.NfeEmail;
+        var managerName = manager.Name;
+        var nfeEmail = manager.Email;
         var landline = manager.Landline;
         var mobile = manager.Mobile;
-
 
         // Act
         var newManager = Domain.Manager.Manager.Create(
@@ -33,26 +32,26 @@ public class ManagerTest
             mobile
         );
 
-        //Assert
+        // Assert
         ManagerAssertion.AssertManager(manager, newManager);
     }
     
     
     [Theory]
     [MemberData(
-        nameof(ManagerGenerator.CreateInvalidManagerNames),
+        nameof(ManagerGenerator.CreateInvalidNames),
         MemberType = typeof(ManagerGenerator)
     )]
-    public void WhenCreatingManager_GivenInvalidManagerName_ShouldThrowException(
-        string str
+    public void WhenCreatingManager_GivenInvalidName_ShouldThrowException(
+        string invalidName
     )
     {
         // Arrange
         var manager = ManagerFixture.CreateManager();
         var cpf = manager.Cpf;
         var address = manager.Address;
-        var managerName = str;
-        var nfeEmail = manager.NfeEmail;
+        var managerName = invalidName;
+        var nfeEmail = manager.Email;
         var landline = manager.Landline;
         var mobile = manager.Mobile;
 

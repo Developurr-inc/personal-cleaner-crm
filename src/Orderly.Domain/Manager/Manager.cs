@@ -9,26 +9,28 @@ public class Manager : Entity<ManagerId>, IAggregateRoot
 {
     public Cpf Cpf { get; private set; }
     public Address Address { get; private set; }
-    public string ManagerName { get; private set; }
-    public Email NfeEmail { get; private set; }
+    public string Name { get; private set; }
+    public Email Email { get; private set; }
     
     public Phone? Landline { get; private set; }
     public Phone? Mobile { get; private set; }
+    
     public DateTime CreatedAt { get; }
+    
     
     private Manager(
         Cpf cpf,
         Address address,
-        string managerName,
-        Email nfeEmail,
+        string name,
+        Email email,
         Phone? landline,
         Phone? mobile
     ) : base(ManagerId.Create())
     {
         Cpf = cpf;
         Address = address;
-        ManagerName = managerName;
-        NfeEmail = nfeEmail;
+        Name = name;
+        Email = email;
         Landline = landline;
         Mobile = mobile;
         CreatedAt = DateTime.Now;

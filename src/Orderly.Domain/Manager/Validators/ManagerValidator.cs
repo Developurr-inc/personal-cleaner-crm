@@ -4,17 +4,17 @@ namespace Orderly.Domain.Manager.Validators;
 
 public class ManagerValidator : Validator
 {
-    private readonly string _managerName;
+    private readonly string _name;
     
-    public const int ManagerNameMinLength = 5;
-    public const int ManagerNameMaxLength = 255;
+    public const int NameMinLength = 5;
+    public const int NameMaxLength = 255;
     
     
     public ManagerValidator(
-        string managerName
+        string name
     )
     {
-        _managerName = managerName;
+        _name = name;
     }
     
     
@@ -31,14 +31,14 @@ public class ManagerValidator : Validator
     
     private void ValidateManagerName()
     {
-        const string fieldName = "Manager Name";
+        const string fieldName = "Name";
 
-        ValidationRules.ValidateRequired(_managerName, fieldName, this);
+        ValidationRules.ValidateRequired(_name, fieldName, this);
         ValidationRules.ValidateStringLength(
-            _managerName,
+            _name,
             fieldName,
-            ManagerNameMinLength,
-            ManagerNameMaxLength,
+            NameMinLength,
+            NameMaxLength,
             this
         );
     }

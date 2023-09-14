@@ -14,7 +14,7 @@ public class ManagerGenerator : BaseGenerator
     }
     
     
-    public static IEnumerable<object[]> CreateInvalidManagerNames()
+    public static IEnumerable<object[]> CreateInvalidNames()
     {
         for (var i = 0; i < Rounds; ++i)
         {
@@ -25,12 +25,12 @@ public class ManagerGenerator : BaseGenerator
             
             yield return new object[]
             {
-                ManagerFixture.CreateShortManagerName()
+                ManagerFixture.CreateShortName()
             };
 
             yield return new object[]
             {
-                ManagerFixture.CreateLongManagerName()
+                ManagerFixture.CreateLongName()
             };
         }
     }

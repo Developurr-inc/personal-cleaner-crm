@@ -15,8 +15,8 @@ public class ManagerFixture : BaseFixture
         var cpf = CpfFixture.CreateValidCpf();
         var address = AddressFixture.CreateAddress();
         var managerName = StringFixture.CreateString(
-            ManagerValidator.ManagerNameMinLength,
-            ManagerValidator.ManagerNameMaxLength
+            ManagerValidator.NameMinLength,
+            ManagerValidator.NameMaxLength
         );
         var nfeEmail = EmailFixture.CreateEmail();
         var landline = PhoneFixture.CreatePhone();
@@ -33,19 +33,19 @@ public class ManagerFixture : BaseFixture
     }
     
     
-    public static string CreateShortManagerName()
+    public static string CreateShortName()
     {
         return StringFixture.CreateString(
             1,
-            ManagerValidator.ManagerNameMinLength - 1
+            ManagerValidator.NameMinLength - 1
         );
     }
     
     
-    public static string CreateLongManagerName()
+    public static string CreateLongName()
     {
         return StringFixture.CreateString(
-            ManagerValidator.ManagerNameMaxLength + 1,
+            ManagerValidator.NameMaxLength + 1,
             1_000
         );
     }

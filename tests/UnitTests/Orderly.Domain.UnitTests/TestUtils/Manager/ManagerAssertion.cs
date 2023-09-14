@@ -14,10 +14,11 @@ public class ManagerAssertion
         Assert.NotEqual(actual.Id.Value, default);
         Assert.Equal(expected.Cpf, actual.Cpf);
         Assert.Equal(expected.Address, actual.Address);
-        Assert.Equal(expected.ManagerName, actual.ManagerName);
-        Assert.Equal(expected.NfeEmail, actual.NfeEmail);
+        Assert.Equal(expected.Name, actual.Name);
+        Assert.Equal(expected.Email, actual.Email);
         Assert.Equal(expected.Landline, actual.Landline);
         Assert.Equal(expected.Mobile, actual.Mobile);
+        Assert.NotEqual(actual.CreatedAt, default);
     }
     
     
