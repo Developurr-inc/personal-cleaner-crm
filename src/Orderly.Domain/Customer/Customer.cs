@@ -5,10 +5,10 @@ using Orderly.Domain.SeedWork;
 
 namespace Orderly.Domain.Customer;
 
-public sealed class Customer : AggregateRoot<CustomerId>
+public sealed class Customer : Entity<CustomerId>, IAggregateRoot
 {
     // public List<OrderId> Orders { get; private set; };
-    // public SellerId Seller { get; private set; };
+    // public SalesConsultantId SalesConsultant { get; private set; };
 
     public Cnpj Cnpj { get; private set; }
     public string CorporateName { get; private set; }
@@ -24,23 +24,25 @@ public sealed class Customer : AggregateRoot<CustomerId>
 
     public string Observation { get; private set; }
 
+    public DateTime CreatedAt { get; }
+
 
     private Customer(
-        // SellerId sellerId,
+        // SalesConsultantId salesConsultantId,
         Cnpj cnpj,
         string corporateName,
         string taxId,
         string tradeName,
         string segment,
-        Email billingEmail,
+        Email? billingEmail,
         Email nfeEmail,
-        Phone landline,
-        Phone mobile,
+        Phone? landline,
+        Phone? mobile,
         string observation
-    )
+    ) : base(CustomerId.Create())
     {
         // Orders = new();
-        // Seller = sellerId;
+        // SalesConsultant = salesConsultantId;
         Cnpj = cnpj;
         CorporateName = corporateName;
         TaxId = taxId;
@@ -51,130 +53,21 @@ public sealed class Customer : AggregateRoot<CustomerId>
         Landline = landline;
         Mobile = mobile;
         Observation = observation;
-    }
-    
-    
-    // public void ChangeSeller(SellerId sellerId)
-    // {
-    //     SellerId = sellerId;
-    // }
-    
-    
-    public void UpdateCorporateName(string corporateName)
-    {
-        var corporateNameTrimmed = corporateName.Trim();
-
-        Validate(
-            corporateNameTrimmed,
-            TaxId,
-            TradeName,
-            Segment,
-            Observation
-        );
-
-        CorporateName = corporateNameTrimmed;
-    }
-    
-    
-    public void UpdateTaxId(string taxId)
-    {
-        var taxIdTrimmed = taxId.Trim();
-
-        Validate(
-            CorporateName,
-            taxIdTrimmed,
-            TradeName,
-            Segment,
-            Observation
-        );
-
-        TaxId = taxId;
-    }
-    
-    
-    public void UpdateTradeName(string tradeName)
-    {
-        var tradeNameTrimmed = tradeName.Trim();
-
-        Validate(
-            CorporateName,
-            TaxId,
-            tradeNameTrimmed,
-            Segment,
-            Observation
-        );
-
-        TradeName = tradeNameTrimmed;
-    }
-    
-    
-    public void UpdateSegment(string segment)
-    {
-        var segmentTrimmed = segment.Trim();
-
-        Validate(
-            CorporateName,
-            TaxId,
-            TradeName,
-            segmentTrimmed,
-            Observation
-        );
-
-        Segment = segmentTrimmed;
-    }
-    
-    
-    public void ChangeBillingEmail(Email billingEmail)
-    {
-        BillingEmail = billingEmail;
-    }
-
-
-    public void ChangeNfeEmail(Email nfeEmail)
-    {
-        NfeEmail = nfeEmail;
-    }
-    
-    
-    public void ChangeLandline(Phone landline)
-    {
-        Landline = landline;
-    }
-    
-    
-    public void ChangeMobile(Phone mobile)
-    {
-        Mobile = mobile;
-    }
-
-
-    public void UpdateObservation(string observation)
-    {
-        var observationTrimmed = observation.Trim();
-        
-        Validate(
-            CorporateName,
-            TaxId,
-            TradeName,
-            Segment,
-            observationTrimmed
-        );
-
-        Observation = observationTrimmed;
+        CreatedAt = DateTime.Now;
     }
 
 
     public static Customer Create(
-        // SellerId sellerId,
+        // SalesConsultantId salesConsultantId,
         Cnpj cnpj,
         string corporateName,
         string taxId,
         string tradeName,
         string segment,
-        Email billingEmail,
+        Email? billingEmail,
         Email nfeEmail,
-        Phone landline,
-        Phone mobile,
+        Phone? landline,
+        Phone? mobile,
         string observation
     )
     {
@@ -193,7 +86,7 @@ public sealed class Customer : AggregateRoot<CustomerId>
         );
 
         return new Customer(
-            // sellerId,
+            // salesConsultantId,
             cnpj,
             corporateNameTrimmed,
             taxIdTrimmed,

@@ -10,6 +10,8 @@ public static class CustomerAssertion
     )
     {
         Assert.NotNull(actual);
+        Assert.NotNull(actual.Id);
+        Assert.NotEqual(actual.Id.Value, default);
         // Assert.Equal(expected.Orders, actual.Orders);
         // Assert.Equal(expected.Seller, actual.Seller);
         Assert.Equal(expected.Cnpj, actual.Cnpj);
@@ -22,6 +24,8 @@ public static class CustomerAssertion
         Assert.Equal(expected.Landline, actual.Landline);
         Assert.Equal(expected.Mobile, actual.Mobile);
         Assert.Equal(expected.Observation, actual.Observation);
+        Assert.NotNull(actual.CreatedAt);
+        Assert.NotEqual(actual.CreatedAt, default);
     }
     
     

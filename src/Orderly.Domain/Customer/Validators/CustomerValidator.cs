@@ -10,16 +10,16 @@ public sealed class CustomerValidator : Validator
     private readonly string _segment;
     private readonly string _observation;
 
-    public const int CorporateNameMinLength = 1;
+    public const int CorporateNameMinLength = 5;
     public const int CorporateNameMaxLength = 255;
 
-    public const int TaxIdMinLength = 1;
+    public const int TaxIdMinLength = 5;
     public const int TaxIdMaxLength = 255;
 
-    public const int NomeFantasiaMinLength = 1;
-    public const int NomeFantasiaMaxLength = 255;
+    public const int TradeNameMinLength = 5;
+    public const int TradeNameMaxLength = 255;
 
-    public const int SegmentMinLength = 1;
+    public const int SegmentMinLength = 5;
     public const int SegmentMaxLength = 255;
 
     public const int ObservationMaxLength = 10_000;
@@ -94,8 +94,8 @@ public sealed class CustomerValidator : Validator
         ValidationRules.ValidateStringLength(
             _tradeName,
             fieldName,
-            NomeFantasiaMinLength,
-            NomeFantasiaMaxLength,
+            TradeNameMinLength,
+            TradeNameMaxLength,
             this
         );
     }
@@ -120,7 +120,6 @@ public sealed class CustomerValidator : Validator
     {
         const string fieldName = "Observation";
 
-        ValidationRules.ValidateRequired(_observation, fieldName, this);
         ValidationRules.ValidateMaxStringLength(
             _observation,
             fieldName,
