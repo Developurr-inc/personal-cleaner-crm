@@ -1,10 +1,12 @@
+using Orderly.Domain.Validation;
+
 namespace Orderly.Domain.Manager.Validators;
 
 public class ManagerValidator : Validator
 {
     private readonly string _managerName;
     
-    public const int ManagerNameMinLength = 1;
+    public const int ManagerNameMinLength = 5;
     public const int ManagerNameMaxLength = 255;
     
     

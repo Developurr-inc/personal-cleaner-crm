@@ -1,8 +1,10 @@
+using Orderly.Domain.UnitTests.TestUtils.String;
+
 namespace Orderly.Domain.UnitTests.TestUtils.Manager;
 
 public class ManagerGenerator : BaseGenerator
 {
-    public static IEnumerable<object[]> CreateManager()
+    public static IEnumerable<object[]> CreateManagers()
     {
         for (var i = 0; i < Rounds; ++i)
             yield return new object[]
@@ -12,10 +14,15 @@ public class ManagerGenerator : BaseGenerator
     }
     
     
-    public static IEnumerable<object[]> CreateInvalidManagerName()
+    public static IEnumerable<object[]> CreateInvalidManagerNames()
     {
         for (var i = 0; i < Rounds; ++i)
         {
+            yield return new object[]
+            {
+                StringFixture.CreateEmptyString()
+            };
+            
             yield return new object[]
             {
                 ManagerFixture.CreateShortManagerName()
@@ -27,7 +34,4 @@ public class ManagerGenerator : BaseGenerator
             };
         }
     }
-    
-    
-    
 }

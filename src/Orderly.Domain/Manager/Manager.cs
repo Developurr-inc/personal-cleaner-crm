@@ -1,4 +1,7 @@
 using Orderly.Domain.Common.ValueObjects;
+using Orderly.Domain.Manager.Validators;
+using Orderly.Domain.Manager.ValueObjects;
+using Orderly.Domain.SeedWork;
 
 namespace Orderly.Domain.Manager;
 
@@ -17,9 +20,9 @@ public class Manager : AggregateRoot<ManagerId>
         Address address,
         string managerName,
         Email nfeEmail,
-        Phone landline,
-        Phone mobile
-    )
+        Phone? landline,
+        Phone? mobile
+    ) : base(ManagerId.Create())
     {
         Cpf = cpf;
         Address = address;
@@ -30,7 +33,14 @@ public class Manager : AggregateRoot<ManagerId>
     }
     
     
-    public void UpdateManagerName(string managerName)
+    public static Manager Create(
+        Cpf cpf,
+        Address address,
+        string managerName,
+        Email nfeEmail,
+        Phone? landline,
+        Phone? mobile
+    )
     {
         var managerNameTrimmed = managerName.Trim();
 
@@ -38,62 +48,13 @@ public class Manager : AggregateRoot<ManagerId>
             managerNameTrimmed
         );
 
-        ManagerName = managerNameTrimmed;
-    }
-    
-    
-    public void ChangeCpf(Cpf cpf)
-    {
-        Cpf = cpf;
-    }
-    
-    
-    public void ChangeAddress(Address address)
-    {
-        Address = address;
-    }
-    
-    
-    public void ChangeNfeEmail(Email nfeEmail)
-    {
-        Email = nfeEmail;
-    }
-    
-    
-    public void ChangeLandline(Phone landline)
-    {
-        Phone = landline;
-    }
-    
-    
-    public void ChangeMobile(Phone mobile)
-    {
-        Phone = mobile;
-    }
-    
-    
-    public static Manager Create(
-        Cpf cpf,
-        Address address,
-        string managerName,
-        Email nfeEmail,
-        Phone landline,
-        Phone mobile
-    )
-    {
-        var mananerNameTrimmed = managerName.Trim();
-
-        Validate(
-            managerNameTrimmed
-        );
-
         return new Manager(
-            Cpf cpf,
-            Address address,
-            string managerName,
-            Email nfeEmail,
-            Phone landline,
-            Phone mobile
+            cpf,
+            address,
+            managerName,
+            nfeEmail,
+            landline,
+            mobile
         );
     }
     

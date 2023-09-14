@@ -10,11 +10,14 @@ namespace Orderly.Domain.UnitTests.TestUtils.Manager;
 
 public class ManagerFixture : BaseFixture
 {
-    public static Domain.Common.ValueObjects.Address CreateManager()
+    public static Domain.Manager.Manager CreateManager()
     {
         var cpf = CpfFixture.CreateValidCpf();
         var address = AddressFixture.CreateAddress();
-        var managerName = StringFixture.CreateString();
+        var managerName = StringFixture.CreateString(
+            ManagerValidator.ManagerNameMinLength,
+            ManagerValidator.ManagerNameMaxLength
+        );
         var nfeEmail = EmailFixture.CreateEmail();
         var landline = PhoneFixture.CreatePhone();
         var mobile = PhoneFixture.CreatePhone();
@@ -44,15 +47,6 @@ public class ManagerFixture : BaseFixture
         return StringFixture.CreateString(
             ManagerValidator.ManagerNameMaxLength + 1,
             1_000
-        );
-    }
-    
-    
-    public static string CreateManagerName()
-    {
-        return StringFixture.CreateString(
-            ManagerValidator.ManagerNameMinLength,
-            ManagerValidator.ManagerNameMaxLength
         );
     }
 }
