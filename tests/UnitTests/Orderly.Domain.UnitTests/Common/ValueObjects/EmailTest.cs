@@ -7,19 +7,13 @@ namespace Orderly.Domain.UnitTests.Common.ValueObjects;
 public sealed class EmailTest
 {
     [Theory]
-    [MemberData(
-        nameof(EmailGenerator.CreateEmails),
-        MemberType = typeof(EmailGenerator)
-    )]
-    public void WhenCreatingEmail_GivenValidInput_ShouldInstantiateEmail(
+    [MemberData(nameof(EmailGenerator.CreateEmails), MemberType = typeof(EmailGenerator))]
+    public void GivenValidInput_WhenCreatingEmail_ThenShouldInstantiateEmail(
         Email email
     )
     {
-        // Arrange
-        var emailAddress = email.Value;
-
         // Act
-        var newEmail = Email.Create(emailAddress);
+        var newEmail = Email.Create(email.Value);
 
         // Assert
         EmailAssertion.AssertEmail(email, newEmail);
@@ -27,11 +21,8 @@ public sealed class EmailTest
 
 
     [Theory]
-    [MemberData(
-        nameof(EmailGenerator.CreateInvalidEmailAddresses),
-        MemberType = typeof(EmailGenerator)
-    )]
-    public void WhenCreatingEmail_GivenInvalidEmail_ShouldThrowException(
+    [MemberData(nameof(EmailGenerator.CreateInvalidEmailAddresses), MemberType = typeof(EmailGenerator))]
+    public void GivenInvalidEmail_WhenCreatingEmail_ThenShouldThrowEntityValidationException(
         string invalidEmail
     )
     {
@@ -50,11 +41,8 @@ public sealed class EmailTest
 
 
     [Theory]
-    [MemberData(
-        nameof(StringGenerator.CreateInvalidStrings),
-        MemberType = typeof(StringGenerator)
-    )]
-    public void WhenCreatingEmail_GivenInvalidString_ShouldThrowException(
+    [MemberData(nameof(StringGenerator.CreateInvalidStrings), MemberType = typeof(StringGenerator))]
+    public void GivenInvalidString_WhenCreatingEmail_ThenShouldThrowEntityValidationException(
         string invalidString
     )
     {
