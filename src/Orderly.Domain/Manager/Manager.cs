@@ -5,7 +5,7 @@ using Orderly.Domain.SeedWork;
 
 namespace Orderly.Domain.Manager;
 
-public class Manager : AggregateRoot<ManagerId>
+public class Manager : Entity<ManagerId>, IAggregateRoot
 {
     public Cpf Cpf { get; private set; }
     public Address Address { get; private set; }
@@ -14,6 +14,7 @@ public class Manager : AggregateRoot<ManagerId>
     
     public Phone? Landline { get; private set; }
     public Phone? Mobile { get; private set; }
+    public DateTime CreatedAt { get; }
     
     private Manager(
         Cpf cpf,
@@ -30,6 +31,7 @@ public class Manager : AggregateRoot<ManagerId>
         NfeEmail = nfeEmail;
         Landline = landline;
         Mobile = mobile;
+        CreatedAt = DateTime.Now;
     }
     
     
