@@ -48,12 +48,12 @@ public sealed class AddressTest
         MemberType = typeof(AddressGenerator)
     )]
     public void WhenCreatingAddress_GivenInvalidStreet_ShouldThrowException(
-        string str
+        string invalidStreet
     )
     {
         // Arrange
         var address = AddressFixture.CreateAddress();
-        var street = str;
+        var street = invalidStreet;
         var number = address.Number;
         var complement = address.Complement;
         var zipCode = address.ZipCode;
@@ -90,13 +90,13 @@ public sealed class AddressTest
         MemberType = typeof(AddressGenerator)
     )]
     public void WhenCreatingAddress_GivenInvalidNumber_ShouldThrowException(
-        int value
+        int invalidNumber
     )
     {
         // Arrange
         var address = AddressFixture.CreateAddress();
         var street = address.Street;
-        var number = value;
+        var number = invalidNumber;
         var complement = address.Complement;
         var zipCode = address.ZipCode;
         var neighborhood = address.Neighborhood;
@@ -132,14 +132,14 @@ public sealed class AddressTest
         MemberType = typeof(AddressGenerator)
     )]
     public void WhenCreatingAddress_GivenInvalidComplement_ShouldThrowException(
-        string str
+        string invalidComplement
     )
     {
         // Arrange
         var address = AddressFixture.CreateAddress();
         var street = address.Street;
         var number = address.Number;
-        var complement = str;
+        var complement = invalidComplement;
         var zipCode = address.ZipCode;
         var neighborhood = address.Neighborhood;
         var city = address.City;
@@ -174,7 +174,7 @@ public sealed class AddressTest
         MemberType = typeof(AddressGenerator)
     )]
     public void WhenCreatingAddress_GivenInvalidZipCode_ShouldThrowException(
-        string str
+        string invalidZipCode
     )
     {
         // Arrange
@@ -182,7 +182,7 @@ public sealed class AddressTest
         var street = address.Street;
         var number = address.Number;
         var complement = address.Complement;
-        var zipCode = str;
+        var zipCode = invalidZipCode;
         var neighborhood = address.Neighborhood;
         var city = address.City;
         var state = address.State;
@@ -216,7 +216,7 @@ public sealed class AddressTest
         MemberType = typeof(AddressGenerator)
     )]
     public void WhenCreatingAddress_GivenInvalidNeighborhoodShouldThrowException(
-        string str
+        string invalidNeighborhood
     )
     {
         // Arrange
@@ -225,7 +225,7 @@ public sealed class AddressTest
         var number = address.Number;
         var complement = address.Complement;
         var zipCode = address.ZipCode;
-        var neighborhood = str;
+        var neighborhood = invalidNeighborhood;
         var city = address.City;
         var state = address.State;
         var country = address.Country;
@@ -258,7 +258,7 @@ public sealed class AddressTest
         MemberType = typeof(AddressGenerator)
     )]
     public void WhenCreatingAddress_GivenInvalidCity_ShouldThrowException(
-        string str
+        string invalidCity
     )
     {
         // Arrange
@@ -268,7 +268,7 @@ public sealed class AddressTest
         var complement = address.Complement;
         var zipCode = address.ZipCode;
         var neighborhood = address.Neighborhood;
-        var city = str;
+        var city = invalidCity;
         var state = address.State;
         var country = address.Country;
 
@@ -300,7 +300,7 @@ public sealed class AddressTest
         MemberType = typeof(AddressGenerator)
     )]
     public void WhenCreatingAddress_GivenInvalidState_ShouldThrowException(
-        string str
+        string invalidState
     )
     {
         // Arrange
@@ -311,7 +311,7 @@ public sealed class AddressTest
         var zipCode = address.ZipCode;
         var neighborhood = address.Neighborhood;
         var city = address.City;
-        var state = str;
+        var state = invalidState;
         var country = address.Country;
 
         void Action()
@@ -342,7 +342,7 @@ public sealed class AddressTest
         MemberType = typeof(AddressGenerator)
     )]
     public void WhenCreatingAddress_GivenInvalidCountry_ShouldThrowException(
-        string str
+        string invalidCountry
     )
     {
         // Arrange
@@ -354,7 +354,7 @@ public sealed class AddressTest
         var neighborhood = address.Neighborhood;
         var city = address.City;
         var state = address.State;
-        var country = str;
+        var country = invalidCountry;
 
         void Action()
         {

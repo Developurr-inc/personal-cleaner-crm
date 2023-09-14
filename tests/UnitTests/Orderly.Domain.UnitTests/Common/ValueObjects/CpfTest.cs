@@ -31,12 +31,13 @@ public sealed class CpfTest
         MemberType = typeof(CpfGenerator)
     )]
     public void WhenCreatingCpf_GivenInvalidInput_ShouldThrowException(
-        string cpfValue)
+        string invalidCpf
+    )
     {
         // Arrange
         void Action()
         {
-            _ = Cpf.Create(cpfValue);
+            _ = Cpf.Create(invalidCpf);
         }
 
         // Act
