@@ -15,11 +15,8 @@ namespace Orderly.Domain.UnitTests.Validation;
 public class ValidationRulesTest
 {
     [Theory]
-    [MemberData(
-        nameof(EmailGenerator.CreateInvalidEmailAddresses),
-        MemberType = typeof(EmailGenerator)
-    )]
-    public void WhenValidatingEmailAddress_GivenInvalidEmailAddress_ShouldCallAddValidatorError(
+    [MemberData(nameof(EmailGenerator.CreateInvalidEmailAddresses), MemberType = typeof(EmailGenerator))]
+    public void GivenInvalidEmail_WhenValidatingEmail_ThenShouldCallAddValidatorError(
         string invalidEmail
     )
     {
@@ -27,19 +24,25 @@ public class ValidationRulesTest
         var validatorMock = ValidationRulesFixture.GetValidatorMock();
 
         // Act
-        ValidationRules.ValidateEmail(invalidEmail, "email", validatorMock.Object);
+        ValidationRules.ValidateEmail(
+            invalidEmail,
+            "email",
+            validatorMock.Object
+        );
 
         // Assert
-        validatorMock.Verify(val => val.AddValidationError(It.IsAny<string>()), Times.Once);
+        validatorMock.Verify(
+            val => val.AddValidationError(
+                It.IsAny<string>()
+            ),
+            Times.Once
+        );
     }
 
 
     [Theory]
-    [MemberData(
-        nameof(EmailGenerator.CreateEmails),
-        MemberType = typeof(EmailGenerator)
-    )]
-    public void WhenValidatingEmailAddress_GivenValidEmailAddress_ShouldDoNothing(
+    [MemberData(nameof(EmailGenerator.CreateEmails), MemberType = typeof(EmailGenerator))]
+    public void GivenValidEmailAddress_WhenValidatingEmailAddress_ThenShouldDoNothing(
         Email email
     )
     {
@@ -47,19 +50,25 @@ public class ValidationRulesTest
         var validatorMock = ValidationRulesFixture.GetValidatorMock();
 
         // Act
-        ValidationRules.ValidateEmail(email.Value, "email", validatorMock.Object);
+        ValidationRules.ValidateEmail(
+            email.Value,
+            "email",
+            validatorMock.Object
+        );
 
         // Assert
-        validatorMock.Verify(val => val.AddValidationError(It.IsAny<string>()), Times.Never);
+        validatorMock.Verify(
+            val => val.AddValidationError(
+                It.IsAny<string>()
+            ),
+            Times.Never
+        );
     }
 
 
     [Theory]
-    [MemberData(
-        nameof(CpfGenerator.CreateInvalidCpfs),
-        MemberType = typeof(CpfGenerator)
-    )]
-    public void WhenValidatingCpfValue_GivenInvalidCpfValue_ShouldCallAddValidatorError(
+    [MemberData(nameof(CpfGenerator.CreateInvalidCpfs), MemberType = typeof(CpfGenerator))]
+    public void GivenInvalidCpfValue_WhenValidatingCpfValue_ThenShouldCallAddValidatorError(
         string invalidCpf
     )
     {
@@ -67,19 +76,25 @@ public class ValidationRulesTest
         var validatorMock = ValidationRulesFixture.GetValidatorMock();
 
         // Act
-        ValidationRules.ValidateCpf(invalidCpf, "cpf", validatorMock.Object);
+        ValidationRules.ValidateCpf(
+            invalidCpf,
+            "cpf",
+            validatorMock.Object
+        );
 
         // Assert
-        validatorMock.Verify(val => val.AddValidationError(It.IsAny<string>()), Times.Once);
+        validatorMock.Verify(
+            val => val.AddValidationError(
+                It.IsAny<string>()
+            ),
+            Times.Once
+        );
     }
 
 
     [Theory]
-    [MemberData(
-        nameof(CpfGenerator.CreateCpfs),
-        MemberType = typeof(CpfGenerator)
-    )]
-    public void WhenValidatingCpfValue_GivenValidCpfValue_ShouldDoNothing(
+    [MemberData(nameof(CpfGenerator.CreateCpfs), MemberType = typeof(CpfGenerator))]
+    public void GivenValidCpfValue_WhenValidatingCpfValue_GivenValidCpfValue_ThenShouldDoNothing(
         Cpf invalidCpf
     )
     {
@@ -87,19 +102,25 @@ public class ValidationRulesTest
         var validatorMock = ValidationRulesFixture.GetValidatorMock();
 
         // Act
-        ValidationRules.ValidateCpf(invalidCpf.Value, "cpf", validatorMock.Object);
+        ValidationRules.ValidateCpf(
+            invalidCpf.Value,
+            "cpf",
+            validatorMock.Object
+        );
 
         // Assert
-        validatorMock.Verify(val => val.AddValidationError(It.IsAny<string>()), Times.Never);
+        validatorMock.Verify(
+            val => val.AddValidationError(
+                It.IsAny<string>()
+            ),
+            Times.Never
+        );
     }
 
 
     [Theory]
-    [MemberData(
-        nameof(CnpjGenerator.CreateInvalidCnpjValues),
-        MemberType = typeof(CnpjGenerator)
-    )]
-    public void WhenValidatingCnpjValue_GivenInvalidCnpjValue_ShouldShouldCallAddValidatorError(
+    [MemberData(nameof(CnpjGenerator.CreateInvalidCnpjValues), MemberType = typeof(CnpjGenerator))]
+    public void GivenInvalidCnpjValue_WhenValidatingCnpjValue_ThenShouldShouldCallAddValidatorError(
         string invalidCnpj
     )
     {
@@ -107,19 +128,25 @@ public class ValidationRulesTest
         var validatorMock = ValidationRulesFixture.GetValidatorMock();
 
         // Act
-        ValidationRules.ValidateCnpj(invalidCnpj, "cnpj", validatorMock.Object);
+        ValidationRules.ValidateCnpj(
+            invalidCnpj,
+            "cnpj",
+            validatorMock.Object
+        );
 
         // Assert
-        validatorMock.Verify(val => val.AddValidationError(It.IsAny<string>()), Times.Once);
+        validatorMock.Verify(
+            val => val.AddValidationError(
+                It.IsAny<string>()
+            ),
+            Times.Once
+        );
     }
 
 
     [Theory]
-    [MemberData(
-        nameof(CnpjGenerator.CreateCnpjs),
-        MemberType = typeof(CnpjGenerator)
-    )]
-    public void WhenValidatingCnpjValue_GivenValidCnpjValue_ShouldDoNothing(
+    [MemberData(nameof(CnpjGenerator.CreateCnpjs), MemberType = typeof(CnpjGenerator))]
+    public void GivenValidCnpjValue_WhenValidatingCnpjValue_ThenShouldDoNothing(
         Cnpj cnpj
     )
     {
@@ -127,19 +154,25 @@ public class ValidationRulesTest
         var validatorMock = ValidationRulesFixture.GetValidatorMock();
 
         // Act
-        ValidationRules.ValidateCnpj(cnpj.Value, "cnpj", validatorMock.Object);
+        ValidationRules.ValidateCnpj(
+            cnpj.Value,
+            "cnpj",
+            validatorMock.Object
+        );
 
         // Assert
-        validatorMock.Verify(val => val.AddValidationError(It.IsAny<string>()), Times.Never);
+        validatorMock.Verify(
+            val => val.AddValidationError(
+                It.IsAny<string>()
+            ),
+            Times.Never
+        );
     }
 
     
     [Theory]
-    [MemberData(
-        nameof(AddressGenerator.CreateInvalidNumbers),
-        MemberType = typeof(AddressGenerator)
-    )]
-    public void WhenValidatingPositiveInt_GivenInvalidInt_ShouldCallAddValidatorError(
+    [MemberData(nameof(AddressGenerator.CreateInvalidNumbers), MemberType = typeof(AddressGenerator))]
+    public void GivenInvalidInt_WhenValidatingPositiveInt_ThenShouldCallAddValidatorError(
         int invalidNumber
     )
     {
@@ -147,19 +180,25 @@ public class ValidationRulesTest
         var validatorMock = ValidationRulesFixture.GetValidatorMock();
 
         // Act
-        ValidationRules.ValidatePositive(invalidNumber, "number", validatorMock.Object);
+        ValidationRules.ValidatePositive(
+            invalidNumber,
+            "number",
+            validatorMock.Object
+        );
 
         // Assert
-        validatorMock.Verify(val => val.AddValidationError(It.IsAny<string>()), Times.Once);
+        validatorMock.Verify(
+            val => val.AddValidationError(
+                It.IsAny<string>()
+            ),
+            Times.Once
+        );
     }
     
     
     [Theory]
-    [MemberData(
-        nameof(AddressGenerator.CreateAddresses),
-        MemberType = typeof(AddressGenerator)
-    )]
-    public void WhenValidatingPositiveInt_GivenValidInt_ShouldDoNothing(
+    [MemberData(nameof(AddressGenerator.CreateAddresses), MemberType = typeof(AddressGenerator))]
+    public void GivenValidInt_WhenValidatingPositiveInt_ThenShouldDoNothing(
         Address number
     )
     {
@@ -167,19 +206,25 @@ public class ValidationRulesTest
         var validatorMock = ValidationRulesFixture.GetValidatorMock();
         
         // Act
-        ValidationRules.ValidatePositive(number.Number, "number", validatorMock.Object);
+        ValidationRules.ValidatePositive(
+            number.Number,
+            "number",
+            validatorMock.Object
+        );
 
         // Assert
-        validatorMock.Verify(val => val.AddValidationError(It.IsAny<string>()), Times.Never);
+        validatorMock.Verify(
+            val => val.AddValidationError(
+                It.IsAny<string>()
+            ),
+            Times.Never
+        );
     }
     
     
     [Theory]
-    [MemberData(
-        nameof(PriceGenerator.CreateInvalidPrices),
-        MemberType = typeof(PriceGenerator)
-    )]
-    public void WhenValidatingPositiveDecimal_GivenInvalidDecimal_ShouldCallAddValidatorError(
+    [MemberData(nameof(PriceGenerator.CreateInvalidPrices), MemberType = typeof(PriceGenerator))]
+    public void GivenInvalidDecimal_WhenValidatingPositiveDecimal_ThenShouldCallAddValidatorError(
         decimal invalidNumber
     )
     {
@@ -187,19 +232,25 @@ public class ValidationRulesTest
         var validatorMock = ValidationRulesFixture.GetValidatorMock();
 
         // Act
-        ValidationRules.ValidatePositive(invalidNumber, "number", validatorMock.Object);
+        ValidationRules.ValidatePositive(
+            invalidNumber,
+            "number",
+            validatorMock.Object
+        );
 
         // Assert
-        validatorMock.Verify(val => val.AddValidationError(It.IsAny<string>()), Times.Once);
+        validatorMock.Verify(
+            val => val.AddValidationError(
+                It.IsAny<string>()
+            ),
+            Times.Once
+        );
     }
     
     
     [Theory]
-    [MemberData(
-        nameof(PriceGenerator.CreatePrices),
-        MemberType = typeof(PriceGenerator)
-    )]
-    public void WhenValidatingPositiveDecimal_GivenValidDecimal_ShouldDoNothing(
+    [MemberData(nameof(PriceGenerator.CreatePrices), MemberType = typeof(PriceGenerator))]
+    public void GivenValidDecimal_WhenValidatingPositiveDecimal_ThenShouldDoNothing(
         Price number
     )
     {
@@ -207,19 +258,25 @@ public class ValidationRulesTest
         var validatorMock = ValidationRulesFixture.GetValidatorMock();
         
         // Act
-        ValidationRules.ValidatePositive(number.Value, "number", validatorMock.Object);
+        ValidationRules.ValidatePositive(
+            number.Value,
+            "number",
+            validatorMock.Object
+        );
 
         // Assert
-        validatorMock.Verify(val => val.AddValidationError(It.IsAny<string>()), Times.Never);
+        validatorMock.Verify(
+            val => val.AddValidationError(
+                It.IsAny<string>()
+            ),
+            Times.Never
+        );
     }
     
     
     [Theory]
-    [MemberData(
-        nameof(AddressGenerator.CreateInvalidComplements),
-        MemberType = typeof(AddressGenerator)
-    )]
-    public void WhenValidatingMaxStringLength_GivenInvalidStringLength_ShouldCallAddValidatorError(
+    [MemberData(nameof(AddressGenerator.CreateInvalidComplements), MemberType = typeof(AddressGenerator))]
+    public void GivenInvalidStringLength_WhenValidatingMaxStringLength_ThenShouldCallAddValidatorError(
         string invalidString
     )
     {
@@ -227,19 +284,26 @@ public class ValidationRulesTest
         var validatorMock = ValidationRulesFixture.GetValidatorMock();
 
         // Act
-        ValidationRules.ValidateMaxStringLength(invalidString, "string", AddressValidator.ComplementMaxLength,  validatorMock.Object);
+        ValidationRules.ValidateMaxStringLength(
+            invalidString,
+            "string",
+            AddressValidator.ComplementMaxLength,
+            validatorMock.Object
+        );
 
         // Assert
-        validatorMock.Verify(val => val.AddValidationError(It.IsAny<string>()), Times.Once);
+        validatorMock.Verify(
+            val => val.AddValidationError(
+                It.IsAny<string>()
+            ),
+            Times.Once
+        );
     }
     
     
     [Theory]
-    [MemberData(
-        nameof(AddressGenerator.CreateAddresses),
-        MemberType = typeof(AddressGenerator)
-    )]
-    public void WhenValidatingMaxStringLength_GivenValidStringLength_ShouldDoNothing(
+    [MemberData(nameof(AddressGenerator.CreateAddresses), MemberType = typeof(AddressGenerator))]
+    public void GivenValidStringLength_WhenValidatingMaxStringLength_ThenShouldDoNothing(
         Address address
     )
     {
@@ -247,19 +311,26 @@ public class ValidationRulesTest
         var validatorMock = ValidationRulesFixture.GetValidatorMock();
         
         // Act
-        ValidationRules.ValidateMaxStringLength(address.Complement, "string", AddressValidator.ComplementMaxLength, validatorMock.Object);
+        ValidationRules.ValidateMaxStringLength(
+            address.Complement,
+            "string",
+            AddressValidator.ComplementMaxLength,
+            validatorMock.Object
+        );
 
         // Assert
-        validatorMock.Verify(val => val.AddValidationError(It.IsAny<string>()), Times.Never);
+        validatorMock.Verify(
+            val => val.AddValidationError(
+                It.IsAny<string>()
+            ),
+            Times.Never
+        );
     }
     
     
     [Theory]
-    [MemberData(
-        nameof(AddressGenerator.CreateInvalidStreets),
-        MemberType = typeof(AddressGenerator)
-    )]
-    public void WhenValidatingStringLength_GivenInvalidStringLength_ShouldCallAddValidatorError(
+    [MemberData(nameof(AddressGenerator.CreateInvalidStreets), MemberType = typeof(AddressGenerator))]
+    public void GivenInvalidStringLength_WhenValidatingStringLength_ThenShouldCallAddValidatorError(
         string invalidString
     )
     {
@@ -267,19 +338,27 @@ public class ValidationRulesTest
         var validatorMock = ValidationRulesFixture.GetValidatorMock();
 
         // Act
-        ValidationRules.ValidateStringLength(invalidString, "string", AddressValidator.StreetMinLength, AddressValidator.StreetMaxLength,  validatorMock.Object);
+        ValidationRules.ValidateStringLength(
+            invalidString,
+            "string",
+            AddressValidator.StreetMinLength,
+            AddressValidator.StreetMaxLength,
+            validatorMock.Object
+        );
 
         // Assert
-        validatorMock.Verify(val => val.AddValidationError(It.IsAny<string>()), Times.Once);
+        validatorMock.Verify(
+            val => val.AddValidationError(
+                It.IsAny<string>()
+            ),
+            Times.Once
+        );
     }
     
     
     [Theory]
-    [MemberData(
-        nameof(AddressGenerator.CreateAddresses),
-        MemberType = typeof(AddressGenerator)
-    )]
-    public void WhenValidatingStringLength_GivenValidStringLength_ShouldDoNothing(
+    [MemberData(nameof(AddressGenerator.CreateAddresses), MemberType = typeof(AddressGenerator))]
+    public void GivenValidStringLength_WhenValidatingStringLength_ThenShouldDoNothing(
         Address address
     )
     {
@@ -287,19 +366,27 @@ public class ValidationRulesTest
         var validatorMock = ValidationRulesFixture.GetValidatorMock();
         
         // Act
-        ValidationRules.ValidateStringLength(address.Street, "string", AddressValidator.StreetMinLength, AddressValidator.StreetMaxLength, validatorMock.Object);
+        ValidationRules.ValidateStringLength(
+            address.Street,
+            "string",
+            AddressValidator.StreetMinLength,
+            AddressValidator.StreetMaxLength,
+            validatorMock.Object
+        );
 
         // Assert
-        validatorMock.Verify(val => val.AddValidationError(It.IsAny<string>()), Times.Never);
+        validatorMock.Verify(
+            val => val.AddValidationError(
+                It.IsAny<string>()
+            ),
+            Times.Never
+        );
     }
     
     
     [Theory]
-    [MemberData(
-        nameof(StringGenerator.CreateInvalidStrings),
-        MemberType = typeof(StringGenerator)
-    )]
-    public void WhenValidatingRequired_GivenInvalidRequired_ShouldCallAddValidatorError(
+    [MemberData(nameof(StringGenerator.CreateInvalidStrings), MemberType = typeof(StringGenerator))]
+    public void GivenInvalidRequired_WhenValidatingRequired_ThenShouldCallAddValidatorError(
         string invalidString
     )
     {
@@ -307,29 +394,44 @@ public class ValidationRulesTest
         var validatorMock = ValidationRulesFixture.GetValidatorMock();
 
         // Act
-        ValidationRules.ValidateRequired(invalidString, "string",  validatorMock.Object);
+        ValidationRules.ValidateRequired(
+            invalidString,
+            "string",
+            validatorMock.Object
+        );
 
         // Assert
-        validatorMock.Verify(val => val.AddValidationError(It.IsAny<string>()), Times.Once);
+        validatorMock.Verify(
+            val => val.AddValidationError(
+                It.IsAny<string>()
+            ),
+            Times.Once
+        );
     }
     
     
     [Theory]
-    [MemberData(
-        nameof(StringGenerator.CreateStrings),
-        MemberType = typeof(StringGenerator)
-    )]
-    public void WhenValidatingRequired_GivenValidRequired_ShouldDoNothing(
-        String testString
+    [MemberData(nameof(StringGenerator.CreateStrings), MemberType = typeof(StringGenerator))]
+    public void GivenValidRequired_WhenValidatingRequired_ThenShouldDoNothing(
+        string testString
     )
     {
         // Arrange
         var validatorMock = ValidationRulesFixture.GetValidatorMock();
         
         // Act
-        ValidationRules.ValidateRequired(testString, "string", validatorMock.Object);
+        ValidationRules.ValidateRequired(
+            testString,
+            "string",
+            validatorMock.Object
+        );
 
         // Assert
-        validatorMock.Verify(val => val.AddValidationError(It.IsAny<string>()), Times.Never);
+        validatorMock.Verify(
+            val => val.AddValidationError(
+                It.IsAny<string>()
+            ),
+            Times.Never
+        );
     }
 }
