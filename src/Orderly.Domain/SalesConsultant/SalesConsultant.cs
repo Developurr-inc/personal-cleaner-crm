@@ -19,7 +19,6 @@ public class SalesConsultant : Entity<SalesConsultantId>, IAggregateRoot
 
     public DateTime CreatedAt { get; }
 
-
     private SalesConsultant(
         Cpf cpf,
         Address address,
@@ -27,7 +26,8 @@ public class SalesConsultant : Entity<SalesConsultantId>, IAggregateRoot
         Email email,
         Phone? landline,
         Phone? mobile
-    ) : base(SalesConsultantId.Create())
+    )
+        : base(SalesConsultantId.Create())
     {
         Cpf = cpf;
         Address = address;
@@ -37,7 +37,6 @@ public class SalesConsultant : Entity<SalesConsultantId>, IAggregateRoot
         Mobile = mobile;
         CreatedAt = DateTime.Now;
     }
-
 
     public static SalesConsultant Create(
         Cpf cpf,
@@ -54,7 +53,6 @@ public class SalesConsultant : Entity<SalesConsultantId>, IAggregateRoot
 
         return new SalesConsultant(cpf, address, name, email, landline, mobile);
     }
-
 
     private static void Validate(string name)
     {

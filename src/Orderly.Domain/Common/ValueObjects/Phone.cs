@@ -7,12 +7,10 @@ public sealed class Phone : ValueObject
 {
     public string Value { get; }
 
-
     private Phone(string phone)
     {
         Value = phone;
     }
-
 
     public static Phone Create(string phone)
     {
@@ -23,7 +21,6 @@ public sealed class Phone : ValueObject
 
         return new Phone(phoneTrimmed);
     }
-
 
     protected override IEnumerable<object> GetEqualityComponents()
     {

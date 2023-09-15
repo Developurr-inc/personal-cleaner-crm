@@ -4,16 +4,11 @@ namespace Orderly.Domain.Validation;
 
 public static partial class ValidationRules
 {
-    public static void ValidateRequired(
-        string? value,
-        string fieldName,
-        IValidator errors
-    )
+    public static void ValidateRequired(string? value, string fieldName, IValidator errors)
     {
         if (string.IsNullOrWhiteSpace(value))
             errors.AddValidationError($"'{fieldName}' is required.");
     }
-
 
     public static void ValidateStringLength(
         string value,
@@ -25,9 +20,9 @@ public static partial class ValidationRules
     {
         if (value.Length < minLength || value.Length > maxLength)
             errors.AddValidationError(
-                $"'{fieldName}' should be between {minLength} and {maxLength} characters.");
+                $"'{fieldName}' should be between {minLength} and {maxLength} characters."
+            );
     }
-
 
     public static void ValidateMaxStringLength(
         string value,
@@ -39,50 +34,29 @@ public static partial class ValidationRules
         ValidateStringLength(value, fieldName, 0, maxLength, errors);
     }
 
-
-    public static void ValidatePositive(
-        int value,
-        string fieldName,
-        IValidator errors
-    )
+    public static void ValidatePositive(int value, string fieldName, IValidator errors)
     {
         if (int.IsNegative(value))
             errors.AddValidationError($"'{fieldName}' should be positive.");
     }
 
-
-    public static void ValidatePositive(
-        decimal value,
-        string fieldName,
-        IValidator errors
-    )
+    public static void ValidatePositive(decimal value, string fieldName, IValidator errors)
     {
         if (decimal.IsNegative(value))
             errors.AddValidationError($"'{fieldName}' should be positive.");
     }
 
-
-    public static void ValidateEmail(
-        string email,
-        string fieldName,
-        IValidator errors
-    )
+    public static void ValidateEmail(string email, string fieldName, IValidator errors)
     {
         if (!EmailRegex().IsMatch(email))
             errors.AddValidationError($"Invalid '{fieldName}' format.");
     }
 
-
-    public static void ValidateCpf(
-        string cpf,
-        string fieldName,
-        IValidator errors
-    )
+    public static void ValidateCpf(string cpf, string fieldName, IValidator errors)
     {
         var cpfNumbers = DigitOnlyRegex().Replace(cpf, "");
 
-        if (cpfNumbers.Length != 11 || IsRepeatedDigits(cpfNumbers) ||
-            !IsValidCpf(cpfNumbers))
+        if (cpfNumbers.Length != 11 || IsRepeatedDigits(cpfNumbers) || !IsValidCpf(cpfNumbers))
             errors.AddValidationError($"'{fieldName}' is not valid.");
 
         return;
@@ -94,8 +68,7 @@ public static partial class ValidationRules
 
         bool IsValidCpf(string cpfDigits)
         {
-            var digits = cpfDigits.Select(c => int.Parse(c.ToString()))
-                .ToArray();
+            var digits = cpfDigits.Select(c => int.Parse(c.ToString())).ToArray();
 
             var checksum1 = 0;
             var checksum2 = digits[9] * (11 - 9);
@@ -116,17 +89,11 @@ public static partial class ValidationRules
         }
     }
 
-
-    public static void ValidateCnpj(
-        string cnpj,
-        string fieldName,
-        IValidator errors
-    )
+    public static void ValidateCnpj(string cnpj, string fieldName, IValidator errors)
     {
         var cnpjNumbers = DigitOnlyRegex().Replace(cnpj, "");
 
-        if (cnpjNumbers.Length != 14 || IsRepeatedDigits(cnpjNumbers) ||
-            !IsValidCnpj(cnpjNumbers))
+        if (cnpjNumbers.Length != 14 || IsRepeatedDigits(cnpjNumbers) || !IsValidCnpj(cnpjNumbers))
             errors.AddValidationError($"'{fieldName}' is not valid.");
 
         return;
@@ -138,8 +105,7 @@ public static partial class ValidationRules
 
         bool IsValidCnpj(string cnpjDigits)
         {
-            var digits = cnpjDigits.Select(c => int.Parse(c.ToString()))
-                .ToArray();
+            var digits = cnpjDigits.Select(c => int.Parse(c.ToString())).ToArray();
 
             var weights1 = new[] { 5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2 };
             var weights2 = new[] { 6, 5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2 };
@@ -163,23 +129,17 @@ public static partial class ValidationRules
         }
     }
 
-
-    public static void ValidatePhoneNumber(
-        string phone,
-        string fieldName,
-        IValidator errors
-    )
+    public static void ValidatePhoneNumber(string phone, string fieldName, IValidator errors)
     {
-        var validatePhoneNumberRegex =
-            new Regex(@"^(\+55\s?)?(\(\d{2}\)\s?)?(\d{4,5}-\d{4}|\d{11})$");
+        var validatePhoneNumberRegex = new Regex(
+            @"^(\+55\s?)?(\(\d{2}\)\s?)?(\d{4,5}-\d{4}|\d{11})$"
+        );
         if (validatePhoneNumberRegex.IsMatch(phone) == false)
             errors.AddValidationError($"'{fieldName}' is not valid.");
     }
 
-
     [GeneratedRegex("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$")]
     private static partial Regex EmailRegex();
-
 
     [GeneratedRegex("[^\\d]")]
     private static partial Regex DigitOnlyRegex();

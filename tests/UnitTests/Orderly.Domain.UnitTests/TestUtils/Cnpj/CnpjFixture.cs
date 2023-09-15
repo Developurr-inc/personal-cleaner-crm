@@ -11,7 +11,6 @@ public sealed class CnpjFixture : BaseFixture
         return Domain.Common.ValueObjects.Cnpj.Create(cnpj);
     }
 
-
     public static Domain.Common.ValueObjects.Cnpj CreateCnpj(
         Domain.Common.ValueObjects.Cnpj? cnpj = null,
         string? value = null
@@ -22,19 +21,14 @@ public sealed class CnpjFixture : BaseFixture
         return Domain.Common.ValueObjects.Cnpj.Create(value ?? lCnpj.Value);
     }
 
-
     public static string CreateWrongSizeCnpj()
     {
         var cnpj = Faker.Company.Cnpj();
 
-        cnpj += Faker.Random.String2(
-            Faker.Random.Int(5, 20), 
-            "0123456789"
-        );
+        cnpj += Faker.Random.String2(Faker.Random.Int(5, 20), "0123456789");
 
         return cnpj;
     }
-
 
     public static string CreateInvalidCnpjValue()
     {

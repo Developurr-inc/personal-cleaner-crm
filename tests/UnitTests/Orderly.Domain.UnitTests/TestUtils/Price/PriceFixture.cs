@@ -9,7 +9,6 @@ public sealed class PriceFixture : BaseFixture
         return Domain.Common.ValueObjects.Price.Create(price);
     }
 
-
     public static Domain.Common.ValueObjects.Price CreatePrice(
         Domain.Common.ValueObjects.Price? price = null,
         decimal? value = null
@@ -19,7 +18,6 @@ public sealed class PriceFixture : BaseFixture
 
         return Domain.Common.ValueObjects.Price.Create(value ?? lPrice.Value);
     }
-
 
     public static decimal CreateInvalidPrice()
     {

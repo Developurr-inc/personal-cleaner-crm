@@ -24,7 +24,6 @@ public sealed class CustomerValidator : Validator
 
     public const int ObservationMaxLength = 10_000;
 
-
     public CustomerValidator(
         string corporateName,
         string taxId,
@@ -40,7 +39,6 @@ public sealed class CustomerValidator : Validator
         _observation = observation;
     }
 
-
     public override void Validate()
     {
         ValidateCorporateName();
@@ -48,13 +46,10 @@ public sealed class CustomerValidator : Validator
         ValidateTradeName();
         ValidateSegment();
         ValidateObservation();
-        
-        if (HasErrors())
-        {
-            ThrowEntityValidationExceptionWithValidationErrors();
-        }
-    }
 
+        if (HasErrors())
+            ThrowEntityValidationExceptionWithValidationErrors();
+    }
 
     private void ValidateCorporateName()
     {
@@ -70,7 +65,6 @@ public sealed class CustomerValidator : Validator
         );
     }
 
-
     private void ValidateTaxId()
     {
         const string fieldName = "Tax ID";
@@ -84,7 +78,6 @@ public sealed class CustomerValidator : Validator
             this
         );
     }
-
 
     private void ValidateTradeName()
     {
@@ -100,7 +93,6 @@ public sealed class CustomerValidator : Validator
         );
     }
 
-
     private void ValidateSegment()
     {
         const string fieldName = "Segment";
@@ -114,7 +106,6 @@ public sealed class CustomerValidator : Validator
             this
         );
     }
-
 
     private void ValidateObservation()
     {

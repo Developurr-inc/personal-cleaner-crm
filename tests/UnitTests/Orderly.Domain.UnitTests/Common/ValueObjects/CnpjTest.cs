@@ -7,17 +7,14 @@ public sealed class CnpjTest
 {
     [Theory]
     [MemberData(nameof(CnpjGenerator.CreateCnpjs), MemberType = typeof(CnpjGenerator))]
-    public void GivenValidInput_WhenCreatingCnpj_ThenShouldInstantiateCnpj(
-        Cnpj cnpj
-    )
+    public void GivenValidInput_WhenCreatingCnpj_ThenShouldInstantiateCnpj(Cnpj cnpj)
     {
         // Act
-        var newCnpj = CnpjFixture.CreateCnpj(cnpj: cnpj);
+        var newCnpj = CnpjFixture.CreateCnpj(cnpj);
 
         // Assert
         CnpjAssertion.AssertCnpj(cnpj, newCnpj);
     }
-
 
     [Theory]
     [MemberData(nameof(CnpjGenerator.CreateInvalidCnpjValues), MemberType = typeof(CnpjGenerator))]

@@ -11,7 +11,6 @@ public sealed class CpfFixture : BaseFixture
         return Domain.Common.ValueObjects.Cpf.Create(cpf);
     }
 
-
     public static Domain.Common.ValueObjects.Cpf CreateCpf(
         Domain.Common.ValueObjects.Cpf? cpf = null,
         string? value = null
@@ -21,7 +20,6 @@ public sealed class CpfFixture : BaseFixture
 
         return Domain.Common.ValueObjects.Cpf.Create(value ?? lCpf.Value);
     }
-
 
     public static string CreateInvalidCpf()
     {

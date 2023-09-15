@@ -17,7 +17,6 @@ public class Manager : Entity<ManagerId>, IAggregateRoot
 
     public DateTime CreatedAt { get; }
 
-
     private Manager(
         Cpf cpf,
         Address address,
@@ -25,7 +24,8 @@ public class Manager : Entity<ManagerId>, IAggregateRoot
         Email email,
         Phone? landline,
         Phone? mobile
-    ) : base(ManagerId.Create())
+    )
+        : base(ManagerId.Create())
     {
         Cpf = cpf;
         Address = address;
@@ -35,7 +35,6 @@ public class Manager : Entity<ManagerId>, IAggregateRoot
         Mobile = mobile;
         CreatedAt = DateTime.Now;
     }
-
 
     public static Manager Create(
         Cpf cpf,
@@ -50,16 +49,8 @@ public class Manager : Entity<ManagerId>, IAggregateRoot
 
         Validate(nameTrimmed);
 
-        return new Manager(
-            cpf,
-            address,
-            nameTrimmed,
-            nfeEmail,
-            landline,
-            mobile
-        );
+        return new Manager(cpf, address, nameTrimmed, nfeEmail, landline, mobile);
     }
-
 
     private static void Validate(string name)
     {

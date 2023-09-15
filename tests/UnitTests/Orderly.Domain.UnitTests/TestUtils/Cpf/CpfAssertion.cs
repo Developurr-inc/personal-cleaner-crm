@@ -13,7 +13,6 @@ public static class CpfAssertion
         Assert.Equal(expected.Value, actual.Value);
     }
 
-
     public static void AssertCpfException(Exception exception)
     {
         Assert.NotNull(exception);

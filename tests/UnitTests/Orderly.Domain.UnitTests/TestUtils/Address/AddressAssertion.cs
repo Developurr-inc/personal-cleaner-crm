@@ -20,7 +20,6 @@ public static class AddressAssertion
         Assert.Equal(expected.Country, actual.Country);
     }
 
-
     public static void AssertAddressException(Exception exception)
     {
         Assert.NotNull(exception);

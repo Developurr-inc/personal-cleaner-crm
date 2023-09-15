@@ -32,7 +32,6 @@ public sealed class SalesConsultantFixture : BaseFixture
         );
     }
 
-
     public static Domain.SalesConsultant.SalesConsultant CreateSalesConsultant(
         Domain.SalesConsultant.SalesConsultant? salesConsultant = null,
         string? name = null
@@ -50,21 +49,13 @@ public sealed class SalesConsultantFixture : BaseFixture
         );
     }
 
-
     public static string CreateShortName()
     {
-        return StringFixture.CreateString(
-            1,
-            SalesConsultantValidator.NameMinLength - 1
-        );
+        return StringFixture.CreateString(1, SalesConsultantValidator.NameMinLength - 1);
     }
-
 
     public static string CreateLongName()
     {
-        return StringFixture.CreateString(
-            SalesConsultantValidator.NameMaxLength + 1,
-            1_000
-        );
+        return StringFixture.CreateString(SalesConsultantValidator.NameMaxLength + 1, 1_000);
     }
 }

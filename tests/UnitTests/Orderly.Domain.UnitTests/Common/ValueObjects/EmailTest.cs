@@ -8,20 +8,20 @@ public sealed class EmailTest
 {
     [Theory]
     [MemberData(nameof(EmailGenerator.CreateEmails), MemberType = typeof(EmailGenerator))]
-    public void GivenValidInput_WhenCreatingEmail_ThenShouldInstantiateEmail(
-        Email email
-    )
+    public void GivenValidInput_WhenCreatingEmail_ThenShouldInstantiateEmail(Email email)
     {
         // Act
-        var newEmail = EmailFixture.CreateEmail(email: email);
+        var newEmail = EmailFixture.CreateEmail(email);
 
         // Assert
         EmailAssertion.AssertEmail(email, newEmail);
     }
 
-
     [Theory]
-    [MemberData(nameof(EmailGenerator.CreateInvalidEmailAddresses), MemberType = typeof(EmailGenerator))]
+    [MemberData(
+        nameof(EmailGenerator.CreateInvalidEmailAddresses),
+        MemberType = typeof(EmailGenerator)
+    )]
     public void GivenInvalidEmail_WhenCreatingEmail_ThenShouldThrowEntityValidationException(
         string invalidEmail
     )
@@ -38,7 +38,6 @@ public sealed class EmailTest
         // Assert
         EmailAssertion.AssertEmailException(exception!);
     }
-
 
     [Theory]
     [MemberData(nameof(StringGenerator.CreateInvalidStrings), MemberType = typeof(StringGenerator))]

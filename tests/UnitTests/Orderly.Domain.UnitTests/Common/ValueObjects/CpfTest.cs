@@ -7,17 +7,14 @@ public sealed class CpfTest
 {
     [Theory]
     [MemberData(nameof(CpfGenerator.CreateCpfs), MemberType = typeof(CpfGenerator))]
-    public void GivenValidInput_WhenCreatingCpf_ThenShouldInstantiateCpf(
-        Cpf cpf
-    )
+    public void GivenValidInput_WhenCreatingCpf_ThenShouldInstantiateCpf(Cpf cpf)
     {
         // Act
-        var newCpf = CpfFixture.CreateCpf(cpf: cpf);
+        var newCpf = CpfFixture.CreateCpf(cpf);
 
         // Assert
         CpfAssertion.AssertCpf(cpf, newCpf);
     }
-
 
     [Theory]
     [MemberData(nameof(CpfGenerator.CreateInvalidCpfs), MemberType = typeof(CpfGenerator))]

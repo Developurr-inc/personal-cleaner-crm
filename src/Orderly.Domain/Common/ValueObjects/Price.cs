@@ -7,12 +7,10 @@ public sealed class Price : ValueObject
 {
     public decimal Value { get; }
 
-
     private Price(decimal price)
     {
         Value = price;
     }
-
 
     public static Price Create(decimal price)
     {
@@ -21,7 +19,6 @@ public sealed class Price : ValueObject
 
         return new Price(price);
     }
-
 
     protected override IEnumerable<object> GetEqualityComponents()
     {

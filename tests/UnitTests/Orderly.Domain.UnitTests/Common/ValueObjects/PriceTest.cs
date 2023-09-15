@@ -7,9 +7,7 @@ public sealed class PriceTest
 {
     [Theory]
     [MemberData(nameof(PriceGenerator.CreatePrices), MemberType = typeof(PriceGenerator))]
-    public void GivenValidInput_WhenCreatingPrice_ThenShouldInstantiatePrice(
-        Price price
-    )
+    public void GivenValidInput_WhenCreatingPrice_ThenShouldInstantiatePrice(Price price)
     {
         // Act
         var newPrice = PriceFixture.CreatePrice(price);
@@ -17,7 +15,6 @@ public sealed class PriceTest
         // Assert
         PriceAssertion.AssertPrice(price, newPrice);
     }
-
 
     [Theory]
     [MemberData(nameof(PriceGenerator.CreateInvalidPrices), MemberType = typeof(PriceGenerator))]

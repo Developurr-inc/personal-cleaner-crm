@@ -7,20 +7,20 @@ public sealed class AddressTest
 {
     [Theory]
     [MemberData(nameof(AddressGenerator.CreateAddresses), MemberType = typeof(AddressGenerator))]
-    public void GivenValidInput_WhenCreatingAddress_ThenShouldInstantiateAddress(
-        Address address
-    )
+    public void GivenValidInput_WhenCreatingAddress_ThenShouldInstantiateAddress(Address address)
     {
         // Act
-        var newAddress = AddressFixture.CreateAddress(address: address);
+        var newAddress = AddressFixture.CreateAddress(address);
 
         // Assert
         AddressAssertion.AssertAddress(address, newAddress);
     }
 
-
     [Theory]
-    [MemberData(nameof(AddressGenerator.CreateInvalidStreets), MemberType = typeof(AddressGenerator))]
+    [MemberData(
+        nameof(AddressGenerator.CreateInvalidStreets),
+        MemberType = typeof(AddressGenerator)
+    )]
     public void GivenInvalidStreet_WhenCreatingAddress_ThenShouldThrowEntityValidationException(
         string invalidStreet
     )
@@ -38,9 +38,11 @@ public sealed class AddressTest
         AddressAssertion.AssertAddressException(exception!);
     }
 
-
     [Theory]
-    [MemberData(nameof(AddressGenerator.CreateInvalidNumbers), MemberType = typeof(AddressGenerator))]
+    [MemberData(
+        nameof(AddressGenerator.CreateInvalidNumbers),
+        MemberType = typeof(AddressGenerator)
+    )]
     public void GivenInvalidNumber_WhenCreatingAddress_ThenShouldThrowEntityValidationException(
         int invalidNumber
     )
@@ -58,9 +60,11 @@ public sealed class AddressTest
         AddressAssertion.AssertAddressException(exception!);
     }
 
-
     [Theory]
-    [MemberData(nameof(AddressGenerator.CreateInvalidComplements), MemberType = typeof(AddressGenerator))]
+    [MemberData(
+        nameof(AddressGenerator.CreateInvalidComplements),
+        MemberType = typeof(AddressGenerator)
+    )]
     public void GivenInvalidComplement_WhenCreatingAddress_ThenShouldThrowEntityValidationException(
         string invalidComplement
     )
@@ -78,9 +82,11 @@ public sealed class AddressTest
         AddressAssertion.AssertAddressException(exception!);
     }
 
-
     [Theory]
-    [MemberData(nameof(AddressGenerator.CreateInvalidZipCodes), MemberType = typeof(AddressGenerator))]
+    [MemberData(
+        nameof(AddressGenerator.CreateInvalidZipCodes),
+        MemberType = typeof(AddressGenerator)
+    )]
     public void GivenInvalidZipCode_WhenCreatingAddress_ThenShouldThrowEntityValidationException(
         string invalidZipCode
     )
@@ -98,9 +104,11 @@ public sealed class AddressTest
         AddressAssertion.AssertAddressException(exception!);
     }
 
-
     [Theory]
-    [MemberData(nameof(AddressGenerator.CreateInvalidNeighborhoods), MemberType = typeof(AddressGenerator))]
+    [MemberData(
+        nameof(AddressGenerator.CreateInvalidNeighborhoods),
+        MemberType = typeof(AddressGenerator)
+    )]
     public void GivenInvalidNeighborhood_WhenCreatingAddress_ThenShouldThrowEntityValidationException(
         string invalidNeighborhood
     )
@@ -118,9 +126,11 @@ public sealed class AddressTest
         AddressAssertion.AssertAddressException(exception!);
     }
 
-
     [Theory]
-    [MemberData(nameof(AddressGenerator.CreateInvalidCities), MemberType = typeof(AddressGenerator))]
+    [MemberData(
+        nameof(AddressGenerator.CreateInvalidCities),
+        MemberType = typeof(AddressGenerator)
+    )]
     public void GivenInvalidCity_WhenCreatingAddress_ThenShouldThrowEntityValidationException(
         string invalidCity
     )
@@ -138,9 +148,11 @@ public sealed class AddressTest
         AddressAssertion.AssertAddressException(exception!);
     }
 
-
     [Theory]
-    [MemberData(nameof(AddressGenerator.CreateInvalidStates), MemberType = typeof(AddressGenerator))]
+    [MemberData(
+        nameof(AddressGenerator.CreateInvalidStates),
+        MemberType = typeof(AddressGenerator)
+    )]
     public void GivenInvalidState_WhenCreatingAddress_ThenShouldThrowEntityValidationException(
         string invalidState
     )
@@ -158,9 +170,11 @@ public sealed class AddressTest
         AddressAssertion.AssertAddressException(exception!);
     }
 
-
     [Theory]
-    [MemberData(nameof(AddressGenerator.CreateInvalidCountries), MemberType = typeof(AddressGenerator))]
+    [MemberData(
+        nameof(AddressGenerator.CreateInvalidCountries),
+        MemberType = typeof(AddressGenerator)
+    )]
     public void GivenInvalidCountry_WhenCreatingAddress_ThenShouldThrowEntityValidationException(
         string invalidCountry
     )

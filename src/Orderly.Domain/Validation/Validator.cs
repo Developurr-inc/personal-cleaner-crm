@@ -6,21 +6,17 @@ public abstract class Validator : IValidator
 {
     private readonly List<string> _validationErrors = new();
 
-
     public abstract void Validate();
-
 
     public void AddValidationError(string message)
     {
         _validationErrors.Add(message);
     }
 
-
     protected bool HasErrors()
     {
         return _validationErrors.Count > 0;
     }
-
 
     protected void ThrowEntityValidationExceptionWithValidationErrors()
     {
@@ -30,7 +26,6 @@ public abstract class Validator : IValidator
                 GetValidationErrors()
             );
     }
-
 
     private IEnumerable<string> GetValidationErrors()
     {

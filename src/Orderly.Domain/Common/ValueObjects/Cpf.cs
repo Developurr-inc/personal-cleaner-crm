@@ -7,12 +7,10 @@ public sealed class Cpf : ValueObject
 {
     public string Value { get; }
 
-
     private Cpf(string cpf)
     {
         Value = cpf;
     }
-
 
     public static Cpf Create(string cpf)
     {
@@ -23,7 +21,6 @@ public sealed class Cpf : ValueObject
 
         return new Cpf(cpfTrimmed);
     }
-
 
     protected override IEnumerable<object> GetEqualityComponents()
     {

@@ -12,7 +12,6 @@ public sealed class EmailFixture : BaseFixture
         return Domain.Common.ValueObjects.Email.Create(email);
     }
 
-
     public static Domain.Common.ValueObjects.Email CreateEmail(
         Domain.Common.ValueObjects.Email? email = null,
         string? value = null
@@ -23,7 +22,6 @@ public sealed class EmailFixture : BaseFixture
         return Domain.Common.ValueObjects.Email.Create(value ?? lEmail.Value);
     }
 
-
     public static string CreateInvalidAtEmailAddress()
     {
         var email = Faker.Internet.Email();
@@ -31,14 +29,12 @@ public sealed class EmailFixture : BaseFixture
         return email.Replace('@', 'a');
     }
 
-
     public static string CreateInvalidDotEmailAddress()
     {
         var email = Faker.Internet.Email();
 
         return email.Replace('.', 'a');
     }
-
 
     public static string CreateInvalidAtAndDotEmailAddress()
     {
@@ -50,21 +46,13 @@ public sealed class EmailFixture : BaseFixture
         return email;
     }
 
-
     public static string CreateShortEmailAddress()
     {
-        return StringFixture.CreateString(
-            1,
-            EmailValidator.EmailMinLength - 1
-        );
+        return StringFixture.CreateString(1, EmailValidator.EmailMinLength - 1);
     }
-
 
     public static string CreateLongEmailAddress()
     {
-        return StringFixture.CreateString(
-            EmailValidator.EmailMaxLength + 1,
-            1_000
-        );
+        return StringFixture.CreateString(EmailValidator.EmailMaxLength + 1, 1_000);
     }
 }

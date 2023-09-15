@@ -1,4 +1,3 @@
-using Orderly.Domain.Common.ValueObjects;
 using Orderly.Domain.UnitTests.TestUtils.Manager;
 
 namespace Orderly.Domain.UnitTests.Manager;
@@ -12,18 +11,15 @@ public class ManagerTest
     )
     {
         // Act
-        var newManager = ManagerFixture.CreateManager(manager: manager);
+        var newManager = ManagerFixture.CreateManager(manager);
 
         // Assert
         ManagerAssertion.AssertManager(manager, newManager);
     }
-    
-    
+
     [Theory]
     [MemberData(nameof(ManagerGenerator.CreateInvalidNames), MemberType = typeof(ManagerGenerator))]
-    public void GivenInvalidName_WhenCreatingManager_ThenShouldThrowException(
-        string invalidName
-    )
+    public void GivenInvalidName_WhenCreatingManager_ThenShouldThrowException(string invalidName)
     {
         // Arrange
         void Action()

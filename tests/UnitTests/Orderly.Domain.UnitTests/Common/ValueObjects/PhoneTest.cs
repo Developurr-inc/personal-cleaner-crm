@@ -7,17 +7,14 @@ public sealed class PhoneTest
 {
     [Theory]
     [MemberData(nameof(PhoneGenerator.CreatePhones), MemberType = typeof(PhoneGenerator))]
-    public void GivenValidInput_WhenCreatingPhone_ThenShouldInstantiatePhone(
-        Phone phone
-    )
+    public void GivenValidInput_WhenCreatingPhone_ThenShouldInstantiatePhone(Phone phone)
     {
         // Act
-        var newPhone = PhoneFixture.CreatePhone(phone: phone);
+        var newPhone = PhoneFixture.CreatePhone(phone);
 
         // Assert
         PhoneAssertion.AssertPhone(phone, newPhone);
     }
-
 
     [Theory]
     [MemberData(nameof(PhoneGenerator.CreateInvalidPhones), MemberType = typeof(PhoneGenerator))]

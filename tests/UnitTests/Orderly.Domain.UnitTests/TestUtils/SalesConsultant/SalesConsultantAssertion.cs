@@ -21,7 +21,6 @@ public static class SalesConsultantAssertion
         Assert.NotEqual(default, actual.CreatedAt);
     }
 
-
     public static void AssertSalesConsultantException(Exception exception)
     {
         Assert.NotNull(exception);

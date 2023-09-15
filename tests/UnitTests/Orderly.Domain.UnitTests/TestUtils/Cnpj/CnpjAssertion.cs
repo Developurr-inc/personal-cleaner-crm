@@ -13,7 +13,6 @@ public sealed class CnpjAssertion
         Assert.Equal(expected.Value, actual.Value);
     }
 
-
     public static void AssertCnpjException(Exception exception)
     {
         Assert.NotNull(exception);

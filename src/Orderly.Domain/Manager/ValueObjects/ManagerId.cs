@@ -6,18 +6,15 @@ public class ManagerId : ValueObject
 {
     public Guid Value { get; }
 
-
     private ManagerId()
     {
         Value = Guid.NewGuid();
     }
 
-
     public static ManagerId Create()
     {
         return new ManagerId();
     }
-
 
     protected override IEnumerable<object> GetEqualityComponents()
     {

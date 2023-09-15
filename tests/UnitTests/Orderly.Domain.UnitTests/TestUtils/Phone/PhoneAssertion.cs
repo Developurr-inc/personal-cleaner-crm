@@ -13,7 +13,6 @@ public static class PhoneAssertion
         Assert.Equal(expected.Value, actual.Value);
     }
 
-
     public static void AssertPhoneException(Exception exception)
     {
         Assert.NotNull(exception);

@@ -11,15 +11,17 @@ public sealed class CustomerTest
     )
     {
         // Act
-        var newCustomer = CustomerFixture.CreateCustomer(customer: customer);
+        var newCustomer = CustomerFixture.CreateCustomer(customer);
 
         // Assert
         CustomerAssertion.AssertCustomer(customer, newCustomer);
     }
-    
 
     [Theory]
-    [MemberData(nameof(CustomerGenerator.CreateInvalidCorporateNames), MemberType = typeof(CustomerGenerator))]
+    [MemberData(
+        nameof(CustomerGenerator.CreateInvalidCorporateNames),
+        MemberType = typeof(CustomerGenerator)
+    )]
     public void GivenInvalidCorporateName_WhenCreatingCustomer_ThenShouldThrowException(
         string invalidCorporateName
     )
@@ -27,9 +29,7 @@ public sealed class CustomerTest
         // Arrange
         void Action()
         {
-            _ = CustomerFixture.CreateCustomer(
-                corporateName: invalidCorporateName
-            );
+            _ = CustomerFixture.CreateCustomer(corporateName: invalidCorporateName);
         }
 
         // Act
@@ -39,12 +39,12 @@ public sealed class CustomerTest
         CustomerAssertion.AssertCustomerException(exception!);
     }
 
-
     [Theory]
-    [MemberData(nameof(CustomerGenerator.CreateInvalidTaxIds), MemberType = typeof(CustomerGenerator))]
-    public void GivenInvalidTaxId_WhenCreatingCustomer_ThenShouldThrowException(
-        string invalidTaxId
-    )
+    [MemberData(
+        nameof(CustomerGenerator.CreateInvalidTaxIds),
+        MemberType = typeof(CustomerGenerator)
+    )]
+    public void GivenInvalidTaxId_WhenCreatingCustomer_ThenShouldThrowException(string invalidTaxId)
     {
         // Arrange
         void Action()
@@ -59,9 +59,11 @@ public sealed class CustomerTest
         CustomerAssertion.AssertCustomerException(exception!);
     }
 
-
     [Theory]
-    [MemberData(nameof(CustomerGenerator.CreateInvalidTradeNames), MemberType = typeof(CustomerGenerator))]
+    [MemberData(
+        nameof(CustomerGenerator.CreateInvalidTradeNames),
+        MemberType = typeof(CustomerGenerator)
+    )]
     public void GivenInvalidTradeName_WhenCreatingCustomer_ThenShouldThrowException(
         string invalidTradeName
     )
@@ -79,9 +81,11 @@ public sealed class CustomerTest
         CustomerAssertion.AssertCustomerException(exception!);
     }
 
-
     [Theory]
-    [MemberData(nameof(CustomerGenerator.CreateInvalidSegments), MemberType = typeof(CustomerGenerator))]
+    [MemberData(
+        nameof(CustomerGenerator.CreateInvalidSegments),
+        MemberType = typeof(CustomerGenerator)
+    )]
     public void GivenInvalidSegment_WhenCreatingCustomer_ThenShouldThrowException(
         string invalidSegment
     )
@@ -99,9 +103,11 @@ public sealed class CustomerTest
         CustomerAssertion.AssertCustomerException(exception!);
     }
 
-
     [Theory]
-    [MemberData(nameof(CustomerGenerator.CreateInvalidObservations), MemberType = typeof(CustomerGenerator))]
+    [MemberData(
+        nameof(CustomerGenerator.CreateInvalidObservations),
+        MemberType = typeof(CustomerGenerator)
+    )]
     public void GivenInvalidObservation_WhenCreatingCustomer_ThenShouldThrowException(
         string invalidObservation
     )

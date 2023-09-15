@@ -13,7 +13,6 @@ public static class EmailAssertion
         Assert.Equal(expected.Value, actual.Value);
     }
 
-
     public static void AssertEmailException(Exception exception)
     {
         Assert.NotNull(exception);

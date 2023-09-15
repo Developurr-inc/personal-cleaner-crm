@@ -27,7 +27,6 @@ public static class CustomerAssertion
         Assert.NotEqual(actual.CreatedAt, default);
     }
 
-
     public static void AssertCustomerException(Exception exception)
     {
         Assert.NotNull(exception);

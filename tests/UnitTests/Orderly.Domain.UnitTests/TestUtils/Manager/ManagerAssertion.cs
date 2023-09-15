@@ -4,10 +4,7 @@ namespace Orderly.Domain.UnitTests.TestUtils.Manager;
 
 public static class ManagerAssertion
 {
-    public static void AssertManager(
-        Domain.Manager.Manager expected,
-        Domain.Manager.Manager actual
-    )
+    public static void AssertManager(Domain.Manager.Manager expected, Domain.Manager.Manager actual)
     {
         Assert.NotNull(actual);
         Assert.NotNull(actual.Id);
@@ -20,7 +17,6 @@ public static class ManagerAssertion
         Assert.Equal(expected.Mobile, actual.Mobile);
         Assert.NotEqual(default, actual.CreatedAt);
     }
-
 
     public static void AssertManagerException(Exception exception)
     {
