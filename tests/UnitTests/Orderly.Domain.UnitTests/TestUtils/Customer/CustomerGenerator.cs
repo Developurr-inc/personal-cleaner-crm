@@ -7,12 +7,10 @@ public sealed class CustomerGenerator : BaseGenerator
     public static IEnumerable<object[]> CreateCustomers()
     {
         for (var i = 0; i < Rounds; ++i)
-        {
             yield return new object[]
             {
                 CustomerFixture.CreateCustomer()
             };
-        }
     }
 
 
@@ -107,11 +105,9 @@ public sealed class CustomerGenerator : BaseGenerator
     public static IEnumerable<object[]> CreateInvalidObservations()
     {
         for (var i = 0; i < Rounds; ++i)
-        {
             yield return new object[]
             {
                 CustomerFixture.CreateLongObservation()
             };
-        }
     }
 }

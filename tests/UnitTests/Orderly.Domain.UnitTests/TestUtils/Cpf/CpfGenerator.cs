@@ -5,12 +5,10 @@ public sealed class CpfGenerator : BaseGenerator
     public static IEnumerable<object[]> CreateCpfs()
     {
         for (var i = 0; i < Rounds; ++i)
-        {
             yield return new object[]
             {
                 CpfFixture.CreateCpf()
             };
-        }
     }
 
 

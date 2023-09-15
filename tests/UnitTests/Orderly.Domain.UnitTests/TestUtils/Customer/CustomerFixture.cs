@@ -16,7 +16,7 @@ public sealed class CustomerFixture : BaseFixture
         var nfeEmail = EmailFixture.CreateEmail();
         var landline = PhoneFixture.CreatePhone();
         var mobile = PhoneFixture.CreatePhone();
-        
+
         var corporateName = StringFixture.CreateString(
             CustomerValidator.CorporateNameMinLength,
             CustomerValidator.CorporateNameMaxLength
@@ -63,7 +63,7 @@ public sealed class CustomerFixture : BaseFixture
     )
     {
         var lCustomer = customer ?? CreateValidCustomer();
-        
+
         return Domain.Customer.Customer.Create(
             // customer.SalesConsultant,
             lCustomer.Cnpj,

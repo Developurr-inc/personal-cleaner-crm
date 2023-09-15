@@ -19,11 +19,11 @@ public sealed class PhoneFixture : BaseFixture
     )
     {
         var lPhone = phone ?? CreateValidPhone();
-        
+
         return Domain.Common.ValueObjects.Phone.Create(value ?? lPhone.Value);
     }
-    
-    
+
+
     public static string CreateInvalidPhoneNumber()
     {
         return StringFixture.CreateString(
@@ -31,8 +31,8 @@ public sealed class PhoneFixture : BaseFixture
             PhoneValidator.PhoneMaxLength
         );
     }
-    
-    
+
+
     public static string CreateShortPhoneNumber()
     {
         return StringFixture.CreateString(
@@ -40,8 +40,8 @@ public sealed class PhoneFixture : BaseFixture
             PhoneValidator.PhoneMinLength - 1
         );
     }
-    
-    
+
+
     public static string CreateLongPhoneNumber()
     {
         return StringFixture.CreateString(

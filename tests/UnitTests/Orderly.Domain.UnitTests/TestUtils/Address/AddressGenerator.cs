@@ -27,17 +27,15 @@ public sealed class AddressGenerator : BaseGenerator
             };
         }
     }
-    
-    
+
+
     public static IEnumerable<object[]> CreateInvalidNumbers()
     {
         for (var i = 0; i < Rounds; ++i)
-        {
             yield return new object[]
             {
                 AddressFixture.CreateNegativeNumber()
             };
-        }
     }
 
 

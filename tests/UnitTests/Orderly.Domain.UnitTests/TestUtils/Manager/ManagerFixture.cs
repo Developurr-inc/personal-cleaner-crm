@@ -17,7 +17,7 @@ public class ManagerFixture : BaseFixture
         var nfeEmail = EmailFixture.CreateEmail();
         var landline = PhoneFixture.CreatePhone();
         var mobile = PhoneFixture.CreatePhone();
-        
+
         var name = StringFixture.CreateString(
             ManagerValidator.NameMinLength,
             ManagerValidator.NameMaxLength
@@ -32,15 +32,15 @@ public class ManagerFixture : BaseFixture
             mobile
         );
     }
-    
-    
+
+
     public static Domain.Manager.Manager CreateManager(
         Domain.Manager.Manager? manager = null,
         string? name = null
     )
     {
         var lManager = manager ?? CreateValidManager();
-        
+
         return Domain.Manager.Manager.Create(
             lManager.Cpf,
             lManager.Address,
@@ -50,8 +50,8 @@ public class ManagerFixture : BaseFixture
             lManager.Mobile
         );
     }
-    
-    
+
+
     public static string CreateShortName()
     {
         return StringFixture.CreateString(
@@ -59,8 +59,8 @@ public class ManagerFixture : BaseFixture
             ManagerValidator.NameMinLength - 1
         );
     }
-    
-    
+
+
     public static string CreateLongName()
     {
         return StringFixture.CreateString(

@@ -12,8 +12,8 @@ public class ManagerGenerator : BaseGenerator
                 ManagerFixture.CreateManager()
             };
     }
-    
-    
+
+
     public static IEnumerable<object[]> CreateInvalidNames()
     {
         for (var i = 0; i < Rounds; ++i)
@@ -22,7 +22,7 @@ public class ManagerGenerator : BaseGenerator
             {
                 StringFixture.CreateEmptyString()
             };
-            
+
             yield return new object[]
             {
                 ManagerFixture.CreateShortName()

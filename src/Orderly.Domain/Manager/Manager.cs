@@ -11,13 +11,13 @@ public class Manager : Entity<ManagerId>, IAggregateRoot
     public Address Address { get; private set; }
     public string Name { get; private set; }
     public Email Email { get; private set; }
-    
+
     public Phone? Landline { get; private set; }
     public Phone? Mobile { get; private set; }
-    
+
     public DateTime CreatedAt { get; }
-    
-    
+
+
     private Manager(
         Cpf cpf,
         Address address,
@@ -35,41 +35,35 @@ public class Manager : Entity<ManagerId>, IAggregateRoot
         Mobile = mobile;
         CreatedAt = DateTime.Now;
     }
-    
-    
+
+
     public static Manager Create(
         Cpf cpf,
         Address address,
-        string managerName,
+        string name,
         Email nfeEmail,
         Phone? landline,
         Phone? mobile
     )
     {
-        var managerNameTrimmed = managerName.Trim();
+        var nameTrimmed = name.Trim();
 
-        Validate(
-            managerNameTrimmed
-        );
+        Validate(nameTrimmed);
 
         return new Manager(
             cpf,
             address,
-            managerName,
+            nameTrimmed,
             nfeEmail,
             landline,
             mobile
         );
     }
-    
-    
-    private static void Validate(
-        string managerName
-    )
+
+
+    private static void Validate(string name)
     {
-        var managerValidator = new ManagerValidator(
-            managerName
-        );
+        var managerValidator = new ManagerValidator(name);
         managerValidator.Validate();
     }
 }

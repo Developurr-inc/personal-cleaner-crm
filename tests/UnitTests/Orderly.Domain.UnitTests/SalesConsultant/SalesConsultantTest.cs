@@ -2,7 +2,7 @@ using Orderly.Domain.UnitTests.TestUtils.SalesConsultant;
 
 namespace Orderly.Domain.UnitTests.SalesConsultant;
 
-public class SalesConsultantTest
+public sealed class SalesConsultantTest
 {
     [Theory]
     [MemberData(nameof(SalesConsultantGenerator.CreateSalesConsultants), MemberType = typeof(SalesConsultantGenerator))]
@@ -12,7 +12,7 @@ public class SalesConsultantTest
     {
         // Act
         var newSalesConsultant = SalesConsultantFixture.CreateSalesConsultant(
-            salesConsultant: salesConsultant
+            salesConsultant
         );
 
         // Assert

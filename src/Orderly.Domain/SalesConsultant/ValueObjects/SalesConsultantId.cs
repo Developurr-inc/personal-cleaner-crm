@@ -2,8 +2,8 @@ using Orderly.Domain.SeedWork;
 
 namespace Orderly.Domain.SalesConsultant.ValueObjects;
 
-public class SalesConsultantId : ValueObject
-{   
+public sealed class SalesConsultantId : ValueObject
+{
     public Guid Value { get; }
 
 

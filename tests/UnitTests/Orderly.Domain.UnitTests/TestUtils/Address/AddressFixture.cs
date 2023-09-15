@@ -42,7 +42,7 @@ public sealed class AddressFixture : BaseFixture
     )
     {
         var lAddress = address ?? CreateValidAddress();
-        
+
         return Domain.Common.ValueObjects.Address.Create(
             street ?? lAddress.Street,
             number ?? lAddress.Number,
@@ -72,8 +72,8 @@ public sealed class AddressFixture : BaseFixture
             1_000
         );
     }
-    
-    
+
+
     public static int CreateNegativeNumber()
     {
         return -Faker.Random.Number(99_999);

@@ -20,12 +20,12 @@ public sealed class EmailGenerator : BaseGenerator
             {
                 EmailFixture.CreateInvalidAtEmailAddress()
             };
-            
+
             yield return new object[]
             {
                 EmailFixture.CreateInvalidDotEmailAddress()
             };
-            
+
             yield return new object[]
             {
                 EmailFixture.CreateInvalidAtAndDotEmailAddress()

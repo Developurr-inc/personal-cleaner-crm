@@ -10,8 +10,8 @@ public sealed class PhoneGenerator : BaseGenerator
                 PhoneFixture.CreatePhone()
             };
     }
-    
-    
+
+
     public static IEnumerable<object[]> CreateInvalidPhones()
     {
         for (var i = 0; i < Rounds; ++i)
@@ -20,7 +20,7 @@ public sealed class PhoneGenerator : BaseGenerator
             {
                 PhoneFixture.CreateInvalidPhoneNumber()
             };
-            
+
             yield return new object[]
             {
                 PhoneFixture.CreateShortPhoneNumber()

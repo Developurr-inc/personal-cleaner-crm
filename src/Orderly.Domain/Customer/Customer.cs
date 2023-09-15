@@ -99,8 +99,8 @@ public sealed class Customer : Entity<CustomerId>, IAggregateRoot
             observationTrimmed
         );
     }
-    
-    
+
+
     private static void Validate(
         string corporateName,
         string taxId,

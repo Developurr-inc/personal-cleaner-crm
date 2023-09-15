@@ -20,15 +20,15 @@ public static class SalesConsultantAssertion
         Assert.Equal(expected.Mobile, actual.Mobile);
         Assert.NotEqual(default, actual.CreatedAt);
     }
-    
-    
+
+
     public static void AssertSalesConsultantException(Exception exception)
     {
         Assert.NotNull(exception);
         Assert.IsType<EntityValidationException>(exception);
-        
-        var entityValidationException = (EntityValidationException) exception;
-        
+
+        var entityValidationException = (EntityValidationException)exception;
+
         Assert.NotEmpty(entityValidationException.Errors);
     }
 }

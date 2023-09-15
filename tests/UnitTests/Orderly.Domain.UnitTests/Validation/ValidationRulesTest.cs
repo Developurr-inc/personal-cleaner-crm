@@ -169,7 +169,7 @@ public class ValidationRulesTest
         );
     }
 
-    
+
     [Theory]
     [MemberData(nameof(AddressGenerator.CreateInvalidNumbers), MemberType = typeof(AddressGenerator))]
     public void GivenInvalidInt_WhenValidatingPositiveInt_ThenShouldCallAddValidatorError(
@@ -194,8 +194,8 @@ public class ValidationRulesTest
             Times.Once
         );
     }
-    
-    
+
+
     [Theory]
     [MemberData(nameof(AddressGenerator.CreateAddresses), MemberType = typeof(AddressGenerator))]
     public void GivenValidInt_WhenValidatingPositiveInt_ThenShouldDoNothing(
@@ -204,7 +204,7 @@ public class ValidationRulesTest
     {
         // Arrange
         var validatorMock = ValidationRulesFixture.GetValidatorMock();
-        
+
         // Act
         ValidationRules.ValidatePositive(
             number.Number,
@@ -220,8 +220,8 @@ public class ValidationRulesTest
             Times.Never
         );
     }
-    
-    
+
+
     [Theory]
     [MemberData(nameof(PriceGenerator.CreateInvalidPrices), MemberType = typeof(PriceGenerator))]
     public void GivenInvalidDecimal_WhenValidatingPositiveDecimal_ThenShouldCallAddValidatorError(
@@ -246,8 +246,8 @@ public class ValidationRulesTest
             Times.Once
         );
     }
-    
-    
+
+
     [Theory]
     [MemberData(nameof(PriceGenerator.CreatePrices), MemberType = typeof(PriceGenerator))]
     public void GivenValidDecimal_WhenValidatingPositiveDecimal_ThenShouldDoNothing(
@@ -256,7 +256,7 @@ public class ValidationRulesTest
     {
         // Arrange
         var validatorMock = ValidationRulesFixture.GetValidatorMock();
-        
+
         // Act
         ValidationRules.ValidatePositive(
             number.Value,
@@ -272,8 +272,8 @@ public class ValidationRulesTest
             Times.Never
         );
     }
-    
-    
+
+
     [Theory]
     [MemberData(nameof(AddressGenerator.CreateInvalidComplements), MemberType = typeof(AddressGenerator))]
     public void GivenInvalidStringLength_WhenValidatingMaxStringLength_ThenShouldCallAddValidatorError(
@@ -299,8 +299,8 @@ public class ValidationRulesTest
             Times.Once
         );
     }
-    
-    
+
+
     [Theory]
     [MemberData(nameof(AddressGenerator.CreateAddresses), MemberType = typeof(AddressGenerator))]
     public void GivenValidStringLength_WhenValidatingMaxStringLength_ThenShouldDoNothing(
@@ -309,7 +309,7 @@ public class ValidationRulesTest
     {
         // Arrange
         var validatorMock = ValidationRulesFixture.GetValidatorMock();
-        
+
         // Act
         ValidationRules.ValidateMaxStringLength(
             address.Complement,
@@ -326,8 +326,8 @@ public class ValidationRulesTest
             Times.Never
         );
     }
-    
-    
+
+
     [Theory]
     [MemberData(nameof(AddressGenerator.CreateInvalidStreets), MemberType = typeof(AddressGenerator))]
     public void GivenInvalidStringLength_WhenValidatingStringLength_ThenShouldCallAddValidatorError(
@@ -354,8 +354,8 @@ public class ValidationRulesTest
             Times.Once
         );
     }
-    
-    
+
+
     [Theory]
     [MemberData(nameof(AddressGenerator.CreateAddresses), MemberType = typeof(AddressGenerator))]
     public void GivenValidStringLength_WhenValidatingStringLength_ThenShouldDoNothing(
@@ -364,7 +364,7 @@ public class ValidationRulesTest
     {
         // Arrange
         var validatorMock = ValidationRulesFixture.GetValidatorMock();
-        
+
         // Act
         ValidationRules.ValidateStringLength(
             address.Street,
@@ -382,8 +382,8 @@ public class ValidationRulesTest
             Times.Never
         );
     }
-    
-    
+
+
     [Theory]
     [MemberData(nameof(StringGenerator.CreateInvalidStrings), MemberType = typeof(StringGenerator))]
     public void GivenInvalidRequired_WhenValidatingRequired_ThenShouldCallAddValidatorError(
@@ -408,8 +408,8 @@ public class ValidationRulesTest
             Times.Once
         );
     }
-    
-    
+
+
     [Theory]
     [MemberData(nameof(StringGenerator.CreateStrings), MemberType = typeof(StringGenerator))]
     public void GivenValidRequired_WhenValidatingRequired_ThenShouldDoNothing(
@@ -418,7 +418,7 @@ public class ValidationRulesTest
     {
         // Arrange
         var validatorMock = ValidationRulesFixture.GetValidatorMock();
-        
+
         // Act
         ValidationRules.ValidateRequired(
             testString,

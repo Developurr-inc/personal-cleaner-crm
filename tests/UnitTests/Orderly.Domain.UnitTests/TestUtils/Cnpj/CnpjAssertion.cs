@@ -18,9 +18,9 @@ public sealed class CnpjAssertion
     {
         Assert.NotNull(exception);
         Assert.IsType<EntityValidationException>(exception);
-        
-        var entityValidationException = (EntityValidationException) exception;
-        
+
+        var entityValidationException = (EntityValidationException)exception;
+
         Assert.NotEmpty(entityValidationException.Errors);
     }
 }

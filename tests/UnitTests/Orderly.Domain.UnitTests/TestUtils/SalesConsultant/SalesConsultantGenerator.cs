@@ -2,7 +2,7 @@ using Orderly.Domain.UnitTests.TestUtils.String;
 
 namespace Orderly.Domain.UnitTests.TestUtils.SalesConsultant;
 
-public class SalesConsultantGenerator : BaseGenerator
+public sealed class SalesConsultantGenerator : BaseGenerator
 {
     public static IEnumerable<object[]> CreateSalesConsultants()
     {
@@ -12,8 +12,8 @@ public class SalesConsultantGenerator : BaseGenerator
                 SalesConsultantFixture.CreateSalesConsultant()
             };
     }
-    
-    
+
+
     public static IEnumerable<object[]> CreateInvalidNames()
     {
         for (var i = 0; i < Rounds; ++i)
@@ -22,7 +22,7 @@ public class SalesConsultantGenerator : BaseGenerator
             {
                 StringFixture.CreateEmptyString()
             };
-            
+
             yield return new object[]
             {
                 SalesConsultantFixture.CreateShortName()

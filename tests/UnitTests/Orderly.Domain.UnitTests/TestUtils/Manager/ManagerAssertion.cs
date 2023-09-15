@@ -2,7 +2,7 @@ using Orderly.Domain.Exceptions;
 
 namespace Orderly.Domain.UnitTests.TestUtils.Manager;
 
-public class ManagerAssertion
+public static class ManagerAssertion
 {
     public static void AssertManager(
         Domain.Manager.Manager expected,
@@ -20,15 +20,15 @@ public class ManagerAssertion
         Assert.Equal(expected.Mobile, actual.Mobile);
         Assert.NotEqual(default, actual.CreatedAt);
     }
-    
-    
+
+
     public static void AssertManagerException(Exception exception)
     {
         Assert.NotNull(exception);
         Assert.IsType<EntityValidationException>(exception);
-        
-        var entityValidationException = (EntityValidationException) exception;
-        
+
+        var entityValidationException = (EntityValidationException)exception;
+
         Assert.NotEmpty(entityValidationException.Errors);
     }
 }

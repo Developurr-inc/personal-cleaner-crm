@@ -4,7 +4,7 @@ public abstract class ValueObject : IEquatable<ValueObject>
 {
     protected abstract IEnumerable<object> GetEqualityComponents();
 
-    
+
     public sealed override bool Equals(object? obj)
     {
         if (ReferenceEquals(this, obj))
@@ -15,25 +15,25 @@ public abstract class ValueObject : IEquatable<ValueObject>
 
         return Equals(obj as ValueObject);
     }
-    
+
 
     public override int GetHashCode()
     {
         return HashCode.Combine(GetEqualityComponents().ToArray());
     }
-    
+
 
     public static bool operator ==(ValueObject left, ValueObject right)
     {
         return Equals(left, right);
     }
-    
+
 
     public static bool operator !=(ValueObject left, ValueObject right)
     {
         return !Equals(left, right);
     }
-    
+
 
     public bool Equals(ValueObject? other)
     {
@@ -43,6 +43,7 @@ public abstract class ValueObject : IEquatable<ValueObject>
         if (ReferenceEquals(this, other))
             return true;
 
-        return GetEqualityComponents().SequenceEqual(other.GetEqualityComponents());
+        return GetEqualityComponents()
+            .SequenceEqual(other.GetEqualityComponents());
     }
 }

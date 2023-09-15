@@ -9,28 +9,26 @@ public abstract class Validator : IValidator
 
     public abstract void Validate();
 
-    
+
     public void AddValidationError(string message)
     {
         _validationErrors.Add(message);
     }
-    
-    
+
+
     protected bool HasErrors()
     {
         return _validationErrors.Count > 0;
     }
-    
-    
+
+
     protected void ThrowEntityValidationExceptionWithValidationErrors()
     {
         if (HasErrors())
-        {
             throw new EntityValidationException(
                 "There are validation errors.",
                 GetValidationErrors()
             );
-        }
     }
 
 

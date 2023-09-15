@@ -11,15 +11,15 @@ public class SalesConsultant : Entity<SalesConsultantId>, IAggregateRoot
     public string Name { get; private set; }
 
     public Address Address { get; private set; }
-    
+
     public Email Email { get; private set; }
-    
+
     public Phone? Landline { get; private set; }
     public Phone? Mobile { get; private set; }
-    
+
     public DateTime CreatedAt { get; }
 
-    
+
     private SalesConsultant(
         Cpf cpf,
         Address address,

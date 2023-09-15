@@ -7,7 +7,7 @@ using Orderly.Domain.UnitTests.TestUtils.String;
 
 namespace Orderly.Domain.UnitTests.TestUtils.SalesConsultant;
 
-public class SalesConsultantFixture : BaseFixture
+public sealed class SalesConsultantFixture : BaseFixture
 {
     private static Domain.SalesConsultant.SalesConsultant CreateValidSalesConsultant()
     {
@@ -16,7 +16,7 @@ public class SalesConsultantFixture : BaseFixture
         var email = EmailFixture.CreateEmail();
         var landline = PhoneFixture.CreatePhone();
         var mobile = PhoneFixture.CreatePhone();
-        
+
         var name = StringFixture.CreateString(
             SalesConsultantValidator.NameMinLength,
             SalesConsultantValidator.NameMaxLength
@@ -31,8 +31,8 @@ public class SalesConsultantFixture : BaseFixture
             mobile
         );
     }
-    
-    
+
+
     public static Domain.SalesConsultant.SalesConsultant CreateSalesConsultant(
         Domain.SalesConsultant.SalesConsultant? salesConsultant = null,
         string? name = null

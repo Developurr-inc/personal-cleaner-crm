@@ -27,8 +27,8 @@ public class SalesConsultantValidator : Validator
             ThrowEntityValidationExceptionWithValidationErrors();
         }
     }
-    
-    
+
+
     private void ValidateSalesConsultantName()
     {
         const string fieldName = "Name";

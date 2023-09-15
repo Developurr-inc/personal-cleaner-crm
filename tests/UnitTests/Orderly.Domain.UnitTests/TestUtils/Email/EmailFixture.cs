@@ -11,8 +11,8 @@ public sealed class EmailFixture : BaseFixture
 
         return Domain.Common.ValueObjects.Email.Create(email);
     }
-    
-    
+
+
     public static Domain.Common.ValueObjects.Email CreateEmail(
         Domain.Common.ValueObjects.Email? email = null,
         string? value = null
@@ -30,16 +30,16 @@ public sealed class EmailFixture : BaseFixture
 
         return email.Replace('@', 'a');
     }
-    
-    
+
+
     public static string CreateInvalidDotEmailAddress()
     {
         var email = Faker.Internet.Email();
 
         return email.Replace('.', 'a');
     }
-    
-    
+
+
     public static string CreateInvalidAtAndDotEmailAddress()
     {
         var email = Faker.Internet.Email();

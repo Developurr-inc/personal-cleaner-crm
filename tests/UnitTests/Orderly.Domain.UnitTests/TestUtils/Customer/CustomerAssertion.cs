@@ -26,15 +26,15 @@ public static class CustomerAssertion
         Assert.Equal(expected.Observation, actual.Observation);
         Assert.NotEqual(actual.CreatedAt, default);
     }
-    
-    
+
+
     public static void AssertCustomerException(Exception exception)
     {
         Assert.NotNull(exception);
         Assert.IsType<EntityValidationException>(exception);
-        
-        var entityValidationException = (EntityValidationException) exception;
-        
+
+        var entityValidationException = (EntityValidationException)exception;
+
         Assert.NotEmpty(entityValidationException.Errors);
     }
 }

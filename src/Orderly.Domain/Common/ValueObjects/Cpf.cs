@@ -23,8 +23,8 @@ public sealed class Cpf : ValueObject
 
         return new Cpf(cpfTrimmed);
     }
-    
-    
+
+
     protected override IEnumerable<object> GetEqualityComponents()
     {
         yield return Value;
