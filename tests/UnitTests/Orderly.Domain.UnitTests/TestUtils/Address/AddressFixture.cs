@@ -5,7 +5,7 @@ namespace Orderly.Domain.UnitTests.TestUtils.Address;
 
 public sealed class AddressFixture : BaseFixture
 {
-    public static Domain.Common.ValueObjects.Address CreateAddress()
+    private static Domain.Common.ValueObjects.Address CreateValidAddress()
     {
         var street = Faker.Address.StreetName();
         var number = int.Parse(Faker.Address.BuildingNumber());
@@ -25,6 +25,33 @@ public sealed class AddressFixture : BaseFixture
             city,
             state,
             country
+        );
+    }
+
+
+    public static Domain.Common.ValueObjects.Address CreateAddress(
+        Domain.Common.ValueObjects.Address? address = null,
+        string? street = null,
+        int? number = null,
+        string? complement = null,
+        string? zipCode = null,
+        string? neighborhood = null,
+        string? city = null,
+        string? state = null,
+        string? country = null
+    )
+    {
+        var lAddress = address ?? CreateValidAddress();
+        
+        return Domain.Common.ValueObjects.Address.Create(
+            street ?? lAddress.Street,
+            number ?? lAddress.Number,
+            complement ?? lAddress.Complement,
+            zipCode ?? lAddress.ZipCode,
+            neighborhood ?? lAddress.Neighborhood,
+            city ?? lAddress.City,
+            state ?? lAddress.State,
+            country ?? lAddress.Country
         );
     }
 

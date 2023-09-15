@@ -12,7 +12,7 @@ public sealed class PhoneTest
     )
     {
         // Act
-        var newPhone = Phone.Create(phone.Value);
+        var newPhone = PhoneFixture.CreatePhone(phone: phone);
 
         // Assert
         PhoneAssertion.AssertPhone(phone, newPhone);
@@ -21,14 +21,14 @@ public sealed class PhoneTest
 
     [Theory]
     [MemberData(nameof(PhoneGenerator.CreateInvalidPhones), MemberType = typeof(PhoneGenerator))]
-    public void GivenInvalidInput_WhenCreatingPhone_ThenShouldThrowEntityValidationException(
+    public void GivenInvalidPhone_WhenCreatingPhone_ThenShouldThrowEntityValidationException(
         string invalidPhone
     )
     {
         // Arrange
         void Action()
         {
-            _ = Phone.Create(invalidPhone);
+            _ = PhoneFixture.CreatePhone(value: invalidPhone);
         }
 
         // Act

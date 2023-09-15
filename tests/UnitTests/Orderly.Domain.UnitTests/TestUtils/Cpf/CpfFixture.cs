@@ -4,11 +4,22 @@ namespace Orderly.Domain.UnitTests.TestUtils.Cpf;
 
 public sealed class CpfFixture : BaseFixture
 {
-    public static Domain.Common.ValueObjects.Cpf CreateValidCpf()
+    private static Domain.Common.ValueObjects.Cpf CreateValidCpf()
     {
         var cpf = Faker.Person.Cpf();
 
         return Domain.Common.ValueObjects.Cpf.Create(cpf);
+    }
+
+
+    public static Domain.Common.ValueObjects.Cpf CreateCpf(
+        Domain.Common.ValueObjects.Cpf? cpf = null,
+        string? value = null
+    )
+    {
+        var lCpf = cpf ?? CreateValidCpf();
+        
+        return Domain.Common.ValueObjects.Cpf.Create(value ?? lCpf.Value);
     }
     
 

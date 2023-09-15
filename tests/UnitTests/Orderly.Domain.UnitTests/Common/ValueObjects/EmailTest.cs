@@ -13,7 +13,7 @@ public sealed class EmailTest
     )
     {
         // Act
-        var newEmail = Email.Create(email.Value);
+        var newEmail = EmailFixture.CreateEmail(email: email);
 
         // Assert
         EmailAssertion.AssertEmail(email, newEmail);
@@ -29,7 +29,7 @@ public sealed class EmailTest
         // Arrange
         void Action()
         {
-            _ = Email.Create(invalidEmail);
+            _ = EmailFixture.CreateEmail(value: invalidEmail);
         }
 
         // Act
@@ -49,7 +49,7 @@ public sealed class EmailTest
         // Arrange
         void Action()
         {
-            _ = Email.Create(invalidString);
+            _ = EmailFixture.CreateEmail(value: invalidString);
         }
 
         // Act

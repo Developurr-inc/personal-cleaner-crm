@@ -4,11 +4,22 @@ namespace Orderly.Domain.UnitTests.TestUtils.Cnpj;
 
 public sealed class CnpjFixture : BaseFixture
 {
-    public static Domain.Common.ValueObjects.Cnpj CreateCnpj()
+    private static Domain.Common.ValueObjects.Cnpj CreateValidCnpj()
     {
         var cnpj = Faker.Company.Cnpj();
 
         return Domain.Common.ValueObjects.Cnpj.Create(cnpj);
+    }
+    
+    
+    public static Domain.Common.ValueObjects.Cnpj CreateCnpj(
+        Domain.Common.ValueObjects.Cnpj? cnpj = null,
+        string? value = null
+    )
+    {
+        var lCnpj = cnpj ?? CreateValidCnpj();
+
+        return Domain.Common.ValueObjects.Cnpj.Create(value ?? lCnpj.Value);
     }
     
     

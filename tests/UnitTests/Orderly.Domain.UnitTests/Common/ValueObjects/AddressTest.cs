@@ -12,16 +12,7 @@ public sealed class AddressTest
     )
     {
         // Act
-        var newAddress = Address.Create(
-            address.Street,
-            address.Number,
-            address.Complement,
-            address.ZipCode,
-            address.Neighborhood,
-            address.City,
-            address.State,
-            address.Country
-        );
+        var newAddress = AddressFixture.CreateAddress(address: address);
 
         // Assert
         AddressAssertion.AssertAddress(address, newAddress);
@@ -35,20 +26,9 @@ public sealed class AddressTest
     )
     {
         // Arrange
-        var address = AddressFixture.CreateAddress();
-
         void Action()
         {
-            _ = Address.Create(
-                invalidStreet,
-                address.Number,
-                address.Complement,
-                address.ZipCode,
-                address.Neighborhood,
-                address.City,
-                address.State,
-                address.Country
-            );
+            _ = AddressFixture.CreateAddress(street: invalidStreet);
         }
 
         // Act
@@ -66,20 +46,9 @@ public sealed class AddressTest
     )
     {
         // Arrange
-        var address = AddressFixture.CreateAddress();
-
         void Action()
         {
-            _ = Address.Create(
-                address.Street,
-                invalidNumber,
-                address.Complement,
-                address.ZipCode,
-                address.Neighborhood,
-                address.City,
-                address.State,
-                address.Country
-            );
+            _ = AddressFixture.CreateAddress(number: invalidNumber);
         }
 
         // Act
@@ -97,20 +66,9 @@ public sealed class AddressTest
     )
     {
         // Arrange
-        var address = AddressFixture.CreateAddress();
-        
         void Action()
         {
-            _ = Address.Create(
-                address.Street,
-                address.Number,
-                invalidComplement,
-                address.ZipCode,
-                address.Neighborhood,
-                address.City,
-                address.State,
-                address.Country
-            );
+            _ = AddressFixture.CreateAddress(complement: invalidComplement);
         }
 
         // Act
@@ -128,20 +86,9 @@ public sealed class AddressTest
     )
     {
         // Arrange
-        var address = AddressFixture.CreateAddress();
-
         void Action()
         {
-            _ = Address.Create(
-                address.Street,
-                address.Number,
-                address.Complement,
-                invalidZipCode,
-                address.Neighborhood,
-                address.City,
-                address.State,
-                address.Country
-            );
+            _ = AddressFixture.CreateAddress(zipCode: invalidZipCode);
         }
 
         // Act
@@ -159,20 +106,9 @@ public sealed class AddressTest
     )
     {
         // Arrange
-        var address = AddressFixture.CreateAddress();
-
         void Action()
         {
-            _ = Address.Create(
-                address.Street,
-                address.Number,
-                address.Complement,
-                address.ZipCode,
-                invalidNeighborhood,
-                address.City,
-                address.State,
-                address.Country
-            );
+            _ = AddressFixture.CreateAddress(neighborhood: invalidNeighborhood);
         }
 
         // Act
@@ -190,20 +126,9 @@ public sealed class AddressTest
     )
     {
         // Arrange
-        var address = AddressFixture.CreateAddress();
-
         void Action()
         {
-            _ = Address.Create(
-                address.Street,
-                address.Number,
-                address.Complement,
-                address.ZipCode,
-                address.Neighborhood,
-                invalidCity,
-                address.State,
-                address.Country
-            );
+            _ = AddressFixture.CreateAddress(city: invalidCity);
         }
 
         // Act
@@ -221,20 +146,9 @@ public sealed class AddressTest
     )
     {
         // Arrange
-        var address = AddressFixture.CreateAddress();
-
         void Action()
         {
-            _ = Address.Create(
-                address.Street,
-                address.Number,
-                address.Complement,
-                address.ZipCode,
-                address.Neighborhood,
-                address.City,
-                invalidState,
-                address.Country
-            );
+            _ = AddressFixture.CreateAddress(state: invalidState);
         }
 
         // Act
@@ -252,20 +166,9 @@ public sealed class AddressTest
     )
     {
         // Arrange
-        var address = AddressFixture.CreateAddress();
-
         void Action()
         {
-            _ = Address.Create(
-                address.Street,
-                address.Number,
-                address.Complement,
-                address.ZipCode,
-                address.Neighborhood,
-                address.City,
-                address.State,
-                invalidCountry
-            );
+            _ = AddressFixture.CreateAddress(country: invalidCountry);
         }
 
         // Act

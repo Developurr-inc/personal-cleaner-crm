@@ -12,7 +12,7 @@ public sealed class CpfTest
     )
     {
         // Act
-        var newCpf = Cpf.Create(cpf.Value);
+        var newCpf = CpfFixture.CreateCpf(cpf: cpf);
 
         // Assert
         CpfAssertion.AssertCpf(cpf, newCpf);
@@ -21,14 +21,14 @@ public sealed class CpfTest
 
     [Theory]
     [MemberData(nameof(CpfGenerator.CreateInvalidCpfs), MemberType = typeof(CpfGenerator))]
-    public void GivenInvalidInput_WhenCreatingCpf_ThenShouldThrowEntityValidationException(
+    public void GivenInvalidCpf_WhenCreatingCpf_ThenShouldThrowEntityValidationException(
         string invalidCpf
     )
     {
         // Arrange
         void Action()
         {
-            _ = Cpf.Create(invalidCpf);
+            _ = CpfFixture.CreateCpf(value: invalidCpf);
         }
 
         // Act

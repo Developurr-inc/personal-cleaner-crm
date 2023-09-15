@@ -9,17 +9,18 @@ namespace Orderly.Domain.UnitTests.TestUtils.SalesConsultant;
 
 public class SalesConsultantFixture : BaseFixture
 {
-    public static Domain.SalesConsultant.SalesConsultant CreateSalesConsultant()
+    private static Domain.SalesConsultant.SalesConsultant CreateValidSalesConsultant()
     {
-        var cpf = CpfFixture.CreateValidCpf();
+        var cpf = CpfFixture.CreateCpf();
         var address = AddressFixture.CreateAddress();
+        var email = EmailFixture.CreateEmail();
+        var landline = PhoneFixture.CreatePhone();
+        var mobile = PhoneFixture.CreatePhone();
+        
         var name = StringFixture.CreateString(
             SalesConsultantValidator.NameMinLength,
             SalesConsultantValidator.NameMaxLength
         );
-        var email = EmailFixture.CreateEmail();
-        var landline = PhoneFixture.CreatePhone();
-        var mobile = PhoneFixture.CreatePhone();
 
         return Domain.SalesConsultant.SalesConsultant.Create(
             cpf,
@@ -28,6 +29,24 @@ public class SalesConsultantFixture : BaseFixture
             email,
             landline,
             mobile
+        );
+    }
+    
+    
+    public static Domain.SalesConsultant.SalesConsultant CreateSalesConsultant(
+        Domain.SalesConsultant.SalesConsultant? salesConsultant = null,
+        string? name = null
+    )
+    {
+        var lSalesConsultant = salesConsultant ?? CreateValidSalesConsultant();
+
+        return Domain.SalesConsultant.SalesConsultant.Create(
+            lSalesConsultant.Cpf,
+            lSalesConsultant.Address,
+            name ?? lSalesConsultant.Name,
+            lSalesConsultant.Email,
+            lSalesConsultant.Landline,
+            lSalesConsultant.Mobile
         );
     }
 

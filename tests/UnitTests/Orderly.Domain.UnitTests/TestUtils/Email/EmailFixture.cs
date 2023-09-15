@@ -5,11 +5,22 @@ namespace Orderly.Domain.UnitTests.TestUtils.Email;
 
 public sealed class EmailFixture : BaseFixture
 {
-    public static Domain.Common.ValueObjects.Email CreateEmail()
+    private static Domain.Common.ValueObjects.Email CreateValidEmail()
     {
         var email = Faker.Internet.Email();
 
         return Domain.Common.ValueObjects.Email.Create(email);
+    }
+    
+    
+    public static Domain.Common.ValueObjects.Email CreateEmail(
+        Domain.Common.ValueObjects.Email? email = null,
+        string? value = null
+    )
+    {
+        var lEmail = email ?? CreateValidEmail();
+
+        return Domain.Common.ValueObjects.Email.Create(value ?? lEmail.Value);
     }
 
 

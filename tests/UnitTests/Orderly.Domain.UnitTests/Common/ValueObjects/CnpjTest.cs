@@ -12,7 +12,7 @@ public sealed class CnpjTest
     )
     {
         // Act
-        var newCnpj = Cnpj.Create(cnpj.Value);
+        var newCnpj = CnpjFixture.CreateCnpj(cnpj: cnpj);
 
         // Assert
         CnpjAssertion.AssertCnpj(cnpj, newCnpj);
@@ -28,7 +28,7 @@ public sealed class CnpjTest
         // Arrange
         void Action()
         {
-            _ = Cnpj.Create(invalidCnpj);
+            _ = CnpjFixture.CreateCnpj(value: invalidCnpj);
         }
 
         // Act

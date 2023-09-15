@@ -79,7 +79,13 @@ public sealed class AddressValidator : Validator
         const string fieldName = "Street";
         
         ValidationRules.ValidateRequired(_street, fieldName, this);
-        ValidationRules.ValidateStringLength(_street, fieldName, StreetMinLength, StreetMaxLength, this);
+        ValidationRules.ValidateStringLength(
+            _street,
+            fieldName,
+            StreetMinLength,
+            StreetMaxLength,
+            this
+        );
     }
 
 
@@ -95,7 +101,12 @@ public sealed class AddressValidator : Validator
     {
         const string fieldName = "Complement";
 
-        ValidationRules.ValidateMaxStringLength(_complement, fieldName, ComplementMaxLength, this);
+        ValidationRules.ValidateMaxStringLength(
+            _complement,
+            fieldName,
+            ComplementMaxLength,
+            this
+        );
     }
 
 
@@ -104,7 +115,13 @@ public sealed class AddressValidator : Validator
         const string fieldName = "Zip Code";
 
         ValidationRules.ValidateRequired(_zipCode, fieldName, this);
-        ValidationRules.ValidateStringLength(_zipCode, fieldName, ZipCodeMinLength, ZipCodeMaxLength, this);
+        ValidationRules.ValidateStringLength(
+            _zipCode,
+            fieldName,
+            ZipCodeMinLength,
+            ZipCodeMaxLength,
+            this
+        );
     }
 
 
@@ -112,8 +129,17 @@ public sealed class AddressValidator : Validator
     {
         const string fieldName = "Neighborhood";
 
-        ValidationRules.ValidateRequired(_neighborhood, fieldName, this);
-        ValidationRules.ValidateStringLength(_neighborhood, fieldName, NeighborhoodMinLength, NeighborhoodMaxLength, this);
+        ValidationRules.ValidateRequired(
+            _neighborhood,
+            fieldName,
+            this
+        );
+        ValidationRules.ValidateStringLength(_neighborhood,
+            fieldName,
+            NeighborhoodMinLength,
+            NeighborhoodMaxLength,
+            this
+        );
     }
 
 
@@ -122,7 +148,13 @@ public sealed class AddressValidator : Validator
         const string fieldName = "City";
 
         ValidationRules.ValidateRequired(_city, fieldName, this);
-        ValidationRules.ValidateStringLength(_city, fieldName, CityMinLength, CityMaxLength, this);
+        ValidationRules.ValidateStringLength(
+            _city,
+            fieldName,
+            CityMinLength,
+            CityMaxLength,
+            this
+        );
     }
 
 

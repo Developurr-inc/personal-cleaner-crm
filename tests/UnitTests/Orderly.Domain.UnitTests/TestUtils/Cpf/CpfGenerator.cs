@@ -8,7 +8,7 @@ public sealed class CpfGenerator : BaseGenerator
         {
             yield return new object[]
             {
-                CpfFixture.CreateValidCpf()
+                CpfFixture.CreateCpf()
             };
         }
     }

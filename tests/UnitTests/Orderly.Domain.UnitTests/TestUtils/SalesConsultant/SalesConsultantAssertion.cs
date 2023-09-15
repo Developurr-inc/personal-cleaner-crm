@@ -2,7 +2,7 @@ using Orderly.Domain.Exceptions;
 
 namespace Orderly.Domain.UnitTests.TestUtils.SalesConsultant;
 
-public class SalesConsultantAssertion
+public static class SalesConsultantAssertion
 {
     public static void AssertSalesConsultant(
         Domain.SalesConsultant.SalesConsultant expected,

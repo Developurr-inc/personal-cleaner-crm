@@ -12,7 +12,7 @@ public sealed class PriceTest
     )
     {
         // Act
-        var newPrice = Price.Create(price.Value);
+        var newPrice = PriceFixture.CreatePrice(price: price);
 
         // Assert
         PriceAssertion.AssertPrice(price, newPrice);
@@ -28,7 +28,7 @@ public sealed class PriceTest
         // Arrange
         void Action()
         {
-            _ = Price.Create(invalidPrice);
+            _ = PriceFixture.CreatePrice(value: invalidPrice);
         }
 
         // Act
