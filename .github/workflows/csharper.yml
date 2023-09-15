@@ -1,8 +1,11 @@
 name: Validate PR
 
 on:
+  push:
+    branches: [ "develop", "main" ]
   pull_request:
-    branches: [ main ]
+    branches: [ "develop", "main" ]
+
 jobs:
   check_formatting:
     runs-on: ubuntu-latest
