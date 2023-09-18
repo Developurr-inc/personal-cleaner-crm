@@ -1,5 +1,3 @@
-using Orderly.Domain.Exceptions;
-
 namespace Orderly.Domain.UnitTests.TestUtils.Customer;
 
 public sealed class CustomerAssertion : BaseAssertion

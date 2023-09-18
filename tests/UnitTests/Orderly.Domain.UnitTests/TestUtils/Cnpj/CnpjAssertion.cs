@@ -1,5 +1,3 @@
-using Orderly.Domain.Exceptions;
-
 namespace Orderly.Domain.UnitTests.TestUtils.Cnpj;
 
 public sealed class CnpjAssertion : BaseAssertion

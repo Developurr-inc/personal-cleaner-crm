@@ -1,6 +1,4 @@
-﻿using Orderly.Domain.Exceptions;
-
-namespace Orderly.Domain.UnitTests.TestUtils.Email;
+﻿namespace Orderly.Domain.UnitTests.TestUtils.Email;
 
 public sealed class EmailAssertion : BaseAssertion
 {

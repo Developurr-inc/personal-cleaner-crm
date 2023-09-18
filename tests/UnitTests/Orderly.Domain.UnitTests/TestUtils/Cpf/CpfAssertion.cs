@@ -1,5 +1,3 @@
-using Orderly.Domain.Exceptions;
-
 namespace Orderly.Domain.UnitTests.TestUtils.Cpf;
 
 public sealed class CpfAssertion : BaseAssertion
