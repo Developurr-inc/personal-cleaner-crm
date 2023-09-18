@@ -12,7 +12,7 @@ public sealed class AddressValidator : Validator
     private readonly string _city;
     private readonly string _state;
     private readonly string _country;
-    
+
     public const int StreetMinLength = 3;
     public const int StreetMaxLength = 255;
 
@@ -32,7 +32,6 @@ public sealed class AddressValidator : Validator
 
     public const int CountryMinLength = 3;
     public const int CountryMaxLength = 255;
-
 
     public AddressValidator(
         string street,
@@ -55,7 +54,6 @@ public sealed class AddressValidator : Validator
         _country = country;
     }
 
-
     public override void Validate()
     {
         ValidateStreet();
@@ -68,20 +66,22 @@ public sealed class AddressValidator : Validator
         ValidateCountry();
 
         if (HasErrors())
-        {
             ThrowEntityValidationExceptionWithValidationErrors();
-        }
     }
-
 
     private void ValidateStreet()
     {
         const string fieldName = "Street";
-        
-        ValidationRules.ValidateRequired(_street, fieldName, this);
-        ValidationRules.ValidateStringLength(_street, fieldName, StreetMinLength, StreetMaxLength, this);
-    }
 
+        ValidationRules.ValidateRequired(_street, fieldName, this);
+        ValidationRules.ValidateStringLength(
+            _street,
+            fieldName,
+            StreetMinLength,
+            StreetMaxLength,
+            this
+        );
+    }
 
     private void ValidateNumber()
     {
@@ -90,7 +90,6 @@ public sealed class AddressValidator : Validator
         ValidationRules.ValidatePositive(_number, fieldName, this);
     }
 
-
     private void ValidateComplement()
     {
         const string fieldName = "Complement";
@@ -98,24 +97,33 @@ public sealed class AddressValidator : Validator
         ValidationRules.ValidateMaxStringLength(_complement, fieldName, ComplementMaxLength, this);
     }
 
-
     private void ValidateZipCode()
     {
         const string fieldName = "Zip Code";
 
         ValidationRules.ValidateRequired(_zipCode, fieldName, this);
-        ValidationRules.ValidateStringLength(_zipCode, fieldName, ZipCodeMinLength, ZipCodeMaxLength, this);
+        ValidationRules.ValidateStringLength(
+            _zipCode,
+            fieldName,
+            ZipCodeMinLength,
+            ZipCodeMaxLength,
+            this
+        );
     }
-
 
     private void ValidateNeighborhood()
     {
         const string fieldName = "Neighborhood";
 
         ValidationRules.ValidateRequired(_neighborhood, fieldName, this);
-        ValidationRules.ValidateStringLength(_neighborhood, fieldName, NeighborhoodMinLength, NeighborhoodMaxLength, this);
+        ValidationRules.ValidateStringLength(
+            _neighborhood,
+            fieldName,
+            NeighborhoodMinLength,
+            NeighborhoodMaxLength,
+            this
+        );
     }
-
 
     private void ValidateCity()
     {
@@ -125,21 +133,31 @@ public sealed class AddressValidator : Validator
         ValidationRules.ValidateStringLength(_city, fieldName, CityMinLength, CityMaxLength, this);
     }
 
-
     private void ValidateState()
     {
         const string fieldName = "State";
 
         ValidationRules.ValidateRequired(_state, fieldName, this);
-        ValidationRules.ValidateStringLength(_state, fieldName, StateMinLength, StateMaxLength, this);
+        ValidationRules.ValidateStringLength(
+            _state,
+            fieldName,
+            StateMinLength,
+            StateMaxLength,
+            this
+        );
     }
-
 
     private void ValidateCountry()
     {
         const string fieldName = "Country";
 
         ValidationRules.ValidateRequired(_country, fieldName, this);
-        ValidationRules.ValidateStringLength(_country, fieldName, CountryMinLength, CountryMaxLength, this);
+        ValidationRules.ValidateStringLength(
+            _country,
+            fieldName,
+            CountryMinLength,
+            CountryMaxLength,
+            this
+        );
     }
 }

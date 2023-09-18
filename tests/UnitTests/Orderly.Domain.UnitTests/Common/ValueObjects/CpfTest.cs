@@ -6,38 +6,26 @@ namespace Orderly.Domain.UnitTests.Common.ValueObjects;
 public sealed class CpfTest
 {
     [Theory]
-    [MemberData(
-        nameof(CpfGenerator.CreateCpfs),
-        MemberType = typeof(CpfGenerator)
-    )]
-    public void WhenCreatingCpf_GivenValidInput_ShouldInstantiateCpf(
-        Cpf cpf
-    )
+    [MemberData(nameof(CpfGenerator.CreateCpfs), MemberType = typeof(CpfGenerator))]
+    public void GivenValidInput_WhenCreatingCpf_ThenShouldInstantiateCpf(Cpf cpf)
     {
-        // Arrange
-        var cpfValue = cpf.Value;
-
         // Act
-        var newCpf = Cpf.Create(cpfValue);
+        var newCpf = CpfFixture.CreateCpf(cpf);
 
         // Assert
         CpfAssertion.AssertCpf(cpf, newCpf);
     }
 
-
     [Theory]
-    [MemberData(
-        nameof(CpfGenerator.CreateInvalidCpfs),
-        MemberType = typeof(CpfGenerator)
-    )]
-    public void WhenCreatingCpf_GivenInvalidInput_ShouldThrowException(
+    [MemberData(nameof(CpfGenerator.CreateInvalidCpfs), MemberType = typeof(CpfGenerator))]
+    public void GivenInvalidCpf_WhenCreatingCpf_ThenShouldThrowEntityValidationException(
         string invalidCpf
     )
     {
         // Arrange
         void Action()
         {
-            _ = Cpf.Create(invalidCpf);
+            _ = CpfFixture.CreateCpf(value: invalidCpf);
         }
 
         // Act

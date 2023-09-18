@@ -14,7 +14,6 @@ public sealed class Address : ValueObject
     public string State { get; }
     public string Country { get; }
 
-
     private Address(
         string street,
         int number,
@@ -35,7 +34,6 @@ public sealed class Address : ValueObject
         State = state;
         Country = country;
     }
-
 
     public static Address Create(
         string street,
@@ -79,7 +77,6 @@ public sealed class Address : ValueObject
             countryTrimmed
         );
     }
-
 
     protected override IEnumerable<object> GetEqualityComponents()
     {

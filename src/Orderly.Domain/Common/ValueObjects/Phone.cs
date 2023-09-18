@@ -6,14 +6,12 @@ namespace Orderly.Domain.Common.ValueObjects;
 public sealed class Phone : ValueObject
 {
     public string Value { get; }
-    
-    
+
     private Phone(string phone)
     {
         Value = phone;
     }
-    
-    
+
     public static Phone Create(string phone)
     {
         var phoneTrimmed = phone.Trim();
@@ -23,8 +21,7 @@ public sealed class Phone : ValueObject
 
         return new Phone(phoneTrimmed);
     }
-    
-    
+
     protected override IEnumerable<object> GetEqualityComponents()
     {
         yield return Value;

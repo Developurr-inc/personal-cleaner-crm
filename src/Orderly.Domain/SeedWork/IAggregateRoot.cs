@@ -1,5 +1,3 @@
 namespace Orderly.Domain.SeedWork;
 
-public interface IAggregateRoot
-{
-}
+public interface IAggregateRoot { }

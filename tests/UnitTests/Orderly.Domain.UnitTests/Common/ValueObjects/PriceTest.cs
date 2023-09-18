@@ -6,38 +6,26 @@ namespace Orderly.Domain.UnitTests.Common.ValueObjects;
 public sealed class PriceTest
 {
     [Theory]
-    [MemberData(
-        nameof(PriceGenerator.CreatePrices),
-        MemberType = typeof(PriceGenerator)
-    )]
-    public void WhenCreatingPrice_GivenValidInput_ShouldInstantiatePrice(
-        Price price
-    )
+    [MemberData(nameof(PriceGenerator.CreatePrices), MemberType = typeof(PriceGenerator))]
+    public void GivenValidInput_WhenCreatingPrice_ThenShouldInstantiatePrice(Price price)
     {
-        // Arrange
-        var value = price.Value;
-
         // Act
-        var newPrice = Price.Create(value);
+        var newPrice = PriceFixture.CreatePrice(price);
 
         // Assert
         PriceAssertion.AssertPrice(price, newPrice);
     }
 
-
     [Theory]
-    [MemberData(
-        nameof(PriceGenerator.CreateInvalidPrices),
-        MemberType = typeof(PriceGenerator)
-    )]
-    public void WhenCreatingPrice_GivenInvalidInput_ShouldThrowException(
+    [MemberData(nameof(PriceGenerator.CreateInvalidPrices), MemberType = typeof(PriceGenerator))]
+    public void GivenInvalidPrice_WhenCreatingPrice_ThenShouldThrowEntityValidationException(
         decimal invalidPrice
     )
     {
         // Arrange
         void Action()
         {
-            _ = Price.Create(invalidPrice);
+            _ = PriceFixture.CreatePrice(value: invalidPrice);
         }
 
         // Act

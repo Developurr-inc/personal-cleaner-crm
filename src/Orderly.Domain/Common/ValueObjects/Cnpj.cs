@@ -7,12 +7,10 @@ public sealed class Cnpj : ValueObject
 {
     public string Value { get; }
 
-
     private Cnpj(string cnpj)
     {
         Value = cnpj;
     }
-
 
     public static Cnpj Create(string cnpj)
     {
@@ -23,7 +21,6 @@ public sealed class Cnpj : ValueObject
 
         return new Cnpj(cnpjTrimmed);
     }
-
 
     protected override IEnumerable<object> GetEqualityComponents()
     {

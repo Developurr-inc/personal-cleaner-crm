@@ -1,15 +1,7 @@
 ﻿namespace Orderly.Domain.Exceptions;
 
-public sealed class EntityValidationException : Exception
+public sealed class EntityValidationException(string message, IEnumerable<string> errors)
+    : Exception(message)
 {
-    public IEnumerable<string> Errors { get; }
-
-    
-    public EntityValidationException(
-        string message,
-        IEnumerable<string> errors
-    ) : base(message)
-    {
-        Errors = errors;
-    }
+    public IEnumerable<string> Errors { get; } = errors;
 }

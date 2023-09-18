@@ -13,10 +13,13 @@ public static class EmailAssertion
         Assert.Equal(expected.Value, actual.Value);
     }
 
-
     public static void AssertEmailException(Exception exception)
     {
         Assert.NotNull(exception);
         Assert.IsType<EntityValidationException>(exception);
+
+        var entityValidationException = (EntityValidationException)exception;
+
+        Assert.NotEmpty(entityValidationException.Errors);
     }
 }

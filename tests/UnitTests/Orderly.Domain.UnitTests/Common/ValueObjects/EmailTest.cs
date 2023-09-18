@@ -7,38 +7,29 @@ namespace Orderly.Domain.UnitTests.Common.ValueObjects;
 public sealed class EmailTest
 {
     [Theory]
-    [MemberData(
-        nameof(EmailGenerator.CreateEmails),
-        MemberType = typeof(EmailGenerator)
-    )]
-    public void WhenCreatingEmail_GivenValidInput_ShouldInstantiateEmail(
-        Email email
-    )
+    [MemberData(nameof(EmailGenerator.CreateEmails), MemberType = typeof(EmailGenerator))]
+    public void GivenValidInput_WhenCreatingEmail_ThenShouldInstantiateEmail(Email email)
     {
-        // Arrange
-        var emailAddress = email.Value;
-
         // Act
-        var newEmail = Email.Create(emailAddress);
+        var newEmail = EmailFixture.CreateEmail(email);
 
         // Assert
         EmailAssertion.AssertEmail(email, newEmail);
     }
-
 
     [Theory]
     [MemberData(
         nameof(EmailGenerator.CreateInvalidEmailAddresses),
         MemberType = typeof(EmailGenerator)
     )]
-    public void WhenCreatingEmail_GivenInvalidEmail_ShouldThrowException(
+    public void GivenInvalidEmail_WhenCreatingEmail_ThenShouldThrowEntityValidationException(
         string invalidEmail
     )
     {
         // Arrange
         void Action()
         {
-            _ = Email.Create(invalidEmail);
+            _ = EmailFixture.CreateEmail(value: invalidEmail);
         }
 
         // Act
@@ -48,20 +39,16 @@ public sealed class EmailTest
         EmailAssertion.AssertEmailException(exception!);
     }
 
-
     [Theory]
-    [MemberData(
-        nameof(StringGenerator.CreateInvalidStrings),
-        MemberType = typeof(StringGenerator)
-    )]
-    public void WhenCreatingEmail_GivenInvalidString_ShouldThrowException(
+    [MemberData(nameof(StringGenerator.CreateInvalidStrings), MemberType = typeof(StringGenerator))]
+    public void GivenInvalidString_WhenCreatingEmail_ThenShouldThrowEntityValidationException(
         string invalidString
     )
     {
         // Arrange
         void Action()
         {
-            _ = Email.Create(invalidString);
+            _ = EmailFixture.CreateEmail(value: invalidString);
         }
 
         // Act

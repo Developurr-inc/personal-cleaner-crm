@@ -13,10 +13,13 @@ public static class PriceAssertion
         Assert.Equal(expected.Value, actual.Value);
     }
 
-
     public static void AssertPriceException(Exception exception)
     {
         Assert.NotNull(exception);
         Assert.IsType<EntityValidationException>(exception);
+
+        var entityValidationException = (EntityValidationException)exception;
+
+        Assert.NotEmpty(entityValidationException.Errors);
     }
 }

@@ -6,38 +6,26 @@ namespace Orderly.Domain.UnitTests.Common.ValueObjects;
 public sealed class PhoneTest
 {
     [Theory]
-    [MemberData(
-        nameof(PhoneGenerator.CreatePhones),
-        MemberType = typeof(PhoneGenerator)
-    )]
-    public void WhenCreatingPhone_GivenValidInput_ShouldInstantiatePhone(
-        Phone phone
-    )
+    [MemberData(nameof(PhoneGenerator.CreatePhones), MemberType = typeof(PhoneGenerator))]
+    public void GivenValidInput_WhenCreatingPhone_ThenShouldInstantiatePhone(Phone phone)
     {
-        // Arrange
-        var phoneNumber = phone.Value;
-
         // Act
-        var newPhone = Phone.Create(phoneNumber);
+        var newPhone = PhoneFixture.CreatePhone(phone);
 
         // Assert
         PhoneAssertion.AssertPhone(phone, newPhone);
     }
 
-
     [Theory]
-    [MemberData(
-        nameof(PhoneGenerator.CreateInvalidPhones),
-        MemberType = typeof(PhoneGenerator)
-    )]
-    public void WhenCreatingPhone_GivenInvalidInput_ShouldThrowException(
+    [MemberData(nameof(PhoneGenerator.CreateInvalidPhones), MemberType = typeof(PhoneGenerator))]
+    public void GivenInvalidPhone_WhenCreatingPhone_ThenShouldThrowEntityValidationException(
         string invalidPhone
     )
     {
         // Arrange
         void Action()
         {
-            _ = Phone.Create(invalidPhone);
+            _ = PhoneFixture.CreatePhone(value: invalidPhone);
         }
 
         // Act

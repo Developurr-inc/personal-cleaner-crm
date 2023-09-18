@@ -6,38 +6,26 @@ namespace Orderly.Domain.UnitTests.Common.ValueObjects;
 public sealed class CnpjTest
 {
     [Theory]
-    [MemberData(
-        nameof(CnpjGenerator.CreateCnpjs),
-        MemberType = typeof(CnpjGenerator)
-    )]
-    public void WhenCreatingCnpj_GivenValidInput_ShouldInstantiateCnpj(
-        Cnpj cnpj
-    )
+    [MemberData(nameof(CnpjGenerator.CreateCnpjs), MemberType = typeof(CnpjGenerator))]
+    public void GivenValidInput_WhenCreatingCnpj_ThenShouldInstantiateCnpj(Cnpj cnpj)
     {
-        // Arrange
-        var cnpjValue = cnpj.Value;
-
         // Act
-        var newCnpj = Cnpj.Create(cnpjValue);
+        var newCnpj = CnpjFixture.CreateCnpj(cnpj);
 
         // Assert
         CnpjAssertion.AssertCnpj(cnpj, newCnpj);
     }
 
-
     [Theory]
-    [MemberData(
-        nameof(CnpjGenerator.CreateInvalidCnpjValues),
-        MemberType = typeof(CnpjGenerator)
-    )]
-    public void WhenCreatingCnpj_GivenInvalidCnpj_ShouldThrowException(
+    [MemberData(nameof(CnpjGenerator.CreateInvalidCnpjValues), MemberType = typeof(CnpjGenerator))]
+    public void GivenInvalidCnpj_WhenCreatingCnpj_ThenShouldThrowEntityValidationException(
         string invalidCnpj
     )
     {
         // Arrange
         void Action()
         {
-            _ = Cnpj.Create(invalidCnpj);
+            _ = CnpjFixture.CreateCnpj(value: invalidCnpj);
         }
 
         // Act

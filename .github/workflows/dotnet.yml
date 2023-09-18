@@ -10,9 +10,24 @@ on:
     branches: [ "develop", "main" ]
 
 jobs:
-  build:
-
+  check_formatting:
     runs-on: ubuntu-latest
+    
+    steps:
+      - uses: actions/checkout@v3
+      - name: Install csharpie 
+        run: dotnet tool install csharpier -g
+      - name: Restore tools
+        run: dotnet tool restore
+      - name: Run CSharpie
+        run: dotnet csharpier --check .
+
+  build:
+    strategy:
+      matrix:
+        platform: [ubuntu-latest, macos-latest, windows-latest]
+        
+    runs-on: ${{ matrix.platform }}
 
     steps:
     - uses: actions/checkout@v3

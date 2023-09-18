@@ -7,12 +7,10 @@ public sealed class Email : ValueObject
 {
     public string Value { get; }
 
-
     private Email(string email)
     {
         Value = email;
     }
-
 
     public static Email Create(string email)
     {
@@ -23,7 +21,6 @@ public sealed class Email : ValueObject
 
         return new Email(emailTrimmed);
     }
-
 
     protected override IEnumerable<object> GetEqualityComponents()
     {

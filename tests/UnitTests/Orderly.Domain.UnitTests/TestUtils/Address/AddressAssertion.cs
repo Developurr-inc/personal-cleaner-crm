@@ -20,10 +20,13 @@ public static class AddressAssertion
         Assert.Equal(expected.Country, actual.Country);
     }
 
-
     public static void AssertAddressException(Exception exception)
     {
         Assert.NotNull(exception);
         Assert.IsType<EntityValidationException>(exception);
+
+        var entityValidationException = (EntityValidationException)exception;
+
+        Assert.NotEmpty(entityValidationException.Errors);
     }
 }

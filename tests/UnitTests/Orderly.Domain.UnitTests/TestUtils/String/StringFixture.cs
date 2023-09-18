@@ -7,12 +7,10 @@ public sealed class StringFixture : BaseFixture
         return "";
     }
 
-
     public static string CreateWhiteSpaceString()
     {
         return Faker.Random.String2(1, 100, " ");
     }
-
 
     public static string CreateString(int min = 1, int max = 100)
     {

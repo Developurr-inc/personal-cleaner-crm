@@ -26,7 +26,6 @@ public sealed class Customer : Entity<CustomerId>, IAggregateRoot
 
     public DateTime CreatedAt { get; }
 
-
     private Customer(
         // SalesConsultantId salesConsultantId,
         Cnpj cnpj,
@@ -39,7 +38,8 @@ public sealed class Customer : Entity<CustomerId>, IAggregateRoot
         Phone? landline,
         Phone? mobile,
         string observation
-    ) : base(CustomerId.Create())
+    )
+        : base(CustomerId.Create())
     {
         // Orders = new();
         // SalesConsultant = salesConsultantId;
@@ -55,7 +55,6 @@ public sealed class Customer : Entity<CustomerId>, IAggregateRoot
         Observation = observation;
         CreatedAt = DateTime.Now;
     }
-
 
     public static Customer Create(
         // SalesConsultantId salesConsultantId,
@@ -99,8 +98,7 @@ public sealed class Customer : Entity<CustomerId>, IAggregateRoot
             observationTrimmed
         );
     }
-    
-    
+
     private static void Validate(
         string corporateName,
         string taxId,

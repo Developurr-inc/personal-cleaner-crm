@@ -8,10 +8,15 @@ namespace Orderly.Domain.UnitTests.TestUtils.Customer;
 
 public sealed class CustomerFixture : BaseFixture
 {
-    public static Domain.Customer.Customer CreateCustomer()
+    private static Domain.Customer.Customer CreateValidCustomer()
     {
         // var salesConsultant = salesConsultantId;
         var cnpj = CnpjFixture.CreateCnpj();
+        var billingEmail = EmailFixture.CreateEmail();
+        var nfeEmail = EmailFixture.CreateEmail();
+        var landline = PhoneFixture.CreatePhone();
+        var mobile = PhoneFixture.CreatePhone();
+
         var corporateName = StringFixture.CreateString(
             CustomerValidator.CorporateNameMinLength,
             CustomerValidator.CorporateNameMaxLength
@@ -28,13 +33,7 @@ public sealed class CustomerFixture : BaseFixture
             CustomerValidator.SegmentMinLength,
             CustomerValidator.SegmentMaxLength
         );
-        var billingEmail = EmailFixture.CreateEmail();
-        var nfeEmail = EmailFixture.CreateEmail();
-        var landline = PhoneFixture.CreatePhone();
-        var mobile = PhoneFixture.CreatePhone();
-        var observation = StringFixture.CreateString(
-            max: CustomerValidator.CorporateNameMaxLength
-        );
+        var observation = StringFixture.CreateString(max: CustomerValidator.CorporateNameMaxLength);
 
         return Domain.Customer.Customer.Create(
             // salesConsultant,
@@ -51,84 +50,74 @@ public sealed class CustomerFixture : BaseFixture
         );
     }
 
+    public static Domain.Customer.Customer CreateCustomer(
+        Domain.Customer.Customer? customer = null,
+        string? corporateName = null,
+        string? taxId = null,
+        string? tradeName = null,
+        string? segment = null,
+        string? observation = null
+    )
+    {
+        var lCustomer = customer ?? CreateValidCustomer();
+
+        return Domain.Customer.Customer.Create(
+            // customer.SalesConsultant,
+            lCustomer.Cnpj,
+            corporateName ?? lCustomer.CorporateName,
+            taxId ?? lCustomer.TaxId,
+            tradeName ?? lCustomer.TradeName,
+            segment ?? lCustomer.Segment,
+            lCustomer.BillingEmail,
+            lCustomer.NfeEmail,
+            lCustomer.Landline,
+            lCustomer.Mobile,
+            observation ?? lCustomer.Observation
+        );
+    }
 
     public static string CreateShortCorporateName()
     {
-        return StringFixture.CreateString(
-            1,
-            CustomerValidator.CorporateNameMinLength - 1
-        );
+        return StringFixture.CreateString(1, CustomerValidator.CorporateNameMinLength - 1);
     }
-
 
     public static string CreateLongCorporateName()
     {
-        return StringFixture.CreateString(
-            CustomerValidator.CorporateNameMaxLength + 1,
-            10_000
-        );
+        return StringFixture.CreateString(CustomerValidator.CorporateNameMaxLength + 1, 1_000);
     }
-
 
     public static string CreateShortTaxId()
     {
-        return StringFixture.CreateString(
-            1,
-            CustomerValidator.TaxIdMinLength - 1
-        );
+        return StringFixture.CreateString(1, CustomerValidator.TaxIdMinLength - 1);
     }
-
 
     public static string CreateLongTaxId()
     {
-        return StringFixture.CreateString(
-            CustomerValidator.TaxIdMaxLength + 1,
-            10_000
-        );
+        return StringFixture.CreateString(CustomerValidator.TaxIdMaxLength + 1, 1_000);
     }
-
 
     public static string CreateShortTradeName()
     {
-        return StringFixture.CreateString(
-            1,
-            CustomerValidator.TradeNameMinLength - 1
-        );
+        return StringFixture.CreateString(1, CustomerValidator.TradeNameMinLength - 1);
     }
-
 
     public static string CreateLongTradeName()
     {
-        return StringFixture.CreateString(
-            CustomerValidator.TradeNameMaxLength + 1,
-            10_000
-        );
+        return StringFixture.CreateString(CustomerValidator.TradeNameMaxLength + 1, 1_000);
     }
-
 
     public static string CreateShortSegment()
     {
-        return StringFixture.CreateString(
-            1,
-            CustomerValidator.SegmentMinLength - 1
-        );
+        return StringFixture.CreateString(1, CustomerValidator.SegmentMinLength - 1);
     }
-
 
     public static string CreateLongSegment()
     {
-        return StringFixture.CreateString(
-            CustomerValidator.SegmentMaxLength + 1,
-            10_000
-        );
+        return StringFixture.CreateString(CustomerValidator.SegmentMaxLength + 1, 1_000);
     }
-
 
     public static string CreateLongObservation()
     {
-        return StringFixture.CreateString(
-            CustomerValidator.ObservationMaxLength + 1,
-            20_000
-        );
+        return StringFixture.CreateString(CustomerValidator.ObservationMaxLength + 1, 20_000);
     }
 }
