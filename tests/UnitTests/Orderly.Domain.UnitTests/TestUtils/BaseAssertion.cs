@@ -12,7 +12,7 @@ public abstract class BaseAssertion
         Assert.IsType<EntityValidationException>(exception);
 
         var entityValidationException = (EntityValidationException)exception;
-        
+
         Assert.Equal(ErrorMessage, entityValidationException.Message);
         Assert.NotEmpty(entityValidationException.Errors);
     }
