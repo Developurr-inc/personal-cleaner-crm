@@ -35,7 +35,7 @@ public sealed class AddressTest
         var exception = Record.Exception(Action);
 
         // Assert
-        AddressAssertion.AssertAddressException(exception!);
+        AddressAssertion.AssertException(exception!);
     }
 
     [Theory]
@@ -57,7 +57,7 @@ public sealed class AddressTest
         var exception = Record.Exception(Action);
 
         // Assert
-        AddressAssertion.AssertAddressException(exception!);
+        AddressAssertion.AssertException(exception!);
     }
 
     [Theory]
@@ -79,7 +79,7 @@ public sealed class AddressTest
         var exception = Record.Exception(Action);
 
         // Assert
-        AddressAssertion.AssertAddressException(exception!);
+        AddressAssertion.AssertException(exception!);
     }
 
     [Theory]
@@ -101,7 +101,7 @@ public sealed class AddressTest
         var exception = Record.Exception(Action);
 
         // Assert
-        AddressAssertion.AssertAddressException(exception!);
+        AddressAssertion.AssertException(exception!);
     }
 
     [Theory]
@@ -123,7 +123,7 @@ public sealed class AddressTest
         var exception = Record.Exception(Action);
 
         // Assert
-        AddressAssertion.AssertAddressException(exception!);
+        AddressAssertion.AssertException(exception!);
     }
 
     [Theory]
@@ -145,7 +145,7 @@ public sealed class AddressTest
         var exception = Record.Exception(Action);
 
         // Assert
-        AddressAssertion.AssertAddressException(exception!);
+        AddressAssertion.AssertException(exception!);
     }
 
     [Theory]
@@ -167,7 +167,7 @@ public sealed class AddressTest
         var exception = Record.Exception(Action);
 
         // Assert
-        AddressAssertion.AssertAddressException(exception!);
+        AddressAssertion.AssertException(exception!);
     }
 
     [Theory]
@@ -189,6 +189,6 @@ public sealed class AddressTest
         var exception = Record.Exception(Action);
 
         // Assert
-        AddressAssertion.AssertAddressException(exception!);
+        AddressAssertion.AssertException(exception!);
     }
 }

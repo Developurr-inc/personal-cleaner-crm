@@ -36,7 +36,7 @@ public sealed class EmailTest
         var exception = Record.Exception(Action);
 
         // Assert
-        EmailAssertion.AssertEmailException(exception!);
+        EmailAssertion.AssertException(exception!);
     }
 
     [Theory]
@@ -55,6 +55,6 @@ public sealed class EmailTest
         var exception = Record.Exception(Action);
 
         // Assert
-        EmailAssertion.AssertEmailException(exception!);
+        EmailAssertion.AssertException(exception!);
     }
 }

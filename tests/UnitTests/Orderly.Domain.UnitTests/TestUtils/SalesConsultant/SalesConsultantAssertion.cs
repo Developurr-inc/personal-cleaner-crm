@@ -2,7 +2,7 @@ using Orderly.Domain.Exceptions;
 
 namespace Orderly.Domain.UnitTests.TestUtils.SalesConsultant;
 
-public static class SalesConsultantAssertion
+public sealed class SalesConsultantAssertion : BaseAssertion
 {
     public static void AssertSalesConsultant(
         Domain.SalesConsultant.SalesConsultant expected,
@@ -19,15 +19,5 @@ public static class SalesConsultantAssertion
         Assert.Equal(expected.Landline, actual.Landline);
         Assert.Equal(expected.Mobile, actual.Mobile);
         Assert.NotEqual(default, actual.CreatedAt);
-    }
-
-    public static void AssertSalesConsultantException(Exception exception)
-    {
-        Assert.NotNull(exception);
-        Assert.IsType<EntityValidationException>(exception);
-
-        var entityValidationException = (EntityValidationException)exception;
-
-        Assert.NotEmpty(entityValidationException.Errors);
     }
 }

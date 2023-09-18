@@ -32,6 +32,6 @@ public sealed class CpfTest
         var exception = Record.Exception(Action);
 
         // Assert
-        CpfAssertion.AssertCpfException(exception!);
+        CpfAssertion.AssertException(exception!);
     }
 }
