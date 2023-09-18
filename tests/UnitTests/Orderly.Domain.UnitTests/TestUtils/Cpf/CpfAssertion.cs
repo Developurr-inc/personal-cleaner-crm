@@ -12,14 +12,15 @@ public static class CpfAssertion
         Assert.NotNull(actual);
         Assert.Equal(expected.Value, actual.Value);
     }
-
+    
+    
     public static void AssertCpfException(Exception exception)
     {
         Assert.NotNull(exception);
         Assert.IsType<EntityValidationException>(exception);
 
         var entityValidationException = (EntityValidationException)exception;
-
+        
         Assert.NotEmpty(entityValidationException.Errors);
     }
 }
