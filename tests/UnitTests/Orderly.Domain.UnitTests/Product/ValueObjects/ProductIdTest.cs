@@ -14,6 +14,6 @@ public class ProductIdTest
         var newProductId = ProductIdFixture.CreateProductId(productId);
         
         //Assert
-        ProductIdAssertion.AssertProductId(productId);
+        ProductIdAssertion.AssertProductId(newProductId);
     }
 }
