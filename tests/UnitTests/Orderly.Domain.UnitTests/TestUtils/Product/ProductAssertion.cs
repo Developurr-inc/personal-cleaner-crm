@@ -2,7 +2,7 @@ using Orderly.Domain.Exceptions;
 
 namespace Orderly.Domain.UnitTests.TestUtils.Product;
 
-public class ProductAssertion
+public sealed class ProductAssertion
 {
     public static void AssertProduct(Domain.Product.Product expected, Domain.Product.Product actual)
     {

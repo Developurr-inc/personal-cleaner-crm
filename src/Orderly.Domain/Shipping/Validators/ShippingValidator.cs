@@ -2,7 +2,7 @@ using Orderly.Domain.Validation;
 
 namespace Orderly.Domain.Shipping.Validators;
 
-public class ShippingValidator : Validator
+public sealed class ShippingValidator : Validator
 {
     private readonly string _corporateName;
     private readonly string _taxId;

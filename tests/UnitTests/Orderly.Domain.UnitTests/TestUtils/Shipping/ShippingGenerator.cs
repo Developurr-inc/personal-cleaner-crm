@@ -2,7 +2,7 @@ using Orderly.Domain.UnitTests.TestUtils.String;
 
 namespace Orderly.Domain.UnitTests.TestUtils.Shipping;
 
-public class ShippingGenerator : BaseGenerator
+public sealed class ShippingGenerator : BaseGenerator
 {
     public static IEnumerable<object[]> CreateShippings()
     {

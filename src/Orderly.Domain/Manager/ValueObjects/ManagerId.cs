@@ -2,7 +2,7 @@ using Orderly.Domain.SeedWork;
 
 namespace Orderly.Domain.Manager.ValueObjects;
 
-public class ManagerId : ValueObject
+public sealed class ManagerId : ValueObject
 {
     public Guid Value { get; }
 

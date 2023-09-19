@@ -2,7 +2,7 @@ using Orderly.Domain.Exceptions;
 
 namespace Orderly.Domain.UnitTests.TestUtils.Shipping;
 
-public class ShippingAssertion
+public sealed class ShippingAssertion
 {
     public static void AssertShipping(
         Domain.Shipping.Shipping expected,

@@ -5,7 +5,7 @@ using Orderly.Domain.UnitTests.TestUtils.String;
 
 namespace Orderly.Domain.UnitTests.TestUtils.Product;
 
-public class ProductFixture : BaseFixture
+public sealed class ProductFixture : BaseFixture
 {
     private static Domain.Product.Product CreateValidProduct()
     {

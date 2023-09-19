@@ -2,7 +2,7 @@ using Orderly.Domain.UnitTests.TestUtils.String;
 
 namespace Orderly.Domain.UnitTests.TestUtils.Product;
 
-public class ProductGenerator : BaseGenerator
+public sealed class ProductGenerator : BaseGenerator
 {
     public static IEnumerable<object[]> CreateProducts()
     {

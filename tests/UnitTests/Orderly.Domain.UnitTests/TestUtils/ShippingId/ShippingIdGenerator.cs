@@ -1,6 +1,6 @@
 namespace Orderly.Domain.UnitTests.TestUtils.ShippingId;
 
-public class ShippingIdGenerator: BaseGenerator
+public sealed class ShippingIdGenerator: BaseGenerator
 {
     public static IEnumerable<object[]> CreateShippingIds()
     {

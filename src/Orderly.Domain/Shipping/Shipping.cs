@@ -5,7 +5,7 @@ using Orderly.Domain.Shipping.ValueObjects;
 
 namespace Orderly.Domain.Shipping;
 
-public class Shipping : Entity<ShippingId>, IAggregateRoot
+public sealed class Shipping : Entity<ShippingId>, IAggregateRoot
 {
     public Cnpj Cnpj { get; private set; }
     public string CorporateName { get; private set; }

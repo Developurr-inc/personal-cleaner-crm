@@ -1,6 +1,6 @@
 namespace Orderly.Domain.UnitTests.TestUtils.ShippingId;
 
-public class ShippingIdAssertion
+public sealed class ShippingIdAssertion
 {
     public static void AssertShippingId(
         Domain.Shipping.ValueObjects.ShippingId actual
