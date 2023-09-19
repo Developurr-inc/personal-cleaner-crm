@@ -36,7 +36,7 @@ public sealed class CustomerTest
         var exception = Record.Exception(Action);
 
         // Assert
-        CustomerAssertion.AssertCustomerException(exception!);
+        CustomerAssertion.AssertException(exception!);
     }
 
     [Theory]
@@ -56,7 +56,7 @@ public sealed class CustomerTest
         var exception = Record.Exception(Action);
 
         // Assert
-        CustomerAssertion.AssertCustomerException(exception!);
+        CustomerAssertion.AssertException(exception!);
     }
 
     [Theory]
@@ -78,7 +78,7 @@ public sealed class CustomerTest
         var exception = Record.Exception(Action);
 
         // Assert
-        CustomerAssertion.AssertCustomerException(exception!);
+        CustomerAssertion.AssertException(exception!);
     }
 
     [Theory]
@@ -100,7 +100,7 @@ public sealed class CustomerTest
         var exception = Record.Exception(Action);
 
         // Assert
-        CustomerAssertion.AssertCustomerException(exception!);
+        CustomerAssertion.AssertException(exception!);
     }
 
     [Theory]
@@ -122,6 +122,6 @@ public sealed class CustomerTest
         var exception = Record.Exception(Action);
 
         // Assert
-        CustomerAssertion.AssertCustomerException(exception!);
+        CustomerAssertion.AssertException(exception!);
     }
 }

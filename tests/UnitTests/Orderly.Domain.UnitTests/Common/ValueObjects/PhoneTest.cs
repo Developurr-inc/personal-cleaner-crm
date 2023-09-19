@@ -32,6 +32,6 @@ public sealed class PhoneTest
         var exception = Record.Exception(Action);
 
         // Assert
-        PhoneAssertion.AssertPhoneException(exception!);
+        PhoneAssertion.AssertException(exception!);
     }
 }

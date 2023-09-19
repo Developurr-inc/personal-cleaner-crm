@@ -31,6 +31,6 @@ public class ManagerTest
         var exception = Record.Exception(Action);
 
         // Assert
-        ManagerAssertion.AssertManagerException(exception!);
+        ManagerAssertion.AssertException(exception!);
     }
 }

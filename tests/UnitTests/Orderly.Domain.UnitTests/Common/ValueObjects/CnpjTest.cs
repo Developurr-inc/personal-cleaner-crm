@@ -32,6 +32,6 @@ public sealed class CnpjTest
         var exception = Record.Exception(Action);
 
         // Assert
-        CnpjAssertion.AssertCnpjException(exception!);
+        CnpjAssertion.AssertException(exception!);
     }
 }
