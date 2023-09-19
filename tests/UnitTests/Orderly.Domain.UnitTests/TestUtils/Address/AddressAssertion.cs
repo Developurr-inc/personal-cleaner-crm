@@ -1,8 +1,6 @@
-using Orderly.Domain.Exceptions;
-
 namespace Orderly.Domain.UnitTests.TestUtils.Address;
 
-public static class AddressAssertion
+public sealed class AddressAssertion : BaseAssertion
 {
     public static void AssertAddress(
         Domain.Common.ValueObjects.Address expected,
@@ -18,15 +16,5 @@ public static class AddressAssertion
         Assert.Equal(expected.City, actual.City);
         Assert.Equal(expected.State, actual.State);
         Assert.Equal(expected.Country, actual.Country);
-    }
-
-    public static void AssertAddressException(Exception exception)
-    {
-        Assert.NotNull(exception);
-        Assert.IsType<EntityValidationException>(exception);
-
-        var entityValidationException = (EntityValidationException)exception;
-
-        Assert.NotEmpty(entityValidationException.Errors);
     }
 }

@@ -32,6 +32,6 @@ public sealed class PriceTest
         var exception = Record.Exception(Action);
 
         // Assert
-        PriceAssertion.AssertPriceException(exception!);
+        PriceAssertion.AssertException(exception!);
     }
 }
