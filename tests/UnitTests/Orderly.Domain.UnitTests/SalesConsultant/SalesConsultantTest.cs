@@ -39,6 +39,6 @@ public sealed class SalesConsultantTest
         var exception = Record.Exception(Action);
 
         // Assert
-        SalesConsultantAssertion.AssertSalesConsultantException(exception!);
+        SalesConsultantAssertion.AssertException(exception!);
     }
 }
