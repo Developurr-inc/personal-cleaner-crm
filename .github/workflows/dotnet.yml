@@ -17,8 +17,6 @@ jobs:
         uses: actions/checkout@v3
  
       - uses: pre-commit/action@v3.0.0
-        with:
-          config-file: ./.github/precommit/.pre-commit-config.yaml
 
   check_formatting:
     runs-on: ubuntu-latest
