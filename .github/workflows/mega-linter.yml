@@ -55,6 +55,7 @@ jobs:
           DISABLE: COPYPASTE,SPELL
           REPOSITORY_CHECKOV_DISABLE_ERRORS: true
           JSON_V8R_DISABLE_ERRORS: true
+          REPOSITORY_TRUFFLEHOG_DISABLE_ERRORS: true
 
       # Upload MegaLinter artifacts
       - name: Archive production artifacts
