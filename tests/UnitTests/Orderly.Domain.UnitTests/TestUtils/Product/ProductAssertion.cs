@@ -15,14 +15,4 @@ public sealed class ProductAssertion
         Assert.Equal(expected.ExciseTax, actual.ExciseTax);
         Assert.NotEqual(default, actual.CreatedAt);
     }
-
-    public static void AssertProductException(Exception exception)
-    {
-        Assert.NotNull(exception);
-        Assert.IsType<EntityValidationException>(exception);
-
-        var entityValidationException = (EntityValidationException)exception;
-
-        Assert.NotEmpty(entityValidationException.Errors);
-    }
 }

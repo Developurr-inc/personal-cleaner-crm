@@ -1,4 +1,5 @@
 using Orderly.Domain.Order.ValueObjects;
+using Orderly.Domain.UnitTests.TestUtils;
 using Orderly.Domain.UnitTests.TestUtils.Discount;
 
 namespace Orderly.Domain.UnitTests.Order.ValueObjects;
@@ -32,6 +33,6 @@ public sealed class DiscountTest
         var exception = Record.Exception(Action);
 
         // Assert
-        DiscountAssertion.AssertDiscountException(exception!);
+        BaseAssertion.AssertException(exception!);
     }
 }

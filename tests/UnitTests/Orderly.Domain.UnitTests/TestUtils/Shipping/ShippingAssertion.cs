@@ -19,15 +19,4 @@ public sealed class ShippingAssertion
         Assert.Equal(expected.Segment, actual.Segment);
         Assert.NotEqual(actual.CreatedAt, default);
     }
-    
-    
-    public static void AssertShippingException(Exception exception)
-    {
-        Assert.NotNull(exception);
-        Assert.IsType<EntityValidationException>(exception);
-
-        var entityValidationException = (EntityValidationException)exception;
-
-        Assert.NotEmpty(entityValidationException.Errors);
-    }
 }
