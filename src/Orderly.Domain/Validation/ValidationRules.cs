@@ -46,6 +46,14 @@ public static partial class ValidationRules
             errors.AddValidationError($"'{fieldName}' should be positive.");
     }
 
+    public static void ValidateRange(decimal value, string fieldName, decimal min, decimal max, IValidator errors)
+    {
+        if(value < min || value > max)
+            errors.AddValidationError(
+                $"'{fieldName}' should be between {min} and {max} characters."
+            );
+    }
+
     public static void ValidateEmail(string email, string fieldName, IValidator errors)
     {
         if (!EmailRegex().IsMatch(email))
