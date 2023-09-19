@@ -2,7 +2,7 @@ using Orderly.Domain.Exceptions;
 
 namespace Orderly.Domain.UnitTests.TestUtils.Product;
 
-public class ProductAssertion
+public class ProductAssertion : BaseAssertion
 {
     public static void AssertProduct(Domain.Product.Product expected, Domain.Product.Product actual)
     {
@@ -14,15 +14,5 @@ public class ProductAssertion
         Assert.Equal(expected.Packaging, actual.Packaging);
         Assert.Equal(expected.ExciseTax, actual.ExciseTax);
         Assert.NotEqual(default, actual.CreatedAt);
-    }
-
-    public static void AssertProductException(Exception exception)
-    {
-        Assert.NotNull(exception);
-        Assert.IsType<EntityValidationException>(exception);
-
-        var entityValidationException = (EntityValidationException)exception;
-
-        Assert.NotEmpty(entityValidationException.Errors);
     }
 }
