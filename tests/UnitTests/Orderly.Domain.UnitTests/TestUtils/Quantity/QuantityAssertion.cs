@@ -2,7 +2,7 @@ using Orderly.Domain.Exceptions;
 
 namespace Orderly.Domain.UnitTests.TestUtils.Quantity;
 
-public class QuantityAssertion : BaseAssertion
+public sealed class QuantityAssertion : BaseAssertion
 {
     public static void AssertQuantity(
         Domain.Quantity.ValueObjects.Quantity expected,
