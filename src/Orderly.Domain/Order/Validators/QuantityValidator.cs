@@ -1,6 +1,6 @@
 using Orderly.Domain.Validation;
 
-namespace Orderly.Domain.Quantity.Validators;
+namespace Orderly.Domain.Order.Validators;
 
 public sealed class QuantityValidator : Validator
 {
