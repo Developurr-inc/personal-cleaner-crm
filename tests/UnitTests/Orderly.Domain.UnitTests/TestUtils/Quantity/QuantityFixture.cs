@@ -2,7 +2,7 @@ using Orderly.Domain.Quantity.Validators;
 
 namespace Orderly.Domain.UnitTests.TestUtils.Quantity;
 
-public class QuantityFixture : BaseFixture
+public sealed class QuantityFixture : BaseFixture
 {
     private static Domain.Quantity.ValueObjects.Quantity CreateValidQuantity()
     {
