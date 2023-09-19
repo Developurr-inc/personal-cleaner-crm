@@ -54,7 +54,6 @@ public class Shipping : Entity<ShippingId>, IAggregateRoot
         );
 
         return new Shipping(
-            // salesConsultantId,
             cnpj,
             corporateNameTrimmed,
             taxIdTrimmed,
