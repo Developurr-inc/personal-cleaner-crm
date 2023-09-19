@@ -7,7 +7,6 @@ public class ShippingIdAssertion
     )
     {
         Assert.NotNull(actual);
-        Assert.NotNull(actual.Value);
         Assert.NotEqual(actual.Value, default);
     }
 }
