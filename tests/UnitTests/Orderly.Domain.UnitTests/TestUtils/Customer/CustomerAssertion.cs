@@ -1,8 +1,6 @@
-using Orderly.Domain.Exceptions;
-
 namespace Orderly.Domain.UnitTests.TestUtils.Customer;
 
-public static class CustomerAssertion
+public sealed class CustomerAssertion : BaseAssertion
 {
     public static void AssertCustomer(
         Domain.Customer.Customer expected,
@@ -25,15 +23,5 @@ public static class CustomerAssertion
         Assert.Equal(expected.Mobile, actual.Mobile);
         Assert.Equal(expected.Observation, actual.Observation);
         Assert.NotEqual(actual.CreatedAt, default);
-    }
-
-    public static void AssertCustomerException(Exception exception)
-    {
-        Assert.NotNull(exception);
-        Assert.IsType<EntityValidationException>(exception);
-
-        var entityValidationException = (EntityValidationException)exception;
-
-        Assert.NotEmpty(entityValidationException.Errors);
     }
 }
