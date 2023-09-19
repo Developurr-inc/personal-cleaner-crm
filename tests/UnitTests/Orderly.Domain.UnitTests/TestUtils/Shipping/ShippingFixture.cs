@@ -5,7 +5,7 @@ using Orderly.Domain.UnitTests.TestUtils.String;
 
 namespace Orderly.Domain.UnitTests.TestUtils.Shipping;
 
-public class ShippingFixture : BaseFixture
+public sealed class ShippingFixture : BaseFixture
 {
     private static Domain.Shipping.Shipping CreateValidShipping()
     {

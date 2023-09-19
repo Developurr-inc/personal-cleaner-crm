@@ -2,7 +2,7 @@ using Orderly.Domain.Exceptions;
 
 namespace Orderly.Domain.UnitTests.TestUtils.Shipping;
 
-public class ShippingAssertion
+public sealed class ShippingAssertion
 {
     public static void AssertShipping(
         Domain.Shipping.Shipping expected,
@@ -18,16 +18,5 @@ public class ShippingAssertion
         Assert.Equal(expected.TradeName, actual.TradeName);
         Assert.Equal(expected.Segment, actual.Segment);
         Assert.NotEqual(actual.CreatedAt, default);
-    }
-    
-    
-    public static void AssertShippingException(Exception exception)
-    {
-        Assert.NotNull(exception);
-        Assert.IsType<EntityValidationException>(exception);
-
-        var entityValidationException = (EntityValidationException)exception;
-
-        Assert.NotEmpty(entityValidationException.Errors);
     }
 }

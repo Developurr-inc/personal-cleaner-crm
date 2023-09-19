@@ -2,7 +2,7 @@ using Orderly.Domain.SeedWork;
 
 namespace Orderly.Domain.Shipping.ValueObjects;
 
-public class ShippingId : ValueObject
+public sealed class ShippingId : ValueObject
 {
     public Guid Value { get; }
     private ShippingId()

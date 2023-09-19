@@ -5,7 +5,7 @@ using Orderly.Domain.SeedWork;
 
 namespace Orderly.Domain.SalesConsultant;
 
-public class SalesConsultant : Entity<SalesConsultantId>, IAggregateRoot
+public sealed class SalesConsultant : Entity<SalesConsultantId>, IAggregateRoot
 {
     public Cpf Cpf { get; private set; }
     public string Name { get; private set; }

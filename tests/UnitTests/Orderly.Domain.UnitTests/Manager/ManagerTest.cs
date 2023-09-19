@@ -2,7 +2,7 @@ using Orderly.Domain.UnitTests.TestUtils.Manager;
 
 namespace Orderly.Domain.UnitTests.Manager;
 
-public class ManagerTest
+public sealed class ManagerTest
 {
     [Theory]
     [MemberData(nameof(ManagerGenerator.CreateManagers), MemberType = typeof(ManagerGenerator))]

@@ -1,8 +1,9 @@
+using Orderly.Domain.UnitTests.TestUtils;
 using Orderly.Domain.UnitTests.TestUtils.Product;
 
 namespace Orderly.Domain.UnitTests.Product;
 
-public class ProductTest
+public sealed class ProductTest
 {
     [Theory]
     [MemberData(nameof(ProductGenerator.CreateProducts), MemberType = typeof(ProductGenerator))]
@@ -31,6 +32,6 @@ public class ProductTest
         var exception = Record.Exception(Action);
 
         // Assert
-        ProductAssertion.AssertProductException(exception!);
+        BaseAssertion.AssertException(exception!);
     }
 }

@@ -1,6 +1,6 @@
 namespace Orderly.Domain.UnitTests.TestUtils.ProductId;
 
-public class ProductIdGenerator : BaseGenerator
+public sealed class ProductIdGenerator : BaseGenerator
 {
     public static IEnumerable<object[]> CreateProductIds()
     {

@@ -5,7 +5,7 @@ using Orderly.Domain.SeedWork;
 
 namespace Orderly.Domain.Product;
 
-public class Product : Entity<ProductId>, IAggregateRoot
+public sealed class Product : Entity<ProductId>, IAggregateRoot
 {
     public string Code { get; private set; }
     public string Name { get; private set; }

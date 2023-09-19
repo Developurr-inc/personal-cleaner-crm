@@ -1,9 +1,10 @@
 using Orderly.Domain.Order.ValueObjects;
+using Orderly.Domain.UnitTests.TestUtils;
 using Orderly.Domain.UnitTests.TestUtils.Discount;
 
 namespace Orderly.Domain.UnitTests.Order.ValueObjects;
 
-public class DiscountTest
+public sealed class DiscountTest
 {
     [Theory]
     [MemberData(nameof(DiscountGenerator.CreateDiscounts), MemberType = typeof(DiscountGenerator))]
@@ -32,6 +33,6 @@ public class DiscountTest
         var exception = Record.Exception(Action);
 
         // Assert
-        DiscountAssertion.AssertDiscountException(exception!);
+        BaseAssertion.AssertException(exception!);
     }
 }

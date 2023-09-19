@@ -2,7 +2,7 @@ using Orderly.Domain.UnitTests.TestUtils.ShippingId;
 
 namespace Orderly.Domain.UnitTests.Shipping.ValueObjects;
 
-public class ShippingIdTest
+public sealed class ShippingIdTest
 {
     [Theory]
     [MemberData(nameof(ShippingIdGenerator.CreateShippingIds), MemberType = typeof(ShippingIdGenerator))]

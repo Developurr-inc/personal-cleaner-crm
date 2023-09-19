@@ -3,7 +3,7 @@ using Orderly.Domain.SeedWork;
 
 namespace Orderly.Domain.Order.ValueObjects;
 
-public class Discount : ValueObject
+public sealed class Discount : ValueObject
 {
     public decimal Value { get; private set; }
     

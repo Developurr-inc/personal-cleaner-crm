@@ -1,8 +1,9 @@
+using Orderly.Domain.UnitTests.TestUtils;
 using Orderly.Domain.UnitTests.TestUtils.Shipping;
 
 namespace Orderly.Domain.UnitTests.Shipping;
 
-public class ShippingTest
+public sealed class ShippingTest
 {
     [Theory]
     [MemberData(nameof(ShippingGenerator.CreateShippings), MemberType = typeof(ShippingGenerator))]
@@ -36,7 +37,7 @@ public class ShippingTest
         var exception = Record.Exception(Action);
 
         // Assert
-        ShippingAssertion.AssertShippingException(exception!);
+        BaseAssertion.AssertException(exception!);
     }
 
     [Theory]
@@ -56,7 +57,7 @@ public class ShippingTest
         var exception = Record.Exception(Action);
 
         // Assert
-        ShippingAssertion.AssertShippingException(exception!);
+        BaseAssertion.AssertException(exception!);
     }
 
     [Theory]
@@ -78,7 +79,7 @@ public class ShippingTest
         var exception = Record.Exception(Action);
 
         // Assert
-        ShippingAssertion.AssertShippingException(exception!);
+        BaseAssertion.AssertException(exception!);
     }
 
     [Theory]
@@ -100,6 +101,6 @@ public class ShippingTest
         var exception = Record.Exception(Action);
 
         // Assert
-        ShippingAssertion.AssertShippingException(exception!);
+        BaseAssertion.AssertException(exception!);
     }
 }

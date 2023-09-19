@@ -2,7 +2,7 @@ using Orderly.Domain.Validation;
 
 namespace Orderly.Domain.SalesConsultant.Validators;
 
-public class SalesConsultantValidator : Validator
+public sealed class SalesConsultantValidator : Validator
 {
     private readonly string _name;
 
