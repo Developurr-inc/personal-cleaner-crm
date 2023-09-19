@@ -12,8 +12,6 @@ public class ShippingAssertion
         Assert.NotNull(actual);
         Assert.NotNull(actual.Id);
         Assert.NotEqual(actual.Id.Value, default);
-        // Assert.Equal(expected.Orders, actual.Orders);
-        // Assert.Equal(expected.Seller, actual.Seller);
         Assert.Equal(expected.Cnpj, actual.Cnpj);
         Assert.Equal(expected.CorporateName, actual.CorporateName);
         Assert.Equal(expected.TaxId, actual.TaxId);
