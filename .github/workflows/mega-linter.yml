@@ -52,7 +52,9 @@ jobs:
           VALIDATE_ALL_CODEBASE: true # Validates all source when push on main, else just the git diff with main. Override with true if you always want to lint all sources
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           # ADD YOUR CUSTOM ENV VARIABLES HERE OR DEFINE THEM IN A FILE .mega-linter.yml AT THE ROOT OF YOUR REPOSITORY
-          DISABLE: COPYPASTE,SPELL,V8R,CHECKOV
+          DISABLE: COPYPASTE,SPELL
+          REPOSITORY_CHECKOV_DISABLE_ERRORS: true
+          JSON_V8R_DISABLE_ERRORS: true
 
       # Upload MegaLinter artifacts
       - name: Archive production artifacts
