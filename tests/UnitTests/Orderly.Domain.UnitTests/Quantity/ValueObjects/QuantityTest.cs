@@ -1,3 +1,4 @@
+using Orderly.Domain.UnitTests.TestUtils;
 using Orderly.Domain.UnitTests.TestUtils.Quantity;
 
 namespace Orderly.Domain.UnitTests.Quantity.ValueObjects;
@@ -31,6 +32,6 @@ public class QuantityTest
         var exception = Record.Exception(Action);
 
         // Assert
-        QuantityAssertion.AssertQuantityException(exception!);
+        BaseAssertion.AssertException(exception!);
     }
 }
