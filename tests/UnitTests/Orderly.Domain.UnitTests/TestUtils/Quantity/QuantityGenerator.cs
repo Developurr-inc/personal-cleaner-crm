@@ -1,6 +1,6 @@
 namespace Orderly.Domain.UnitTests.TestUtils.Quantity;
 
-public class QuantityGenerator : BaseGenerator
+public sealed class QuantityGenerator : BaseGenerator
 {
     public static IEnumerable<object[]> CreateQuantitys()
     {
