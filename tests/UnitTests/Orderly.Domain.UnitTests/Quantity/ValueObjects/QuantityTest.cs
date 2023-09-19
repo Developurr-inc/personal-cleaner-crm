@@ -3,7 +3,7 @@ using Orderly.Domain.UnitTests.TestUtils.Quantity;
 
 namespace Orderly.Domain.UnitTests.Quantity.ValueObjects;
 
-public class QuantityTest
+public sealed class QuantityTest
 {
     [Theory]
     [MemberData(nameof(QuantityGenerator.CreateQuantitys), MemberType = typeof(QuantityGenerator))]

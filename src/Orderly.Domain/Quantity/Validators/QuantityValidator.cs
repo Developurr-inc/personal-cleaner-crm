@@ -2,7 +2,7 @@ using Orderly.Domain.Validation;
 
 namespace Orderly.Domain.Quantity.Validators;
 
-public class QuantityValidator : Validator
+public sealed class QuantityValidator : Validator
 {
     private readonly int _value;
     

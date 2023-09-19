@@ -1,6 +1,6 @@
 namespace Orderly.Domain.UnitTests.TestUtils.Discount;
 
-public class DiscountGenerator : BaseGenerator
+public sealed class DiscountGenerator : BaseGenerator
 {
     public static IEnumerable<object[]> CreateDiscounts()
     {

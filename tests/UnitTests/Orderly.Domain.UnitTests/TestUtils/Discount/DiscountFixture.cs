@@ -2,7 +2,7 @@ using Orderly.Domain.Order.Validators;
 
 namespace Orderly.Domain.UnitTests.TestUtils.Discount;
 
-public class DiscountFixture : BaseFixture
+public sealed class DiscountFixture : BaseFixture
 {
     private static Domain.Order.ValueObjects.Discount CreateValidDiscount()
     {
