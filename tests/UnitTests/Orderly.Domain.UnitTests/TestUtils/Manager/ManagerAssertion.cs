@@ -1,8 +1,6 @@
-using Orderly.Domain.Exceptions;
-
 namespace Orderly.Domain.UnitTests.TestUtils.Manager;
 
-public static class ManagerAssertion
+public sealed class ManagerAssertion : BaseAssertion
 {
     public static void AssertManager(Domain.Manager.Manager expected, Domain.Manager.Manager actual)
     {
@@ -16,15 +14,5 @@ public static class ManagerAssertion
         Assert.Equal(expected.Landline, actual.Landline);
         Assert.Equal(expected.Mobile, actual.Mobile);
         Assert.NotEqual(default, actual.CreatedAt);
-    }
-
-    public static void AssertManagerException(Exception exception)
-    {
-        Assert.NotNull(exception);
-        Assert.IsType<EntityValidationException>(exception);
-
-        var entityValidationException = (EntityValidationException)exception;
-
-        Assert.NotEmpty(entityValidationException.Errors);
     }
 }
