@@ -4,7 +4,7 @@ using Orderly.Domain.UnitTests.TestUtils.Discount;
 
 namespace Orderly.Domain.UnitTests.Order.ValueObjects;
 
-public class DiscountTest
+public sealed class DiscountTest
 {
     [Theory]
     [MemberData(nameof(DiscountGenerator.CreateDiscounts), MemberType = typeof(DiscountGenerator))]

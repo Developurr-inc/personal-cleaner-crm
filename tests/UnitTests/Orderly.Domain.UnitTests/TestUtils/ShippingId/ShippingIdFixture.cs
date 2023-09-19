@@ -1,6 +1,6 @@
 namespace Orderly.Domain.UnitTests.TestUtils.ShippingId;
 
-public class ShippingIdFixture
+public sealed class ShippingIdFixture
 {
     private static Domain.Shipping.ValueObjects.ShippingId CreateValidShippingId()
     {

@@ -2,7 +2,7 @@ using Orderly.Domain.Exceptions;
 
 namespace Orderly.Domain.UnitTests.TestUtils.Discount;
 
-public class DiscountAssertion : BaseAssertion
+public sealed class DiscountAssertion
 {
     public static void AssertDiscount(
         Domain.Order.ValueObjects.Discount expected,

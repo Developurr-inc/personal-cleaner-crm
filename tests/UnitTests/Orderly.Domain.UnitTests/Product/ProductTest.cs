@@ -3,7 +3,7 @@ using Orderly.Domain.UnitTests.TestUtils.Product;
 
 namespace Orderly.Domain.UnitTests.Product;
 
-public class ProductTest
+public sealed class ProductTest
 {
     [Theory]
     [MemberData(nameof(ProductGenerator.CreateProducts), MemberType = typeof(ProductGenerator))]

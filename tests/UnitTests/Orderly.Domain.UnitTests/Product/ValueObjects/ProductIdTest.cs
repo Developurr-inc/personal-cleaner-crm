@@ -2,7 +2,7 @@ using Orderly.Domain.UnitTests.TestUtils.ProductId;
 
 namespace Orderly.Domain.UnitTests.Product.ValueObjects;
 
-public class ProductIdTest
+public sealed class ProductIdTest
 {
     [Theory]
     [MemberData(nameof(ProductIdGenerator.CreateProductIds), MemberType = typeof(ProductIdGenerator))]

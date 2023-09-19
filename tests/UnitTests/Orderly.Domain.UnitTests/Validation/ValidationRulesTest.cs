@@ -12,7 +12,7 @@ using Moq;
 
 namespace Orderly.Domain.UnitTests.Validation;
 
-public class ValidationRulesTest
+public sealed class ValidationRulesTest
 {
     [Theory]
     [MemberData(

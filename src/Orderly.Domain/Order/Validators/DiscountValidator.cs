@@ -2,7 +2,7 @@ using Orderly.Domain.Validation;
 
 namespace Orderly.Domain.Order.Validators;
 
-public class DiscountValidator : Validator
+public sealed class DiscountValidator : Validator
 {
     private readonly decimal _value;
     

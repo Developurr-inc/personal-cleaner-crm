@@ -5,7 +5,7 @@ using Orderly.Domain.SeedWork;
 
 namespace Orderly.Domain.Manager;
 
-public class Manager : Entity<ManagerId>, IAggregateRoot
+public sealed class Manager : Entity<ManagerId>, IAggregateRoot
 {
     public Cpf Cpf { get; private set; }
     public Address Address { get; private set; }

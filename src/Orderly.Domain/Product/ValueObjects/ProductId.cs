@@ -2,7 +2,7 @@ using Orderly.Domain.SeedWork;
 
 namespace Orderly.Domain.Product.ValueObjects;
 
-public class ProductId : ValueObject
+public sealed class ProductId : ValueObject
 {
     public Guid Value { get; }
 
