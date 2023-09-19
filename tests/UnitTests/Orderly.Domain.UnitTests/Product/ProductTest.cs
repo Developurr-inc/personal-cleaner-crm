@@ -1,3 +1,4 @@
+using Orderly.Domain.UnitTests.TestUtils;
 using Orderly.Domain.UnitTests.TestUtils.Product;
 
 namespace Orderly.Domain.UnitTests.Product;
@@ -31,6 +32,6 @@ public class ProductTest
         var exception = Record.Exception(Action);
 
         // Assert
-        ProductAssertion.AssertProductException(exception!);
+        BaseAssertion.AssertException(exception!);
     }
 }
