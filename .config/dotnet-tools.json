@@ -1,4 +1,6 @@
 {
+  "version": 1,
+  "isRoot": true,
   "tools": {
     "CSharpier": {
       "version": "0.25.0",
