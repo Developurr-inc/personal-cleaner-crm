@@ -18,6 +18,7 @@ public sealed class Manager : Entity<ManagerId>, IAggregateRoot
     public DateTime CreatedAt { get; }
 
     private Manager(
+        ManagerId managerId,
         Cpf cpf,
         Address address,
         string name,
@@ -25,7 +26,7 @@ public sealed class Manager : Entity<ManagerId>, IAggregateRoot
         Phone? landline,
         Phone? mobile
     )
-        : base(ManagerId.Create())
+        : base(managerId)
     {
         Cpf = cpf;
         Address = address;
@@ -45,11 +46,12 @@ public sealed class Manager : Entity<ManagerId>, IAggregateRoot
         Phone? mobile
     )
     {
+        var managerId = ManagerId.Generate();
         var nameTrimmed = name.Trim();
 
         Validate(nameTrimmed);
 
-        return new Manager(cpf, address, nameTrimmed, nfeEmail, landline, mobile);
+        return new Manager(managerId, cpf, address, nameTrimmed, nfeEmail, landline, mobile);
     }
 
     private static void Validate(string name)

@@ -16,13 +16,14 @@ public sealed class Shipping : Entity<ShippingId>, IAggregateRoot
     public DateTime CreatedAt { get; }
 
     private Shipping(
+        ShippingId shippingId,
         Cnpj cnpj,
         string corporateName,
         string taxId,
         string tradeName,
         string segment
     )
-        : base(ShippingId.Generate())
+        : base(shippingId)
     {
         Cnpj = cnpj;
         CorporateName = corporateName;
@@ -41,6 +42,7 @@ public sealed class Shipping : Entity<ShippingId>, IAggregateRoot
         string segment
     )
     {
+        var shippingId = ShippingId.Generate();
         var corporateNameTrimmed = corporateName.Trim();
         var taxIdTrimmed = taxId.Trim();
         var tradeNameTrimmed = tradeName.Trim();
@@ -54,6 +56,7 @@ public sealed class Shipping : Entity<ShippingId>, IAggregateRoot
         );
 
         return new Shipping(
+            shippingId,
             cnpj,
             corporateNameTrimmed,
             taxIdTrimmed,
