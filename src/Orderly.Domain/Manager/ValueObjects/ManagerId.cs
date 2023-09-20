@@ -6,14 +6,21 @@ public sealed class ManagerId : ValueObject
 {
     public Guid Value { get; }
 
-    private ManagerId()
+    private ManagerId(Guid value)
     {
-        Value = Guid.NewGuid();
+        Value = value;
     }
 
-    public static ManagerId Create()
+    public static ManagerId Generate()
     {
-        return new ManagerId();
+        var guid = Guid.NewGuid();
+        return new ManagerId(guid);
+    }
+    
+    public static ManagerId Restore(string value)
+    {
+        var guid = Guid.Parse(value);
+        return new ManagerId(guid);
     }
 
     protected override IEnumerable<object> GetEqualityComponents()
