@@ -6,15 +6,24 @@ public sealed class ProductId : ValueObject
 {
     public Guid Value { get; }
 
-    private ProductId()
+    private ProductId(Guid value)
     {
-        Value = Guid.NewGuid();
+        Value = value;
     }
 
     public static ProductId Generate()
     {
-        return new ProductId();
+        var guid = Guid.NewGuid();
+        return new ProductId(guid);
     }
+
+    public static ProductId Restore(string value)
+    {
+        var guid = Guid.Parse(value);
+        return new ProductId(guid);
+    }
+    
+    
 
     protected override IEnumerable<object> GetEqualityComponents()
     {
