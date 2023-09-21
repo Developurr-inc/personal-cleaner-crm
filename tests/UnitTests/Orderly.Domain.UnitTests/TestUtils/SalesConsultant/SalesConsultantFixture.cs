@@ -23,12 +23,19 @@ public sealed class SalesConsultantFixture : BaseFixture
         );
 
         return Domain.SalesConsultant.SalesConsultant.Create(
-            cpf,
-            address,
+            cpf.Value,
+            address.Street,
+            address.Number,
+            address.Complement,
+            address.ZipCode,
+            address.Neighborhood,
+            address.City,
+            address.State,
+            address.Country,
             name,
-            email,
-            landline,
-            mobile
+            email.Value,
+            landline.Value,
+            mobile.Value
         );
     }
 
@@ -40,12 +47,19 @@ public sealed class SalesConsultantFixture : BaseFixture
         var lSalesConsultant = salesConsultant ?? CreateValidSalesConsultant();
 
         return Domain.SalesConsultant.SalesConsultant.Create(
-            lSalesConsultant.Cpf,
-            lSalesConsultant.Address,
+            lSalesConsultant.Cpf.Value,
+            lSalesConsultant.Address.Street,
+            lSalesConsultant.Address.Number,
+            lSalesConsultant.Address.Complement,
+            lSalesConsultant.Address.ZipCode,
+            lSalesConsultant.Address.Neighborhood,
+            lSalesConsultant.Address.City,
+            lSalesConsultant.Address.State,
+            lSalesConsultant.Address.Country,
             name ?? lSalesConsultant.Name,
-            lSalesConsultant.Email,
-            lSalesConsultant.Landline,
-            lSalesConsultant.Mobile
+            lSalesConsultant.Email.Value,
+            lSalesConsultant.Landline?.Value,
+            lSalesConsultant.Mobile?.Value
         );
     }
 
