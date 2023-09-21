@@ -1,4 +1,5 @@
 using Orderly.Domain.Customer.Validators;
+using Orderly.Domain.SalesConsultant.ValueObjects;
 using Orderly.Domain.UnitTests.TestUtils.Cnpj;
 using Orderly.Domain.UnitTests.TestUtils.Email;
 using Orderly.Domain.UnitTests.TestUtils.Phone;
@@ -10,12 +11,12 @@ public sealed class CustomerFixture : BaseFixture
 {
     private static Domain.Customer.Customer CreateValidCustomer()
     {
-        // var salesConsultant = salesConsultantId;
-        var cnpj = CnpjFixture.CreateCnpj();
-        var billingEmail = EmailFixture.CreateEmail();
-        var nfeEmail = EmailFixture.CreateEmail();
-        var landline = PhoneFixture.CreatePhone();
-        var mobile = PhoneFixture.CreatePhone();
+        var salesConsultant = SalesConsultantId.Generate();
+        var cnpj = CnpjFixture.CreateCnpj().Value;
+        var billingEmail = EmailFixture.CreateEmail().Value;
+        var nfeEmail = EmailFixture.CreateEmail().Value;
+        var landline = PhoneFixture.CreatePhone().Value;
+        var mobile = PhoneFixture.CreatePhone().Value;
 
         var corporateName = StringFixture.CreateString(
             CustomerValidator.CorporateNameMinLength,
@@ -36,7 +37,7 @@ public sealed class CustomerFixture : BaseFixture
         var observation = StringFixture.CreateString(max: CustomerValidator.CorporateNameMaxLength);
 
         return Domain.Customer.Customer.Create(
-            // salesConsultant,
+            salesConsultant,
             cnpj,
             corporateName,
             taxId,
@@ -62,16 +63,16 @@ public sealed class CustomerFixture : BaseFixture
         var lCustomer = customer ?? CreateValidCustomer();
 
         return Domain.Customer.Customer.Create(
-            // customer.SalesConsultant,
-            lCustomer.Cnpj,
+            lCustomer.SalesConsultant,
+            lCustomer.Cnpj.Value,
             corporateName ?? lCustomer.CorporateName,
             taxId ?? lCustomer.TaxId,
             tradeName ?? lCustomer.TradeName,
             segment ?? lCustomer.Segment,
-            lCustomer.BillingEmail,
-            lCustomer.NfeEmail,
-            lCustomer.Landline,
-            lCustomer.Mobile,
+            lCustomer.BillingEmail?.Value,
+            lCustomer.NfeEmail.Value,
+            lCustomer.Landline?.Value,
+            lCustomer.Mobile?.Value,
             observation ?? lCustomer.Observation
         );
     }
