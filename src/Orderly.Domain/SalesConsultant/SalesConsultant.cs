@@ -8,6 +8,7 @@ namespace Orderly.Domain.SalesConsultant;
 public sealed class SalesConsultant : Entity<SalesConsultantId>, IAggregateRoot
 {
     public Cpf Cpf { get; private set; }
+    
     public string Name { get; private set; }
 
     public Address Address { get; private set; }
@@ -15,11 +16,13 @@ public sealed class SalesConsultant : Entity<SalesConsultantId>, IAggregateRoot
     public Email Email { get; private set; }
 
     public Phone? Landline { get; private set; }
+    
     public Phone? Mobile { get; private set; }
 
     public DateTime CreatedAt { get; }
 
     private SalesConsultant(
+        SalesConsultantId salesConsultantId,
         Cpf cpf,
         Address address,
         string name,
@@ -27,7 +30,7 @@ public sealed class SalesConsultant : Entity<SalesConsultantId>, IAggregateRoot
         Phone? landline,
         Phone? mobile
     )
-        : base(SalesConsultantId.Generate())
+        : base(salesConsultantId)
     {
         Cpf = cpf;
         Address = address;
@@ -47,11 +50,12 @@ public sealed class SalesConsultant : Entity<SalesConsultantId>, IAggregateRoot
         Phone? mobile
     )
     {
+        var salesConsultantId = SalesConsultantId.Generate();
         var nameTrimmed = name.Trim();
 
         Validate(nameTrimmed);
 
-        return new SalesConsultant(cpf, address, name, email, landline, mobile);
+        return new SalesConsultant(salesConsultantId, cpf, address, name, email, landline, mobile);
     }
 
     private static void Validate(string name)

@@ -16,7 +16,7 @@ public sealed class SalesConsultantId : ValueObject
         var guid = Guid.NewGuid();
         return new SalesConsultantId(guid);
     }
-    
+
     public static SalesConsultantId Restore(string value)
     {
         var guid = Guid.Parse(value);
