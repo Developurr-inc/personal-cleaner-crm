@@ -1,0 +1,34 @@
+using Orderly.Application.UseCase.Manager.CreateManager;
+using Orderly.Domain.Manager;
+using Orderly.Domain.SeedWork;
+
+namespace Orderly.Application.UseCase.Manager.DeleteManager;
+
+public class DeleteManagerUseCase : IUseCase<DeleteManagerInput, DeleteManagerOutput>
+{
+    private readonly IUnitOfWork _unitOfWork;
+    private readonly IManagerRepository _managerRepository;
+    
+    public DeleteManagerUseCase(
+        IUnitOfWork unitOfWork,
+        IManagerRepository managerRepository
+    )
+    {
+        _unitOfWork = unitOfWork;
+        _managerRepository = managerRepository;
+    }
+    
+    async public Task<DeleteManagerOutput> Execute(
+        DeleteManagerInput input,
+        CancellationToken cancellationToken
+    )
+    {
+        var manager = await _managerRepository.GetByIdAsync(input.ManagerId, cancellationToken);
+        await _managerRepository.RemoveAsync(manager, cancellationToken);
+        await _unitOfWork.CommitAsync(cancellationToken);
+        
+        return new DeleteManagerOutput(
+            manager.Id.Value.ToString()
+        );
+    }
+}

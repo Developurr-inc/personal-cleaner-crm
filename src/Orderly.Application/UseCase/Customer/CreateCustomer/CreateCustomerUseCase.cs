@@ -27,12 +27,12 @@ public sealed class CreateCustomerUseCase : IUseCase<CreateCustomerInput, Create
         CancellationToken cancellationToken
     )
     {
-        var salesConsultantId = SalesConsultantId.Restore(input.SalesConsultantId);
+        
         var salesConsultant = await _salesConsultantRepository.
-            GetByIdAsync(salesConsultantId, cancellationToken);
+            GetByIdAsync(input.SalesConsultantId, cancellationToken);
 
         var customer = Domain.Customer.Customer.Create(
-            salesConsultantId,
+            salesConsultant.Id,
             input.Cnpj,
             input.CorporateName,
             input.TaxId,

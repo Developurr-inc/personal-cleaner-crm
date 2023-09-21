@@ -12,18 +12,18 @@ public sealed class ManagerFixture : BaseFixture
 {
     private static Domain.Manager.Manager CreateValidManager()
     {
-        var cpf = CpfFixture.CreateCpf();
+        var cpf = CpfFixture.CreateCpf().Value;
         var address = AddressFixture.CreateAddress();
-        var nfeEmail = EmailFixture.CreateEmail();
-        var landline = PhoneFixture.CreatePhone();
-        var mobile = PhoneFixture.CreatePhone();
+        var nfeEmail = EmailFixture.CreateEmail().Value;
+        var landline = PhoneFixture.CreatePhone().Value;
+        var mobile = PhoneFixture.CreatePhone().Value;
 
         var name = StringFixture.CreateString(
             ManagerValidator.NameMinLength,
             ManagerValidator.NameMaxLength
         );
 
-        return Domain.Manager.Manager.Create(cpf, address, name, nfeEmail, landline, mobile);
+        return Domain.Manager.Manager.Create(cpf, address.Street, address.Number, address.Complement, address.ZipCode, address.Neighborhood, address.City, address.State, address.Country, name, nfeEmail, landline, mobile);
     }
 
     public static Domain.Manager.Manager CreateManager(
@@ -34,12 +34,19 @@ public sealed class ManagerFixture : BaseFixture
         var lManager = manager ?? CreateValidManager();
 
         return Domain.Manager.Manager.Create(
-            lManager.Cpf,
-            lManager.Address,
+            lManager.Cpf.Value,
+            lManager.Address.Street,
+            lManager.Address.Number,
+            lManager.Address.Complement,
+            lManager.Address.ZipCode,
+            lManager.Address.Neighborhood,
+            lManager.Address.City,
+            lManager.Address.State,
+            lManager.Address.Country,
             name ?? lManager.Name,
-            lManager.Email,
-            lManager.Landline,
-            lManager.Mobile
+            lManager.Email.Value,
+            lManager.Landline?.Value,
+            lManager.Mobile?.Value
         );
     }
 

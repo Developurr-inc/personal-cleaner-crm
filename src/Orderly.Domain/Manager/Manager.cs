@@ -38,16 +38,29 @@ public sealed class Manager : Entity<ManagerId>, IAggregateRoot
     }
 
     public static Manager Create(
-        Cpf cpf,
-        Address address,
+        string cpfValue,
+        string street,
+        int  number,
+        string complement,
+        string zipCode,
+        string neighborhood,
+        string city,
+        string state,
+        string country,
         string name,
-        Email nfeEmail,
-        Phone? landline,
-        Phone? mobile
+        string nfeEmailValue,
+        string? landlineValue,
+        string? mobileValue
     )
     {
         var managerId = ManagerId.Generate();
         var nameTrimmed = name.Trim();
+        var cpf = Cpf.Create(cpfValue);
+        var address = Address.Create(street, number, complement, zipCode, neighborhood, city, state, country);
+        var nfeEmail = Common.ValueObjects.Email.Create(nfeEmailValue);
+        var landline = landlineValue == null ? null : Phone.Create(landlineValue);
+        var mobile = mobileValue == null ? null : Phone.Create(mobileValue);
+        
 
         Validate(nameTrimmed);
 
