@@ -17,7 +17,6 @@ public class GetManagerUseCase : IUseCase<GetManagerInput, GetManagerOutput>
         CancellationToken cancellationToken
     )
     {
-        var managerId = ManagerId.Restore(input.ManagerId);
         var manager = await _managerRepository.GetByIdAsync(input.ManagerId, cancellationToken);
 
         return new GetManagerOutput(
