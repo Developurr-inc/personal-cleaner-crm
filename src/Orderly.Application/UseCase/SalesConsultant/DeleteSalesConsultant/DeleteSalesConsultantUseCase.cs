@@ -9,8 +9,9 @@ public class DeleteSalesConsultantUseCase : IUseCase<DeleteSalesConsultantInput,
     private readonly IUnitOfWork _unitOfWork;
     private readonly ISalesConsultantRepository _salesConsultantRepository;   
     
-    public DeleteSalesConsultantUseCase(ISalesConsultantRepository salesConsultantRepository)
+    public DeleteSalesConsultantUseCase(IUnitOfWork unitOfWork, ISalesConsultantRepository salesConsultantRepository)
     {
+        _unitOfWork = unitOfWork;
         _salesConsultantRepository = salesConsultantRepository;
     }
 
