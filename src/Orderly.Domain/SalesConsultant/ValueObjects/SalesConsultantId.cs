@@ -6,14 +6,21 @@ public sealed class SalesConsultantId : ValueObject
 {
     public Guid Value { get; }
 
-    private SalesConsultantId()
+    private SalesConsultantId(Guid value)
     {
-        Value = Guid.NewGuid();
+        Value = value;
     }
 
-    public static SalesConsultantId Create()
+    public static SalesConsultantId Generate()
     {
-        return new SalesConsultantId();
+        var guid = Guid.NewGuid();
+        return new SalesConsultantId(guid);
+    }
+    
+    public static SalesConsultantId Restore(string value)
+    {
+        var guid = Guid.Parse(value);
+        return new SalesConsultantId(guid);
     }
 
     protected override IEnumerable<object> GetEqualityComponents()

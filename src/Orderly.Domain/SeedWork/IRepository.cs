@@ -3,9 +3,9 @@ namespace Orderly.Domain.SeedWork;
 public interface IRepository<TEntity, TId>
     where TEntity : Entity<TId>
 {
-    Task<TEntity> GetByIdAsync(TId id);
-    Task<List<TEntity>> GetAllAsync();
-    Task AddAsync(TEntity entity);
-    Task UpdateAsync(TEntity entity);
-    Task RemoveAsync(TEntity entity);
+    public Task<TEntity> GetByIdAsync(TId id, CancellationToken cancellationToken);
+    public Task<List<TEntity>> GetAllAsync(CancellationToken cancellationToken);
+    public Task InsertAsync(TEntity entity, CancellationToken cancellationToken);
+    public Task UpdateAsync(TEntity entity, CancellationToken cancellationToken);
+    public Task RemoveAsync(TEntity entity, CancellationToken cancellationToken);
 }

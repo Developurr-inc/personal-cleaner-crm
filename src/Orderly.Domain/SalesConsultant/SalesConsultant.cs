@@ -27,7 +27,7 @@ public sealed class SalesConsultant : Entity<SalesConsultantId>, IAggregateRoot
         Phone? landline,
         Phone? mobile
     )
-        : base(SalesConsultantId.Create())
+        : base(SalesConsultantId.Generate())
     {
         Cpf = cpf;
         Address = address;

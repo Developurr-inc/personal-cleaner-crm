@@ -1,14 +1,15 @@
 using Orderly.Domain.Common.ValueObjects;
 using Orderly.Domain.Customer.Validators;
 using Orderly.Domain.Customer.ValueObjects;
+using Orderly.Domain.SalesConsultant.ValueObjects;
 using Orderly.Domain.SeedWork;
 
 namespace Orderly.Domain.Customer;
 
 public sealed class Customer : Entity<CustomerId>, IAggregateRoot
 {
-    // public List<OrderId> Orders { get; private set; };
-    // public SalesConsultantId SalesConsultant { get; private set; };
+    // public List<OrderId> Orders { get; private set; }
+    public SalesConsultantId SalesConsultant { get; private set; }
 
     public Cnpj Cnpj { get; private set; }
     public string CorporateName { get; private set; }
@@ -27,7 +28,8 @@ public sealed class Customer : Entity<CustomerId>, IAggregateRoot
     public DateTime CreatedAt { get; }
 
     private Customer(
-        // SalesConsultantId salesConsultantId,
+        CustomerId customerId,
+        SalesConsultantId salesConsultantId,
         Cnpj cnpj,
         string corporateName,
         string taxId,
@@ -39,10 +41,10 @@ public sealed class Customer : Entity<CustomerId>, IAggregateRoot
         Phone? mobile,
         string observation
     )
-        : base(CustomerId.Create())
+        : base(customerId)
     {
         // Orders = new();
-        // SalesConsultant = salesConsultantId;
+        SalesConsultant = salesConsultantId;
         Cnpj = cnpj;
         CorporateName = corporateName;
         TaxId = taxId;
@@ -57,23 +59,29 @@ public sealed class Customer : Entity<CustomerId>, IAggregateRoot
     }
 
     public static Customer Create(
-        // SalesConsultantId salesConsultantId,
-        Cnpj cnpj,
+        SalesConsultantId salesConsultantId,
+        string cnpjValue,
         string corporateName,
         string taxId,
         string tradeName,
         string segment,
-        Email? billingEmail,
-        Email nfeEmail,
-        Phone? landline,
-        Phone? mobile,
+        string? billingEmailValue,
+        string nfeEmailValue,
+        string? landlineValue,
+        string? mobileValue,
         string observation
     )
     {
+        var customerId = CustomerId.Generate();
+        var cnpj = Cnpj.Create(cnpjValue);
         var corporateNameTrimmed = corporateName.Trim();
         var taxIdTrimmed = taxId.Trim();
         var tradeNameTrimmed = tradeName.Trim();
         var segmentTrimmed = segment.Trim();
+        var billingEmail = billingEmailValue == null ? null : Email.Create(billingEmailValue);
+        var nfeEmail = Email.Create(nfeEmailValue);
+        var landline = landlineValue == null ? null : Phone.Create(landlineValue);
+        var mobile = mobileValue == null ? null : Phone.Create(mobileValue);
         var observationTrimmed = observation.Trim();
 
         Validate(
@@ -85,7 +93,8 @@ public sealed class Customer : Entity<CustomerId>, IAggregateRoot
         );
 
         return new Customer(
-            // salesConsultantId,
+            customerId,
+            salesConsultantId,
             cnpj,
             corporateNameTrimmed,
             taxIdTrimmed,
