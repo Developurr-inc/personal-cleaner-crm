@@ -17,8 +17,7 @@ public class GetCustomerUseCase : IUseCase<GetCustomerInput, GetCustomerOutput>
         CancellationToken cancellationToken
     )
     {
-        var customerId = CustomerId.Restore(input.CustomerId);
-        var customer = await _customerRepository.GetByIdAsync(customerId, cancellationToken);
+        var customer = await _customerRepository.GetByIdAsync(input.CustomerId, cancellationToken);
 
         return new GetCustomerOutput(
             customer.Cnpj.Value,
