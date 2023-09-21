@@ -40,18 +40,32 @@ public sealed class SalesConsultant : Entity<SalesConsultantId>, IAggregateRoot
         Mobile = mobile;
         CreatedAt = DateTime.Now;
     }
-
+    
     public static SalesConsultant Create(
-        Cpf cpf,
-        Address address,
+        string cpfValue,
+        
+        string street,
+        int number,
+        string complement,
+        string zipCode,
+        string neighborhood,
+        string city,
+        string state,
+        string country,
+        
         string name,
-        Email email,
-        Phone? landline,
-        Phone? mobile
+        string emailValue,
+        string? landlineValue,
+        string? mobileValue
     )
     {
         var salesConsultantId = SalesConsultantId.Generate();
+        var cpf = Cpf.Create(cpfValue);
+        var address = Address.Create(street, number, complement, zipCode, neighborhood, city, state, country);
         var nameTrimmed = name.Trim();
+        var email = Email.Create(emailValue);
+        var landline = landlineValue == null ? null : Phone.Create(landlineValue);
+        var mobile = mobileValue == null ? null : Phone.Create(mobileValue);
 
         Validate(nameTrimmed);
 
