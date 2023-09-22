@@ -1,46 +1,43 @@
 using Orderly.Domain.Common.ValueObjects;
 using Orderly.Domain.Order.ValueObjects;
+using Orderly.Domain.Product.ValueObjects;
 using Orderly.Domain.SeedWork;
 
 namespace Orderly.Domain.Order.Entities;
 
 public class LineItem : Entity<LineItemId>
 {
-    // public ProductId ProductId { get; private set; }
+    public ProductId ProductId { get; private set; }
     public Price UnitPrice { get; private set; }
-
-    // public Discount Discount { get; private set; }
-    // public Quantity Quantity { get; private set; }
+    public Discount Discount { get; private set; }
+    public Quantity Quantity { get; private set; }
 
     private LineItem(
         LineItemId lineItemId,
-        // ProductId productId,
-        Price unitPrice //,
-    // Discount discount,
-    // Quantity quantity
+        ProductId productId,
+        Price unitPrice,
+        Discount discount,
+        Quantity quantity
     )
         : base(lineItemId)
     {
-        // ProductId = productId;
+        ProductId = productId;
         UnitPrice = unitPrice;
-        // Discount = discount;
-        // Quantity = quantity;
+        Discount = discount;
+        Quantity = quantity;
     }
 
     public static LineItem Create(
-        // ProductId productId,
-        Price price //,
-    // decimal discount,
-    // int quantity
+        ProductId productId,
+        Price price,
+        decimal discountValue,
+        int quantityValue
     )
     {
         var lineItemId = LineItemId.Generate();
-        // var discount = discount.Create(discount);
-        // var quantity = quantity.Create(quantity);
+        var discount = Discount.Create(discountValue);
+        var quantity = Quantity.Create(quantityValue);
 
-        return new LineItem(
-            lineItemId, /*productId,*/
-            price /*, discount, quantity*/
-        );
+        return new LineItem(lineItemId, productId, price, discount, quantity);
     }
 }

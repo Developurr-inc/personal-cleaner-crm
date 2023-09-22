@@ -2,24 +2,13 @@ using Orderly.Domain.SeedWork;
 
 namespace Orderly.Domain.Order.ValueObjects;
 
-public sealed class LineItemId : ValueObject
+public sealed class LineItemId : Identifier<Guid>
 {
-    public Guid Value { get; }
-
-    private LineItemId(Guid lineItemId)
-    {
-        Value = lineItemId;
-    }
+    private LineItemId(Guid value)
+        : base(value) { }
 
     public static LineItemId Generate()
     {
-        var lineItemId = Guid.NewGuid();
-
-        return new LineItemId(lineItemId);
-    }
-
-    protected override IEnumerable<object> GetEqualityComponents()
-    {
-        yield return Value;
+        return new LineItemId(Guid.NewGuid());
     }
 }

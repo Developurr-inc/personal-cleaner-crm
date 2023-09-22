@@ -5,65 +5,43 @@ using Orderly.Domain.Order.Enums;
 using Orderly.Domain.Order.ValueObjects;
 using Orderly.Domain.SalesConsultant.ValueObjects;
 using Orderly.Domain.SeedWork;
+using Orderly.Domain.Shipping.ValueObjects;
 
 namespace Orderly.Domain.Order;
 
 public sealed class Order : Entity<OrderId>, IAggregateRoot
 {
     private readonly List<LineItem> _lineItems;
-
-    public CustomerId CustomerId { get; private set; }
-    public SalesConsultantId SalesConsultantId { get; private set; }
-
-    // public ShippingCompanyId? ShippingCompanyId { get; private set; }
-
     private TransactionNature _transactionNature;
     private Status _status;
-
+    public CustomerId CustomerId { get; }
+    public SalesConsultantId SalesConsultantId { get; }
+    public ShippingId? ShippingId { get; private set; }
     public Price OrderTotal { get; private set; }
-
-    public DateTime CreatedAt { get; private set; }
-    public DateTime UpdatedAt { get; private set; }
 
     private Order(
         OrderId orderId,
+        TransactionNature transactionNature,
         CustomerId customerId,
         SalesConsultantId salesConsultantId,
-        TransactionNature transactionNature,
-        Status status,
-        Price price,
-        DateTime createdAt
+        Price price
     )
         : base(orderId)
     {
-        _lineItems = new();
-
+        _lineItems = new List<LineItem>();
+        _transactionNature = transactionNature;
+        _status = Status.Draft;
         CustomerId = customerId;
         SalesConsultantId = salesConsultantId;
-        // ShippingCompanyId = null;
-        _transactionNature = transactionNature;
-        _status = status;
+        ShippingId = null;
         OrderTotal = price;
-        CreatedAt = createdAt;
-        UpdatedAt = createdAt;
     }
 
     public static Order Open(CustomerId customerId, SalesConsultantId salesConsultantId)
     {
         var orderId = OrderId.Generate();
-        var status = Status.Draft;
-        var transactionNature = TransactionNature.Venda;
         var price = Price.Create(default);
-        var createdAt = DateTime.Now;
 
-        return new Order(
-            orderId,
-            customerId,
-            salesConsultantId,
-            transactionNature,
-            status,
-            price,
-            createdAt
-        );
+        return new Order(orderId, TransactionNature.Venda, customerId, salesConsultantId, price);
     }
 }

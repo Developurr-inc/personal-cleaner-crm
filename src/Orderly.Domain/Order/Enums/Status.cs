@@ -8,5 +8,5 @@ public enum Status
     DiscountNotAllowed,
     Closed,
     Cancelled,
-    Processing // faturando
+    Processing
 }
