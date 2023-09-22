@@ -1,4 +1,5 @@
 using Orderly.Domain.Common.ValueObjects;
+using Orderly.Domain.Customer.ValueObjects;
 using Orderly.Domain.SalesConsultant.Validators;
 using Orderly.Domain.SalesConsultant.ValueObjects;
 using Orderly.Domain.SeedWork;
@@ -7,19 +8,16 @@ namespace Orderly.Domain.SalesConsultant;
 
 public sealed class SalesConsultant : Entity<SalesConsultantId>, IAggregateRoot
 {
-    public Cpf Cpf { get; private set; }
+    private readonly List<CustomerId> _customers;
+    public Cpf Cpf { get; }
     public string Name { get; private set; }
-
     public Address Address { get; private set; }
-
     public Email Email { get; private set; }
-
     public Phone? Landline { get; private set; }
     public Phone? Mobile { get; private set; }
 
-    public DateTime CreatedAt { get; }
-
     private SalesConsultant(
+        SalesConsultantId salesConsultantId,
         Cpf cpf,
         Address address,
         string name,
@@ -27,31 +25,53 @@ public sealed class SalesConsultant : Entity<SalesConsultantId>, IAggregateRoot
         Phone? landline,
         Phone? mobile
     )
-        : base(SalesConsultantId.Create())
+        : base(salesConsultantId)
     {
+        _customers = new List<CustomerId>();
         Cpf = cpf;
         Address = address;
         Name = name;
         Email = email;
         Landline = landline;
         Mobile = mobile;
-        CreatedAt = DateTime.Now;
     }
 
     public static SalesConsultant Create(
-        Cpf cpf,
-        Address address,
+        string cpfValue,
+        string street,
+        int number,
+        string complement,
+        string zipCode,
+        string neighborhood,
+        string city,
+        string state,
+        string country,
         string name,
-        Email email,
-        Phone? landline,
-        Phone? mobile
+        string emailValue,
+        string? landlineValue,
+        string? mobileValue
     )
     {
+        var salesConsultantId = SalesConsultantId.Generate();
+        var cpf = Cpf.Create(cpfValue);
+        var address = Address.Create(
+            street,
+            number,
+            complement,
+            zipCode,
+            neighborhood,
+            city,
+            state,
+            country
+        );
         var nameTrimmed = name.Trim();
+        var email = Email.Create(emailValue);
+        var landline = landlineValue == null ? null : Phone.Create(landlineValue);
+        var mobile = mobileValue == null ? null : Phone.Create(mobileValue);
 
         Validate(nameTrimmed);
 
-        return new SalesConsultant(cpf, address, name, email, landline, mobile);
+        return new SalesConsultant(salesConsultantId, cpf, address, name, email, landline, mobile);
     }
 
     private static void Validate(string name)

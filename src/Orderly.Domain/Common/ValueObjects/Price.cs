@@ -5,7 +5,7 @@ namespace Orderly.Domain.Common.ValueObjects;
 
 public sealed class Price : ValueObject
 {
-    public decimal Value { get; }
+    public readonly decimal Value;
 
     private Price(decimal price)
     {
@@ -18,6 +18,17 @@ public sealed class Price : ValueObject
         priceValidator.Validate();
 
         return new Price(price);
+    }
+
+    public string Format()
+    {
+        const string currency = "N2";
+        return $"R$ {Value.ToString(currency)}";
+    }
+
+    public override string ToString()
+    {
+        return Format();
     }
 
     protected override IEnumerable<object> GetEqualityComponents()

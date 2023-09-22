@@ -1,20 +1,20 @@
 namespace Orderly.Domain.SeedWork;
 
-public abstract class Entity<TId>
+public abstract class Entity<TIdentifier>
 {
-    private List<IDomainEvent> _domainEvents = new();
+    private readonly List<IDomainEvent> _domainEvents = new();
     private readonly List<IDomainEvent> _domainEventsReadOnly;
 
-    public TId Id { get; }
+    public TIdentifier Id { get; }
     public IReadOnlyList<IDomainEvent> DomainEvents => _domainEventsReadOnly;
 
     protected Entity()
     {
-        Id = default(TId) ?? throw new InvalidOperationException();
+        Id = default(TIdentifier) ?? throw new InvalidOperationException();
         _domainEventsReadOnly = new List<IDomainEvent>(_domainEvents.AsReadOnly());
     }
 
-    protected Entity(TId id)
+    protected Entity(TIdentifier id)
     {
         if (!IsTransient())
             throw new InvalidOperationException("Cannot set ID for an existing entity.");
@@ -35,7 +35,7 @@ public abstract class Entity<TId>
 
     public sealed override bool Equals(object? obj)
     {
-        if (obj is not Entity<TId> other)
+        if (obj is not Entity<TIdentifier> other)
             return false;
 
         if (ReferenceEquals(this, other))
@@ -55,7 +55,7 @@ public abstract class Entity<TId>
         return (GetType().ToString() + Id).GetHashCode();
     }
 
-    public static bool operator ==(Entity<TId> left, Entity<TId> right)
+    public static bool operator ==(Entity<TIdentifier> left, Entity<TIdentifier> right)
     {
         if (ReferenceEquals(left, null) && ReferenceEquals(right, null))
             return true;
@@ -66,13 +66,13 @@ public abstract class Entity<TId>
         return left.Equals(right);
     }
 
-    public static bool operator !=(Entity<TId> left, Entity<TId> right)
+    public static bool operator !=(Entity<TIdentifier> left, Entity<TIdentifier> right)
     {
         return !(left == right);
     }
 
     private bool IsTransient()
     {
-        return Equals(Id, default(TId));
+        return Equals(Id, default(TIdentifier));
     }
 }

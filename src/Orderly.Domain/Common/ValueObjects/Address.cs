@@ -78,6 +78,16 @@ public sealed class Address : ValueObject
         );
     }
 
+    public string Format()
+    {
+        return $"{Street}, {Number}, {Complement}, {Neighborhood}, {City}, {State}, {Country} - {ZipCode}";
+    }
+
+    public override string ToString()
+    {
+        return Format();
+    }
+
     protected override IEnumerable<object> GetEqualityComponents()
     {
         yield return Street;

@@ -2,22 +2,13 @@ using Orderly.Domain.SeedWork;
 
 namespace Orderly.Domain.SalesConsultant.ValueObjects;
 
-public sealed class SalesConsultantId : ValueObject
+public sealed class SalesConsultantId : Identifier<Guid>
 {
-    public Guid Value { get; }
+    private SalesConsultantId(Guid value)
+        : base(value) { }
 
-    private SalesConsultantId()
+    public static SalesConsultantId Generate()
     {
-        Value = Guid.NewGuid();
-    }
-
-    public static SalesConsultantId Create()
-    {
-        return new SalesConsultantId();
-    }
-
-    protected override IEnumerable<object> GetEqualityComponents()
-    {
-        yield return Value;
+        return new SalesConsultantId(Guid.NewGuid());
     }
 }

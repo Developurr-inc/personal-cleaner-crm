@@ -2,21 +2,13 @@ using Orderly.Domain.SeedWork;
 
 namespace Orderly.Domain.Shipping.ValueObjects;
 
-public sealed class ShippingId : ValueObject
+public sealed class ShippingId : Identifier<Guid>
 {
-    public Guid Value { get; }
-    private ShippingId()
-    {
-        Value = Guid.NewGuid();
-    }
+    private ShippingId(Guid value)
+        : base(value) { }
 
     public static ShippingId Generate()
     {
-        return new ShippingId();
-    }
-
-    protected override IEnumerable<object> GetEqualityComponents()
-    {
-        yield return Value;
+        return new ShippingId(Guid.NewGuid());
     }
 }
