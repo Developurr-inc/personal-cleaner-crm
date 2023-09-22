@@ -2,7 +2,7 @@ namespace Orderly.Domain.SeedWork;
 
 public abstract class Entity<TId>
 {
-    private List<IDomainEvent> _domainEvents = new();
+    private readonly List<IDomainEvent> _domainEvents = new();
     private readonly List<IDomainEvent> _domainEventsReadOnly;
 
     public TId Id { get; }

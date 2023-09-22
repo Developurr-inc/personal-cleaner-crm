@@ -6,9 +6,6 @@ public sealed class ManagerValidator : Validator
 {
     private readonly string _name;
 
-    public const int NameMinLength = 5;
-    public const int NameMaxLength = 255;
-
     public ManagerValidator(string name)
     {
         _name = name;
@@ -16,17 +13,21 @@ public sealed class ManagerValidator : Validator
 
     public override void Validate()
     {
-        ValidateManagerName();
+        ValidateManagerName("Name");
 
         if (HasErrors())
             ThrowEntityValidationExceptionWithValidationErrors();
     }
 
-    private void ValidateManagerName()
+    private void ValidateManagerName(string fieldName)
     {
-        const string fieldName = "Name";
-
         ValidationRules.ValidateRequired(_name, fieldName, this);
-        ValidationRules.ValidateStringLength(_name, fieldName, NameMinLength, NameMaxLength, this);
+        ValidationRules.ValidateStringLength(
+            _name,
+            fieldName,
+            ManagerValidatorConfig.NameMinLength,
+            ManagerValidatorConfig.NameMaxLength,
+            this
+        );
     }
 }

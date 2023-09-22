@@ -5,11 +5,11 @@ namespace Orderly.Domain.Common.ValueObjects;
 
 public sealed class Email : ValueObject
 {
-    public string Value { get; }
+    private readonly string _value;
 
     private Email(string email)
     {
-        Value = email;
+        _value = email;
     }
 
     public static Email Create(string email)
@@ -22,8 +22,18 @@ public sealed class Email : ValueObject
         return new Email(emailTrimmed);
     }
 
+    public string Format()
+    {
+        return _value;
+    }
+
+    public override string ToString()
+    {
+        return Format();
+    }
+
     protected override IEnumerable<object> GetEqualityComponents()
     {
-        yield return Value;
+        yield return _value;
     }
 }

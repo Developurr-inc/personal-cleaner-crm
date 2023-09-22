@@ -5,11 +5,11 @@ namespace Orderly.Domain.Common.ValueObjects;
 
 public sealed class Cpf : ValueObject
 {
-    public string Value { get; }
+    private readonly string _value;
 
     private Cpf(string cpf)
     {
-        Value = cpf;
+        _value = cpf.Replace(".", string.Empty).Replace("-", string.Empty);
     }
 
     public static Cpf Create(string cpf)
@@ -22,8 +22,18 @@ public sealed class Cpf : ValueObject
         return new Cpf(cpfTrimmed);
     }
 
+    public string Format()
+    {
+        return Convert.ToUInt64(_value).ToString(@"000\.000\.000\-00");
+    }
+
+    public override string ToString()
+    {
+        return Format();
+    }
+
     protected override IEnumerable<object> GetEqualityComponents()
     {
-        yield return Value;
+        yield return _value;
     }
 }

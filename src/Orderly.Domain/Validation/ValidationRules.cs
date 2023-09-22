@@ -37,20 +37,38 @@ public static partial class ValidationRules
     public static void ValidatePositive(int value, string fieldName, IValidator errors)
     {
         if (int.IsNegative(value))
-            errors.AddValidationError($"'{fieldName}' should be positive.");
+            errors.AddValidationError($"'{fieldName}' should be a positive int.");
     }
 
     public static void ValidatePositive(decimal value, string fieldName, IValidator errors)
     {
         if (decimal.IsNegative(value))
-            errors.AddValidationError($"'{fieldName}' should be positive.");
+            errors.AddValidationError($"'{fieldName}' should be a positive decimal.");
     }
 
-    public static void ValidateRange(decimal value, string fieldName, decimal min, decimal max, IValidator errors)
+    public static void ValidateRange(
+        int value,
+        string fieldName,
+        int min,
+        int max,
+        IValidator errors
+    )
     {
-        if(value < min || value > max)
+        if (value < min || value > max)
+            errors.AddValidationError($"'{fieldName}' should be an int between {min} and {max}.");
+    }
+
+    public static void ValidateRange(
+        decimal value,
+        string fieldName,
+        decimal min,
+        decimal max,
+        IValidator errors
+    )
+    {
+        if (value < min || value > max)
             errors.AddValidationError(
-                $"'{fieldName}' should be between {min} and {max} characters."
+                $"'{fieldName}' should be a decimal between {min} and {max}."
             );
     }
 
