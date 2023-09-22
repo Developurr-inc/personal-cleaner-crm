@@ -11,7 +11,7 @@ public abstract class Identifier<T> : ValueObject
 
     public string Format()
     {
-        return Value.ToString();
+        return Value?.ToString() ?? string.Empty;
     }
 
     public sealed override string ToString()
@@ -21,6 +21,6 @@ public abstract class Identifier<T> : ValueObject
 
     protected sealed override IEnumerable<object> GetEqualityComponents()
     {
-        yield return Value;
+        yield return Value?.GetType().Name ?? string.Empty;
     }
 }
