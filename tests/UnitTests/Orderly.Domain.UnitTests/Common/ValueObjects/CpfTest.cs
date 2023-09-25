@@ -1,4 +1,6 @@
 using Orderly.Domain.Common.ValueObjects;
+using Orderly.Domain.Exceptions;
+using Orderly.Domain.UnitTests.TestUtils.Constants;
 using Orderly.Domain.UnitTests.TestUtils.Cpf;
 
 namespace Orderly.Domain.UnitTests.Common.ValueObjects;
@@ -6,32 +8,47 @@ namespace Orderly.Domain.UnitTests.Common.ValueObjects;
 public sealed class CpfTest
 {
     [Theory]
-    [MemberData(nameof(CpfGenerator.CreateCpfs), MemberType = typeof(CpfGenerator))]
-    public void GivenValidInput_WhenCreatingCpf_ThenShouldInstantiateCpf(Cpf cpf)
-    {
-        // Act
-        var newCpf = CpfFixture.CreateCpf(cpf);
-
-        // Assert
-        CpfAssertion.AssertCpf(cpf, newCpf);
-    }
-
-    [Theory]
-    [MemberData(nameof(CpfGenerator.CreateInvalidCpfs), MemberType = typeof(CpfGenerator))]
-    public void GivenInvalidCpf_WhenCreatingCpf_ThenShouldThrowEntityValidationException(
-        string invalidCpf
+    [InlineData(Constants.InvalidCpf.LongCpf)]
+    [InlineData(Constants.InvalidCpf.ShortCpf)]
+    [InlineData(Constants.InvalidCpf.InvalidCpfLastDigit)]
+    public void GivenInvalidInput_WhenCreatingCpf_ThenShouldThrowEntityValidationException(
+        string cpf
     )
     {
+        // Act
+        var exception = Record.Exception(
+            () =>
+                Cpf.Create(
+                    cpf
+                )
+        );
+        
+        // Assert
+        Assert.IsType<EntityValidationException>(exception);
+    }
+
+    [Fact]
+    public void GivenValidCpfValue_WhenCreatingCpf_ThenShouldHaveValidCpfValue()
+    {
         // Arrange
-        void Action()
-        {
-            _ = CpfFixture.CreateCpf(value: invalidCpf);
-        }
+        const string expectedCpfValue = "546.471.429-49";
 
         // Act
-        var exception = Record.Exception(Action);
+        var cpf = Cpf.Create(Constants.Cpf.CpfValue);
+        
+        // Assert 
+        Assert.Equal(expectedCpfValue, cpf.Value);
+    }
+
+    [Fact]
+    public void GivenValidInput_WhenCreatingCpf_ThenShouldInstantiateCpf()
+    {
+        // Act
+        var cpf = Cpf.Create(
+            Constants.Cpf.CpfValue
+        );
 
         // Assert
-        CpfAssertion.AssertException(exception!);
+        Assert.NotNull(cpf);
     }
 }

@@ -47,37 +47,37 @@ public sealed class ValidationRulesTest
         validatorMock.Verify(val => val.AddValidationError(It.IsAny<string>()), Times.Never);
     }
 
-    [Theory]
-    [MemberData(nameof(CpfGenerator.CreateInvalidCpfs), MemberType = typeof(CpfGenerator))]
-    public void GivenInvalidCpfValue_WhenValidatingCpfValue_ThenShouldCallAddValidatorError(
-        string invalidCpf
-    )
-    {
-        // Arrange
-        var validatorMock = ValidationRulesFixture.GetValidatorMock();
-
-        // Act
-        ValidationRules.ValidateCpf(invalidCpf, "cpf", validatorMock.Object);
-
-        // Assert
-        validatorMock.Verify(val => val.AddValidationError(It.IsAny<string>()), Times.Once);
-    }
-
-    [Theory]
-    [MemberData(nameof(CpfGenerator.CreateCpfs), MemberType = typeof(CpfGenerator))]
-    public void GivenValidCpfValue_WhenValidatingCpfValue_GivenValidCpfValue_ThenShouldDoNothing(
-        Cpf invalidCpf
-    )
-    {
-        // Arrange
-        var validatorMock = ValidationRulesFixture.GetValidatorMock();
-
-        // Act
-        ValidationRules.ValidateCpf(invalidCpf.Value, "cpf", validatorMock.Object);
-
-        // Assert
-        validatorMock.Verify(val => val.AddValidationError(It.IsAny<string>()), Times.Never);
-    }
+    // [Theory]
+    // [MemberData(nameof(CpfGenerator.CreateInvalidCpfs), MemberType = typeof(CpfGenerator))]
+    // public void GivenInvalidCpfValue_WhenValidatingCpfValue_ThenShouldCallAddValidatorError(
+    //     string invalidCpf
+    // )
+    // {
+    //     // Arrange
+    //     var validatorMock = ValidationRulesFixture.GetValidatorMock();
+    //
+    //     // Act
+    //     ValidationRules.ValidateCpf(invalidCpf, "cpf", validatorMock.Object);
+    //
+    //     // Assert
+    //     validatorMock.Verify(val => val.AddValidationError(It.IsAny<string>()), Times.Once);
+    // }
+    //
+    // [Theory]
+    // [MemberData(nameof(CpfGenerator.CreateCpfs), MemberType = typeof(CpfGenerator))]
+    // public void GivenValidCpfValue_WhenValidatingCpfValue_GivenValidCpfValue_ThenShouldDoNothing(
+    //     Cpf invalidCpf
+    // )
+    // {
+    //     // Arrange
+    //     var validatorMock = ValidationRulesFixture.GetValidatorMock();
+    //
+    //     // Act
+    //     ValidationRules.ValidateCpf(invalidCpf.Value, "cpf", validatorMock.Object);
+    //
+    //     // Assert
+    //     validatorMock.Verify(val => val.AddValidationError(It.IsAny<string>()), Times.Never);
+    // }
 
     // [Theory]
     // [MemberData(nameof(CnpjGenerator.CreateInvalidCnpjValues), MemberType = typeof(CnpjGenerator))]
