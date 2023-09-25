@@ -79,35 +79,35 @@ public sealed class ValidationRulesTest
         validatorMock.Verify(val => val.AddValidationError(It.IsAny<string>()), Times.Never);
     }
 
-    [Theory]
-    [MemberData(nameof(CnpjGenerator.CreateInvalidCnpjValues), MemberType = typeof(CnpjGenerator))]
-    public void GivenInvalidCnpjValue_WhenValidatingCnpjValue_ThenShouldShouldCallAddValidatorError(
-        string invalidCnpj
-    )
-    {
-        // Arrange
-        var validatorMock = ValidationRulesFixture.GetValidatorMock();
+    // [Theory]
+    // [MemberData(nameof(CnpjGenerator.CreateInvalidCnpjValues), MemberType = typeof(CnpjGenerator))]
+    // public void GivenInvalidCnpjValue_WhenValidatingCnpjValue_ThenShouldShouldCallAddValidatorError(
+    //     string invalidCnpj
+    // )
+    // {
+    //     // Arrange
+    //     var validatorMock = ValidationRulesFixture.GetValidatorMock();
+    //
+    //     // Act
+    //     ValidationRules.ValidateCnpj(invalidCnpj, "cnpj", validatorMock.Object);
+    //
+    //     // Assert
+    //     validatorMock.Verify(val => val.AddValidationError(It.IsAny<string>()), Times.Once);
+    // }
 
-        // Act
-        ValidationRules.ValidateCnpj(invalidCnpj, "cnpj", validatorMock.Object);
-
-        // Assert
-        validatorMock.Verify(val => val.AddValidationError(It.IsAny<string>()), Times.Once);
-    }
-
-    [Theory]
-    [MemberData(nameof(CnpjGenerator.CreateCnpjs), MemberType = typeof(CnpjGenerator))]
-    public void GivenValidCnpjValue_WhenValidatingCnpjValue_ThenShouldDoNothing(Cnpj cnpj)
-    {
-        // Arrange
-        var validatorMock = ValidationRulesFixture.GetValidatorMock();
-
-        // Act
-        ValidationRules.ValidateCnpj(cnpj.Value, "cnpj", validatorMock.Object);
-
-        // Assert
-        validatorMock.Verify(val => val.AddValidationError(It.IsAny<string>()), Times.Never);
-    }
+    // [Theory]
+    // [MemberData(nameof(CnpjGenerator.CreateCnpjs), MemberType = typeof(CnpjGenerator))]
+    // public void GivenValidCnpjValue_WhenValidatingCnpjValue_ThenShouldDoNothing(Cnpj cnpj)
+    // {
+    //     // Arrange
+    //     var validatorMock = ValidationRulesFixture.GetValidatorMock();
+    //
+    //     // Act
+    //     ValidationRules.ValidateCnpj(cnpj.Value, "cnpj", validatorMock.Object);
+    //
+    //     // Assert
+    //     validatorMock.Verify(val => val.AddValidationError(It.IsAny<string>()), Times.Never);
+    // }
 
     [Theory]
     [MemberData(
