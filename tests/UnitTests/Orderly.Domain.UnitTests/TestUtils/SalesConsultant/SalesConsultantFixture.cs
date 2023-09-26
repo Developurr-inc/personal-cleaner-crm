@@ -18,12 +18,12 @@ public sealed class SalesConsultantFixture : BaseFixture
         var mobile = PhoneFixture.CreatePhone();
 
         var name = StringFixture.CreateString(
-            SalesConsultantValidator.NameMinLength,
-            SalesConsultantValidator.NameMaxLength
+            SalesConsultantValidatorConfig.NameMinLength,
+            SalesConsultantValidatorConfig.NameMaxLength
         );
 
         return Domain.SalesConsultant.SalesConsultant.Create(
-            cpf.Value,
+            cpf.Format(),
             address.Street,
             address.Number,
             address.Complement,
@@ -33,7 +33,7 @@ public sealed class SalesConsultantFixture : BaseFixture
             address.State,
             address.Country,
             name,
-            email.Value,
+            email.Format(),
             landline.Value,
             mobile.Value
         );
@@ -47,7 +47,7 @@ public sealed class SalesConsultantFixture : BaseFixture
         var lSalesConsultant = salesConsultant ?? CreateValidSalesConsultant();
 
         return Domain.SalesConsultant.SalesConsultant.Create(
-            lSalesConsultant.Cpf.Value,
+            lSalesConsultant.Cpf.Format(),
             lSalesConsultant.Address.Street,
             lSalesConsultant.Address.Number,
             lSalesConsultant.Address.Complement,
@@ -57,7 +57,7 @@ public sealed class SalesConsultantFixture : BaseFixture
             lSalesConsultant.Address.State,
             lSalesConsultant.Address.Country,
             name ?? lSalesConsultant.Name,
-            lSalesConsultant.Email.Value,
+            lSalesConsultant.Email.Format(),
             lSalesConsultant.Landline?.Value,
             lSalesConsultant.Mobile?.Value
         );
@@ -65,11 +65,11 @@ public sealed class SalesConsultantFixture : BaseFixture
 
     public static string CreateShortName()
     {
-        return StringFixture.CreateString(1, SalesConsultantValidator.NameMinLength - 1);
+        return StringFixture.CreateString(1, SalesConsultantValidatorConfig.NameMinLength - 1);
     }
 
     public static string CreateLongName()
     {
-        return StringFixture.CreateString(SalesConsultantValidator.NameMaxLength + 1, 1_000);
+        return StringFixture.CreateString(SalesConsultantValidatorConfig.NameMaxLength + 1, 1_000);
     }
 }

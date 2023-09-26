@@ -6,7 +6,7 @@ public sealed class QuantityFixture : BaseFixture
 {
     private static Domain.Order.ValueObjects.Quantity CreateValidQuantity()
     {
-        var value = Faker.Random.Int(QuantityValidator.QuantityMin, QuantityValidator.QuantityMax);
+        var value = Faker.Random.Int(QuantityValidatorConfig.QuantityMin, QuantityValidatorConfig.QuantityMax);
         
         return Domain.Order.ValueObjects.Quantity.Create(value);
     }
@@ -23,7 +23,7 @@ public sealed class QuantityFixture : BaseFixture
     
     public static int CreateBellowMinQuantity()
     {
-        return Faker.Random.Int(int.MinValue, QuantityValidator.QuantityMin);
+        return Faker.Random.Int(int.MinValue, QuantityValidatorConfig.QuantityMin);
     }
     
 }

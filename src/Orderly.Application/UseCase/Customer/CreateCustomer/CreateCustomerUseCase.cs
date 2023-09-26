@@ -1,6 +1,5 @@
 using Orderly.Domain.Customer;
 using Orderly.Domain.SalesConsultant;
-using Orderly.Domain.SalesConsultant.ValueObjects;
 using Orderly.Domain.SeedWork;
 
 namespace Orderly.Application.UseCase.Customer.CreateCustomer;
@@ -22,14 +21,15 @@ public sealed class CreateCustomerUseCase : IUseCase<CreateCustomerInput, Create
         _salesConsultantRepository = salesConsultantRepository;
     }
 
-    async public Task<CreateCustomerOutput> Execute(
+    public async Task<CreateCustomerOutput> Execute(
         CreateCustomerInput input,
         CancellationToken cancellationToken
     )
     {
-        
-        var salesConsultant = await _salesConsultantRepository.
-            GetByIdAsync(input.SalesConsultantId, cancellationToken);
+        var salesConsultant = await _salesConsultantRepository.GetByIdAsync(
+            input.SalesConsultantId,
+            cancellationToken
+        );
 
         var customer = Domain.Customer.Customer.Create(
             salesConsultant.Id,
@@ -48,6 +48,6 @@ public sealed class CreateCustomerUseCase : IUseCase<CreateCustomerInput, Create
         await _customerRepository.InsertAsync(customer, cancellationToken);
         await _unitOfWork.CommitAsync(cancellationToken);
 
-        return new CreateCustomerOutput(customer.Id.Value.ToString());
+        return new CreateCustomerOutput(customer.Id.Format());
     }
 }

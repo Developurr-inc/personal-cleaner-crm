@@ -40,7 +40,7 @@ public sealed class Order : Entity<OrderId>, IAggregateRoot
     public static Order Open(CustomerId customerId, SalesConsultantId salesConsultantId)
     {
         var orderId = OrderId.Generate();
-        var price = Price.Create(default);
+        var price = Price.Create(0);
 
         return new Order(orderId, TransactionNature.Venda, customerId, salesConsultantId, price);
     }

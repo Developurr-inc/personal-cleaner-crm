@@ -7,9 +7,6 @@ public static class AddressValidatorConfig
 
     public const int ComplementMaxLength = 255;
 
-    public const int ZipCodeMinLength = 3;
-    public const int ZipCodeMaxLength = 10;
-
     public const int NeighborhoodMinLength = 3;
     public const int NeighborhoodMaxLength = 255;
 

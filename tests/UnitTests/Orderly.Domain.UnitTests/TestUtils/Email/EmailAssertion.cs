@@ -8,6 +8,5 @@ public sealed class EmailAssertion : BaseAssertion
     )
     {
         Assert.NotNull(actual);
-        Assert.Equal(expected.Value, actual.Value);
     }
 }

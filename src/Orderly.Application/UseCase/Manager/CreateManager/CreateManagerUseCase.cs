@@ -7,17 +7,14 @@ public sealed class CreateManagerUseCase : IUseCase<CreateManagerInput, CreateMa
 {
     private readonly IUnitOfWork _unitOfWork;
     private readonly IManagerRepository _managerRepository;
-    
-    public CreateManagerUseCase(
-        IUnitOfWork unitOfWork,
-        IManagerRepository managerRepository
-    )
+
+    public CreateManagerUseCase(IUnitOfWork unitOfWork, IManagerRepository managerRepository)
     {
         _unitOfWork = unitOfWork;
         _managerRepository = managerRepository;
     }
-    
-    async public Task<CreateManagerOutput> Execute(
+
+    public async Task<CreateManagerOutput> Execute(
         CreateManagerInput input,
         CancellationToken cancellationToken
     )
@@ -41,6 +38,6 @@ public sealed class CreateManagerUseCase : IUseCase<CreateManagerInput, CreateMa
         await _managerRepository.InsertAsync(manager, cancellationToken);
         await _unitOfWork.CommitAsync(cancellationToken);
 
-        return new CreateManagerOutput(manager.Id.Value.ToString());
+        return new CreateManagerOutput(manager.Id.Format());
     }
 }

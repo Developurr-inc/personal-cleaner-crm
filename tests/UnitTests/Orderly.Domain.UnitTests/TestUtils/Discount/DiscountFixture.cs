@@ -6,7 +6,7 @@ public sealed class DiscountFixture : BaseFixture
 {
     private static Domain.Order.ValueObjects.Discount CreateValidDiscount()
     {
-        var value = decimal.Parse(Faker.Commerce.Price(DiscountValidator.DiscountMin, DiscountValidator.DiscountMax));
+        var value = decimal.Parse(Faker.Commerce.Price(DiscountValidatorConfig.DiscountMin, DiscountValidatorConfig.DiscountMax));
 
         return Domain.Order.ValueObjects.Discount.Create(value);
     }
@@ -23,11 +23,11 @@ public sealed class DiscountFixture : BaseFixture
     
     public static decimal CreateBellowMinDiscount()
     {
-        return decimal.Parse(Faker.Commerce.Price(decimal.MinValue, DiscountValidator.DiscountMin));
+        return decimal.Parse(Faker.Commerce.Price(decimal.MinValue, DiscountValidatorConfig.DiscountMin));
     }
     
     public static decimal CreateAboveMaxDiscount()
     {
-        return decimal.Parse(Faker.Commerce.Price(DiscountValidator.DiscountMax, decimal.MaxValue));
+        return decimal.Parse(Faker.Commerce.Price(DiscountValidatorConfig.DiscountMax, decimal.MaxValue));
     }
 }

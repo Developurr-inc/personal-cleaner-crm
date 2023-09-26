@@ -79,13 +79,7 @@ public sealed class AddressValidator : Validator
     private void ValidateZipCode(string fieldName)
     {
         ValidationRules.ValidateRequired(_zipCode, fieldName, this);
-        ValidationRules.ValidateStringLength(
-            _zipCode,
-            fieldName,
-            AddressValidatorConfig.ZipCodeMinLength,
-            AddressValidatorConfig.ZipCodeMaxLength,
-            this
-        );
+        ValidationRules.ValidateZipCode(_zipCode, fieldName, this);
     }
 
     private void ValidateNeighborhood(string fieldName)
