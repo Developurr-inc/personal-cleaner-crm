@@ -1,5 +1,3 @@
-using Bogus.Extensions.Brazil;
-
 namespace Orderly.Domain.UnitTests.TestUtils.Cpf;
 
 public static class CpfFixture
