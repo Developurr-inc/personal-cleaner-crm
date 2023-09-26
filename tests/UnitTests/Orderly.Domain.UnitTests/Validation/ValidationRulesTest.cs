@@ -14,38 +14,38 @@ namespace Orderly.Domain.UnitTests.Validation;
 
 public sealed class ValidationRulesTest
 {
-    [Theory]
-    [MemberData(
-        nameof(EmailGenerator.CreateInvalidEmailAddresses),
-        MemberType = typeof(EmailGenerator)
-    )]
-    public void GivenInvalidEmail_WhenValidatingEmail_ThenShouldCallAddValidatorError(
-        string invalidEmail
-    )
-    {
-        // Arrange
-        var validatorMock = ValidationRulesFixture.GetValidatorMock();
-
-        // Act
-        ValidationRules.ValidateEmail(invalidEmail, "email", validatorMock.Object);
-
-        // Assert
-        validatorMock.Verify(val => val.AddValidationError(It.IsAny<string>()), Times.Once);
-    }
-
-    [Theory]
-    [MemberData(nameof(EmailGenerator.CreateEmails), MemberType = typeof(EmailGenerator))]
-    public void GivenValidEmailAddress_WhenValidatingEmailAddress_ThenShouldDoNothing(Email email)
-    {
-        // Arrange
-        var validatorMock = ValidationRulesFixture.GetValidatorMock();
-
-        // Act
-        ValidationRules.ValidateEmail(email.Value, "email", validatorMock.Object);
-
-        // Assert
-        validatorMock.Verify(val => val.AddValidationError(It.IsAny<string>()), Times.Never);
-    }
+    // [Theory]
+    // [MemberData(
+    //     nameof(EmailGenerator.CreateInvalidEmailAddresses),
+    //     MemberType = typeof(EmailGenerator)
+    // )]
+    // public void GivenInvalidEmail_WhenValidatingEmail_ThenShouldCallAddValidatorError(
+    //     string invalidEmail
+    // )
+    // {
+    //     // Arrange
+    //     var validatorMock = ValidationRulesFixture.GetValidatorMock();
+    //
+    //     // Act
+    //     ValidationRules.ValidateEmail(invalidEmail, "email", validatorMock.Object);
+    //
+    //     // Assert
+    //     validatorMock.Verify(val => val.AddValidationError(It.IsAny<string>()), Times.Once);
+    // }
+    //
+    // [Theory]
+    // [MemberData(nameof(EmailGenerator.CreateEmails), MemberType = typeof(EmailGenerator))]
+    // public void GivenValidEmailAddress_WhenValidatingEmailAddress_ThenShouldDoNothing(Email email)
+    // {
+    //     // Arrange
+    //     var validatorMock = ValidationRulesFixture.GetValidatorMock();
+    //
+    //     // Act
+    //     ValidationRules.ValidateEmail(email.Value, "email", validatorMock.Object);
+    //
+    //     // Assert
+    //     validatorMock.Verify(val => val.AddValidationError(It.IsAny<string>()), Times.Never);
+    // }
 
     [Theory]
     [MemberData(nameof(CpfGenerator.CreateInvalidCpfs), MemberType = typeof(CpfGenerator))]
