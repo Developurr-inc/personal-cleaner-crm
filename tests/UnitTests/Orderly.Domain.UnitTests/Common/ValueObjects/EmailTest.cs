@@ -17,20 +17,18 @@ public sealed class EmailTest
     }
     
     
-    [Theory]
-    [InlineData("")]
-    public void GivenInvalidInput_WhenCreatingEmail_ThenShouldThrowEntityValidationExceptionWithMessage(
-        string email
-    )
+    [Fact]
+    public void GivenInvalidInput_WhenCreatingEmail_ThenShouldThrowEntityValidationExceptionWithMessage()
     {
         // Arrange
+        const string invalidEmail = "";
         const string expectedErrorMessage = "There are validation errors.";
 
         // Act
         var exception = Record.Exception(
             () =>
                 Email.Create(
-                    email
+                    invalidEmail
                 )
         );
 
