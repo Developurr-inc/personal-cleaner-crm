@@ -1,6 +1,5 @@
 using Orderly.Domain.Customer;
 using Orderly.Domain.SalesConsultant;
-using Orderly.Domain.SeedWork;
 
 namespace Orderly.Application.UseCase.Customer.CreateCustomer;
 

@@ -1,5 +1,4 @@
 using Orderly.Domain.Manager;
-using Orderly.Domain.Manager.ValueObjects;
 
 namespace Orderly.Application.UseCase.Manager.GetManager;
 

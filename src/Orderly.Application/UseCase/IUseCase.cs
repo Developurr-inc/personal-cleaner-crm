@@ -1,8 +1,6 @@
-using Orderly.Application.UseCase.Customer.CreateCustomer;
+namespace Orderly.Application.UseCase;
 
-namespace Orderly.Application;
-
-public interface IUseCase<TInput, TOutput>
+public interface IUseCase<in TInput, TOutput>
 {
     public Task<TOutput> Execute(TInput input, CancellationToken cancellationToken);
 }

@@ -1,5 +1,4 @@
 using Orderly.Domain.Manager;
-using Orderly.Domain.SeedWork;
 
 namespace Orderly.Application.UseCase.Manager.CreateManager;
 

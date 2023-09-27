@@ -1,5 +1,4 @@
 using Orderly.Domain.SalesConsultant;
-using Orderly.Domain.SalesConsultant.ValueObjects;
 
 namespace Orderly.Application.UseCase.SalesConsultant.GetSalesConsultant;
 
