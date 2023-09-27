@@ -209,7 +209,7 @@ public sealed class EmailTest
         // Assert
         Assert.Equal(expectedEmail, email.Format());
     }
-    
+
     [Fact]
     public void GivenValidEmail_WhenCallFormat_ShouldReturnFormattedEmail()
     {
@@ -223,5 +223,4 @@ public sealed class EmailTest
         // Assert
         Assert.Equal(expectedFormattedEmail, formattedEmail);
     }
-    
 }
