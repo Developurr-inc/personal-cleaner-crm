@@ -17,6 +17,19 @@ public sealed class EmailTest
         Assert.NotNull(email);
     }
     
+    [Fact]
+    public void GivenValidEmail_WhenCreatingEmail_ThenShouldHaveValidEmail()
+    {
+        // Arrange
+        const string expectedEmail = "email@email.com";
+
+        // Act
+        var email = Email.Create(Constants.Email.EmailValue);
+        
+        // Assert 
+        Assert.Equal(expectedEmail, email.Format());
+    }
+    
     
     [Fact]
     public void GivenInvalidInput_WhenCreatingEmail_ThenShouldThrowEntityValidationExceptionWithMessage()
