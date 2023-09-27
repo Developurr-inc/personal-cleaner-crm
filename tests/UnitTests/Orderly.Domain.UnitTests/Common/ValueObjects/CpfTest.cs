@@ -36,7 +36,7 @@ public sealed class CpfTest
     public void GivenInvalidInput_WhenCreatingCpf_ThenShouldThrowEntityValidationExceptionWithMessage()
     {
         // Arrange
-        const invalidCpf = "";
+        const string invalidCpf = "";
         const string expectedErrorMessage = "There are validation errors.";
         
         // Act
