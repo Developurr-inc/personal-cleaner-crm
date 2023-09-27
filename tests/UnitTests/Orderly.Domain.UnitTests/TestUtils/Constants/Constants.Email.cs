@@ -13,6 +13,6 @@ public static partial class Constants
         public const string InvalidDotEmailAddress = "email@emailacom";
         public const string InvalidAtAndDotEmailAddress = "emailaemailacom";
         public const string ShortEmailAddress = "a@a.";
-        public const string LongEmailAddress = "emailmuitolongoemailmuitolongoemailmuitolongoemailmuitolongoemailmuitolongoemailmuitolongoemailmuitolongoemailmuitolongoemailmuitolongoemailmuitolongoemailmuitolongo@dominiomuitolongoparasimularumexemploparasimularumexemploparasimularumexemploparasimularumexemplo.com";
+        public const string LongEmailAddress = "emailmuitolongoemailmuitolongoemailmuitolongoemailmuitmuitolongoemailmuitolongoemailmuitolongoemailmuitolongoemailmuitolongoemailmuitolongoemailmuitolongo@dominiomuitolongoparasimularumexemploparasimularumexemploparasimularumexemploparasimularumexemplo.com";
     }
 }

@@ -1,9 +1,6 @@
 ﻿using Orderly.Domain.Common.ValueObjects;
 using Orderly.Domain.Exceptions;
-using Orderly.Domain.UnitTests.TestUtils.Address;
 using Orderly.Domain.UnitTests.TestUtils.Constants;
-using Orderly.Domain.UnitTests.TestUtils.Email;
-using Orderly.Domain.UnitTests.TestUtils.String;
 
 namespace Orderly.Domain.UnitTests.Common.ValueObjects;
 
@@ -50,7 +47,6 @@ public sealed class EmailTest
         // Arrange
         const string emptyEmail = "";
         const string expectedErrorMessage = "'Email Address' is required.";
-        // const string expectedErrorMessage = "'Email' is required.";
 
         // Act
         var exception = Record.Exception(
@@ -72,7 +68,6 @@ public sealed class EmailTest
         // Arrange
         const string whitespaceEmail = "             ";
         const string expectedErrorMessage = "'Email Address' is required.";
-        // const string expectedErrorMessage = "'Email' is required.";
 
         // Act
         var exception = Record.Exception(
@@ -135,7 +130,6 @@ public sealed class EmailTest
         // Arrange
         const string invalidAtEmail = Constants.InvalidEmail.InvalidAtEmailAddress;
         const string expectedErrorMessage = "Invalid 'Email Address' format.";
-        // const string expectedErrorMessage = "'Email' should have @.";
 
         // Act
         var exception = Record.Exception(
@@ -156,7 +150,6 @@ public sealed class EmailTest
         // Arrange
         const string invalidDotEmailAddress = Constants.InvalidEmail.InvalidDotEmailAddress;
         const string expectedErrorMessage = "Invalid 'Email Address' format.";
-        // const string expectedErrorMessage = "'Email' should have dot.";
 
         // Act
         var exception = Record.Exception(
@@ -177,7 +170,6 @@ public sealed class EmailTest
         // Arrange
         const string invalidAtAndDotEmailAddress = Constants.InvalidEmail.InvalidAtAndDotEmailAddress;
         const string expectedErrorMessage = "Invalid 'Email Address' format.";
-        // const string expectedErrorMessage = "'Email' should have @ and dot.";
     
         // Act
         var exception = Record.Exception(
