@@ -33,9 +33,7 @@ public sealed class CnpjTest
     
     
     [Fact]
-    public void GivenInvalidInput_WhenCreatingCnpj_ThenShouldThrowEntityValidationExceptionWithMessage(
-        string cnpj
-    )
+    public void GivenInvalidInput_WhenCreatingCnpj_ThenShouldThrowEntityValidationExceptionWithMessage()
     {
         // Arrange
         const string invalidCnpj = "";
