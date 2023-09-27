@@ -1,6 +1,7 @@
 ﻿using Orderly.Domain.Common.ValueObjects;
 using Orderly.Domain.Exceptions;
 using Orderly.Domain.UnitTests.TestUtils.Constants;
+using Orderly.Domain.UnitTests.TestUtils.Email;
 
 namespace Orderly.Domain.UnitTests.Common.ValueObjects;
 
@@ -196,5 +197,18 @@ public sealed class EmailTest
         Assert.Equal(expectedEmail, email.Format());
     }
     
+    [Fact]
+    public void GivenValidEmail_WhenCallFormat_ShouldReturnFormattedEmail()
+    {
+        // Arrange
+        var email = EmailFixture.CreateEmail();
+        var expectedFormattedEmail = $"email@email.com";
+
+        // Act
+        var formattedEmail = email.Format();
+
+        // Assert
+        Assert.Equal(expectedFormattedEmail, formattedEmail);
+    }
     
 }
