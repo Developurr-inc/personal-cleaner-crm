@@ -1,6 +1,4 @@
 using Orderly.Domain.SalesConsultant;
-using Orderly.Domain.SalesConsultant.ValueObjects;
-using Orderly.Domain.SeedWork;
 
 namespace Orderly.Application.UseCase.SalesConsultant.CreateSalesConsultant;
 
