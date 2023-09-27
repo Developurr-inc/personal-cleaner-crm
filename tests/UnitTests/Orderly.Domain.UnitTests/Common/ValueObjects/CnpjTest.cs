@@ -1,5 +1,6 @@
 using Orderly.Domain.Common.ValueObjects;
 using Orderly.Domain.Exceptions;
+using Orderly.Domain.UnitTests.TestUtils.Cnpj;
 using Orderly.Domain.UnitTests.TestUtils.Constants;
 
 namespace Orderly.Domain.UnitTests.Common.ValueObjects;
@@ -186,4 +187,17 @@ public sealed class CnpjTest
         Assert.Equal(expectedCnpjValue, cnpj.Format());
     }
     
+    [Fact]
+    public void GivenValidCnpj_WhenCallFormat_ShouldReturnFormattedCnpj()
+    {
+        // Arrange
+        var cnpj = CnpjFixture.CreateCnpj();
+        var expectedFormattedCnpj = $"42.591.651/0001-43";
+
+        // Act
+        var formattedCnpj = cnpj.Format();
+
+        // Assert
+        Assert.Equal(expectedFormattedCnpj, formattedCnpj);
+    }
 }
