@@ -11,7 +11,7 @@ public class GetManagerUseCase : IUseCase<GetManagerInput, GetManagerOutput>
     {
         _managerRepository = managerRepository;
     }
-    
+
     public async Task<GetManagerOutput> Execute(
         GetManagerInput input,
         CancellationToken cancellationToken
@@ -20,10 +20,10 @@ public class GetManagerUseCase : IUseCase<GetManagerInput, GetManagerOutput>
         var manager = await _managerRepository.GetByIdAsync(input.ManagerId, cancellationToken);
 
         return new GetManagerOutput(
-            manager.Cpf.Value,
+            manager.Cpf.Format(),
             manager.Address.ToString(),
             manager.Name,
-            manager.Email.Value,
+            manager.Email.Format(),
             manager.Landline?.Value ?? "",
             manager.Mobile?.Value ?? ""
         );

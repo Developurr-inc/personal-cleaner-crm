@@ -28,7 +28,7 @@ public sealed class Address : ValueObject
         Street = street;
         Number = number;
         Complement = complement;
-        ZipCode = zipCode;
+        ZipCode = zipCode.Replace("-", string.Empty);
         Neighborhood = neighborhood;
         City = city;
         State = state;
@@ -78,9 +78,18 @@ public sealed class Address : ValueObject
         );
     }
 
-    public string ToString()
+    public string Format()
     {
-        return $"{Street}, {Number}, {Complement}, {Neighborhood}, {City}, {State}, {Country} - {ZipCode}";
+        return $"""
+                {Street}, {Number}, {Complement}
+                {Neighborhood}, {City}, {State}
+                {Country} - {ZipCode}
+                """;
+    }
+
+    public override string ToString()
+    {
+        return Format();
     }
 
     protected override IEnumerable<object> GetEqualityComponents()

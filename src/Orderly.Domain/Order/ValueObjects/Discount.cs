@@ -5,13 +5,13 @@ namespace Orderly.Domain.Order.ValueObjects;
 
 public sealed class Discount : ValueObject
 {
-    public decimal Value { get; private set; }
-    
+    public readonly decimal Value;
+
     private Discount(decimal value)
     {
         Value = value;
     }
-    
+
     public static Discount Create(decimal value)
     {
         var discountValidator = new DiscountValidator(value);
@@ -19,7 +19,7 @@ public sealed class Discount : ValueObject
 
         return new Discount(value);
     }
-    
+
     protected override IEnumerable<object> GetEqualityComponents()
     {
         yield return Value;

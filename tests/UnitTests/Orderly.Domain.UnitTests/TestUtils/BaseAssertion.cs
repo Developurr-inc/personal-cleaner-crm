@@ -9,9 +9,7 @@ public abstract class BaseAssertion
     public static void AssertException(Exception exception)
     {
         Assert.NotNull(exception);
-        Assert.IsType<EntityValidationException>(exception);
-
-        var entityValidationException = (EntityValidationException)exception;
+        var entityValidationException = Assert.IsType<EntityValidationException>(exception);
 
         Assert.Equal(ErrorMessage, entityValidationException.Message);
         Assert.NotEmpty(entityValidationException.Errors);

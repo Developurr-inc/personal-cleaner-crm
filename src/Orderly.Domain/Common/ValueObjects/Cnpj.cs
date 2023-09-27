@@ -5,11 +5,13 @@ namespace Orderly.Domain.Common.ValueObjects;
 
 public sealed class Cnpj : ValueObject
 {
-    public string Value { get; }
+    private readonly string _value;
 
     private Cnpj(string cnpj)
     {
-        Value = cnpj;
+        _value = cnpj.Replace(".", string.Empty)
+            .Replace("-", string.Empty)
+            .Replace("/", string.Empty);
     }
 
     public static Cnpj Create(string cnpj)
@@ -22,8 +24,18 @@ public sealed class Cnpj : ValueObject
         return new Cnpj(cnpjTrimmed);
     }
 
+    public string Format()
+    {
+        return Convert.ToUInt64(_value).ToString(@"00\.000\.000\/0000\-00");
+    }
+
+    public override string ToString()
+    {
+        return Format();
+    }
+
     protected override IEnumerable<object> GetEqualityComponents()
     {
-        yield return Value;
+        yield return _value;
     }
 }

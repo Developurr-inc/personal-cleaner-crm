@@ -8,17 +8,14 @@ public class DeleteManagerUseCase : IUseCase<DeleteManagerInput, DeleteManagerOu
 {
     private readonly IUnitOfWork _unitOfWork;
     private readonly IManagerRepository _managerRepository;
-    
-    public DeleteManagerUseCase(
-        IUnitOfWork unitOfWork,
-        IManagerRepository managerRepository
-    )
+
+    public DeleteManagerUseCase(IUnitOfWork unitOfWork, IManagerRepository managerRepository)
     {
         _unitOfWork = unitOfWork;
         _managerRepository = managerRepository;
     }
-    
-    async public Task<DeleteManagerOutput> Execute(
+
+    public async Task<DeleteManagerOutput> Execute(
         DeleteManagerInput input,
         CancellationToken cancellationToken
     )
@@ -26,9 +23,7 @@ public class DeleteManagerUseCase : IUseCase<DeleteManagerInput, DeleteManagerOu
         var manager = await _managerRepository.GetByIdAsync(input.ManagerId, cancellationToken);
         await _managerRepository.RemoveAsync(manager, cancellationToken);
         await _unitOfWork.CommitAsync(cancellationToken);
-        
-        return new DeleteManagerOutput(
-            manager.Id.Value.ToString()
-        );
+
+        return new DeleteManagerOutput(manager.Id.Format());
     }
 }

@@ -1,21 +1,20 @@
 using Orderly.Domain.Common.ValueObjects;
 using Orderly.Domain.Manager.Validators;
 using Orderly.Domain.Manager.ValueObjects;
+using Orderly.Domain.SalesConsultant.ValueObjects;
 using Orderly.Domain.SeedWork;
 
 namespace Orderly.Domain.Manager;
 
 public sealed class Manager : Entity<ManagerId>, IAggregateRoot
 {
-    public Cpf Cpf { get; private set; }
+    private readonly List<SalesConsultantId> _salesConsultants;
+    public Cpf Cpf { get; }
     public Address Address { get; private set; }
     public string Name { get; private set; }
     public Email Email { get; private set; }
-
     public Phone? Landline { get; private set; }
     public Phone? Mobile { get; private set; }
-
-    public DateTime CreatedAt { get; }
 
     private Manager(
         ManagerId managerId,
@@ -28,19 +27,19 @@ public sealed class Manager : Entity<ManagerId>, IAggregateRoot
     )
         : base(managerId)
     {
+        _salesConsultants = new List<SalesConsultantId>();
         Cpf = cpf;
         Address = address;
         Name = name;
         Email = email;
         Landline = landline;
         Mobile = mobile;
-        CreatedAt = DateTime.Now;
     }
 
     public static Manager Create(
         string cpfValue,
         string street,
-        int  number,
+        int number,
         string complement,
         string zipCode,
         string neighborhood,
@@ -56,11 +55,19 @@ public sealed class Manager : Entity<ManagerId>, IAggregateRoot
         var managerId = ManagerId.Generate();
         var nameTrimmed = name.Trim();
         var cpf = Cpf.Create(cpfValue);
-        var address = Address.Create(street, number, complement, zipCode, neighborhood, city, state, country);
-        var nfeEmail = Common.ValueObjects.Email.Create(nfeEmailValue);
+        var address = Address.Create(
+            street,
+            number,
+            complement,
+            zipCode,
+            neighborhood,
+            city,
+            state,
+            country
+        );
+        var nfeEmail = Email.Create(nfeEmailValue);
         var landline = landlineValue == null ? null : Phone.Create(landlineValue);
         var mobile = mobileValue == null ? null : Phone.Create(mobileValue);
-        
 
         Validate(nameTrimmed);
 
