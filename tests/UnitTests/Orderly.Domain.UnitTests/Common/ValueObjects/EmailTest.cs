@@ -182,5 +182,19 @@ public sealed class EmailTest
         Assert.Contains(expectedErrorMessage, eve.Errors);
     }
     
+    [Fact]
+    public void GivenUntrimmedEmail_WhenCreatingEmail_ThenShouldHaveTrimmedEmail()
+    {
+        // Arrange
+        const string untrimmedEmail = "       email@email.com  ";
+        const string expectedEmail = "email@email.com";
+
+        // Act
+        var email = Email.Create(untrimmedEmail);
+
+        // Assert
+        Assert.Equal(expectedEmail, email.Format());
+    }
+    
     
 }

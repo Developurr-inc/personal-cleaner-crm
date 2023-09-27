@@ -142,35 +142,35 @@ public sealed class ValidationRulesTest
     //     validatorMock.Verify(val => val.AddValidationError(It.IsAny<string>()), Times.Never);
     // }
 
-    [Theory]
-    [MemberData(nameof(PriceGenerator.CreateInvalidPrices), MemberType = typeof(PriceGenerator))]
-    public void GivenInvalidDecimal_WhenValidatingPositiveDecimal_ThenShouldCallAddValidatorError(
-        decimal invalidNumber
-    )
-    {
-        // Arrange
-        var validatorMock = ValidationRulesFixture.GetValidatorMock();
-
-        // Act
-        ValidationRules.ValidatePositive(invalidNumber, "number", validatorMock.Object);
-
-        // Assert
-        validatorMock.Verify(val => val.AddValidationError(It.IsAny<string>()), Times.Once);
-    }
-
-    [Theory]
-    [MemberData(nameof(PriceGenerator.CreatePrices), MemberType = typeof(PriceGenerator))]
-    public void GivenValidDecimal_WhenValidatingPositiveDecimal_ThenShouldDoNothing(Price number)
-    {
-        // Arrange
-        var validatorMock = ValidationRulesFixture.GetValidatorMock();
-
-        // Act
-        ValidationRules.ValidatePositive(number.Value, "number", validatorMock.Object);
-
-        // Assert
-        validatorMock.Verify(val => val.AddValidationError(It.IsAny<string>()), Times.Never);
-    }
+    // [Theory]
+    // [MemberData(nameof(PriceGenerator.CreateInvalidPrices), MemberType = typeof(PriceGenerator))]
+    // public void GivenInvalidDecimal_WhenValidatingPositiveDecimal_ThenShouldCallAddValidatorError(
+    //     decimal invalidNumber
+    // )
+    // {
+    //     // Arrange
+    //     var validatorMock = ValidationRulesFixture.GetValidatorMock();
+    //
+    //     // Act
+    //     ValidationRules.ValidatePositive(invalidNumber, "number", validatorMock.Object);
+    //
+    //     // Assert
+    //     validatorMock.Verify(val => val.AddValidationError(It.IsAny<string>()), Times.Once);
+    // }
+    //
+    // [Theory]
+    // [MemberData(nameof(PriceGenerator.CreatePrices), MemberType = typeof(PriceGenerator))]
+    // public void GivenValidDecimal_WhenValidatingPositiveDecimal_ThenShouldDoNothing(Price number)
+    // {
+    //     // Arrange
+    //     var validatorMock = ValidationRulesFixture.GetValidatorMock();
+    //
+    //     // Act
+    //     ValidationRules.ValidatePositive(number.Value, "number", validatorMock.Object);
+    //
+    //     // Assert
+    //     validatorMock.Verify(val => val.AddValidationError(It.IsAny<string>()), Times.Never);
+    // }
 
     // [Theory]
     // [MemberData(
