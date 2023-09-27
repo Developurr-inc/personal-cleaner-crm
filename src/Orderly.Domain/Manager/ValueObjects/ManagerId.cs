@@ -2,29 +2,13 @@ using Orderly.Domain.SeedWork;
 
 namespace Orderly.Domain.Manager.ValueObjects;
 
-public sealed class ManagerId : ValueObject
+public sealed class ManagerId : Identifier<Guid>
 {
-    public Guid Value { get; }
-
     private ManagerId(Guid value)
-    {
-        Value = value;
-    }
+        : base(value) { }
 
     public static ManagerId Generate()
     {
-        var guid = Guid.NewGuid();
-        return new ManagerId(guid);
-    }
-    
-    public static ManagerId Restore(string value)
-    {
-        var guid = Guid.Parse(value);
-        return new ManagerId(guid);
-    }
-
-    protected override IEnumerable<object> GetEqualityComponents()
-    {
-        yield return Value;
+        return new ManagerId(Guid.NewGuid());
     }
 }

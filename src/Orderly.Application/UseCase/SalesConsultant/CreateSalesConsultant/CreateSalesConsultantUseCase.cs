@@ -4,7 +4,8 @@ using Orderly.Domain.SeedWork;
 
 namespace Orderly.Application.UseCase.SalesConsultant.CreateSalesConsultant;
 
-public sealed class CreateSalesConsultantUseCase : IUseCase<CreateSalesConsultantInput, CreateSalesConsultantOutput>
+public sealed class CreateSalesConsultantUseCase
+    : IUseCase<CreateSalesConsultantInput, CreateSalesConsultantOutput>
 {
     private readonly IUnitOfWork _unitOfWork;
     private readonly ISalesConsultantRepository _salesConsultantRepository;
@@ -18,7 +19,7 @@ public sealed class CreateSalesConsultantUseCase : IUseCase<CreateSalesConsultan
         _salesConsultantRepository = salesConsultantRepository;
     }
 
-    async public Task<CreateSalesConsultantOutput> Execute(
+    public async Task<CreateSalesConsultantOutput> Execute(
         CreateSalesConsultantInput input,
         CancellationToken cancellationToken
     )
@@ -38,11 +39,10 @@ public sealed class CreateSalesConsultantUseCase : IUseCase<CreateSalesConsultan
             input.Landline,
             input.Mobile
         );
-        
+
         await _salesConsultantRepository.InsertAsync(salesConsultant, cancellationToken);
         await _unitOfWork.CommitAsync(cancellationToken);
 
-        return new CreateSalesConsultantOutput(salesConsultant.Id.Value.ToString());
+        return new CreateSalesConsultantOutput(salesConsultant.Id.Format());
     }
 }
-

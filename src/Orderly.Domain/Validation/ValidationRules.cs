@@ -37,21 +37,45 @@ public static partial class ValidationRules
     public static void ValidatePositive(int value, string fieldName, IValidator errors)
     {
         if (int.IsNegative(value))
-            errors.AddValidationError($"'{fieldName}' should be positive.");
+            errors.AddValidationError($"'{fieldName}' should be a positive int.");
     }
 
     public static void ValidatePositive(decimal value, string fieldName, IValidator errors)
     {
         if (decimal.IsNegative(value))
-            errors.AddValidationError($"'{fieldName}' should be positive.");
+            errors.AddValidationError($"'{fieldName}' should be a positive decimal.");
     }
 
-    public static void ValidateRange(decimal value, string fieldName, decimal min, decimal max, IValidator errors)
+    public static void ValidateRange(
+        int value,
+        string fieldName,
+        int min,
+        int max,
+        IValidator errors
+    )
     {
-        if(value < min || value > max)
+        if (value < min || value > max)
+            errors.AddValidationError($"'{fieldName}' should be an int between {min} and {max}.");
+    }
+
+    public static void ValidateRange(
+        decimal value,
+        string fieldName,
+        decimal min,
+        decimal max,
+        IValidator errors
+    )
+    {
+        if (value < min || value > max)
             errors.AddValidationError(
-                $"'{fieldName}' should be between {min} and {max} characters."
+                $"'{fieldName}' should be a decimal between {min} and {max}."
             );
+    }
+
+    public static void ValidateZipCode(string zipCode, string fieldName, IValidator errors)
+    {
+        if (!ZipCodeRegex().IsMatch(zipCode))
+            errors.AddValidationError($"Invalid '{fieldName}' format.");
     }
 
     public static void ValidateEmail(string email, string fieldName, IValidator errors)
@@ -62,7 +86,7 @@ public static partial class ValidationRules
 
     public static void ValidateCpf(string cpf, string fieldName, IValidator errors)
     {
-        var cpfNumbers = DigitOnlyRegex().Replace(cpf, "");
+        var cpfNumbers = DigitOnlyRegex().Replace(cpf, string.Empty);
 
         if (cpfNumbers.Length != 11 || IsRepeatedDigits(cpfNumbers) || !IsValidCpf(cpfNumbers))
             errors.AddValidationError($"'{fieldName}' is not valid.");
@@ -99,7 +123,7 @@ public static partial class ValidationRules
 
     public static void ValidateCnpj(string cnpj, string fieldName, IValidator errors)
     {
-        var cnpjNumbers = DigitOnlyRegex().Replace(cnpj, "");
+        var cnpjNumbers = DigitOnlyRegex().Replace(cnpj, string.Empty);
 
         if (cnpjNumbers.Length != 14 || IsRepeatedDigits(cnpjNumbers) || !IsValidCnpj(cnpjNumbers))
             errors.AddValidationError($"'{fieldName}' is not valid.");
@@ -146,9 +170,12 @@ public static partial class ValidationRules
             errors.AddValidationError($"'{fieldName}' is not valid.");
     }
 
-    [GeneratedRegex("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$")]
+    [GeneratedRegex(@"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$")]
     private static partial Regex EmailRegex();
 
-    [GeneratedRegex("[^\\d]")]
+    [GeneratedRegex(@"[^\d]")]
     private static partial Regex DigitOnlyRegex();
+
+    [GeneratedRegex(@"^(?:\d{5}-\d{3}|\d{8})$")]
+    private static partial Regex ZipCodeRegex();
 }

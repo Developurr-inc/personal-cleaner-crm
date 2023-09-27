@@ -1,4 +1,5 @@
 using Orderly.Domain.Common.ValueObjects;
+using Orderly.Domain.Customer.ValueObjects;
 using Orderly.Domain.SalesConsultant.Validators;
 using Orderly.Domain.SalesConsultant.ValueObjects;
 using Orderly.Domain.SeedWork;
@@ -7,19 +8,13 @@ namespace Orderly.Domain.SalesConsultant;
 
 public sealed class SalesConsultant : Entity<SalesConsultantId>, IAggregateRoot
 {
-    public Cpf Cpf { get; private set; }
-    
+    private readonly List<CustomerId> _customers;
+    public Cpf Cpf { get; }
     public string Name { get; private set; }
-
     public Address Address { get; private set; }
-
     public Email Email { get; private set; }
-
     public Phone? Landline { get; private set; }
-    
     public Phone? Mobile { get; private set; }
-
-    public DateTime CreatedAt { get; }
 
     private SalesConsultant(
         SalesConsultantId salesConsultantId,
@@ -32,18 +27,17 @@ public sealed class SalesConsultant : Entity<SalesConsultantId>, IAggregateRoot
     )
         : base(salesConsultantId)
     {
+        _customers = new List<CustomerId>();
         Cpf = cpf;
         Address = address;
         Name = name;
         Email = email;
         Landline = landline;
         Mobile = mobile;
-        CreatedAt = DateTime.Now;
     }
-    
+
     public static SalesConsultant Create(
         string cpfValue,
-        
         string street,
         int number,
         string complement,
@@ -52,7 +46,6 @@ public sealed class SalesConsultant : Entity<SalesConsultantId>, IAggregateRoot
         string city,
         string state,
         string country,
-        
         string name,
         string emailValue,
         string? landlineValue,
@@ -61,7 +54,16 @@ public sealed class SalesConsultant : Entity<SalesConsultantId>, IAggregateRoot
     {
         var salesConsultantId = SalesConsultantId.Generate();
         var cpf = Cpf.Create(cpfValue);
-        var address = Address.Create(street, number, complement, zipCode, neighborhood, city, state, country);
+        var address = Address.Create(
+            street,
+            number,
+            complement,
+            zipCode,
+            neighborhood,
+            city,
+            state,
+            country
+        );
         var nameTrimmed = name.Trim();
         var email = Email.Create(emailValue);
         var landline = landlineValue == null ? null : Phone.Create(landlineValue);

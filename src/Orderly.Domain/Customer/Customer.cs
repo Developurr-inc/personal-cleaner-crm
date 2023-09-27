@@ -1,6 +1,7 @@
 using Orderly.Domain.Common.ValueObjects;
 using Orderly.Domain.Customer.Validators;
 using Orderly.Domain.Customer.ValueObjects;
+using Orderly.Domain.Order.ValueObjects;
 using Orderly.Domain.SalesConsultant.ValueObjects;
 using Orderly.Domain.SeedWork;
 
@@ -8,24 +9,18 @@ namespace Orderly.Domain.Customer;
 
 public sealed class Customer : Entity<CustomerId>, IAggregateRoot
 {
-    // public List<OrderId> Orders { get; private set; }
+    private readonly List<OrderId> _orders;
     public SalesConsultantId SalesConsultant { get; private set; }
-
-    public Cnpj Cnpj { get; private set; }
+    public Cnpj Cnpj { get; }
     public string CorporateName { get; private set; }
     public string TaxId { get; private set; }
     public string TradeName { get; private set; }
     public string Segment { get; private set; }
-
     public Email? BillingEmail { get; private set; }
     public Email NfeEmail { get; private set; }
-
     public Phone? Landline { get; private set; }
     public Phone? Mobile { get; private set; }
-
     public string Observation { get; private set; }
-
-    public DateTime CreatedAt { get; }
 
     private Customer(
         CustomerId customerId,
@@ -43,7 +38,7 @@ public sealed class Customer : Entity<CustomerId>, IAggregateRoot
     )
         : base(customerId)
     {
-        // Orders = new();
+        _orders = new List<OrderId>();
         SalesConsultant = salesConsultantId;
         Cnpj = cnpj;
         CorporateName = corporateName;
@@ -55,7 +50,6 @@ public sealed class Customer : Entity<CustomerId>, IAggregateRoot
         Landline = landline;
         Mobile = mobile;
         Observation = observation;
-        CreatedAt = DateTime.Now;
     }
 
     public static Customer Create(

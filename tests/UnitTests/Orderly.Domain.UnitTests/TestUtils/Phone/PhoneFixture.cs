@@ -25,18 +25,18 @@ public sealed class PhoneFixture : BaseFixture
     public static string CreateInvalidPhoneNumber()
     {
         return StringFixture.CreateString(
-            PhoneValidator.PhoneMinLength,
-            PhoneValidator.PhoneMaxLength
+            PhoneValidatorConfig.PhoneMinLength,
+            PhoneValidatorConfig.PhoneMaxLength
         );
     }
 
     public static string CreateShortPhoneNumber()
     {
-        return StringFixture.CreateString(1, PhoneValidator.PhoneMinLength - 1);
+        return StringFixture.CreateString(1, PhoneValidatorConfig.PhoneMinLength - 1);
     }
 
     public static string CreateLongPhoneNumber()
     {
-        return StringFixture.CreateString(PhoneValidator.PhoneMaxLength + 1, 1_000);
+        return StringFixture.CreateString(PhoneValidatorConfig.PhoneMaxLength + 1, 1_000);
     }
 }

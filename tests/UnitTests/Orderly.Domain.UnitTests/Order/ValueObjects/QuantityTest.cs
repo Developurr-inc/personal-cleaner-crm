@@ -1,13 +1,13 @@
 using Orderly.Domain.UnitTests.TestUtils;
 using Orderly.Domain.UnitTests.TestUtils.Quantity;
 
-namespace Orderly.Domain.UnitTests.Quantity.ValueObjects;
+namespace Orderly.Domain.UnitTests.Order.ValueObjects;
 
 public sealed class QuantityTest
 {
     [Theory]
     [MemberData(nameof(QuantityGenerator.CreateQuantitys), MemberType = typeof(QuantityGenerator))]
-    public void GivenValidInput_WhenCreatingQuantity_ThenShouldInstantiateQuantity(Domain.Quantity.ValueObjects.Quantity quantity)
+    public void GivenValidInput_WhenCreatingQuantity_ThenShouldInstantiateQuantity(Domain.Order.ValueObjects.Quantity quantity)
     {
         // Act
         var newQuantity = QuantityFixture.CreateQuantity(quantity);

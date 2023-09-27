@@ -19,7 +19,7 @@ public sealed class EmailFixture : BaseFixture
     {
         var lEmail = email ?? CreateValidEmail();
 
-        return Domain.Common.ValueObjects.Email.Create(value ?? lEmail.Value);
+        return Domain.Common.ValueObjects.Email.Create(value ?? lEmail.Format());
     }
 
     public static string CreateInvalidAtEmailAddress()
@@ -48,11 +48,11 @@ public sealed class EmailFixture : BaseFixture
 
     public static string CreateShortEmailAddress()
     {
-        return StringFixture.CreateString(1, EmailValidator.EmailMinLength - 1);
+        return StringFixture.CreateString(1, EmailValidatorConfig.EmailMinLength - 1);
     }
 
     public static string CreateLongEmailAddress()
     {
-        return StringFixture.CreateString(EmailValidator.EmailMaxLength + 1, 1_000);
+        return StringFixture.CreateString(EmailValidatorConfig.EmailMaxLength + 1, 1_000);
     }
 }
