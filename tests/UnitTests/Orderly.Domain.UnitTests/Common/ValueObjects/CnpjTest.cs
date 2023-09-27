@@ -22,7 +22,7 @@ public sealed class CnpjTest
     public void GivenValidCnpjValue_WhenCreatingCnpj_ThenShouldHaveValidCnpjValue()
     {
         // Arrange
-        const string expectedCnpjValue = "42591651000143";
+        const string expectedCnpjValue = "42.591.651/0001-43";
 
         // Act
         var cnpj = Cnpj.Create(Constants.Cnpj.CnpjValue);
@@ -99,7 +99,7 @@ public sealed class CnpjTest
     {
         // Arrange
         const string shortCnpjValue = Constants.InvalidCnpj.ShortCnpj;
-        const string expectedErrorMessage = "'CNPJ' is not valid."; //'CNPJ' should be 14 characters.
+        const string expectedErrorMessage = "'CNPJ' is not valid."; 
         
         // Act
         var exception = Record.Exception(
@@ -119,7 +119,7 @@ public sealed class CnpjTest
     {
         // Arrange
         const string longCnpjValue = Constants.InvalidCnpj.LongCnpj;
-        const string expectedErrorMessage = "'CNPJ' is not valid."; //'CNPJ' should be 14 characters.
+        const string expectedErrorMessage = "'CNPJ' is not valid."; 
         
         // Act
         var exception = Record.Exception(
@@ -159,7 +159,7 @@ public sealed class CnpjTest
     {
         // Assert
         const string nonNumericCnpj = Constants.InvalidCnpj.NonNumeriCnpj;
-        const string expectedErrorMessage = "'CNPJ' is not valid."; //Invalid 'CNPJ' format.
+        const string expectedErrorMessage = "'CNPJ' is not valid.";
 
         // Act
         var exception = Record.Exception(
@@ -179,7 +179,7 @@ public sealed class CnpjTest
     {
         // Arrange
         const string untrimmedCnpjValue = "     42591651000143     ";
-        const string expectedCnpjValue = "42591651000143";
+        const string expectedCnpjValue = "42.591.651/0001-43";
         
         // Act
         var cnpj = Cnpj.Create(untrimmedCnpjValue);

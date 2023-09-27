@@ -22,7 +22,7 @@ public sealed class CpfTest
     public void GivenValidCpfValue_WhenCreatingCpf_ThenShouldHaveValidCpfValue()
     {
         // Arrange
-        const string expectedCpfValue = "54647142949";
+        const string expectedCpfValue = "546.471.429-49";
 
         // Act
         var cpf = Cpf.Create(Constants.Cpf.CpfValue);
@@ -99,7 +99,7 @@ public sealed class CpfTest
     {
         // Arrange
         const string shortCpfValue = Constants.InvalidCpf.ShortCpf;
-        const string expectedErrorMessage = "'CPF' is not valid."; //'Cpf' should be 11 characters.
+        const string expectedErrorMessage = "'CPF' is not valid.";
         
         // Act
         var exception = Record.Exception(
@@ -119,7 +119,7 @@ public sealed class CpfTest
     {
         // Arrange
         const string longCpfValue = Constants.InvalidCpf.LongCpf;
-        const string expectedErrorMessage = "'CPF' is not valid.";//Cpf' should be 11 characters.
+        const string expectedErrorMessage = "'CPF' is not valid.";
         
         // Act
         var exception = Record.Exception(
@@ -139,7 +139,7 @@ public sealed class CpfTest
     {
         // Arrange
         const string invalidCpfValue = Constants.InvalidCpf.InvalidCpfLastDigit;
-        const string expectedErrorMessage = "'CPF' is not valid."; //'Cpf' is invalid.
+        const string expectedErrorMessage = "'CPF' is not valid.";
         
         // Act
         var exception = Record.Exception(
@@ -159,7 +159,7 @@ public sealed class CpfTest
     {
         // Assert
         const string nonNumericCpf = Constants.InvalidCpf.NonNumeriCpf;
-        const string expectedErrorMessage = "'CPF' is not valid."; //Invalid 'Cpf' format.
+        const string expectedErrorMessage = "'CPF' is not valid.";
 
         // Act
         var exception = Record.Exception(
@@ -179,7 +179,7 @@ public sealed class CpfTest
     {
         // Arrange
         const string untrimmedCpfValue = "     54647142949     ";
-        const string expectedCpfValue = "54647142949";
+        const string expectedCpfValue = "546.471.429-49";
         
         // Act
         var cpf = Cpf.Create(untrimmedCpfValue);
