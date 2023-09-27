@@ -28,7 +28,7 @@ public sealed class CnpjTest
         var cnpj = Cnpj.Create(Constants.Cnpj.CnpjValue);
         
         // Assert 
-        Assert.Equal(expectedCnpjValue, cnpj.Value);
+        Assert.Equal(expectedCnpjValue, cnpj.Format());
     }
     
     
@@ -185,7 +185,7 @@ public sealed class CnpjTest
         var cnpj = Cnpj.Create(untrimmedCnpjValue);
         
         // Assert
-        Assert.Equal(expectedCnpjValue, cnpj.Value);
+        Assert.Equal(expectedCnpjValue, cnpj.Format());
     }
     
 }

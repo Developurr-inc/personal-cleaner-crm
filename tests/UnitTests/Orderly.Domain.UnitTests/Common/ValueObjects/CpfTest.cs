@@ -28,7 +28,7 @@ public sealed class CpfTest
         var cpf = Cpf.Create(Constants.Cpf.CpfValue);
         
         // Assert 
-        Assert.Equal(expectedCpfValue, cpf.Value);
+        Assert.Equal(expectedCpfValue, cpf.Format());
     }
     
     
@@ -185,7 +185,7 @@ public sealed class CpfTest
         var cpf = Cpf.Create(untrimmedCpfValue);
         
         // Assert
-        Assert.Equal(expectedCpfValue, cpf.Value);
+        Assert.Equal(expectedCpfValue, cpf.Format());
     }
     
 }
