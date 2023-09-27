@@ -27,9 +27,4 @@
   <ItemGroup>
     <ProjectReference Include="..\..\..\src\Orderly.Domain\Orderly.Domain.csproj" />
   </ItemGroup>
-
-  <ItemGroup>
-    <Compile Remove="TestUtils\Cnpj\CnpjAssertion.cs" />
-    <Compile Remove="TestUtils\Cnpj\CnpjGenerator.cs" />
-  </ItemGroup>
 </Project>

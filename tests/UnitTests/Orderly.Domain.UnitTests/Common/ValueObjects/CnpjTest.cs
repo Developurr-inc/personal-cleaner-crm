@@ -32,20 +32,18 @@ public sealed class CnpjTest
     }
     
     
-    [Theory]
-    [InlineData("")]
-    public void GivenInvalidInput_WhenCreatingCnpj_ThenShouldThrowEntityValidationExceptionWithMessage(
-        string cnpj
-    )
+    [Fact]
+    public void GivenInvalidInput_WhenCreatingCnpj_ThenShouldThrowEntityValidationExceptionWithMessage()
     {
         // Arrange
+        const string invalidCnpj = "";
         const string expectedErrorMessage = "There are validation errors.";
         
         // Act
         var exception = Record.Exception(
             () =>
                 Cnpj.Create(
-                    cnpj
+                    invalidCnpj
                 )
         );
         
