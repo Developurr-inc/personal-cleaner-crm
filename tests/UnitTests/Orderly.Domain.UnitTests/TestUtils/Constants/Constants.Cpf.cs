@@ -12,6 +12,6 @@ public static partial class Constants
         public const string ShortCpf = "5464714294";
         public const string LongCpf = "546471429491";
         public const string InvalidCpfLastDigit = "54647142941";
-        public const string NonNumeriCpf = "testingtesting";
+        public const string NonNumericCpf = "testingtesting";
     }
 }

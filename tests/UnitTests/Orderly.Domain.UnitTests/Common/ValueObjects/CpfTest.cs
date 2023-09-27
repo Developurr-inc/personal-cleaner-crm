@@ -157,7 +157,7 @@ public sealed class CpfTest
     public void GivenNonNumericCpf_WhenCreatingCpf_ThenShouldThrowEntityValidationExceptionWithMessage()
     {
         // Assert
-        const string nonNumericCpf = Constants.InvalidCpf.NonNumeriCpf;
+        const string nonNumericCpf = Constants.InvalidCpf.NonNumericCpf;
         const string expectedErrorMessage = "'CPF' is not valid.";
 
         // Act
