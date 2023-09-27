@@ -32,20 +32,18 @@ public sealed class CpfTest
     }
     
     
-    [Theory]
-    [InlineData("")]
-    public void GivenInvalidInput_WhenCreatingCpf_ThenShouldThrowEntityValidationExceptionWithMessage(
-        string cpf
-    )
+    [Fact]
+    public void GivenInvalidInput_WhenCreatingCpf_ThenShouldThrowEntityValidationExceptionWithMessage()
     {
         // Arrange
+        const invalidCpf = "";
         const string expectedErrorMessage = "There are validation errors.";
         
         // Act
         var exception = Record.Exception(
             () =>
                 Cpf.Create(
-                    cpf
+                    invalidCpf
                 )
         );
         
