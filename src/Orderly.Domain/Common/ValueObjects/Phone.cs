@@ -5,7 +5,7 @@ namespace Orderly.Domain.Common.ValueObjects;
 
 public sealed class Phone : ValueObject
 {
-    public string Value { get; }
+    public readonly string Value;
 
     private Phone(string phone)
     {

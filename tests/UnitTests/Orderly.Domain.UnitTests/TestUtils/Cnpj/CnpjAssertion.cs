@@ -8,6 +8,6 @@ public sealed class CnpjAssertion : BaseAssertion
     )
     {
         Assert.NotNull(actual);
-        Assert.Equal(expected.Value, actual.Value);
+        Assert.Equal(expected, actual);
     }
 }

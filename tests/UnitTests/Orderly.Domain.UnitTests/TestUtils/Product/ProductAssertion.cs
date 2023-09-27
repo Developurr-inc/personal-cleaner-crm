@@ -8,11 +8,9 @@ public sealed class ProductAssertion
     {
         Assert.NotNull(actual);
         Assert.NotNull(actual.Id);
-        Assert.NotEqual(default, actual.Id.Value);
         Assert.Equal(expected.Code, actual.Code);
         Assert.Equal(expected.Name, actual.Name);
         Assert.Equal(expected.Packaging, actual.Packaging);
         Assert.Equal(expected.ExciseTax, actual.ExciseTax);
-        Assert.NotEqual(default, actual.CreatedAt);
     }
 }

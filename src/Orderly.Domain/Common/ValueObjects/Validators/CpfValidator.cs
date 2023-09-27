@@ -13,16 +13,14 @@ public sealed class CpfValidator : Validator
 
     public override void Validate()
     {
-        ValidateCpf();
+        ValidateCpf("CPF");
 
         if (HasErrors())
             ThrowEntityValidationExceptionWithValidationErrors();
     }
 
-    private void ValidateCpf()
+    private void ValidateCpf(string fieldName)
     {
-        const string fieldName = "CPF";
-
         ValidationRules.ValidateRequired(_cpf, fieldName, this);
         ValidationRules.ValidateCpf(_cpf, fieldName, this);
     }

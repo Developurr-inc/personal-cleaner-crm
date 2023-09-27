@@ -20,13 +20,13 @@ public class GetCustomerUseCase : IUseCase<GetCustomerInput, GetCustomerOutput>
         var customer = await _customerRepository.GetByIdAsync(input.CustomerId, cancellationToken);
 
         return new GetCustomerOutput(
-            customer.Cnpj.Value,
+            customer.Cnpj.Format(),
             customer.CorporateName,
             customer.TaxId,
             customer.TradeName,
             customer.Segment,
-            customer.BillingEmail?.Value ?? "",
-            customer.NfeEmail.Value,
+            customer.BillingEmail?.Format() ?? "",
+            customer.NfeEmail.Format(),
             customer.Landline?.Value ?? "",
             customer.Mobile?.Value ?? "",
             customer.Observation

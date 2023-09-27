@@ -13,16 +13,14 @@ public sealed class PriceValidator : Validator
 
     public override void Validate()
     {
-        ValidatePrice();
+        ValidatePrice("Price");
 
         if (HasErrors())
             ThrowEntityValidationExceptionWithValidationErrors();
     }
 
-    private void ValidatePrice()
+    private void ValidatePrice(string fieldName)
     {
-        const string fieldName = "Price";
-
         ValidationRules.ValidatePositive(_price, fieldName, this);
     }
 }

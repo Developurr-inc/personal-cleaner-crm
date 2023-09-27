@@ -7,28 +7,27 @@ namespace Orderly.Domain.Product;
 
 public sealed class Product : Entity<ProductId>, IAggregateRoot
 {
-    public string Code { get; private set; }
+    public string Code { get; }
     public string Name { get; private set; }
     public string Packaging { get; private set; }
     public decimal ExciseTax { get; private set; }
     public Price Price { get; private set; }
-    public DateTime CreatedAt { get; }
 
     private Product(
+        ProductId productId,
         string code,
         string name,
         string packaging,
         decimal exciseTax,
         Price price
     )
-        : base(ProductId.Generate())
+        : base(productId)
     {
         Code = code;
         Name = name;
         Packaging = packaging;
         ExciseTax = exciseTax;
         Price = price;
-        CreatedAt = DateTime.Now;
     }
 
     public static Product Create(
@@ -36,17 +35,18 @@ public sealed class Product : Entity<ProductId>, IAggregateRoot
         string name,
         string packaging,
         decimal exciseTax,
-        decimal price
+        decimal priceValue
     )
     {
+        var productId = ProductId.Generate();
         var nameTrimmed = name.Trim();
-        var priceInst = Price.Create(price);
-        
+        var price = Price.Create(priceValue);
+
         Validate(nameTrimmed);
-        
-        return new Product(code, nameTrimmed, packaging, exciseTax, priceInst);
+
+        return new Product(productId, code, nameTrimmed, packaging, exciseTax, price);
     }
-    
+
     private static void Validate(string name)
     {
         var productValidator = new ProductValidator(name);

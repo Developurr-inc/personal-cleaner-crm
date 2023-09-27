@@ -2,33 +2,13 @@ using Orderly.Domain.SeedWork;
 
 namespace Orderly.Domain.Product.ValueObjects;
 
-public sealed class ProductId : ValueObject
+public sealed class ProductId : Identifier<Guid>
 {
-    public Guid Value { get; }
-
     private ProductId(Guid value)
-    {
-        Value = value;
-    }
+        : base(value) { }
 
     public static ProductId Generate()
     {
-        var guid = Guid.NewGuid();
-        return new ProductId(guid);
+        return new ProductId(Guid.NewGuid());
     }
-
-    public static ProductId Restore(string value)
-    {
-        var guid = Guid.Parse(value);
-        return new ProductId(guid);
-    }
-    
-    
-
-    protected override IEnumerable<object> GetEqualityComponents()
-    {
-        yield return Value;
-    }    
 }
-
-

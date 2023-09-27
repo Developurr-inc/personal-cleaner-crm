@@ -10,20 +10,6 @@ public sealed class CustomerValidator : Validator
     private readonly string _segment;
     private readonly string _observation;
 
-    public const int CorporateNameMinLength = 5;
-    public const int CorporateNameMaxLength = 255;
-
-    public const int TaxIdMinLength = 5;
-    public const int TaxIdMaxLength = 255;
-
-    public const int TradeNameMinLength = 5;
-    public const int TradeNameMaxLength = 255;
-
-    public const int SegmentMinLength = 5;
-    public const int SegmentMaxLength = 255;
-
-    public const int ObservationMaxLength = 10_000;
-
     public CustomerValidator(
         string corporateName,
         string taxId,
@@ -41,80 +27,70 @@ public sealed class CustomerValidator : Validator
 
     public override void Validate()
     {
-        ValidateCorporateName();
-        ValidateTaxId();
-        ValidateTradeName();
-        ValidateSegment();
-        ValidateObservation();
+        ValidateCorporateName("Corporate Name");
+        ValidateTaxId("Tax ID");
+        ValidateTradeName("Trade Name");
+        ValidateSegment("Segment");
+        ValidateObservation("Observation");
 
         if (HasErrors())
             ThrowEntityValidationExceptionWithValidationErrors();
     }
 
-    private void ValidateCorporateName()
+    private void ValidateCorporateName(string fieldName)
     {
-        const string fieldName = "Corporate Name";
-
         ValidationRules.ValidateRequired(_corporateName, fieldName, this);
         ValidationRules.ValidateStringLength(
             _corporateName,
             fieldName,
-            CorporateNameMinLength,
-            CorporateNameMaxLength,
+            CustomerValidatorConfig.CorporateNameMinLength,
+            CustomerValidatorConfig.CorporateNameMaxLength,
             this
         );
     }
 
-    private void ValidateTaxId()
+    private void ValidateTaxId(string fieldName)
     {
-        const string fieldName = "Tax ID";
-
         ValidationRules.ValidateRequired(_taxId, fieldName, this);
         ValidationRules.ValidateStringLength(
             _taxId,
             fieldName,
-            TaxIdMinLength,
-            TaxIdMaxLength,
+            CustomerValidatorConfig.TaxIdMinLength,
+            CustomerValidatorConfig.TaxIdMaxLength,
             this
         );
     }
 
-    private void ValidateTradeName()
+    private void ValidateTradeName(string fieldName)
     {
-        const string fieldName = "Trade Name";
-
         ValidationRules.ValidateRequired(_tradeName, fieldName, this);
         ValidationRules.ValidateStringLength(
             _tradeName,
             fieldName,
-            TradeNameMinLength,
-            TradeNameMaxLength,
+            CustomerValidatorConfig.TradeNameMinLength,
+            CustomerValidatorConfig.TradeNameMaxLength,
             this
         );
     }
 
-    private void ValidateSegment()
+    private void ValidateSegment(string fieldName)
     {
-        const string fieldName = "Segment";
-
         ValidationRules.ValidateRequired(_segment, fieldName, this);
         ValidationRules.ValidateStringLength(
             _segment,
             fieldName,
-            SegmentMinLength,
-            SegmentMaxLength,
+            CustomerValidatorConfig.SegmentMinLength,
+            CustomerValidatorConfig.SegmentMaxLength,
             this
         );
     }
 
-    private void ValidateObservation()
+    private void ValidateObservation(string fieldName)
     {
-        const string fieldName = "Observation";
-
         ValidationRules.ValidateMaxStringLength(
             _observation,
             fieldName,
-            ObservationMaxLength,
+            CustomerValidatorConfig.ObservationMaxLength,
             this
         );
     }

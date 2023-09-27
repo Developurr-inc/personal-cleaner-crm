@@ -6,9 +6,6 @@ public sealed class PhoneValidator : Validator
 {
     private readonly string _phone;
 
-    public const int PhoneMinLength = 8;
-    public const int PhoneMaxLength = 18;
-
     public PhoneValidator(string phone)
     {
         _phone = phone;
@@ -16,22 +13,20 @@ public sealed class PhoneValidator : Validator
 
     public override void Validate()
     {
-        ValidatePhone();
+        ValidatePhone("Phone Number");
 
         if (HasErrors())
             ThrowEntityValidationExceptionWithValidationErrors();
     }
 
-    private void ValidatePhone()
+    private void ValidatePhone(string fieldName)
     {
-        const string fieldName = "Phone Number";
-
         ValidationRules.ValidateRequired(_phone, fieldName, this);
         ValidationRules.ValidateStringLength(
             _phone,
             fieldName,
-            PhoneMinLength,
-            PhoneMaxLength,
+            PhoneValidatorConfig.PhoneMinLength,
+            PhoneValidatorConfig.PhoneMaxLength,
             this
         );
         ValidationRules.ValidatePhoneNumber(_phone, fieldName, this);

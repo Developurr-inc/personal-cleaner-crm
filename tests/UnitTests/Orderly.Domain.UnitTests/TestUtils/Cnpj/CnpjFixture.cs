@@ -18,7 +18,7 @@ public sealed class CnpjFixture : BaseFixture
     {
         var lCnpj = cnpj ?? CreateValidCnpj();
 
-        return Domain.Common.ValueObjects.Cnpj.Create(value ?? lCnpj.Value);
+        return Domain.Common.ValueObjects.Cnpj.Create(value ?? lCnpj.Format());
     }
 
     public static string CreateWrongSizeCnpj()

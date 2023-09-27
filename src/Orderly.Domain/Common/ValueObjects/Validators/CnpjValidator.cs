@@ -13,16 +13,14 @@ public sealed class CnpjValidator : Validator
 
     public override void Validate()
     {
-        ValidateCnpj();
+        ValidateCnpj("CNPJ");
 
         if (HasErrors())
             ThrowEntityValidationExceptionWithValidationErrors();
     }
 
-    private void ValidateCnpj()
+    private void ValidateCnpj(string fieldName)
     {
-        const string fieldName = "CNPJ";
-
         ValidationRules.ValidateRequired(_cnpj, fieldName, this);
         ValidationRules.ValidateCnpj(_cnpj, fieldName, this);
     }

@@ -6,9 +6,6 @@ public sealed class EmailValidator : Validator
 {
     private readonly string _email;
 
-    public const int EmailMinLength = 5;
-    public const int EmailMaxLength = 255;
-
     public EmailValidator(string email)
     {
         _email = email;
@@ -16,22 +13,20 @@ public sealed class EmailValidator : Validator
 
     public override void Validate()
     {
-        ValidateEmail();
+        ValidateEmail("Email Address");
 
         if (HasErrors())
             ThrowEntityValidationExceptionWithValidationErrors();
     }
 
-    private void ValidateEmail()
+    private void ValidateEmail(string fieldName)
     {
-        const string fieldName = "Email Address";
-
         ValidationRules.ValidateRequired(_email, fieldName, this);
         ValidationRules.ValidateStringLength(
             _email,
             fieldName,
-            EmailMinLength,
-            EmailMaxLength,
+            EmailValidatorConfig.EmailMinLength,
+            EmailValidatorConfig.EmailMaxLength,
             this
         );
         ValidationRules.ValidateEmail(_email, fieldName, this);

@@ -6,25 +6,27 @@ namespace Orderly.Application.UseCase.SalesConsultant.GetSalesConsultant;
 public class GetSalesConsultantUseCase : IUseCase<GetSalesConsultantInput, GetSalesConsultantOutput>
 {
     private readonly ISalesConsultantRepository _salesConsultantRepository;
-    
+
     public GetSalesConsultantUseCase(ISalesConsultantRepository salesConsultantRepository)
     {
         _salesConsultantRepository = salesConsultantRepository;
     }
-    
+
     public async Task<GetSalesConsultantOutput> Execute(
         GetSalesConsultantInput input,
         CancellationToken cancellationToken
     )
     {
-        var salesConsultantId = SalesConsultantId.Restore(input.SalesConsultantId);
-        var salesConsultant = await _salesConsultantRepository.GetByIdAsync(salesConsultantId, cancellationToken);
+        var salesConsultant = await _salesConsultantRepository.GetByIdAsync(
+            input.SalesConsultantId,
+            cancellationToken
+        );
 
         return new GetSalesConsultantOutput(
-            salesConsultant.Cpf.Value,
-            salesConsultant.Address.Street, //Fix add ToString
+            salesConsultant.Cpf.Format(),
+            salesConsultant.Address.Format(),
             salesConsultant.Name,
-            salesConsultant.Email.Value,
+            salesConsultant.Email.Format(),
             salesConsultant.Landline?.Value ?? "",
             salesConsultant.Mobile?.Value ?? ""
         );
