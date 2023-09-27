@@ -195,6 +195,4 @@ public sealed class EmailTest
         // Assert
         Assert.Equal(expectedEmail, email.Format());
     }
-    
-    
 }
