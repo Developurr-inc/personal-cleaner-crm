@@ -1,6 +1,7 @@
 using Orderly.Domain.Common.ValueObjects;
 using Orderly.Domain.Exceptions;
 using Orderly.Domain.UnitTests.TestUtils.Constants;
+using Orderly.Domain.UnitTests.TestUtils.Cpf;
 
 namespace Orderly.Domain.UnitTests.Common.ValueObjects;
 
@@ -186,4 +187,17 @@ public sealed class CpfTest
         Assert.Equal(expectedCpfValue, cpf.Format());
     }
     
+    [Fact]
+    public void GivenValidCpf_WhenCallFormat_ShouldReturnFormattedCpf()
+    {
+        // Arrange
+        var cpf = CpfFixture.CreateCpf();
+        var expectedFormattedCpf = $"546.471.429-49";
+
+        // Act
+        var formattedCpf = cpf.Format();
+
+        // Assert
+        Assert.Equal(expectedFormattedCpf, formattedCpf);
+    }
 }
