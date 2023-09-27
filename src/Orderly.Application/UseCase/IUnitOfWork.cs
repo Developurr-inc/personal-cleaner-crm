@@ -1,4 +1,4 @@
-namespace Orderly.Domain.SeedWork;
+namespace Orderly.Application.UseCase;
 
 public interface IUnitOfWork : IDisposable
 {
