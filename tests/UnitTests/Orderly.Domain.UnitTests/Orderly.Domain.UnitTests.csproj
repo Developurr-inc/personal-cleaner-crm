@@ -27,5 +27,4 @@
   <ItemGroup>
     <ProjectReference Include="..\..\..\src\Orderly.Domain\Orderly.Domain.csproj" />
   </ItemGroup>
-
 </Project>
