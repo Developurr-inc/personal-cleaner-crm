@@ -3,6 +3,7 @@ using Orderly.Application.UseCase;
 using Orderly.Application.UseCase.Customer.CreateCustomer;
 using Orderly.Domain.Customer;
 using Orderly.Domain.SalesConsultant;
+using Orderly.Domain.UnitTests.TestUtils.Constants;
 
 namespace Orderly.Application.UnitTests.TestUtils.CreateCustomer;
 
@@ -15,5 +16,27 @@ public static class CreateCustomerFixture
         var salesConsultantRepositoryMock = new Mock<ISalesConsultantRepository>();
 
         return new CreateCustomerUseCase(unitOfWorkMock.Object, customerRepositoryMock.Object, salesConsultantRepositoryMock.Object);
+    }
+    
+    public static CreateCustomerInput CreateInput()
+    {
+        return new CreateCustomerInput(
+            Constants.SalesConsultant.SalesConsultantId,
+            Constants.Cnpj.CnpjValue,
+            Constants.Customer.CorporateName,
+            Constants.Customer.TaxId,
+            Constants.Customer.TradeName,
+            Constants.Customer.Segment,
+            Constants.Email.EmailValue,
+            Constants.Email.EmailValue,
+            Constants.Phone.PhoneValue,
+            Constants.Phone.PhoneValue,
+            Constants.Customer.Observation
+        );
+    }
+    
+    public static CreateCustomerOutput CreateOutput()
+    {
+        return new CreateCustomerOutput(Constants.Customer.CustomerId);
     }
 }
