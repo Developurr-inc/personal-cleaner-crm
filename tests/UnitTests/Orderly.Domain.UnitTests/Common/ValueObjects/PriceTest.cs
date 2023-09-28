@@ -21,7 +21,7 @@ public sealed class PriceTest
     public void GivenValidPrice_WhenCreatingPrice_ThenShouldHaveValidPrice()
     {
         // Arrange
-        const string expectedPrice = "R$ 10,99";
+        const string expectedPrice = "R$ 10.99";
 
         // Act
         var price = Price.Create(Constants.Price.PriceValue);
@@ -77,7 +77,7 @@ public sealed class PriceTest
     {
         // Arrange
         var price = PriceFixture.CreatePrice();
-        var expectedFormattedPrice = $"R$ 10,99";
+        var expectedFormattedPrice = $"R$ 10.99";
 
         // Act
         var formattedPrice = price.Format();
