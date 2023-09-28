@@ -1,19 +1,29 @@
-using Orderly.Domain.UnitTests.TestUtils.ShippingId;
+using Orderly.Domain.Shipping.ValueObjects;
 
 namespace Orderly.Domain.UnitTests.Shipping.ValueObjects;
 
 public sealed class ShippingIdTest
 {
-    [Theory]
-    [MemberData(nameof(ShippingIdGenerator.CreateShippingIds), MemberType = typeof(ShippingIdGenerator))]
-    public void GivenValidInputs_WhenCreatingShippingId_ThenShouldInstantiateShippingId(
-        Domain.Shipping.ValueObjects.ShippingId shippingId
-    )
+    [Fact]
+    public void GivenNothing_WhenGeneratingShippingId_ThenShouldInstantiateShippingId()
     {
         // Act
-        var newShippingId = ShippingIdFixture.CreateShippingId(shippingId);
+        var shippingId = ShippingId.Generate();
 
         // Assert
-        ShippingIdAssertion.AssertShippingId(newShippingId);
+        Assert.NotNull(shippingId);
+    }
+    
+    [Fact]
+    public void GivenNothing_WhenCallingFormat_ThenShouldNotBeEmpty()
+    {
+        // Arrange
+        var shippingId = ShippingId.Generate();
+        
+        // Act
+        var id = shippingId.Format();
+        
+        // Assert
+        Assert.NotEmpty(id);
     }
 }
