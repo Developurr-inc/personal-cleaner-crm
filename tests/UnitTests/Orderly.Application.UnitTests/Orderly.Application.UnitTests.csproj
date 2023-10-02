@@ -25,6 +25,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\..\..\src\Orderly.Application\Orderly.Application.csproj" />
+      <ProjectReference Include="..\Orderly.Domain.UnitTests\Orderly.Domain.UnitTests.csproj" />
     </ItemGroup>
 
 </Project>
