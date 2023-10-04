@@ -2,28 +2,12 @@ using Orderly.Domain.Order.Validators;
 
 namespace Orderly.Domain.UnitTests.TestUtils.Quantity;
 
-public sealed class QuantityFixture : BaseFixture
+public sealed class QuantityFixture
 {
-    private static Domain.Order.ValueObjects.Quantity CreateValidQuantity()
+    public static Domain.Order.ValueObjects.Quantity CreateQuantity()
     {
-        var value = Faker.Random.Int(QuantityValidatorConfig.QuantityMin, QuantityValidatorConfig.QuantityMax);
-        
-        return Domain.Order.ValueObjects.Quantity.Create(value);
+        return Domain.Order.ValueObjects.Quantity.Create(
+            Constants.Constants.Quantity.Value    
+        );
     }
-    
-    public static Domain.Order.ValueObjects.Quantity CreateQuantity(
-        Domain.Order.ValueObjects.Quantity? quantity = null,
-        int? value = null
-    )
-    {
-        var lQuantity = quantity ?? CreateValidQuantity();
-
-        return Domain.Order.ValueObjects.Quantity.Create(value ?? lQuantity.Value);
-    }
-    
-    public static int CreateBellowMinQuantity()
-    {
-        return Faker.Random.Int(int.MinValue, QuantityValidatorConfig.QuantityMin);
-    }
-    
 }
