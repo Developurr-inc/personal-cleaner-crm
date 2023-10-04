@@ -21,7 +21,7 @@ public static class CreateCustomerFixture
     public static CreateCustomerInput CreateInput()
     {
         return new CreateCustomerInput(
-            Constants.SalesConsultant.SalesConsultantId,
+            Constants.SalesConsultantId.Id.Format(),
             Constants.Cnpj.CnpjValue,
             Constants.Customer.CorporateName,
             Constants.Customer.TaxId,
@@ -33,10 +33,5 @@ public static class CreateCustomerFixture
             Constants.Phone.PhoneValue,
             Constants.Customer.Observation
         );
-    }
-    
-    public static CreateCustomerOutput CreateOutput()
-    {
-        return new CreateCustomerOutput(Constants.Customer.CustomerId);
     }
 }

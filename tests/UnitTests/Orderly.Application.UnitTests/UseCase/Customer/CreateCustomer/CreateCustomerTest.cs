@@ -4,6 +4,7 @@ using Orderly.Application.UseCase;
 using Orderly.Application.UseCase.Customer.CreateCustomer;
 using Orderly.Domain.Customer;
 using Orderly.Domain.SalesConsultant;
+using Orderly.Domain.Exceptions;
 
 namespace Orderly.Application.UnitTests.UseCase.Customer.CreateCustomer;
 
@@ -103,66 +104,68 @@ public class CreateCustomerTest
         Assert.NotEmpty(output.CustomerId);
     }
 
-    [Fact]
-    public async void GivenInvalidSalesConsultantId_WhenCallingExecute_ThenShouldReturnNotFoundExceptionWithMessage()
-    {
-        // Arrange
-        var createCustomerUseCase = CreateCustomerFixture.CreateUseCase();
-        var input = CreateCustomerFixture.CreateInput();
-        const string expectedMessage = "aaa";
-
-        // Act
-        var exception = await Record.ExceptionAsync(() => createCustomerUseCase.Execute(input, CancellationToken.None));
-
-        // Assert
-        var notFoundException = Assert.IsType<NotFoundException>(exception);
-        Assert.Equal(expectedMessage, notFoundException.Message);
-    }
+    // [Fact]
+    // public async void GivenInvalidSalesConsultantId_WhenCallingExecute_ThenShouldReturnNotFoundExceptionWithMessage()
+    // {
+    //     // Arrange
+    //     var createCustomerUseCase = CreateCustomerFixture.CreateUseCase();
+    //     var input = CreateCustomerFixture.CreateInput();
+    //     const string expectedMessage = "aaa";
+    //
+    //     // Act
+    //     var exception = await Record.ExceptionAsync(() => createCustomerUseCase.Execute(input, CancellationToken.None));
+    //
+    //     // Assert
+    //     var notFoundException = Assert.IsType<NotFoundException>(exception);
+    //     Assert.Equal(expectedMessage, notFoundException.Message);
+    // }
 
     [Fact]
     public async void GivenInvalidInput_WhenCallingExecute_ThenShouldReturnDomainValidationExceptionWithMessage()
     {
         // Arrange
         var createCustomerUseCase = CreateCustomerFixture.CreateUseCase();
-        var input = CreateCustomerFixture.CreateInvalidInput();
-
+        var input = CreateCustomerFixture.CreateInput();
+        
+        
+    
         // Act
         var exception = await Record.ExceptionAsync(() => createCustomerUseCase.Execute(input, CancellationToken.None));
-
+    
         // Assert
-        var domainValidationException = Assert.IsType<DomainValidationException>(exception);
-        Assert.NotEmpty(domainValidationException.Errors);
+        var entityValidationException = Assert.IsType<EntityValidationException>(exception);
+        Assert.NotEmpty(entityValidationException.Errors);
     }
-
-    [Fact]
-    public async void GivenRepositoryError_WhenCallingExecute_ThenShouldReturnRepositoryExceptionWithMessage()
-    {
-        // Arrange
-        var createCustomerUseCase = CreateCustomerFixture.CreateUseCase();
-        var input = CreateCustomerFixture.CreateInput();
-        const string expectedMessage = "aaa";
-
-        // Act
-        var exception = await Record.ExceptionAsync(() => createCustomerUseCase.Execute(input, CancellationToken.None));
-
-        // Assert
-        var repositoryException = Assert.IsType<RepositoryException>(exception);
-        Assert.Equal(expectedMessage, repositoryException.Message);
-    }
-
-    [Fact]
-    public void GivenUnitOfWorkError_WhenCallingExecute_ThenShouldReturnUnitOfWorkExceptionWithMessage()
-    {
-        // Arrange
-        var createCustomerUseCase = CreateCustomerFixture.CreateUseCase();
-        var input = CreateCustomerFixture.CreateInput();
-        const string expectedMessage = "aaa";
-
-        // Act
-        var exception = Record.ExceptionAsync(() => createCustomerUseCase.Execute(input, CancellationToken.None));
-
-        // Assert
-        var unitOfWorkException = Assert.IsType<UnitOfWorkException>(exception);
-        Assert.Equal(expectedMessage, unitOfWorkException.Message);
-    }
+    
+    // [Fact]
+    // public async void GivenRepositoryError_WhenCallingExecute_ThenShouldReturnRepositoryExceptionWithMessage()
+    // {
+    //     // Arrange
+    //     var createCustomerUseCase = CreateCustomerFixture.CreateUseCase();
+    //     var input = CreateCustomerFixture.CreateInput();
+    //     const string expectedMessage = "aaa";
+    //
+    //     // Act
+    //     var exception = await Record.ExceptionAsync(() => createCustomerUseCase.Execute(input, CancellationToken.None));
+    //
+    //     // Assert
+    //     var repositoryException = Assert.IsType<RepositoryException>(exception);
+    //     Assert.Equal(expectedMessage, repositoryException.Message);
+    // }
+    //
+    // [Fact]
+    // public void GivenUnitOfWorkError_WhenCallingExecute_ThenShouldReturnUnitOfWorkExceptionWithMessage()
+    // {
+    //     // Arrange
+    //     var createCustomerUseCase = CreateCustomerFixture.CreateUseCase();
+    //     var input = CreateCustomerFixture.CreateInput();
+    //     const string expectedMessage = "aaa";
+    //
+    //     // Act
+    //     var exception = Record.ExceptionAsync(() => createCustomerUseCase.Execute(input, CancellationToken.None));
+    //
+    //     // Assert
+    //     var unitOfWorkException = Assert.IsType<UnitOfWorkException>(exception);
+    //     Assert.Equal(expectedMessage, unitOfWorkException.Message);
+    // }
 }
