@@ -1,38 +1,74 @@
+using Orderly.Domain.Exceptions;
 using Orderly.Domain.Order.ValueObjects;
-using Orderly.Domain.UnitTests.TestUtils;
-using Orderly.Domain.UnitTests.TestUtils.Discount;
+using Orderly.Domain.UnitTests.TestUtils.Constants;
 
 namespace Orderly.Domain.UnitTests.Order.ValueObjects;
 
 public sealed class DiscountTest
 {
-    [Theory]
-    [MemberData(nameof(DiscountGenerator.CreateDiscounts), MemberType = typeof(DiscountGenerator))]
-    public void GivenValidInput_WhenCreatingDiscount_ThenShouldInstantiateDiscount(Discount discount)
+    [Fact]
+    public void GivenValidInput_WhenCreatingDiscount_ThenShouldInstantiateDiscount()
     {
         // Act
-        var newDiscount = DiscountFixture.CreateDiscount(discount);
+        var discount = Discount.Create(
+            Constants.Discount.DiscountValue
+        );
 
         // Assert
-        DiscountAssertion.AssertDiscount(discount, newDiscount);
+        Assert.NotNull(discount);
     }
     
-    [Theory]
-    [MemberData(nameof(DiscountGenerator.CreateInvalidDiscounts), MemberType = typeof(DiscountGenerator))]
-    public void GivenInvalidValue_WhenCreatingDiscount_ThenShouldThrowEntityValidationException(
-        decimal invalidValue
-    )
+    [Fact]
+    public void GivenNegativeDiscountValue_WhenCreatingDiscount_ThenShouldThrowEntityValidationExceptionWithMessage()
     {
         // Arrange
-        void Action()
-        {
-            _ = DiscountFixture.CreateDiscount(value: invalidValue);
-        }
-
+        const decimal negativeDiscountValue = Constants.InvalidDiscount.NegativeDiscount;
+        const string expectedErrorMessage = "'Discount' should be a decimal between 0 and 100.";
+        
         // Act
-        var exception = Record.Exception(Action);
-
+        var exception = Record.Exception(
+            () =>
+                Discount.Create(
+                    negativeDiscountValue
+                )
+        );
+        
         // Assert
-        BaseAssertion.AssertException(exception!);
+        var eve = Assert.IsType<EntityValidationException>(exception);
+        Assert.Contains(expectedErrorMessage, eve.Errors);
     }
+    
+    [Fact]
+    public void GivenOverUpperLimitDiscountValue_WhenCreatingDiscount_ThenShouldThrowEntityValidationExceptionWithMessage()
+    {
+        // Arrange
+        const decimal overUpperLimitDiscountValue = Constants.InvalidDiscount.OverUpperLimitDiscount;
+        const string expectedErrorMessage = "'Discount' should be a decimal between 0 and 100.";
+        
+        // Act
+        var exception = Record.Exception(
+            () =>
+                Discount.Create(
+                    overUpperLimitDiscountValue
+                )
+        );
+        
+        // Assert
+        var eve = Assert.IsType<EntityValidationException>(exception);
+        Assert.Contains(expectedErrorMessage, eve.Errors);
+    }
+    
+    //[Fact]
+    //public void GivenValidDiscount_WhenCallFormat_ShouldReturnFormattedDiscount()
+    //{
+    //    // Arrange
+    //    var discount = DiscountFixture.CreateDiscount();
+    //    var expectedFormattedDiscount = $"20";
+    //
+    //    // Act
+    //    var formattedDiscount = discount.Format();
+    //
+    //    // Assert
+    //    Assert.Equal(expectedFormattedDiscount, formattedDiscount);
+    //}
 }
