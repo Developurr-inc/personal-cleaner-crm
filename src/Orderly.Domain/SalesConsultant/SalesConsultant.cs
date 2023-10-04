@@ -71,7 +71,7 @@ public sealed class SalesConsultant : Entity<SalesConsultantId>, IAggregateRoot
 
         Validate(nameTrimmed);
 
-        return new SalesConsultant(salesConsultantId, cpf, address, name, email, landline, mobile);
+        return new SalesConsultant(salesConsultantId, cpf, address, nameTrimmed, email, landline, mobile);
     }
 
     private static void Validate(string name)
