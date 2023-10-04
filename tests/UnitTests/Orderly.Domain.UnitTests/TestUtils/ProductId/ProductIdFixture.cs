@@ -1,18 +1,10 @@
 namespace Orderly.Domain.UnitTests.TestUtils.ProductId;
 
-public sealed class ProductIdFixture : BaseFixture
+public static class ProductIdFixture
 {
-    private static Domain.Product.ValueObjects.ProductId createValidProductId()
+    public static Domain.Product.ValueObjects.ProductId createProductId()
     {
 
         return Domain.Product.ValueObjects.ProductId.Generate();
-    }
-
-
-    public static Domain.Product.ValueObjects.ProductId CreateProductId(
-        Domain.Product.ValueObjects.ProductId? productgid = null
-    )
-    {
-        return productgid ?? createValidProductId();
     }
 }

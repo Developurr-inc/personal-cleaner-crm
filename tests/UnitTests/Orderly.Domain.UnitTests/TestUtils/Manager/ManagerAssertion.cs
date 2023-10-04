@@ -4,7 +4,7 @@ public sealed class ManagerAssertion : BaseAssertion
 {
     public static void AssertManager(Domain.Manager.Manager expected, Domain.Manager.Manager actual)
     {
-        Assert.NotNull(actual);
+        Assert.NotNull(actual); 
         Assert.NotNull(actual.Id);
         Assert.Equal(expected.Cpf, actual.Cpf);
         Assert.Equal(expected.Address, actual.Address);

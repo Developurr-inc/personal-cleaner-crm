@@ -1,19 +1,29 @@
-using Orderly.Domain.UnitTests.TestUtils.ProductId;
+using Orderly.Domain.Product.ValueObjects;
 
 namespace Orderly.Domain.UnitTests.Product.ValueObjects;
 
 public sealed class ProductIdTest
 {
-    [Theory]
-    [MemberData(nameof(ProductIdGenerator.CreateProductIds), MemberType = typeof(ProductIdGenerator))]
-    public void GivenValidInput_WhenGeneratingProductId_ThenShouldInstantiateProductId(
-        Domain.Product.ValueObjects.ProductId productId
-    )
+    [Fact]
+    public void GivenNothing_WhenGeneratingProductId_ThenShouldInstantiateProductId()
     {
         // Act
-        var newProductId = ProductIdFixture.CreateProductId(productId);
+        var productId = ProductId.Generate();
+
+        // Assert
+        Assert.NotNull(productId);
+    }
+    
+    [Fact]
+    public void GivenNothing_WhenCallingFormat_ThenShouldNotBeEmpty()
+    {
+        // Arrange
+        var productId = ProductId.Generate();
         
-        //Assert
-        ProductIdAssertion.AssertProductId(newProductId);
+        // Act
+        var id = productId.Format();
+        
+        // Assert
+        Assert.NotEmpty(id);
     }
 }
