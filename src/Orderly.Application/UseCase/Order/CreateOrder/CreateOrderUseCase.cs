@@ -44,11 +44,6 @@ public sealed class CreateOrderUseCase : IUseCase<CreateOrderInput, CreateOrderO
             cancellationToken
         );
 
-        var shipping = await _shippingRepository.GetByIdAsync(
-            input.ShippingId,
-            cancellationToken
-        );
-
         var order = Domain.Order.Order.Open(
             customer.Id,
             salesConsultant.Id
