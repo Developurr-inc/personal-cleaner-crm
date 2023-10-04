@@ -1,37 +1,60 @@
-using Orderly.Domain.UnitTests.TestUtils;
-using Orderly.Domain.UnitTests.TestUtils.Quantity;
+using Orderly.Domain.Exceptions;
+using Orderly.Domain.Order.ValueObjects;
+using Orderly.Domain.UnitTests.TestUtils.Constants;
 
 namespace Orderly.Domain.UnitTests.Order.ValueObjects;
 
 public sealed class QuantityTest
 {
-    [Theory]
-    [MemberData(nameof(QuantityGenerator.CreateQuantitys), MemberType = typeof(QuantityGenerator))]
-    public void GivenValidInput_WhenCreatingQuantity_ThenShouldInstantiateQuantity(Domain.Order.ValueObjects.Quantity quantity)
+    [Fact]
+    public void GivenValidInput_WhenCreatingQuantity_ThenShouldInstantiateQuantity()
     {
         // Act
-        var newQuantity = QuantityFixture.CreateQuantity(quantity);
+        var quantity = Quantity.Create(
+            Constants.Quantity.Value
+        );
 
         // Assert
-        QuantityAssertion.AssertQuantity(quantity, newQuantity);
+        Assert.NotNull(quantity);
     }
     
-    [Theory]
-    [MemberData(nameof(QuantityGenerator.CreateInvalidQuantitys), MemberType = typeof(QuantityGenerator))]
-    public void GivenInvalidValue_WhenCreatingQuantity_ThenShouldThrowEntityValidationException(
-        int invalidValue
-    )
+    [Fact]
+    public void GivenNegativeQuantityValue_WhenCreatingQuantity_ThenShouldThrowEntityValidationExceptionWithMessage()
     {
         // Arrange
-        void Action()
-        {
-            _ = QuantityFixture.CreateQuantity(value: invalidValue);
-        }
-
+        const int negativeQuantityValue = Constants.InvalidQuantity.NegativeQuantity;
+        const string expectedErrorMessage = "'Quantity' should be an int between 0 and 2147483646.";
+        
         // Act
-        var exception = Record.Exception(Action);
-
+        var exception = Record.Exception(
+            () =>
+                Quantity.Create(
+                    negativeQuantityValue
+                )
+        );
+        
         // Assert
-        BaseAssertion.AssertException(exception!);
+        var eve = Assert.IsType<EntityValidationException>(exception);
+        Assert.Contains(expectedErrorMessage, eve.Errors);
+    }
+    
+    [Fact]
+    public void GivenOverUpperLimitQuantityValue_WhenCreatingQuantity_ThenShouldThrowEntityValidationExceptionWithMessage()
+    {
+        // Arrange
+        const int overUpperLimitQuantityValue = Constants.InvalidQuantity.OverUpperLimitQuantity;
+        const string expectedErrorMessage = "'Quantity' should be an int between 0 and 2147483646.";
+        
+        // Act
+        var exception = Record.Exception(
+            () =>
+                Quantity.Create(
+                    overUpperLimitQuantityValue
+                )
+        );
+        
+        // Assert
+        var eve = Assert.IsType<EntityValidationException>(exception);
+        Assert.Contains(expectedErrorMessage, eve.Errors);
     }
 }
