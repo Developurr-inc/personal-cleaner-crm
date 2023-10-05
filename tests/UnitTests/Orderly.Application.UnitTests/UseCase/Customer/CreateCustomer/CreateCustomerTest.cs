@@ -5,6 +5,7 @@ using Orderly.Application.UseCase.Customer.CreateCustomer;
 using Orderly.Domain.Customer;
 using Orderly.Domain.SalesConsultant;
 using Orderly.Domain.Exceptions;
+using Orderly.Domain.UnitTests.TestUtils.SalesConsultant;
 
 namespace Orderly.Application.UnitTests.UseCase.Customer.CreateCustomer;
 
@@ -35,6 +36,10 @@ public class CreateCustomerTest
         var createCustomerUseCase = new CreateCustomerUseCase(unitOfWorkMock.Object, customerRepositoryMock.Object, salesConsultantRepositoryMock.Object);
         var input = CreateCustomerFixture.CreateInput();
 
+        salesConsultantRepositoryMock.Setup(x => x.GetByIdAsync(
+            It.IsAny<string>(), It.IsAny<CancellationToken>())
+        ).ReturnsAsync(SalesConsultantFixture.CreateSalesConsultant());
+
         // Act
         _ = await createCustomerUseCase.Execute(input, CancellationToken.None);
         
@@ -51,6 +56,10 @@ public class CreateCustomerTest
         var salesConsultantRepositoryMock = new Mock<ISalesConsultantRepository>();
         var createCustomerUseCase = new CreateCustomerUseCase(unitOfWorkMock.Object, customerRepositoryMock.Object, salesConsultantRepositoryMock.Object);
         var input = CreateCustomerFixture.CreateInput();
+        
+        salesConsultantRepositoryMock.Setup(x => x.GetByIdAsync(
+            It.IsAny<string>(), It.IsAny<CancellationToken>())
+        ).ReturnsAsync(SalesConsultantFixture.CreateSalesConsultant());
 
         // Act
         _ = await createCustomerUseCase.Execute(input, CancellationToken.None);
@@ -68,6 +77,10 @@ public class CreateCustomerTest
         var salesConsultantRepositoryMock = new Mock<ISalesConsultantRepository>();
         var createCustomerUseCase = new CreateCustomerUseCase(unitOfWorkMock.Object, customerRepositoryMock.Object, salesConsultantRepositoryMock.Object);
         var input = CreateCustomerFixture.CreateInput();
+        
+        salesConsultantRepositoryMock.Setup(x => x.GetByIdAsync(
+            It.IsAny<string>(), It.IsAny<CancellationToken>())
+        ).ReturnsAsync(SalesConsultantFixture.CreateSalesConsultant());
         
         // Act
         _ = await createCustomerUseCase.Execute(input, CancellationToken.None);
@@ -125,10 +138,8 @@ public class CreateCustomerTest
     {
         // Arrange
         var createCustomerUseCase = CreateCustomerFixture.CreateUseCase();
-        var input = CreateCustomerFixture.CreateInput();
+        var input = CreateCustomerFixture.CreateInvalidInput();
         
-        
-    
         // Act
         var exception = await Record.ExceptionAsync(() => createCustomerUseCase.Execute(input, CancellationToken.None));
     
