@@ -15,6 +15,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Orderly.Domain.UnitTests", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Orderly.Application", "src\Orderly.Application\Orderly.Application.csproj", "{83146084-DD2E-4C15-8ABD-853358F61EF2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Orderly.Application.UnitTests", "tests\UnitTests\Orderly.Application.UnitTests\Orderly.Application.UnitTests.csproj", "{A4F867EF-5723-40D7-ABAA-39C2604CE223}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{83146084-DD2E-4C15-8ABD-853358F61EF2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{83146084-DD2E-4C15-8ABD-853358F61EF2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{83146084-DD2E-4C15-8ABD-853358F61EF2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A4F867EF-5723-40D7-ABAA-39C2604CE223}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A4F867EF-5723-40D7-ABAA-39C2604CE223}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A4F867EF-5723-40D7-ABAA-39C2604CE223}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A4F867EF-5723-40D7-ABAA-39C2604CE223}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -45,5 +51,6 @@ Global
 		{EA701952-9D70-484A-AA94-C4192D0AE9B5} = {CEC21282-7F4A-4125-87E1-B6AEB28692DD}
 		{4A9F8F7C-C734-4351-BDE3-466DDE5B3154} = {EA701952-9D70-484A-AA94-C4192D0AE9B5}
 		{83146084-DD2E-4C15-8ABD-853358F61EF2} = {3E98453A-2E86-476E-8441-966943BBC3E6}
+		{A4F867EF-5723-40D7-ABAA-39C2604CE223} = {EA701952-9D70-484A-AA94-C4192D0AE9B5}
 	EndGlobalSection
 EndGlobal
