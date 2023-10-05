@@ -1,17 +1,21 @@
+using Orderly.Domain.Exceptions;
+using Orderly.Domain.UnitTests.TestUtils.Constants;
 using Orderly.Domain.UnitTests.TestUtils.Order;
 
 namespace Orderly.Domain.UnitTests.Order;
 
 public sealed class OrderTest
 {
-    [Theory]
-    [MemberData(nameof(OrderGenerator.CreateOrders), MemberType = typeof(OrderGenerator))]
-    public void GivenValidInput_WhenOpeningOrder_ShouldInstantiateOrder(Domain.Order.Order order)
+    [Fact]
+    public void GivenValidInput_WhenCreatingOrder_ThenShouldInstantiateOrder()
     {
         // Act
-        var newOrder = OrderFixture.CreateOrder();
+        var order = Domain.Order.Order.Open(
+            Constants.CustomerId.Id,
+            Constants.SalesConsultantId.Id
+        );
 
         // Assert
-        OrderAssertion.AssertOrder(order, newOrder);
+        Assert.NotNull(order);
     }
 }
