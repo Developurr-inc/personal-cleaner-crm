@@ -1,6 +1,6 @@
 namespace Orderly.Domain.Order.Enums;
 
-public enum TransactionNature
+public enum NaturezaDaOperacao
 {
     Comodato,
     Bonificacao,

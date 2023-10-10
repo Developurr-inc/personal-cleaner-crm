@@ -12,7 +12,7 @@ namespace Orderly.Domain.Order;
 public sealed class Order : Entity<OrderId>, IAggregateRoot
 {
     private readonly List<LineItem> _lineItems;
-    private TransactionNature _transactionNature;
+    private NaturezaDaOperacao _naturezaDaOperacao;
     private Status _status;
     public CustomerId CustomerId { get; }
     public SalesConsultantId SalesConsultantId { get; }
@@ -21,7 +21,7 @@ public sealed class Order : Entity<OrderId>, IAggregateRoot
 
     private Order(
         OrderId orderId,
-        TransactionNature transactionNature,
+        NaturezaDaOperacao naturezaDaOperacao,
         CustomerId customerId,
         SalesConsultantId salesConsultantId,
         Price price
@@ -29,7 +29,7 @@ public sealed class Order : Entity<OrderId>, IAggregateRoot
         : base(orderId)
     {
         _lineItems = new List<LineItem>();
-        _transactionNature = transactionNature;
+        _naturezaDaOperacao = naturezaDaOperacao;
         _status = Status.Draft;
         CustomerId = customerId;
         SalesConsultantId = salesConsultantId;
@@ -42,6 +42,6 @@ public sealed class Order : Entity<OrderId>, IAggregateRoot
         var orderId = OrderId.Generate();
         var price = Price.Create(0);
 
-        return new Order(orderId, TransactionNature.Venda, customerId, salesConsultantId, price);
+        return new Order(orderId, NaturezaDaOperacao.Venda, customerId, salesConsultantId, price);
     }
 }

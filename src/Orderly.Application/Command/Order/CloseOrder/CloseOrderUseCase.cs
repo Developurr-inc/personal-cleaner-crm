@@ -1,13 +1,13 @@
 using Orderly.Domain.Order;
 
-namespace Orderly.Application.UseCase.Order.DeleteOrder;
+namespace Orderly.Application.Command.Order.CloseOrder;
 
-public class DeleteOrderUseCase : IUseCase<DeleteOrderInput, DeleteOrderOutput>
+public class CloseOrderUseCase : IUseCase<CloseOrderInput, CloseOrderOutput>
 {
     private readonly IUnitOfWork _unitOfWork;
     private readonly IOrderRepository _orderRepository;
 
-    public DeleteOrderUseCase(
+    public CloseOrderUseCase(
         IUnitOfWork unitOfWork,
         IOrderRepository orderRepository
     )
@@ -16,8 +16,8 @@ public class DeleteOrderUseCase : IUseCase<DeleteOrderInput, DeleteOrderOutput>
         _orderRepository = orderRepository;
     }
 
-    public async Task<DeleteOrderOutput> Execute(
-        DeleteOrderInput input,
+    public async Task<CloseOrderOutput> Execute(
+        CloseOrderInput input,
         CancellationToken cancellationToken
     )
     {
@@ -29,6 +29,6 @@ public class DeleteOrderUseCase : IUseCase<DeleteOrderInput, DeleteOrderOutput>
         await _orderRepository.RemoveAsync(order, cancellationToken);
         await _unitOfWork.CommitAsync(cancellationToken);
 
-        return new DeleteOrderOutput(order.Id.Format());
+        return new CloseOrderOutput(order.Id.Format());
     }
 }

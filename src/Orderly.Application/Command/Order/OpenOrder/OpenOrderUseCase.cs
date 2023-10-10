@@ -1,11 +1,13 @@
+using Orderly.Application.Command;
+using Orderly.Application.Command.Order.OpenOrder;
 using Orderly.Domain.Customer;
 using Orderly.Domain.Order;
 using Orderly.Domain.SalesConsultant;
 using Orderly.Domain.Shipping;
 
-namespace Orderly.Application.UseCase.Order.CreateOrder;
+namespace Orderly.Application.UseCase.Order.OpenOrder;
 
-public sealed class CreateOrderUseCase : IUseCase<CreateOrderInput, CreateOrderOutput>
+public sealed class OpenOrderUseCase : IUseCase<OpenOrderInput, OpenOrderOutput>
 {
     private readonly IUnitOfWork _unitOfWork;
     private readonly IOrderRepository _orderRepository;
@@ -13,7 +15,7 @@ public sealed class CreateOrderUseCase : IUseCase<CreateOrderInput, CreateOrderO
     private readonly ISalesConsultantRepository _salesConsultantRepository;
     private readonly IShippingRepository _shippingRepository;
 
-    public CreateOrderUseCase(
+    public OpenOrderUseCase(
         IUnitOfWork unitOfWork,
         IOrderRepository orderRepository,
         ICustomerRepository customerRepository,
@@ -29,8 +31,8 @@ public sealed class CreateOrderUseCase : IUseCase<CreateOrderInput, CreateOrderO
         _shippingRepository = shippingRepository;
     }
 
-    public async Task<CreateOrderOutput> Execute(
-        CreateOrderInput input,
+    public async Task<OpenOrderOutput> Execute(
+        OpenOrderInput input,
         CancellationToken cancellationToken
     )
     {
@@ -52,6 +54,6 @@ public sealed class CreateOrderUseCase : IUseCase<CreateOrderInput, CreateOrderO
         await _orderRepository.InsertAsync(order, cancellationToken);
         await _unitOfWork.CommitAsync(cancellationToken);
 
-        return new CreateOrderOutput(order.Id.Format());
+        return new OpenOrderOutput(order.Id.Format());
     }
 }

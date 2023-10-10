@@ -1,6 +1,7 @@
-namespace Orderly.Application.UseCase.Order.CreateOrder;
+namespace Orderly.Application.Command.Order.OpenOrder;
 
-public record CreateOrderInput(
+public record OpenOrderInput
+(
     string CustomerId,
     string SalesConsultantId,
     string ShippingId,

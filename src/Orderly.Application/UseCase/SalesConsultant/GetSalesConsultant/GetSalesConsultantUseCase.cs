@@ -1,3 +1,4 @@
+using Orderly.Application.Command;
 using Orderly.Domain.SalesConsultant;
 
 namespace Orderly.Application.UseCase.SalesConsultant.GetSalesConsultant;

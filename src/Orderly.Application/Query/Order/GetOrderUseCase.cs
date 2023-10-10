@@ -1,6 +1,7 @@
+using Orderly.Application.Command;
 using Orderly.Domain.Order;
 
-namespace Orderly.Application.UseCase.Order.GetOrder;
+namespace Orderly.Application.Query.Order;
 
 public class GetOrderUseCase : IUseCase<GetOrderInput, GetOrderOutput>
 {

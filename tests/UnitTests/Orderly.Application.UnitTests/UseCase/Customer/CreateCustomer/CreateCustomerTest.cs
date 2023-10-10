@@ -1,4 +1,5 @@
 using Moq;
+using Orderly.Application.Command;
 using Orderly.Application.UnitTests.TestUtils.CreateCustomer;
 using Orderly.Application.UseCase;
 using Orderly.Application.UseCase.Customer.CreateCustomer;

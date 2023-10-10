@@ -1,3 +1,4 @@
+using Orderly.Application.Command;
 using Orderly.Domain.Customer;
 using Orderly.Domain.SalesConsultant;
 
