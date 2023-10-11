@@ -1,7 +1,7 @@
+using Orderly.Application.Command;
 using Orderly.Domain.Customer;
-using Orderly.Domain.Customer.ValueObjects;
 
-namespace Orderly.Application.UseCase.Customer.GetCustomer;
+namespace Orderly.Application.Query.Customer;
 
 public class GetCustomerUseCase : IUseCase<GetCustomerInput, GetCustomerOutput>
 {

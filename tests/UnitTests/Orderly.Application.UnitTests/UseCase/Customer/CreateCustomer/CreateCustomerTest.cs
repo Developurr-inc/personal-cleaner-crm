@@ -1,7 +1,8 @@
 using Moq;
+using Orderly.Application.Command;
+using Orderly.Application.Command.Customer.CreateCustomer;
 using Orderly.Application.UnitTests.TestUtils.CreateCustomer;
 using Orderly.Application.UseCase;
-using Orderly.Application.UseCase.Customer.CreateCustomer;
 using Orderly.Domain.Customer;
 using Orderly.Domain.SalesConsultant;
 using Orderly.Domain.Exceptions;

@@ -1,7 +1,8 @@
+using Orderly.Application.UseCase;
 using Orderly.Domain.Customer;
 using Orderly.Domain.SalesConsultant;
 
-namespace Orderly.Application.UseCase.Customer.CreateCustomer;
+namespace Orderly.Application.Command.Customer.CreateCustomer;
 
 public sealed class CreateCustomerUseCase : IUseCase<CreateCustomerInput, CreateCustomerOutput>
 {

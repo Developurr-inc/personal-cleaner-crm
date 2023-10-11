@@ -1,7 +1,6 @@
-namespace Orderly.Application.UseCase.Customer.CreateCustomer;
+namespace Orderly.Application.Query.Customer;
 
-public record CreateCustomerInput(
-    string SalesConsultantId,
+public record GetCustomerOutput(
     string Cnpj,
     string CorporateName,
     string TaxId,

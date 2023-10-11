@@ -1,4 +1,4 @@
-namespace Orderly.Application.UseCase;
+namespace Orderly.Application.Command;
 
 public interface IUnitOfWork : IDisposable
 {
