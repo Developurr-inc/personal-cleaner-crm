@@ -1,3 +1,4 @@
+using Orderly.Application.Command;
 using Orderly.Domain.Shipping;
 
 namespace Orderly.Application.UseCase.Shipping.GetShipping;

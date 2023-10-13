@@ -1,3 +1,4 @@
+using Orderly.Application.Command;
 using Orderly.Domain.Manager;
 
 namespace Orderly.Application.UseCase.Manager.GetManager;
