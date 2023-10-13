@@ -1,0 +1,3 @@
+namespace Developurr.Orderly.Application.UseCase.SalesConsultant.CreateSalesConsultant;
+
+public record CreateSalesConsultantOutput(string SalesConsultantId);
