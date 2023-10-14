@@ -1,11 +1,9 @@
+using Developurr.Orderly.Application.UseCase.Product.GetProduct;
+using Developurr.Orderly.Domain.Product;
+using Developurr.Orderly.Domain.UnitTests.TestUtils.Constants;
 using Moq;
-using Orderly.Application.UseCase;
-using Orderly.Application.UseCase.Product.CreateProduct;
-using Orderly.Application.UseCase.Product.GetProduct;
-using Orderly.Domain.Product;
-using Orderly.Domain.UnitTests.TestUtils.Constants;
 
-namespace Orderly.Application.UnitTests.TestUtils.GetProduct;
+namespace Developurr.Orderly.Application.UnitTests.TestUtils.GetProduct;
 
 public static class GetProductFixture
 {
@@ -20,7 +18,7 @@ public static class GetProductFixture
     public static GetProductInput GetInput()
     {
         return new GetProductInput(
-            Constants.ProductId.Id.Format()
+            Constants.CustomerId.Id.Format()
         );
     }
     

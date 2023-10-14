@@ -1,7 +1,6 @@
-using Orderly.Application.Command;
-using Orderly.Domain.Customer;
+using Developurr.Orderly.Domain.Customer;
 
-namespace Orderly.Application.Command.Customer.DeleteCustomer;
+namespace Developurr.Orderly.Application.Command.Customer.DeleteCustomer;
 
 public class DeleteCustomerUseCase : IUseCase<DeleteCustomerInput, DeleteCustomerOutput>
 {

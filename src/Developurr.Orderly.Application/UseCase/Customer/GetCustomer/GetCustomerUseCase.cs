@@ -1,14 +1,7 @@
-<<<<<<<< HEAD:src/Orderly.Application/Query/Customer/GetCustomerUseCase.cs
-using Orderly.Application.Command;
-using Orderly.Domain.Customer;
-
-namespace Orderly.Application.Query.Customer;
-========
 using Developurr.Orderly.Application.Command;
 using Developurr.Orderly.Domain.Customer;
 
 namespace Developurr.Orderly.Application.UseCase.Customer.GetCustomer;
->>>>>>>> develop:src/Developurr.Orderly.Application/UseCase/Customer/GetCustomer/GetCustomerUseCase.cs
 
 public class GetCustomerUseCase : IUseCase<GetCustomerInput, GetCustomerOutput>
 {

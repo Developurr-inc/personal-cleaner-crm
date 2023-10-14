@@ -1,11 +1,11 @@
+using Developurr.Orderly.Application.Command;
+using Developurr.Orderly.Application.UnitTests.TestUtils.CreateProduct;
+using Developurr.Orderly.Application.UseCase.Product.CreateProduct;
+using Developurr.Orderly.Domain.Exceptions;
+using Developurr.Orderly.Domain.Product;
 using Moq;
-using Orderly.Application.UnitTests.TestUtils.CreateProduct;
-using Orderly.Application.UseCase;
-using Orderly.Application.UseCase.Product.CreateProduct;
-using Orderly.Domain.Exceptions;
-using Orderly.Domain.Product;
 
-namespace Orderly.Application.UnitTests.UseCase.Product.CreateProduct;
+namespace Developurr.Orderly.Application.UnitTests.UseCase.Product.CreateProduct;
 
 public class CreateProductTest
 {

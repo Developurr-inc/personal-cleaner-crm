@@ -1,16 +1,8 @@
-<<<<<<<< HEAD:src/Orderly.Application/Command/Customer/CreateCustomer/CreateCustomerUseCase.cs
-using Orderly.Application.UseCase;
-using Orderly.Domain.Customer;
-using Orderly.Domain.SalesConsultant;
-
-namespace Orderly.Application.Command.Customer.CreateCustomer;
-========
 using Developurr.Orderly.Application.Command;
 using Developurr.Orderly.Domain.Customer;
 using Developurr.Orderly.Domain.SalesConsultant;
 
 namespace Developurr.Orderly.Application.UseCase.Customer.CreateCustomer;
->>>>>>>> develop:src/Developurr.Orderly.Application/UseCase/Customer/CreateCustomer/CreateCustomerUseCase.cs
 
 public sealed class CreateCustomerUseCase : IUseCase<CreateCustomerInput, CreateCustomerOutput>
 {

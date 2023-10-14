@@ -1,8 +1,4 @@
-<<<<<<<< HEAD:src/Orderly.Application/Command/Customer/CreateCustomer/CreateCustomerInput.cs
-namespace Orderly.Application.Command.Customer.CreateCustomer;
-========
 namespace Developurr.Orderly.Application.UseCase.Customer.CreateCustomer;
->>>>>>>> develop:src/Developurr.Orderly.Application/UseCase/Customer/CreateCustomer/CreateCustomerInput.cs
 
 public record CreateCustomerInput(
     string SalesConsultantId,
