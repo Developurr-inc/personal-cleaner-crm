@@ -1,3 +1,4 @@
+using Developurr.Orderly.Application.Command;
 using Developurr.Orderly.Domain.SalesConsultant;
 
 namespace Developurr.Orderly.Application.UseCase.SalesConsultant.DeleteSalesConsultant;

@@ -1,3 +1,4 @@
+using Developurr.Orderly.Application.Command;
 using Developurr.Orderly.Domain.SalesConsultant;
 
 namespace Developurr.Orderly.Application.UseCase.SalesConsultant.CreateSalesConsultant;
@@ -22,7 +23,7 @@ public sealed class CreateSalesConsultantUseCase
         CancellationToken cancellationToken
     )
     {
-        var salesConsultant = Developurr.Orderly.Domain.SalesConsultant.SalesConsultant.Create(
+        var salesConsultant = Domain.SalesConsultant.SalesConsultant.Create(
             input.Cpf,
             input.Street,
             input.Number,

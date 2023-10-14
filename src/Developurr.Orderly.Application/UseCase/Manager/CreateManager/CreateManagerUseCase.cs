@@ -1,3 +1,4 @@
+using Developurr.Orderly.Application.Command;
 using Developurr.Orderly.Domain.Manager;
 
 namespace Developurr.Orderly.Application.UseCase.Manager.CreateManager;
@@ -18,7 +19,7 @@ public sealed class CreateManagerUseCase : IUseCase<CreateManagerInput, CreateMa
         CancellationToken cancellationToken
     )
     {
-        var manager = Developurr.Orderly.Domain.Manager.Manager.Create(
+        var manager = Domain.Manager.Manager.Create(
             input.Cpf,
             input.Street,
             input.Number,

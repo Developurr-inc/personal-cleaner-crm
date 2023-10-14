@@ -1,3 +1,4 @@
+using Developurr.Orderly.Application.Command;
 using Developurr.Orderly.Domain.Product;
 
 namespace Developurr.Orderly.Application.UseCase.Product.CreateProduct;
@@ -18,7 +19,7 @@ public sealed class CreateProductUseCase : IUseCase<CreateProductInput, CreatePr
         CancellationToken cancellationToken
     )
     {
-        var product = Developurr.Orderly.Domain.Product.Product.Create(
+        var product = Domain.Product.Product.Create(
             input.Code,
             input.Name,
             input.Packaging,

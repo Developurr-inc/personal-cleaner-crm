@@ -1,3 +1,4 @@
+using Developurr.Orderly.Application.Command;
 using Developurr.Orderly.Domain.Customer;
 using Developurr.Orderly.Domain.SalesConsultant;
 
@@ -30,7 +31,7 @@ public sealed class CreateCustomerUseCase : IUseCase<CreateCustomerInput, Create
             cancellationToken
         );
 
-        var customer = Developurr.Orderly.Domain.Customer.Customer.Create(
+        var customer = Domain.Customer.Customer.Create(
             salesConsultant.Id,
             input.Cnpj,
             input.CorporateName,

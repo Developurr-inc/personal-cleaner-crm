@@ -1,3 +1,4 @@
+using Developurr.Orderly.Application.Command;
 using Developurr.Orderly.Domain.Product;
 
 namespace Developurr.Orderly.Application.UseCase.Product.DeleteProduct;

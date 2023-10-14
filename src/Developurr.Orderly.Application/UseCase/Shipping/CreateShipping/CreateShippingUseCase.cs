@@ -1,3 +1,4 @@
+using Developurr.Orderly.Application.Command;
 using Developurr.Orderly.Domain.Shipping;
 
 namespace Developurr.Orderly.Application.UseCase.Shipping.CreateShipping;
@@ -21,7 +22,7 @@ public sealed class CreateShippingUseCase : IUseCase<CreateShippingInput, Create
         CancellationToken cancellationToken
     )
     {
-        var shipping = Developurr.Orderly.Domain.Shipping.Shipping.Create(
+        var shipping = Domain.Shipping.Shipping.Create(
             input.Cnpj,
             input.CorporateName,
             input.TaxId,

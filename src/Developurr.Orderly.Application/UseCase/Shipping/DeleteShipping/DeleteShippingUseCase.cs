@@ -1,3 +1,4 @@
+using Developurr.Orderly.Application.Command;
 using Developurr.Orderly.Domain.Shipping;
 
 namespace Developurr.Orderly.Application.UseCase.Shipping.DeleteShipping;

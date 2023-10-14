@@ -1,3 +1,4 @@
+using Developurr.Orderly.Application.Command;
 using Developurr.Orderly.Domain.Customer;
 
 namespace Developurr.Orderly.Application.UseCase.Customer.GetCustomer;
