@@ -1,6 +1,8 @@
-namespace Developurr.Orderly.Application.UseCase.Customer.GetCustomer;
+namespace Developurr.Orderly.Application.Query.Customer.GetCustomer;
 
 public record GetCustomerOutput(
+    string Id,
+    string SalesConsultantId,
     string Cnpj,
     string CorporateName,
     string TaxId,
