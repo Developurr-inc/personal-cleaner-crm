@@ -1,10 +1,10 @@
+using Developurr.Orderly.Application.Command;
+using Developurr.Orderly.Application.UseCase.Product.CreateProduct;
+using Developurr.Orderly.Domain.Product;
+using Developurr.Orderly.Domain.UnitTests.TestUtils.Constants;
 using Moq;
-using Orderly.Application.UseCase;
-using Orderly.Application.UseCase.Product.CreateProduct;
-using Orderly.Domain.Product;
-using Orderly.Domain.UnitTests.TestUtils.Constants;
 
-namespace Orderly.Application.UnitTests.TestUtils.CreateProduct;
+namespace Developurr.Orderly.Application.UnitTests.TestUtils.CreateProduct;
 
 public static class CreateProductFixture
 {
