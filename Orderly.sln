@@ -7,15 +7,15 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{3E98453A-2E8
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{CEC21282-7F4A-4125-87E1-B6AEB28692DD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Orderly.Domain", "src\Orderly.Domain\Orderly.Domain.csproj", "{B1F7E321-6E65-4D48-B6E1-4EC80117142B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Developurr.Orderly.Domain", "src\Developurr.Orderly.Domain\Developurr.Orderly.Domain.csproj", "{B1F7E321-6E65-4D48-B6E1-4EC80117142B}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UnitTests", "UnitTests", "{EA701952-9D70-484A-AA94-C4192D0AE9B5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Orderly.Domain.UnitTests", "tests\UnitTests\Orderly.Domain.UnitTests\Orderly.Domain.UnitTests.csproj", "{4A9F8F7C-C734-4351-BDE3-466DDE5B3154}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Developurr.Orderly.Domain.UnitTests", "tests\UnitTests\Developurr.Orderly.Domain.UnitTests\Developurr.Orderly.Domain.UnitTests.csproj", "{4A9F8F7C-C734-4351-BDE3-466DDE5B3154}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Orderly.Application", "src\Orderly.Application\Orderly.Application.csproj", "{83146084-DD2E-4C15-8ABD-853358F61EF2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Developurr.Orderly.Application", "src\Developurr.Orderly.Application\Developurr.Orderly.Application.csproj", "{83146084-DD2E-4C15-8ABD-853358F61EF2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Orderly.Application.UnitTests", "tests\UnitTests\Orderly.Application.UnitTests\Orderly.Application.UnitTests.csproj", "{A4F867EF-5723-40D7-ABAA-39C2604CE223}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Developurr.Orderly.Application.UnitTests", "tests\UnitTests\Developurr.Orderly.Application.UnitTests\Developurr.Orderly.Application.UnitTests.csproj", "{A4F867EF-5723-40D7-ABAA-39C2604CE223}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
