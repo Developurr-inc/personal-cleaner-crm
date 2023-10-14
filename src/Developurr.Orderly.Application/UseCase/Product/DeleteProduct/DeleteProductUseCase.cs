@@ -17,7 +17,7 @@ public class DeleteProductUseCase : IUseCase<DeleteProductInput, DeleteProductOu
         _productRepository = productRepository;
     }
 
-    public async Task<DeleteProductOutput> Execute(
+    public async Task<DeleteProductOutput> Handle(
         DeleteProductInput input,
         CancellationToken cancellationToken
         )

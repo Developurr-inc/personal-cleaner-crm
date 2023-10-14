@@ -47,7 +47,7 @@ public class OpenOrderTest
         ).ReturnsAsync(SalesConsultantFixture.CreateSalesConsultant());
 
         // Act
-        _ = await openOrderUseCase.Execute(input, CancellationToken.None);
+        _ = await openOrderUseCase.Handle(input, CancellationToken.None);
         
         // Assert
         customerRepositoryMock.Verify(x => x.GetByIdAsync(It.IsAny<string>(), CancellationToken.None), Times.Once);
@@ -73,7 +73,7 @@ public class OpenOrderTest
         ).ReturnsAsync(SalesConsultantFixture.CreateSalesConsultant());
 
         // Act
-        _ = await openOrderUseCase.Execute(input, CancellationToken.None);
+        _ = await openOrderUseCase.Handle(input, CancellationToken.None);
         
         // Assert
         salesConsultantRepositoryMock.Verify(x => x.GetByIdAsync(It.IsAny<string>(), CancellationToken.None), Times.Once);
@@ -99,7 +99,7 @@ public class OpenOrderTest
         ).ReturnsAsync(SalesConsultantFixture.CreateSalesConsultant());
 
         // Act
-        _ = await openOrderUseCase.Execute(input, CancellationToken.None);
+        _ = await openOrderUseCase.Handle(input, CancellationToken.None);
         
         // Assert
         orderRepositoryMock.Verify(x => x.InsertAsync(It.IsAny<Domain.Order.Order>(), CancellationToken.None), Times.Once);
@@ -125,7 +125,7 @@ public class OpenOrderTest
         ).ReturnsAsync(SalesConsultantFixture.CreateSalesConsultant());
         
         // Act
-        _ = await openOrderUseCase.Execute(input, CancellationToken.None);
+        _ = await openOrderUseCase.Handle(input, CancellationToken.None);
         
         // Assert
         unitOfWorkMock.Verify(x => x.CommitAsync(CancellationToken.None), Times.Once);
@@ -139,7 +139,7 @@ public class OpenOrderTest
         var input = OpenOrderFixture.OpenInput();
 
         // Act
-        var output = await openOrderUseCase.Execute(input, CancellationToken.None);
+        var output = await openOrderUseCase.Handle(input, CancellationToken.None);
 
         // Assert
         Assert.NotNull(output);
@@ -153,7 +153,7 @@ public class OpenOrderTest
         var input = OpenOrderFixture.OpenInput();
 
         // Act
-        var output = await openOrderUseCase.Execute(input, CancellationToken.None);
+        var output = await openOrderUseCase.Handle(input, CancellationToken.None);
 
         // Assert
         Assert.NotEmpty(output.OrderId);
@@ -172,7 +172,7 @@ public class OpenOrderTest
         var input = OpenOrderFixture.OpenInput();
         
         // Act
-        var exception = await Record.ExceptionAsync(() => openOrderUseCase.Execute(input, CancellationToken.None));
+        var exception = await Record.ExceptionAsync(() => openOrderUseCase.Handle(input, CancellationToken.None));
     
         // Assert
         _ = Assert.IsType<Exception>(exception);
@@ -194,7 +194,7 @@ public class OpenOrderTest
         customerRepositoryMock.Setup(x => x.GetByIdAsync(input.CustomerId, It.IsAny<CancellationToken>())).ReturnsAsync(CustomerFixture.CreateCustomer());
 
         // Act
-        _ = await Record.ExceptionAsync(() => openOrderUseCase.Execute(input, CancellationToken.None));
+        _ = await Record.ExceptionAsync(() => openOrderUseCase.Handle(input, CancellationToken.None));
 
         // Assert
         orderRepositoryMock.Verify(x => x.InsertAsync(It.IsAny<Domain.Order.Order>(), It.IsAny<CancellationToken>()), Times.Never);
@@ -215,7 +215,7 @@ public class OpenOrderTest
         customerRepositoryMock.Setup(x => x.GetByIdAsync(input.CustomerId, It.IsAny<CancellationToken>())).ReturnsAsync(CustomerFixture.CreateCustomer());
 
         // Act
-        _ = await Record.ExceptionAsync(() => openOrderUseCase.Execute(input, CancellationToken.None));
+        _ = await Record.ExceptionAsync(() => openOrderUseCase.Handle(input, CancellationToken.None));
 
         // Assert
         unitOfWorkMock.Verify(x => x.CommitAsync(It.IsAny<CancellationToken>()), Times.Never);
@@ -236,7 +236,7 @@ public class OpenOrderTest
         salesConsultantRepositoryMock.Setup(x => x.GetByIdAsync(input.SalesConsultantId, It.IsAny<CancellationToken>())).ReturnsAsync(SalesConsultantFixture.CreateSalesConsultant());
 
         // Act
-        _ = await Record.ExceptionAsync(() => openOrderUseCase.Execute(input, CancellationToken.None));
+        _ = await Record.ExceptionAsync(() => openOrderUseCase.Handle(input, CancellationToken.None));
 
         // Assert
         orderRepositoryMock.Verify(x => x.InsertAsync(It.IsAny<Domain.Order.Order>(), It.IsAny<CancellationToken>()), Times.Never);
@@ -257,7 +257,7 @@ public class OpenOrderTest
         salesConsultantRepositoryMock.Setup(x => x.GetByIdAsync(input.SalesConsultantId, It.IsAny<CancellationToken>())).ReturnsAsync(SalesConsultantFixture.CreateSalesConsultant());
 
         // Act
-        _ = await Record.ExceptionAsync(() => openOrderUseCase.Execute(input, CancellationToken.None));
+        _ = await Record.ExceptionAsync(() => openOrderUseCase.Handle(input, CancellationToken.None));
 
         // Assert
         unitOfWorkMock.Verify(x => x.CommitAsync( It.IsAny<CancellationToken>()), Times.Never);

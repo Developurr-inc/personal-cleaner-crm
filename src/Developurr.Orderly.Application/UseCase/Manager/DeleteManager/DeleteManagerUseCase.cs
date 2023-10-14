@@ -14,7 +14,7 @@ public class DeleteManagerUseCase : IUseCase<DeleteManagerInput, DeleteManagerOu
         _managerRepository = managerRepository;
     }
 
-    public async Task<DeleteManagerOutput> Execute(
+    public async Task<DeleteManagerOutput> Handle(
         DeleteManagerInput input,
         CancellationToken cancellationToken
     )

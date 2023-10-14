@@ -18,7 +18,7 @@ public class DeleteShippingUseCase
         _shippingRepository = shippingRepository;
     }
 
-    public async Task<DeleteShippingOutput> Execute(
+    public async Task<DeleteShippingOutput> Handle(
         DeleteShippingInput input,
         CancellationToken cancellationToken
     )

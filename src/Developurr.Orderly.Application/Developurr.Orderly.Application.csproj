@@ -11,4 +11,8 @@
         <ProjectReference Include="..\Developurr.Orderly.Domain\Developurr.Orderly.Domain.csproj" />
     </ItemGroup>
     
+    <ItemGroup>
+      <Folder Include="Exception\" />
+    </ItemGroup>
+    
 </Project>

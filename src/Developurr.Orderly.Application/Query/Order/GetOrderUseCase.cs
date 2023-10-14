@@ -3,7 +3,7 @@ using Developurr.Orderly.Domain.Order;
 
 namespace Developurr.Orderly.Application.Query.Order;
 
-public class GetOrderUseCase : IUseCase<UseCase.Order.GetOrder.GetOrderInput, UseCase.Order.GetOrder.GetOrderOutput>
+public class GetOrderUseCase : IQuery<UseCase.Order.GetOrder.GetOrderInput, UseCase.Order.GetOrder.GetOrderOutput>
 {
     private readonly IOrderRepository _orderRepository;
 
@@ -12,7 +12,7 @@ public class GetOrderUseCase : IUseCase<UseCase.Order.GetOrder.GetOrderInput, Us
         _orderRepository = orderRepository;
     }
 
-    public async Task<UseCase.Order.GetOrder.GetOrderOutput> Execute(
+    public async Task<UseCase.Order.GetOrder.GetOrderOutput> Handle(
         UseCase.Order.GetOrder.GetOrderInput input,
         CancellationToken cancellationToken
     )

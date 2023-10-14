@@ -12,7 +12,7 @@ public class GetShippingUseCase : IUseCase<GetShippingInput, GetShippingOutput>
         _shippingRepository = shippingRepository;
     }
 
-    public async Task<GetShippingOutput> Execute(
+    public async Task<GetShippingOutput> Handle(
         GetShippingInput input,
         CancellationToken cancellationToken
     )

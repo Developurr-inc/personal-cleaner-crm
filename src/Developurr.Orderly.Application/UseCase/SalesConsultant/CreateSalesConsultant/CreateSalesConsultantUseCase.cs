@@ -18,7 +18,7 @@ public sealed class CreateSalesConsultantUseCase
         _salesConsultantRepository = salesConsultantRepository;
     }
 
-    public async Task<CreateSalesConsultantOutput> Execute(
+    public async Task<CreateSalesConsultantOutput> Handle(
         CreateSalesConsultantInput input,
         CancellationToken cancellationToken
     )

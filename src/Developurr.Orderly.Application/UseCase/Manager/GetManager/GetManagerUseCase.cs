@@ -12,7 +12,7 @@ public class GetManagerUseCase : IUseCase<GetManagerInput, GetManagerOutput>
         _managerRepository = managerRepository;
     }
 
-    public async Task<GetManagerOutput> Execute(
+    public async Task<GetManagerOutput> Handle(
         GetManagerInput input,
         CancellationToken cancellationToken
     )

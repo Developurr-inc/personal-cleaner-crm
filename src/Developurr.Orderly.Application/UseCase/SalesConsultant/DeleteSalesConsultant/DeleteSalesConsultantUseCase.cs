@@ -18,7 +18,7 @@ public class DeleteSalesConsultantUseCase
         _salesConsultantRepository = salesConsultantRepository;
     }
 
-    public async Task<DeleteSalesConsultantOutput> Execute(
+    public async Task<DeleteSalesConsultantOutput> Handle(
         DeleteSalesConsultantInput input,
         CancellationToken cancellationToken
     )

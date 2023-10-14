@@ -12,7 +12,7 @@ public class GetSalesConsultantUseCase : IUseCase<GetSalesConsultantInput, GetSa
         _salesConsultantRepository = salesConsultantRepository;
     }
 
-    public async Task<GetSalesConsultantOutput> Execute(
+    public async Task<GetSalesConsultantOutput> Handle(
         GetSalesConsultantInput input,
         CancellationToken cancellationToken
     )
