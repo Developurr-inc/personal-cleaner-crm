@@ -2,7 +2,7 @@ using Developurr.Orderly.Application.Command;
 using Developurr.Orderly.Application.UnitTests.TestUtils.CreateProduct;
 using Developurr.Orderly.Application.UseCase.Product.CreateProduct;
 using Developurr.Orderly.Domain.Exceptions;
-using Developurr.Orderly.Domain.Product;
+using Developurr.Orderly.Domain.Product.Repositories;
 using Moq;
 
 namespace Developurr.Orderly.Application.UnitTests.UseCase.Product.CreateProduct;

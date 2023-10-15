@@ -1,4 +1,4 @@
-using Developurr.Orderly.Domain.Order;
+using Developurr.Orderly.Domain.Order.Repositories;
 
 namespace Developurr.Orderly.Application.Query.Order.GetOrder;
 

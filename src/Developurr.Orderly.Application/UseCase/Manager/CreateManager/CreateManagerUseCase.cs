@@ -1,5 +1,5 @@
 using Developurr.Orderly.Application.Command;
-using Developurr.Orderly.Domain.Manager;
+using Developurr.Orderly.Domain.Manager.Repositories;
 
 namespace Developurr.Orderly.Application.UseCase.Manager.CreateManager;
 

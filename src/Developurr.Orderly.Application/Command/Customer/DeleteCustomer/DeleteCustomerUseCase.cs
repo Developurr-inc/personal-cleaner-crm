@@ -1,4 +1,4 @@
-using Developurr.Orderly.Domain.Customer;
+using Developurr.Orderly.Domain.Customer.Repositories;
 
 namespace Developurr.Orderly.Application.Command.Customer.DeleteCustomer;
 
