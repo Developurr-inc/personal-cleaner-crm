@@ -17,7 +17,7 @@ public sealed class CreateShippingUseCase : IUseCase<CreateShippingInput, Create
         _shippingRepository = shippingRepository;
     }
     
-    public async Task<CreateShippingOutput> Execute(
+    public async Task<CreateShippingOutput> Handle(
         CreateShippingInput input,
         CancellationToken cancellationToken
     )

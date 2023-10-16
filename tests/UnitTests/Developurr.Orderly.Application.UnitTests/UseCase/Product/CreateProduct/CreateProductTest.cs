@@ -35,7 +35,7 @@ public class CreateProductTest
         
 
         // Act
-        _ = await createProductUseCase.Execute(input, CancellationToken.None);
+        _ = await createProductUseCase.Handle(input, CancellationToken.None);
         
         // Assert
         productRepositoryMock.Verify(x => x.InsertAsync(It.IsAny<Domain.Product.Product>(), CancellationToken.None), Times.Once);
@@ -51,7 +51,7 @@ public class CreateProductTest
         var input = CreateProductFixture.CreateInput();
         
         // Act
-        _ = await createProductUseCase.Execute(input, CancellationToken.None);
+        _ = await createProductUseCase.Handle(input, CancellationToken.None);
         
         // Assert
         unitOfWorkMock.Verify(x => x.CommitAsync(CancellationToken.None), Times.Once);
@@ -65,7 +65,7 @@ public class CreateProductTest
         var input = CreateProductFixture.CreateInput();
 
         // Act
-        var output = await createProductUseCase.Execute(input, CancellationToken.None);
+        var output = await createProductUseCase.Handle(input, CancellationToken.None);
 
         // Assert
         Assert.NotNull(output);
@@ -79,7 +79,7 @@ public class CreateProductTest
         var input = CreateProductFixture.CreateInput();
 
         // Act
-        var output = await createProductUseCase.Execute(input, CancellationToken.None);
+        var output = await createProductUseCase.Handle(input, CancellationToken.None);
 
         // Assert
         Assert.NotEmpty(output.ProductId);
@@ -93,7 +93,7 @@ public class CreateProductTest
         var input = CreateProductFixture.CreateInvalidInput();
         
         // Act
-        var exception = await Record.ExceptionAsync(() => createProductUseCase.Execute(input, CancellationToken.None));
+        var exception = await Record.ExceptionAsync(() => createProductUseCase.Handle(input, CancellationToken.None));
     
         // Assert
         var entityValidationException = Assert.IsType<EntityValidationException>(exception);

@@ -4,7 +4,7 @@ using Developurr.Orderly.Domain.SalesConsultant;
 
 namespace Developurr.Orderly.Application.Command.Order.OpenOrder;
 
-public sealed class OpenOrderUseCase : IUseCase<OpenOrderInput, OpenOrderOutput>
+public sealed class OpenOrderUseCase : ICommand<OpenOrderInput, OpenOrderOutput>
 {
     private readonly IUnitOfWork _unitOfWork;
     private readonly IOrderRepository _orderRepository;
@@ -25,7 +25,7 @@ public sealed class OpenOrderUseCase : IUseCase<OpenOrderInput, OpenOrderOutput>
         _salesConsultantRepository = salesConsultantRepository;
     }
 
-    public async Task<OpenOrderOutput> Execute(
+    public async Task<OpenOrderOutput> Handle(
         OpenOrderInput input,
         CancellationToken cancellationToken
     )

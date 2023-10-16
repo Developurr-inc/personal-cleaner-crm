@@ -14,7 +14,7 @@ public sealed class CreateManagerUseCase : IUseCase<CreateManagerInput, CreateMa
         _managerRepository = managerRepository;
     }
 
-    public async Task<CreateManagerOutput> Execute(
+    public async Task<CreateManagerOutput> Handle(
         CreateManagerInput input,
         CancellationToken cancellationToken
     )

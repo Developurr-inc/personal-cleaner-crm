@@ -2,7 +2,7 @@ using Developurr.Orderly.Domain.Customer;
 
 namespace Developurr.Orderly.Application.Command.Customer.DeleteCustomer;
 
-public class DeleteCustomerUseCase : IUseCase<DeleteCustomerInput, DeleteCustomerOutput>
+public class DeleteCustomerUseCase : ICommand<DeleteCustomerInput, DeleteCustomerOutput>
 {
     private readonly IUnitOfWork _unitOfWork;
     private readonly ICustomerRepository _customerRepository;
@@ -13,7 +13,7 @@ public class DeleteCustomerUseCase : IUseCase<DeleteCustomerInput, DeleteCustome
         _customerRepository = customerRepository;
     }
 
-    public async Task<DeleteCustomerOutput> Execute(
+    public async Task<DeleteCustomerOutput> Handle(
         DeleteCustomerInput input,
         CancellationToken cancellationToken
     )

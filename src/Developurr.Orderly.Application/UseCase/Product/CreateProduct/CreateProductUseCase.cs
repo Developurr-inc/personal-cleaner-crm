@@ -14,7 +14,7 @@ public sealed class CreateProductUseCase : IUseCase<CreateProductInput, CreatePr
         _productRepository = productRepository;
     }
 
-    public async Task<CreateProductOutput> Execute(
+    public async Task<CreateProductOutput> Handle(
         CreateProductInput input,
         CancellationToken cancellationToken
     )

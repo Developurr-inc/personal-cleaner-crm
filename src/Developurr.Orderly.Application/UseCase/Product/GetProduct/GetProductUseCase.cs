@@ -12,7 +12,7 @@ public class GetProductUseCase : IUseCase<GetProductInput, GetProductOutput>
         _productRepository = productRepository;
     }
 
-    public async Task<GetProductOutput> Execute(
+    public async Task<GetProductOutput> Handle(
         GetProductInput input,
         CancellationToken cancellationToken
     )

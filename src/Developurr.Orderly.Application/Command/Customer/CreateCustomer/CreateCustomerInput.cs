@@ -1,4 +1,4 @@
-namespace Developurr.Orderly.Application.UseCase.Customer.CreateCustomer;
+namespace Developurr.Orderly.Application.Command.Customer.CreateCustomer;
 
 public record CreateCustomerInput(
     string SalesConsultantId,
