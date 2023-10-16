@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <TargetFramework>net7.0</TargetFramework>
+        <TargetFramework>net8.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
 
@@ -27,5 +27,7 @@
       <ProjectReference Include="..\..\..\src\Developurr.Orderly.Application\Developurr.Orderly.Application.csproj" />
       <ProjectReference Include="..\Developurr.Orderly.Domain.UnitTests\Developurr.Orderly.Domain.UnitTests.csproj" />
     </ItemGroup>
+
+
 
 </Project>

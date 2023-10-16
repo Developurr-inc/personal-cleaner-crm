@@ -22,7 +22,12 @@ public class CloseOrderUseCase : ICommand<CloseOrderInput, CloseOrderOutput>
             input.OrderId,
             cancellationToken
         );
+        
+        if (order is null)
+            throw new ArgumentException("Ordem não encontrada.", nameof(input.OrderId));
 
+        order.Close();
+        
         await _orderRepository.RemoveAsync(order, cancellationToken);
         await _unitOfWork.CommitAsync(cancellationToken);
 
