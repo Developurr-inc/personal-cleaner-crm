@@ -1,5 +1,5 @@
-using Developurr.Orderly.Domain.Customer;
-using Developurr.Orderly.Domain.SalesConsultant;
+using Developurr.Orderly.Domain.Customer.Repositories;
+using Developurr.Orderly.Domain.SalesConsultant.Repositories;
 
 namespace Developurr.Orderly.Application.Command.Customer.CreateCustomer;
 

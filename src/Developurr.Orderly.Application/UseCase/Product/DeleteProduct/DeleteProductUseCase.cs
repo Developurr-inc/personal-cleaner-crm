@@ -1,5 +1,5 @@
 using Developurr.Orderly.Application.Command;
-using Developurr.Orderly.Domain.Product;
+using Developurr.Orderly.Domain.Product.Repositories;
 
 namespace Developurr.Orderly.Application.UseCase.Product.DeleteProduct;
 

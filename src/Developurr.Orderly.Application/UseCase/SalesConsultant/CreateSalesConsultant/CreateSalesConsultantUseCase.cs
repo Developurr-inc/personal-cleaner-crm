@@ -1,5 +1,5 @@
 using Developurr.Orderly.Application.Command;
-using Developurr.Orderly.Domain.SalesConsultant;
+using Developurr.Orderly.Domain.SalesConsultant.Repositories;
 
 namespace Developurr.Orderly.Application.UseCase.SalesConsultant.CreateSalesConsultant;
 

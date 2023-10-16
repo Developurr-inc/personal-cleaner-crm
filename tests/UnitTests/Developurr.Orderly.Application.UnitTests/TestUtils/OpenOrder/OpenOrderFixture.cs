@@ -1,8 +1,8 @@
 using Developurr.Orderly.Application.Command;
 using Developurr.Orderly.Application.Command.Order.OpenOrder;
-using Developurr.Orderly.Domain.Customer;
-using Developurr.Orderly.Domain.Order;
-using Developurr.Orderly.Domain.SalesConsultant;
+using Developurr.Orderly.Domain.Customer.Repositories;
+using Developurr.Orderly.Domain.Order.Repositories;
+using Developurr.Orderly.Domain.SalesConsultant.Repositories;
 using Developurr.Orderly.Domain.UnitTests.TestUtils.Constants;
 using Developurr.Orderly.Domain.UnitTests.TestUtils.Customer;
 using Developurr.Orderly.Domain.UnitTests.TestUtils.SalesConsultant;

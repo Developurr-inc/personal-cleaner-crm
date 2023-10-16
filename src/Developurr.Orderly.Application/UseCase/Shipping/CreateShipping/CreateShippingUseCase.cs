@@ -1,5 +1,5 @@
 using Developurr.Orderly.Application.Command;
-using Developurr.Orderly.Domain.Shipping;
+using Developurr.Orderly.Domain.Shipping.Repositories;
 
 namespace Developurr.Orderly.Application.UseCase.Shipping.CreateShipping;
 
