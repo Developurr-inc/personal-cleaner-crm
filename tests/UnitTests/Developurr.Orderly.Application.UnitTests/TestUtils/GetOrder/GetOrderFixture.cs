@@ -10,7 +10,6 @@ public static class GetOrderFixture
 {
     public static GetOrderUseCase CreateUseCase()
     {
-        var unitOfWorkMock = new Mock<IUnitOfWork>();
         var orderRepositoryMock = new Mock<IOrderRepository>();
         var input = CreateInput();
         var order = OrderFixture.CreateOrder();
