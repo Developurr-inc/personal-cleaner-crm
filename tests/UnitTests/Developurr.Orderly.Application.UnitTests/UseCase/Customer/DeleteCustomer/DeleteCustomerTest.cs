@@ -94,24 +94,24 @@ public sealed class DeleteCustomerTest
         unitOfWorkMock.Verify(x => x.CommitAsync(It.IsAny<CancellationToken>()), Times.Once);
     }
     
-    // [Fact]
-    // public async void GivenValidInput_WhenCallExecute_ThenShouldHaveDisableCustomer()
-    // {
-    //     // Arrange
-    //     var unitOfWorkMock = new Mock<IUnitOfWork>();
-    //     var customerRepositoryMock = new Mock<ICustomerRepository>();
-    //     var useCase = new DeleteCustomerUseCase(unitOfWorkMock.Object, customerRepositoryMock.Object);
-    //     var input = DeleteCustomerFixtureUseCase.CreateInput();
-    //     var customer = CustomerFixture.CreateCustomer();
-    //     
-    //     customerRepositoryMock.Setup(x => x.GetByIdAsync(input.CustomerId, It.IsAny<CancellationToken>())).ReturnsAsync(customer);
-    //     
-    //     // Act
-    //     _ = await useCase.Execute(input, CancellationToken.None);
-    //     
-    //     // Assert
-    //     Assert.False(customer.Activate);
-    // }
+    [Fact]
+    public async void GivenValidInput_WhenCallExecute_ThenShouldHaveDisableCustomer()
+    {
+        // Arrange
+        var unitOfWorkMock = new Mock<IUnitOfWork>();
+        var customerRepositoryMock = new Mock<ICustomerRepository>();
+        var useCase = new DeleteCustomerUseCase(unitOfWorkMock.Object, customerRepositoryMock.Object);
+        var input = DeleteCustomerFixture.CreateInput();
+        var customer = CustomerFixture.CreateCustomer();
+        
+        customerRepositoryMock.Setup(x => x.GetByIdAsync(input.CustomerId, It.IsAny<CancellationToken>())).ReturnsAsync(customer);
+        
+        // Act
+        _ = await useCase.Handle(input, CancellationToken.None);
+        
+        // Assert
+        Assert.False(customer.Active);
+    }
     
     [Fact]
     public async void GivenValidInput_WhenCallExecute_ThenShouldThrowException()
