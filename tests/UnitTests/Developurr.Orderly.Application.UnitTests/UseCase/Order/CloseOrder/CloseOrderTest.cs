@@ -115,7 +115,7 @@ public sealed class CloseOrderTest
     }
     
     [Fact]
-    public async void GivenValidInput_WhenCallingExecute_ThenShouldThrowException()
+    public async void GivenInvalidInput_WhenCallingExecute_ThenShouldThrowException()
     {
         // Arrange
         var unitOfWorkMock = new Mock<IUnitOfWork>();
