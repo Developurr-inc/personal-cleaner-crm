@@ -21,6 +21,7 @@ public sealed class Customer : Entity<CustomerId>, IAggregateRoot
     public Phone? Landline { get; private set; }
     public Phone? Mobile { get; private set; }
     public string Observation { get; private set; }
+    public bool Active { get; private set; }
 
     private Customer(
         CustomerId customerId,
@@ -34,7 +35,8 @@ public sealed class Customer : Entity<CustomerId>, IAggregateRoot
         Email nfeEmail,
         Phone? landline,
         Phone? mobile,
-        string observation
+        string observation,
+        bool active
     )
         : base(customerId)
     {
@@ -50,6 +52,13 @@ public sealed class Customer : Entity<CustomerId>, IAggregateRoot
         Landline = landline;
         Mobile = mobile;
         Observation = observation;
+        Active = active;
+    }
+    
+    public void Disable()
+    {
+        if (Active)
+            Active = false;
     }
 
     public static Customer Create(
@@ -77,6 +86,7 @@ public sealed class Customer : Entity<CustomerId>, IAggregateRoot
         var landline = landlineValue == null ? null : Phone.Create(landlineValue);
         var mobile = mobileValue == null ? null : Phone.Create(mobileValue);
         var observationTrimmed = observation.Trim();
+        var active = true;
 
         Validate(
             corporateNameTrimmed,
@@ -98,7 +108,8 @@ public sealed class Customer : Entity<CustomerId>, IAggregateRoot
             nfeEmail,
             landline,
             mobile,
-            observationTrimmed
+            observationTrimmed,
+            active
         );
     }
 
