@@ -18,13 +18,16 @@ public sealed class Order : Entity<OrderId>, IAggregateRoot
     public SalesConsultantId SalesConsultantId { get; }
     public ShippingId? ShippingId { get; private set; }
     public Price OrderTotal { get; private set; }
+    
+    public bool Active { get; private set; }
 
     private Order(
         OrderId orderId,
         NaturezaDaOperacao naturezaDaOperacao,
         CustomerId customerId,
         SalesConsultantId salesConsultantId,
-        Price price
+        Price price,
+        bool active
     )
         : base(orderId)
     {
@@ -35,13 +38,21 @@ public sealed class Order : Entity<OrderId>, IAggregateRoot
         SalesConsultantId = salesConsultantId;
         ShippingId = null;
         OrderTotal = price;
+        Active = active;
     }
-
+    
+    public void Close()
+    {
+        if (Active)
+            Active = false;
+    }
+    
     public static Order Open(CustomerId customerId, SalesConsultantId salesConsultantId)
     {
         var orderId = OrderId.Generate();
         var price = Price.Create(0);
+        var active = true;
 
-        return new Order(orderId, NaturezaDaOperacao.Venda, customerId, salesConsultantId, price);
+        return new Order(orderId, NaturezaDaOperacao.Venda, customerId, salesConsultantId, price, active);
     }
 }
