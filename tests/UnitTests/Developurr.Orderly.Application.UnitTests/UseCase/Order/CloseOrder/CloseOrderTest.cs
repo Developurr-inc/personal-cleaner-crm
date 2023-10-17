@@ -56,25 +56,24 @@ public sealed class CloseOrderTest
         orderRepositoryMock.Verify(x => x.GetByIdAsync(input.OrderId, It.IsAny<CancellationToken>()), Times.Once);
     }
     
-    //Test not passed, expected times once, but it was zero
-    // [Fact]
-    // public async void GivenValidInput_WhenCallingExecute_ThenShouldCallUpdateAsync()
-    // {
-    //     // Arrange
-    //     var unitOfWorkMock = new Mock<IUnitOfWork>();
-    //     var orderRepositoryMock = new Mock<IOrderRepository>();
-    //     var useCase = new CloseOrderUseCase(unitOfWorkMock.Object, orderRepositoryMock.Object);
-    //     var input = CloseOrderFixture.CreateInput();
-    //     var order = OrderFixture.CreateOrder();
-    //     
-    //     orderRepositoryMock.Setup(x => x.GetByIdAsync(input.OrderId, It.IsAny<CancellationToken>())).ReturnsAsync(order);
-    //     
-    //     // Act
-    //     _ = await useCase.Handle(input, CancellationToken.None);
-    //     
-    //     // Assert
-    //     orderRepositoryMock.Verify(x => x.UpdateAsync(order, It.IsAny<CancellationToken>()), Times.Once);
-    // }
+     [Fact]
+     public async void GivenValidInput_WhenCallingExecute_ThenShouldCallUpdateAsync()
+     {
+         // Arrange
+         var unitOfWorkMock = new Mock<IUnitOfWork>();
+         var orderRepositoryMock = new Mock<IOrderRepository>();
+         var useCase = new CloseOrderUseCase(unitOfWorkMock.Object, orderRepositoryMock.Object);
+         var input = CloseOrderFixture.CreateInput();
+         var order = OrderFixture.CreateOrder();
+         
+         orderRepositoryMock.Setup(x => x.GetByIdAsync(input.OrderId, It.IsAny<CancellationToken>())).ReturnsAsync(order);
+         
+         // Act
+         _ = await useCase.Handle(input, CancellationToken.None);
+         
+         // Assert
+         orderRepositoryMock.Verify(x => x.UpdateAsync(order, It.IsAny<CancellationToken>()), Times.Once);
+     }
     
     [Fact]
     public async void GivenValidInput_WhenCallingExecute_ThenShouldCallCommitAsync()

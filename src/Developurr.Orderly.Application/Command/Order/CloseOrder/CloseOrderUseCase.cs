@@ -28,7 +28,7 @@ public class CloseOrderUseCase : ICommand<CloseOrderInput, CloseOrderOutput>
 
         order.Close();
         
-        await _orderRepository.RemoveAsync(order, cancellationToken);
+        await _orderRepository.UpdateAsync(order, cancellationToken);
         await _unitOfWork.CommitAsync(cancellationToken);
 
         return new CloseOrderOutput(order.Id.Format());
