@@ -10,7 +10,7 @@ public sealed class Vendor : Entity<VendorId>, IAggregateRoot
 {
     private readonly List<CustomerId> _customers;
     public Cpf Cpf { get; }
-    public string Name { get; private set; }
+    public NonEmptyText Name { get; private set; }
     public Address Address { get; private set; }
     public Email Email { get; private set; }
     public Phone? Landline { get; private set; }
@@ -20,7 +20,7 @@ public sealed class Vendor : Entity<VendorId>, IAggregateRoot
         VendorId vendorId,
         Cpf cpf,
         Address address,
-        string name,
+        NonEmptyText name,
         Email email,
         Phone? landline,
         Phone? mobile
@@ -69,14 +69,7 @@ public sealed class Vendor : Entity<VendorId>, IAggregateRoot
         var landline = landlineValue == null ? null : Phone.Create(landlineValue);
         var mobile = mobileValue == null ? null : Phone.Create(mobileValue);
 
-        Validate(nameTrimmed);
-
         return new Vendor(vendorId, cpf, address, nameTrimmed, email, landline, mobile);
     }
-
-    private static void Validate(string name)
-    {
-        var vendorValidator = new VendorValidator(name);
-        vendorValidator.Validate();
-    }
+    
 }
