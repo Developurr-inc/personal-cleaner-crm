@@ -2,7 +2,7 @@ namespace Developurr.Orderly.Domain.UnitTests.TestUtils.Vendor;
 
 public static class VendorFixture
 {
-    public static Domain.Vendor.Vendor CreateSalesConsultant()
+    public static Domain.Vendor.Vendor CreateVendor()
     {
         return Domain.Vendor.Vendor.Create(
             Constants.Constants.Cpf.CpfValue,

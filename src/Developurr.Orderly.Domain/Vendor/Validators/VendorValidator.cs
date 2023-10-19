@@ -13,13 +13,13 @@ public sealed class VendorValidator : Validator
 
     public override void Validate()
     {
-        ValidateSalesConsultantName("Name");
+        ValidateVendorName("Name");
 
         if (HasErrors())
             ThrowEntityValidationExceptionWithValidationErrors();
     }
 
-    private void ValidateSalesConsultantName(string fieldName)
+    private void ValidateVendorName(string fieldName)
     {
         ValidationRules.ValidateRequired(_name, fieldName, this);
         ValidationRules.ValidateStringLength(

@@ -8,7 +8,7 @@ namespace Developurr.Orderly.Domain.Manager;
 
 public sealed class Manager : Entity<ManagerId>, IAggregateRoot
 {
-    private readonly List<VendorId> _salesConsultants;
+    private readonly List<VendorId> _vendors;
     public Cpf Cpf { get; }
     public Address Address { get; private set; }
     public string Name { get; private set; }
@@ -27,7 +27,7 @@ public sealed class Manager : Entity<ManagerId>, IAggregateRoot
     )
         : base(managerId)
     {
-        _salesConsultants = new List<VendorId>();
+        _vendors = new List<VendorId>();
         Cpf = cpf;
         Address = address;
         Name = name;

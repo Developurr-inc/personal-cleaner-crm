@@ -6,7 +6,7 @@ public static class OrderFixture
     {
         return Developurr.Orderly.Domain.Order.Order.Open(
             Constants.Constants.CustomerId.Id,
-            Constants.Constants.SalesConsultantId.Id
+            Constants.Constants.VendorId.Id
         );
     }
 }

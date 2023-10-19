@@ -2,26 +2,26 @@ using Developurr.Orderly.Domain.Vendor.ValueObjects;
 
 namespace Developurr.Orderly.Domain.UnitTests.Vendor.ValueObjects;
 
-public sealed class SalesConsultantIdTest
+public sealed class VendorIdTest
 {
     [Fact]
-    public void GivenNothing_WhenGeneratingSalesConsultantId_ThenShouldInstantiateSalesConsultantId()
+    public void GivenNothing_WhenGeneratingVendorId_ThenShouldInstantiateVendorId()
     {
         // Act
-        var salesConsultantId = VendorId.Generate();
+        var vendorId = VendorId.Generate();
 
         // Assert
-        Assert.NotNull(salesConsultantId);
+        Assert.NotNull(vendorId);
     }
     
     [Fact]
     public void GivenNothing_WhenCallingFormat_ThenShouldNotBeEmpty()
     {
         // Arrange
-        var salesConsultantId = VendorId.Generate();
+        var vendorId = VendorId.Generate();
         
         // Act
-        var id = salesConsultantId.Format();
+        var id = vendorId.Format();
         
         // Assert
         Assert.NotEmpty(id);

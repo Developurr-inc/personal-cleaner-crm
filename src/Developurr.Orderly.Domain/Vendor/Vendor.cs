@@ -52,7 +52,7 @@ public sealed class Vendor : Entity<VendorId>, IAggregateRoot
         string? mobileValue
     )
     {
-        var salesConsultantId = VendorId.Generate();
+        var vendorId = VendorId.Generate();
         var cpf = Cpf.Create(cpfValue);
         var address = Address.Create(
             street,
@@ -71,12 +71,12 @@ public sealed class Vendor : Entity<VendorId>, IAggregateRoot
 
         Validate(nameTrimmed);
 
-        return new Vendor(salesConsultantId, cpf, address, nameTrimmed, email, landline, mobile);
+        return new Vendor(vendorId, cpf, address, nameTrimmed, email, landline, mobile);
     }
 
     private static void Validate(string name)
     {
-        var salesConsultantValidator = new VendorValidator(name);
-        salesConsultantValidator.Validate();
+        var vendorValidator = new VendorValidator(name);
+        vendorValidator.Validate();
     }
 }

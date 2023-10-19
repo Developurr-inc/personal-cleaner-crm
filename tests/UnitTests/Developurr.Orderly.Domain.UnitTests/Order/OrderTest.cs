@@ -10,7 +10,7 @@ public sealed class OrderTest
         // Act
         var order = Developurr.Orderly.Domain.Order.Order.Open(
             Constants.CustomerId.Id,
-            Constants.SalesConsultantId.Id
+            Constants.VendorId.Id
         );
 
         // Assert

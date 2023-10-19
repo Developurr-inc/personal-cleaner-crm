@@ -2,12 +2,12 @@ namespace Developurr.Orderly.Domain.UnitTests.TestUtils.Constants;
 
 public static partial class Constants
 {
-    public static class SalesConsultant
+    public static class Vendor
     {
         public const string Name = "Nome Fake";
     }
 
-    public static class InvalidSalesConsultant
+    public static class InvalidVendor
     {
         public const string ShortName = "Saco";
         public const string LongName = 

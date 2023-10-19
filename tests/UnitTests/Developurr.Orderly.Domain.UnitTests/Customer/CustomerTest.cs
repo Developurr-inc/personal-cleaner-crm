@@ -10,7 +10,7 @@ public sealed class CustomerTest
     {
         // Act
         var customer = Developurr.Orderly.Domain.Customer.Customer.Create(
-            Constants.SalesConsultantId.Id,
+            Constants.VendorId.Id,
             Constants.Cnpj.CnpjValue,
             Constants.Customer.CorporateName,
             Constants.Customer.TaxId,
@@ -36,7 +36,7 @@ public sealed class CustomerTest
 
         // Act
         var customer = Developurr.Orderly.Domain.Customer.Customer.Create(
-            Constants.SalesConsultantId.Id,
+            Constants.VendorId.Id,
             cnpj,
             Constants.Customer.CorporateName,
             Constants.Customer.TaxId,
@@ -61,7 +61,7 @@ public sealed class CustomerTest
 
         // Act
         var customer = Developurr.Orderly.Domain.Customer.Customer.Create(
-            Constants.SalesConsultantId.Id,
+            Constants.VendorId.Id,
             Constants.Cnpj.CnpjValue,
             expectedCorporateName,
             Constants.Customer.TaxId,
@@ -86,7 +86,7 @@ public sealed class CustomerTest
 
         // Act
         var customer = Developurr.Orderly.Domain.Customer.Customer.Create(
-            Constants.SalesConsultantId.Id,
+            Constants.VendorId.Id,
             Constants.Cnpj.CnpjValue,
             Constants.Customer.CorporateName,
             expectedTaxId,
@@ -111,7 +111,7 @@ public sealed class CustomerTest
 
         // Act
         var customer = Developurr.Orderly.Domain.Customer.Customer.Create(
-            Constants.SalesConsultantId.Id,
+            Constants.VendorId.Id,
             Constants.Cnpj.CnpjValue,
             Constants.Customer.CorporateName,
             Constants.Customer.TaxId,
@@ -136,7 +136,7 @@ public sealed class CustomerTest
 
         // Act
         var customer = Developurr.Orderly.Domain.Customer.Customer.Create(
-            Constants.SalesConsultantId.Id,
+            Constants.VendorId.Id,
             Constants.Cnpj.CnpjValue,
             Constants.Customer.CorporateName,
             Constants.Customer.TaxId,
@@ -161,7 +161,7 @@ public sealed class CustomerTest
 
         // Act
         var customer = Developurr.Orderly.Domain.Customer.Customer.Create(
-            Constants.SalesConsultantId.Id,
+            Constants.VendorId.Id,
             Constants.Cnpj.CnpjValue,
             Constants.Customer.CorporateName,
             Constants.Customer.TaxId,
@@ -186,7 +186,7 @@ public sealed class CustomerTest
 
         // Act
         var customer = Developurr.Orderly.Domain.Customer.Customer.Create(
-            Constants.SalesConsultantId.Id,
+            Constants.VendorId.Id,
             Constants.Cnpj.CnpjValue,
             Constants.Customer.CorporateName,
             Constants.Customer.TaxId,
@@ -211,7 +211,7 @@ public sealed class CustomerTest
 
         // Act
         var customer = Developurr.Orderly.Domain.Customer.Customer.Create(
-            Constants.SalesConsultantId.Id,
+            Constants.VendorId.Id,
             Constants.Cnpj.CnpjValue,
             Constants.Customer.CorporateName,
             Constants.Customer.TaxId,
@@ -236,7 +236,7 @@ public sealed class CustomerTest
 
         // Act
         var customer = Developurr.Orderly.Domain.Customer.Customer.Create(
-            Constants.SalesConsultantId.Id,
+            Constants.VendorId.Id,
             Constants.Cnpj.CnpjValue,
             Constants.Customer.CorporateName,
             Constants.Customer.TaxId,
@@ -261,7 +261,7 @@ public sealed class CustomerTest
 
         // Act
         var customer = Developurr.Orderly.Domain.Customer.Customer.Create(
-            Constants.SalesConsultantId.Id,
+            Constants.VendorId.Id,
             Constants.Cnpj.CnpjValue,
             Constants.Customer.CorporateName,
             Constants.Customer.TaxId,
@@ -311,7 +311,7 @@ public sealed class CustomerTest
         var exception = Record.Exception(
             () =>
                 Developurr.Orderly.Domain.Customer.Customer.Create(
-                    Constants.SalesConsultantId.Id,
+                    Constants.VendorId.Id,
                     cnpjValue,
                     corporateName,
                     taxId,
@@ -341,7 +341,7 @@ public sealed class CustomerTest
         var exception = Record.Exception(
             () =>
                 Developurr.Orderly.Domain.Customer.Customer.Create(
-                    Constants.SalesConsultantId.Id,
+                    Constants.VendorId.Id,
                     emptyCnpj,
                     Constants.Customer.CorporateName,
                     Constants.Customer.TaxId,
@@ -370,7 +370,7 @@ public sealed class CustomerTest
         var exception = Record.Exception(
             () =>
                 Developurr.Orderly.Domain.Customer.Customer.Create(
-                    Constants.SalesConsultantId.Id,
+                    Constants.VendorId.Id,
                     whiteSpaceCnpj,
                     Constants.Customer.CorporateName,
                     Constants.Customer.TaxId,
@@ -399,7 +399,7 @@ public sealed class CustomerTest
         var exception = Record.Exception(
             () =>
                 Developurr.Orderly.Domain.Customer.Customer.Create(
-                    Constants.SalesConsultantId.Id,
+                    Constants.VendorId.Id,
                     shortCnpj,
                     Constants.Customer.CorporateName,
                     Constants.Customer.TaxId,
@@ -428,7 +428,7 @@ public sealed class CustomerTest
         var exception = Record.Exception(
             () =>
                 Developurr.Orderly.Domain.Customer.Customer.Create(
-                    Constants.SalesConsultantId.Id,
+                    Constants.VendorId.Id,
                     longCnpj,
                     Constants.Customer.CorporateName,
                     Constants.Customer.TaxId,
@@ -457,7 +457,7 @@ public sealed class CustomerTest
         var exception = Record.Exception(
             () =>
                 Developurr.Orderly.Domain.Customer.Customer.Create(
-                    Constants.SalesConsultantId.Id,
+                    Constants.VendorId.Id,
                     lastDigitCnpj,
                     Constants.Customer.CorporateName,
                     Constants.Customer.TaxId,
@@ -486,7 +486,7 @@ public sealed class CustomerTest
         var exception = Record.Exception(
             () =>
                 Developurr.Orderly.Domain.Customer.Customer.Create(
-                    Constants.SalesConsultantId.Id,
+                    Constants.VendorId.Id,
                     nonNumericCnpj,
                     Constants.Customer.CorporateName,
                     Constants.Customer.TaxId,
@@ -515,7 +515,7 @@ public sealed class CustomerTest
         var exception = Record.Exception(
             () =>
                 Developurr.Orderly.Domain.Customer.Customer.Create(
-                    Constants.SalesConsultantId.Id,
+                    Constants.VendorId.Id,
                     Constants.Cnpj.CnpjValue,
                     emptyCorporateName,
                     Constants.Customer.TaxId,
@@ -544,7 +544,7 @@ public sealed class CustomerTest
         var exception = Record.Exception(
             () =>
                 Developurr.Orderly.Domain.Customer.Customer.Create(
-                    Constants.SalesConsultantId.Id,
+                    Constants.VendorId.Id,
                     Constants.Cnpj.CnpjValue,
                     whiteSpaceCorporateName,
                     Constants.Customer.TaxId,
@@ -573,7 +573,7 @@ public sealed class CustomerTest
         var exception = Record.Exception(
             () =>
                 Developurr.Orderly.Domain.Customer.Customer.Create(
-                    Constants.SalesConsultantId.Id,
+                    Constants.VendorId.Id,
                     Constants.Cnpj.CnpjValue,
                     shortCorporateName,
                     Constants.Customer.TaxId,
@@ -602,7 +602,7 @@ public sealed class CustomerTest
         var exception = Record.Exception(
             () =>
                 Developurr.Orderly.Domain.Customer.Customer.Create(
-                    Constants.SalesConsultantId.Id,
+                    Constants.VendorId.Id,
                     Constants.Cnpj.CnpjValue,
                     longCorporateName,
                     Constants.Customer.TaxId,
@@ -631,7 +631,7 @@ public sealed class CustomerTest
         var exception = Record.Exception(
             () =>
                 Developurr.Orderly.Domain.Customer.Customer.Create(
-                    Constants.SalesConsultantId.Id,
+                    Constants.VendorId.Id,
                     Constants.Cnpj.CnpjValue,
                     Constants.Customer.CorporateName,
                     emptyTaxId,
@@ -660,7 +660,7 @@ public sealed class CustomerTest
         var exception = Record.Exception(
             () =>
                 Developurr.Orderly.Domain.Customer.Customer.Create(
-                    Constants.SalesConsultantId.Id,
+                    Constants.VendorId.Id,
                     Constants.Cnpj.CnpjValue,
                     Constants.Customer.CorporateName,
                     whiteSpaceTaxId,
@@ -689,7 +689,7 @@ public sealed class CustomerTest
         var exception = Record.Exception(
             () =>
                 Developurr.Orderly.Domain.Customer.Customer.Create(
-                    Constants.SalesConsultantId.Id,
+                    Constants.VendorId.Id,
                     Constants.Cnpj.CnpjValue,
                     Constants.Customer.CorporateName,
                     shortTaxId,
@@ -718,7 +718,7 @@ public sealed class CustomerTest
         var exception = Record.Exception(
             () =>
                 Developurr.Orderly.Domain.Customer.Customer.Create(
-                    Constants.SalesConsultantId.Id,
+                    Constants.VendorId.Id,
                     Constants.Cnpj.CnpjValue,
                     Constants.Customer.CorporateName,
                     longTaxId,
@@ -747,7 +747,7 @@ public sealed class CustomerTest
         var exception = Record.Exception(
             () =>
                 Developurr.Orderly.Domain.Customer.Customer.Create(
-                    Constants.SalesConsultantId.Id,
+                    Constants.VendorId.Id,
                     Constants.Cnpj.CnpjValue,
                     Constants.Customer.CorporateName,
                     Constants.Customer.TaxId,
@@ -776,7 +776,7 @@ public sealed class CustomerTest
         var exception = Record.Exception(
             () =>
                 Developurr.Orderly.Domain.Customer.Customer.Create(
-                    Constants.SalesConsultantId.Id,
+                    Constants.VendorId.Id,
                     Constants.Cnpj.CnpjValue,
                     Constants.Customer.CorporateName,
                     Constants.Customer.TaxId,
@@ -805,7 +805,7 @@ public sealed class CustomerTest
         var exception = Record.Exception(
             () =>
                 Developurr.Orderly.Domain.Customer.Customer.Create(
-                    Constants.SalesConsultantId.Id,
+                    Constants.VendorId.Id,
                     Constants.Cnpj.CnpjValue,
                     Constants.Customer.CorporateName,
                     Constants.Customer.TaxId,
@@ -834,7 +834,7 @@ public sealed class CustomerTest
         var exception = Record.Exception(
             () =>
                 Developurr.Orderly.Domain.Customer.Customer.Create(
-                    Constants.SalesConsultantId.Id,
+                    Constants.VendorId.Id,
                     Constants.Cnpj.CnpjValue,
                     Constants.Customer.CorporateName,
                     Constants.Customer.TaxId,
@@ -863,7 +863,7 @@ public sealed class CustomerTest
         var exception = Record.Exception(
             () =>
                 Developurr.Orderly.Domain.Customer.Customer.Create(
-                    Constants.SalesConsultantId.Id,
+                    Constants.VendorId.Id,
                     Constants.Cnpj.CnpjValue,
                     Constants.Customer.CorporateName,
                     Constants.Customer.TaxId,
@@ -892,7 +892,7 @@ public sealed class CustomerTest
         var exception = Record.Exception(
             () =>
                 Developurr.Orderly.Domain.Customer.Customer.Create(
-                    Constants.SalesConsultantId.Id,
+                    Constants.VendorId.Id,
                     Constants.Cnpj.CnpjValue,
                     Constants.Customer.CorporateName,
                     Constants.Customer.TaxId,
@@ -921,7 +921,7 @@ public sealed class CustomerTest
         var exception = Record.Exception(
             () =>
                 Developurr.Orderly.Domain.Customer.Customer.Create(
-                    Constants.SalesConsultantId.Id,
+                    Constants.VendorId.Id,
                     Constants.Cnpj.CnpjValue,
                     Constants.Customer.CorporateName,
                     Constants.Customer.TaxId,
@@ -950,7 +950,7 @@ public sealed class CustomerTest
         var exception = Record.Exception(
             () =>
                 Developurr.Orderly.Domain.Customer.Customer.Create(
-                    Constants.SalesConsultantId.Id,
+                    Constants.VendorId.Id,
                     Constants.Cnpj.CnpjValue,
                     Constants.Customer.CorporateName,
                     Constants.Customer.TaxId,
@@ -979,7 +979,7 @@ public sealed class CustomerTest
         var exception = Record.Exception(
             () =>
                 Developurr.Orderly.Domain.Customer.Customer.Create(
-                    Constants.SalesConsultantId.Id,
+                    Constants.VendorId.Id,
                     Constants.Cnpj.CnpjValue,
                     Constants.Customer.CorporateName,
                     Constants.Customer.TaxId,
@@ -1008,7 +1008,7 @@ public sealed class CustomerTest
         var exception = Record.Exception(
             () =>
                 Developurr.Orderly.Domain.Customer.Customer.Create(
-                    Constants.SalesConsultantId.Id,
+                    Constants.VendorId.Id,
                     Constants.Cnpj.CnpjValue,
                     Constants.Customer.CorporateName,
                     Constants.Customer.TaxId,
@@ -1037,7 +1037,7 @@ public sealed class CustomerTest
         var exception = Record.Exception(
             () =>
                 Developurr.Orderly.Domain.Customer.Customer.Create(
-                    Constants.SalesConsultantId.Id,
+                    Constants.VendorId.Id,
                     Constants.Cnpj.CnpjValue,
                     Constants.Customer.CorporateName,
                     Constants.Customer.TaxId,
@@ -1066,7 +1066,7 @@ public sealed class CustomerTest
         var exception = Record.Exception(
             () =>
                 Developurr.Orderly.Domain.Customer.Customer.Create(
-                    Constants.SalesConsultantId.Id,
+                    Constants.VendorId.Id,
                     Constants.Cnpj.CnpjValue,
                     Constants.Customer.CorporateName,
                     Constants.Customer.TaxId,
@@ -1095,7 +1095,7 @@ public sealed class CustomerTest
         var exception = Record.Exception(
             () =>
                 Developurr.Orderly.Domain.Customer.Customer.Create(
-                    Constants.SalesConsultantId.Id,
+                    Constants.VendorId.Id,
                     Constants.Cnpj.CnpjValue,
                     Constants.Customer.CorporateName,
                     Constants.Customer.TaxId,
@@ -1124,7 +1124,7 @@ public sealed class CustomerTest
         var exception = Record.Exception(
             () =>
                 Developurr.Orderly.Domain.Customer.Customer.Create(
-                    Constants.SalesConsultantId.Id,
+                    Constants.VendorId.Id,
                     Constants.Cnpj.CnpjValue,
                     Constants.Customer.CorporateName,
                     Constants.Customer.TaxId,
@@ -1153,7 +1153,7 @@ public sealed class CustomerTest
         var exception = Record.Exception(
             () =>
                 Developurr.Orderly.Domain.Customer.Customer.Create(
-                    Constants.SalesConsultantId.Id,
+                    Constants.VendorId.Id,
                     Constants.Cnpj.CnpjValue,
                     Constants.Customer.CorporateName,
                     Constants.Customer.TaxId,
@@ -1182,7 +1182,7 @@ public sealed class CustomerTest
         var exception = Record.Exception(
             () =>
                 Developurr.Orderly.Domain.Customer.Customer.Create(
-                    Constants.SalesConsultantId.Id,
+                    Constants.VendorId.Id,
                     Constants.Cnpj.CnpjValue,
                     Constants.Customer.CorporateName,
                     Constants.Customer.TaxId,
@@ -1211,7 +1211,7 @@ public sealed class CustomerTest
         var exception = Record.Exception(
             () =>
                 Developurr.Orderly.Domain.Customer.Customer.Create(
-                    Constants.SalesConsultantId.Id,
+                    Constants.VendorId.Id,
                     Constants.Cnpj.CnpjValue,
                     Constants.Customer.CorporateName,
                     Constants.Customer.TaxId,
@@ -1240,7 +1240,7 @@ public sealed class CustomerTest
         var exception = Record.Exception(
             () =>
                 Developurr.Orderly.Domain.Customer.Customer.Create(
-                    Constants.SalesConsultantId.Id,
+                    Constants.VendorId.Id,
                     Constants.Cnpj.CnpjValue,
                     Constants.Customer.CorporateName,
                     Constants.Customer.TaxId,
@@ -1269,7 +1269,7 @@ public sealed class CustomerTest
         var exception = Record.Exception(
             () =>
                 Developurr.Orderly.Domain.Customer.Customer.Create(
-                    Constants.SalesConsultantId.Id,
+                    Constants.VendorId.Id,
                     Constants.Cnpj.CnpjValue,
                     Constants.Customer.CorporateName,
                     Constants.Customer.TaxId,
@@ -1298,7 +1298,7 @@ public sealed class CustomerTest
         var exception = Record.Exception(
             () =>
                 Developurr.Orderly.Domain.Customer.Customer.Create(
-                    Constants.SalesConsultantId.Id,
+                    Constants.VendorId.Id,
                     Constants.Cnpj.CnpjValue,
                     Constants.Customer.CorporateName,
                     Constants.Customer.TaxId,
@@ -1327,7 +1327,7 @@ public sealed class CustomerTest
         var exception = Record.Exception(
             () =>
                 Developurr.Orderly.Domain.Customer.Customer.Create(
-                    Constants.SalesConsultantId.Id,
+                    Constants.VendorId.Id,
                     Constants.Cnpj.CnpjValue,
                     Constants.Customer.CorporateName,
                     Constants.Customer.TaxId,
@@ -1356,7 +1356,7 @@ public sealed class CustomerTest
         var exception = Record.Exception(
             () =>
                 Developurr.Orderly.Domain.Customer.Customer.Create(
-                    Constants.SalesConsultantId.Id,
+                    Constants.VendorId.Id,
                     Constants.Cnpj.CnpjValue,
                     Constants.Customer.CorporateName,
                     Constants.Customer.TaxId,
@@ -1385,7 +1385,7 @@ public sealed class CustomerTest
         var exception = Record.Exception(
             () =>
                 Developurr.Orderly.Domain.Customer.Customer.Create(
-                    Constants.SalesConsultantId.Id,
+                    Constants.VendorId.Id,
                     Constants.Cnpj.CnpjValue,
                     Constants.Customer.CorporateName,
                     Constants.Customer.TaxId,
@@ -1414,7 +1414,7 @@ public sealed class CustomerTest
         var exception = Record.Exception(
             () =>
                 Developurr.Orderly.Domain.Customer.Customer.Create(
-                    Constants.SalesConsultantId.Id,
+                    Constants.VendorId.Id,
                     Constants.Cnpj.CnpjValue,
                     Constants.Customer.CorporateName,
                     Constants.Customer.TaxId,
@@ -1443,7 +1443,7 @@ public sealed class CustomerTest
         var exception = Record.Exception(
             () =>
                 Developurr.Orderly.Domain.Customer.Customer.Create(
-                    Constants.SalesConsultantId.Id,
+                    Constants.VendorId.Id,
                     Constants.Cnpj.CnpjValue,
                     Constants.Customer.CorporateName,
                     Constants.Customer.TaxId,
@@ -1472,7 +1472,7 @@ public sealed class CustomerTest
         var exception = Record.Exception(
             () =>
                 Developurr.Orderly.Domain.Customer.Customer.Create(
-                    Constants.SalesConsultantId.Id,
+                    Constants.VendorId.Id,
                     Constants.Cnpj.CnpjValue,
                     Constants.Customer.CorporateName,
                     Constants.Customer.TaxId,
@@ -1501,7 +1501,7 @@ public sealed class CustomerTest
         var exception = Record.Exception(
             () =>
                 Developurr.Orderly.Domain.Customer.Customer.Create(
-                    Constants.SalesConsultantId.Id,
+                    Constants.VendorId.Id,
                     Constants.Cnpj.CnpjValue,
                     Constants.Customer.CorporateName,
                     Constants.Customer.TaxId,
@@ -1530,7 +1530,7 @@ public sealed class CustomerTest
         var exception = Record.Exception(
             () =>
                 Developurr.Orderly.Domain.Customer.Customer.Create(
-                    Constants.SalesConsultantId.Id,
+                    Constants.VendorId.Id,
                     Constants.Cnpj.CnpjValue,
                     Constants.Customer.CorporateName,
                     Constants.Customer.TaxId,
@@ -1559,7 +1559,7 @@ public sealed class CustomerTest
         var exception = Record.Exception(
             () =>
                 Developurr.Orderly.Domain.Customer.Customer.Create(
-                    Constants.SalesConsultantId.Id,
+                    Constants.VendorId.Id,
                     Constants.Cnpj.CnpjValue,
                     Constants.Customer.CorporateName,
                     Constants.Customer.TaxId,
@@ -1588,7 +1588,7 @@ public sealed class CustomerTest
         var exception = Record.Exception(
             () =>
                 Developurr.Orderly.Domain.Customer.Customer.Create(
-                    Constants.SalesConsultantId.Id,
+                    Constants.VendorId.Id,
                     Constants.Cnpj.CnpjValue,
                     Constants.Customer.CorporateName,
                     Constants.Customer.TaxId,
@@ -1617,7 +1617,7 @@ public sealed class CustomerTest
         var exception = Record.Exception(
             () =>
                 Developurr.Orderly.Domain.Customer.Customer.Create(
-                    Constants.SalesConsultantId.Id,
+                    Constants.VendorId.Id,
                     Constants.Cnpj.CnpjValue,
                     Constants.Customer.CorporateName,
                     Constants.Customer.TaxId,
@@ -1646,7 +1646,7 @@ public sealed class CustomerTest
         var exception = Record.Exception(
             () =>
                 Developurr.Orderly.Domain.Customer.Customer.Create(
-                    Constants.SalesConsultantId.Id,
+                    Constants.VendorId.Id,
                     Constants.Cnpj.CnpjValue,
                     Constants.Customer.CorporateName,
                     Constants.Customer.TaxId,
@@ -1672,8 +1672,8 @@ public sealed class CustomerTest
         const string expectedObservation = "";
 
         // Act
-        var salesConsultant = Developurr.Orderly.Domain.Customer.Customer.Create(
-            Constants.SalesConsultantId.Id,
+        var Vendor = Developurr.Orderly.Domain.Customer.Customer.Create(
+            Constants.VendorId.Id,
             Constants.Cnpj.CnpjValue,
             Constants.Customer.CorporateName,
             Constants.Customer.TaxId,
@@ -1687,7 +1687,7 @@ public sealed class CustomerTest
         );
 
         // Assert
-        Assert.Equal(expectedObservation, salesConsultant.Observation);
+        Assert.Equal(expectedObservation, Vendor.Observation);
     }
     
     [Fact]
@@ -1701,7 +1701,7 @@ public sealed class CustomerTest
         var exception = Record.Exception(
             () =>
                 Developurr.Orderly.Domain.Customer.Customer.Create(
-                    Constants.SalesConsultantId.Id,
+                    Constants.VendorId.Id,
                     Constants.Cnpj.CnpjValue,
                     Constants.Customer.CorporateName,
                     Constants.Customer.TaxId,
@@ -1727,8 +1727,8 @@ public sealed class CustomerTest
         const string expectedCnpj = "59.546.515/0001-34";
 
         // Act
-        var salesConsultant = Developurr.Orderly.Domain.Customer.Customer.Create(
-            Constants.SalesConsultantId.Id,
+        var Vendor = Developurr.Orderly.Domain.Customer.Customer.Create(
+            Constants.VendorId.Id,
             untrimmedCnpj,
             Constants.Customer.CorporateName,
             Constants.Customer.TaxId,
@@ -1742,7 +1742,7 @@ public sealed class CustomerTest
         );
 
         // Assert
-        Assert.Equal(expectedCnpj, salesConsultant.Cnpj.Format());
+        Assert.Equal(expectedCnpj, Vendor.Cnpj.Format());
     }
     
     [Fact]
@@ -1753,8 +1753,8 @@ public sealed class CustomerTest
         const string expectedCorporateName = "Corporate Name";
 
         // Act
-        var salesConsultant = Developurr.Orderly.Domain.Customer.Customer.Create(
-            Constants.SalesConsultantId.Id,
+        var Vendor = Developurr.Orderly.Domain.Customer.Customer.Create(
+            Constants.VendorId.Id,
             Constants.Cnpj.CnpjValue,
             untrimmedCorporateName,
             Constants.Customer.TaxId,
@@ -1768,7 +1768,7 @@ public sealed class CustomerTest
         );
 
         // Assert
-        Assert.Equal(expectedCorporateName, salesConsultant.CorporateName);
+        Assert.Equal(expectedCorporateName, Vendor.CorporateName);
     }
     
     [Fact]
@@ -1779,8 +1779,8 @@ public sealed class CustomerTest
         const string expectedTaxId = "12345";
 
         // Act
-        var salesConsultant = Developurr.Orderly.Domain.Customer.Customer.Create(
-            Constants.SalesConsultantId.Id,
+        var Vendor = Developurr.Orderly.Domain.Customer.Customer.Create(
+            Constants.VendorId.Id,
             Constants.Cnpj.CnpjValue,
             Constants.Customer.CorporateName,
             untrimmedTaxId,
@@ -1794,7 +1794,7 @@ public sealed class CustomerTest
         );
 
         // Assert
-        Assert.Equal(expectedTaxId, salesConsultant.TaxId);
+        Assert.Equal(expectedTaxId, Vendor.TaxId);
     }
     
     [Fact]
@@ -1805,8 +1805,8 @@ public sealed class CustomerTest
         const string expectedTradeName = "Trade Name";
 
         // Act
-        var salesConsultant = Developurr.Orderly.Domain.Customer.Customer.Create(
-            Constants.SalesConsultantId.Id,
+        var Vendor = Developurr.Orderly.Domain.Customer.Customer.Create(
+            Constants.VendorId.Id,
             Constants.Cnpj.CnpjValue,
             Constants.Customer.CorporateName,
             Constants.Customer.TaxId,
@@ -1820,7 +1820,7 @@ public sealed class CustomerTest
         );
 
         // Assert
-        Assert.Equal(expectedTradeName, salesConsultant.TradeName);
+        Assert.Equal(expectedTradeName, Vendor.TradeName);
     }
     
     [Fact]
@@ -1831,8 +1831,8 @@ public sealed class CustomerTest
         const string expectedSegment = "Segment";
 
         // Act
-        var salesConsultant = Developurr.Orderly.Domain.Customer.Customer.Create(
-            Constants.SalesConsultantId.Id,
+        var Vendor = Developurr.Orderly.Domain.Customer.Customer.Create(
+            Constants.VendorId.Id,
             Constants.Cnpj.CnpjValue,
             Constants.Customer.CorporateName,
             Constants.Customer.TaxId,
@@ -1846,7 +1846,7 @@ public sealed class CustomerTest
         );
 
         // Assert
-        Assert.Equal(expectedSegment, salesConsultant.Segment);
+        Assert.Equal(expectedSegment, Vendor.Segment);
     }
     
     [Fact]
@@ -1857,8 +1857,8 @@ public sealed class CustomerTest
         const string expectedBillingEmail = "email@email.com";
 
         // Act
-        var salesConsultant = Developurr.Orderly.Domain.Customer.Customer.Create(
-            Constants.SalesConsultantId.Id,
+        var Vendor = Developurr.Orderly.Domain.Customer.Customer.Create(
+            Constants.VendorId.Id,
             Constants.Cnpj.CnpjValue,
             Constants.Customer.CorporateName,
             Constants.Customer.TaxId,
@@ -1872,7 +1872,7 @@ public sealed class CustomerTest
         );
 
         // Assert
-        Assert.Equal(expectedBillingEmail, salesConsultant.BillingEmail?.Format());
+        Assert.Equal(expectedBillingEmail, Vendor.BillingEmail?.Format());
     }
     
     [Fact]
@@ -1883,8 +1883,8 @@ public sealed class CustomerTest
         const string expectedNfeEmail = "email@email.com";
 
         // Act
-        var salesConsultant = Developurr.Orderly.Domain.Customer.Customer.Create(
-            Constants.SalesConsultantId.Id,
+        var Vendor = Developurr.Orderly.Domain.Customer.Customer.Create(
+            Constants.VendorId.Id,
             Constants.Cnpj.CnpjValue,
             Constants.Customer.CorporateName,
             Constants.Customer.TaxId,
@@ -1898,7 +1898,7 @@ public sealed class CustomerTest
         );
 
         // Assert
-        Assert.Equal(expectedNfeEmail, salesConsultant.NfeEmail.Format());
+        Assert.Equal(expectedNfeEmail, Vendor.NfeEmail.Format());
     }
     
     [Fact]
@@ -1909,8 +1909,8 @@ public sealed class CustomerTest
         const string expectedLandline = "21998345677";
 
         // Act
-        var salesConsultant = Developurr.Orderly.Domain.Customer.Customer.Create(
-            Constants.SalesConsultantId.Id,
+        var Vendor = Developurr.Orderly.Domain.Customer.Customer.Create(
+            Constants.VendorId.Id,
             Constants.Cnpj.CnpjValue,
             Constants.Customer.CorporateName,
             Constants.Customer.TaxId,
@@ -1924,7 +1924,7 @@ public sealed class CustomerTest
         );
 
         // Assert
-        Assert.Equal(expectedLandline, salesConsultant.Landline?.Value);
+        Assert.Equal(expectedLandline, Vendor.Landline?.Value);
     }
     
     [Fact]
@@ -1935,8 +1935,8 @@ public sealed class CustomerTest
         const string expectedMobile = "21998345677";
 
         // Act
-        var salesConsultant = Developurr.Orderly.Domain.Customer.Customer.Create(
-            Constants.SalesConsultantId.Id,
+        var Vendor = Developurr.Orderly.Domain.Customer.Customer.Create(
+            Constants.VendorId.Id,
             Constants.Cnpj.CnpjValue,
             Constants.Customer.CorporateName,
             Constants.Customer.TaxId,
@@ -1950,7 +1950,7 @@ public sealed class CustomerTest
         );
 
         // Assert
-        Assert.Equal(expectedMobile, salesConsultant.Mobile?.Value);
+        Assert.Equal(expectedMobile, Vendor.Mobile?.Value);
     }
     
     [Fact]
@@ -1961,8 +1961,8 @@ public sealed class CustomerTest
         const string expectedObservation = "Observation";
 
         // Act
-        var salesConsultant = Developurr.Orderly.Domain.Customer.Customer.Create(
-            Constants.SalesConsultantId.Id,
+        var Vendor = Developurr.Orderly.Domain.Customer.Customer.Create(
+            Constants.VendorId.Id,
             Constants.Cnpj.CnpjValue,
             Constants.Customer.CorporateName,
             Constants.Customer.TaxId,
@@ -1976,7 +1976,7 @@ public sealed class CustomerTest
         );
 
         // Assert
-        Assert.Equal(expectedObservation, salesConsultant.Observation);
+        Assert.Equal(expectedObservation, Vendor.Observation);
     }
     
 }
