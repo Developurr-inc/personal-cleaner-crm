@@ -22,7 +22,7 @@ public class DeleteCustomerUseCase : ICommand<DeleteCustomerInput, DeleteCustome
         if (customer is null)
             throw new ArgumentException("Customer not found.", nameof(input.CustomerId));
 
-        customer.Disable();
+        customer.Deactivate();
         await _customerRepository.UpdateAsync(customer, cancellationToken);
         await _unitOfWork.CommitAsync(cancellationToken);
 
