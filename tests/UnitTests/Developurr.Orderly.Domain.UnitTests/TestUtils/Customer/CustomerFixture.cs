@@ -5,7 +5,7 @@ public static class CustomerFixture
     public static Developurr.Orderly.Domain.Customer.Customer CreateCustomer()
     {
         return Developurr.Orderly.Domain.Customer.Customer.Create(
-            Constants.Constants.SalesConsultantId.Id,
+            Constants.Constants.VendorId.Id,
             Constants.Constants.Cnpj.CnpjValue,
             Constants.Constants.Customer.CorporateName,
             Constants.Constants.Customer.TaxId,

@@ -1,10 +1,10 @@
 using Developurr.Orderly.Application.Command;
 using Developurr.Orderly.Application.Command.Customer.CreateCustomer;
 using Developurr.Orderly.Domain.Customer.Repositories;
-using Developurr.Orderly.Domain.SalesConsultant.Repositories;
 using Developurr.Orderly.Domain.UnitTests.TestUtils.Constants;
 using Developurr.Orderly.Domain.UnitTests.TestUtils.Customer;
-using Developurr.Orderly.Domain.UnitTests.TestUtils.SalesConsultant;
+using Developurr.Orderly.Domain.UnitTests.TestUtils.Vendor;
+using Developurr.Orderly.Domain.Vendor.Repositories;
 using Moq;
 
 namespace Developurr.Orderly.Application.UnitTests.TestUtils.CreateCustomer;
@@ -15,19 +15,19 @@ public static class CreateCustomerFixture
     {
         var unitOfWorkMock = new Mock<IUnitOfWork>();
         var customerRepositoryMock = new Mock<ICustomerRepository>();
-        var salesConsultantRepositoryMock = new Mock<ISalesConsultantRepository>();
+        var vendorRepositoryMock = new Mock<IVendorRepository>();
         var input = CreateInput();
         
-        salesConsultantRepositoryMock.Setup(x => x.GetByIdAsync(input.SalesConsultantId, It.IsAny<CancellationToken>()))
-            .ReturnsAsync(SalesConsultantFixture.CreateSalesConsultant());
+        vendorRepositoryMock.Setup(x => x.GetByIdAsync(input.VendorId, It.IsAny<CancellationToken>()))
+            .ReturnsAsync(VendorFixture.CreateVendor());
 
-        return new CreateCustomerUseCase(unitOfWorkMock.Object, customerRepositoryMock.Object, salesConsultantRepositoryMock.Object);
+        return new CreateCustomerUseCase(unitOfWorkMock.Object, customerRepositoryMock.Object, vendorRepositoryMock.Object);
     }
     
     public static CreateCustomerInput CreateInput()
     {
         return new CreateCustomerInput(
-            Constants.SalesConsultantId.Id.Format(),
+            Constants.VendorId.Id.Format(),
             Constants.Cnpj.CnpjValue,
             Constants.Customer.CorporateName,
             Constants.Customer.TaxId,
@@ -44,7 +44,7 @@ public static class CreateCustomerFixture
     public static CreateCustomerInput CreateInvalidInput()
     {
         return new CreateCustomerInput(
-            Constants.SalesConsultantId.Id.Format(),
+            Constants.VendorId.Id.Format(),
             Constants.Cnpj.CnpjValue,
             Constants.Customer.CorporateName,
             Constants.Customer.TaxId,

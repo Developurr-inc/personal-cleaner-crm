@@ -1,16 +1,16 @@
 using Developurr.Orderly.Domain.Customer.Validators;
 using Developurr.Orderly.Domain.Customer.ValueObjects;
 using Developurr.Orderly.Domain.Order.ValueObjects;
-using Developurr.Orderly.Domain.SalesConsultant.ValueObjects;
 using Developurr.Orderly.Domain.SeedWork;
 using Developurr.Orderly.Domain.Shared.ValueObjects;
+using Developurr.Orderly.Domain.Vendor.ValueObjects;
 
 namespace Developurr.Orderly.Domain.Customer;
 
 public sealed class Customer : Entity<CustomerId>, IAggregateRoot
 {
     private readonly List<OrderId> _orders;
-    public SalesConsultantId SalesConsultant { get; private set; }
+    public VendorId Vendor { get; private set; }
     public Cnpj Cnpj { get; }
     public string CorporateName { get; private set; }
     public string TaxId { get; private set; }
@@ -25,7 +25,7 @@ public sealed class Customer : Entity<CustomerId>, IAggregateRoot
 
     private Customer(
         CustomerId customerId,
-        SalesConsultantId salesConsultantId,
+        VendorId vendorId,
         Cnpj cnpj,
         string corporateName,
         string taxId,
@@ -41,7 +41,7 @@ public sealed class Customer : Entity<CustomerId>, IAggregateRoot
         : base(customerId)
     {
         _orders = new List<OrderId>();
-        SalesConsultant = salesConsultantId;
+        Vendor = vendorId;
         Cnpj = cnpj;
         CorporateName = corporateName;
         TaxId = taxId;
@@ -62,7 +62,7 @@ public sealed class Customer : Entity<CustomerId>, IAggregateRoot
     }
 
     public static Customer Create(
-        SalesConsultantId salesConsultantId,
+        VendorId vendorId,
         string cnpjValue,
         string corporateName,
         string taxId,
@@ -98,7 +98,7 @@ public sealed class Customer : Entity<CustomerId>, IAggregateRoot
 
         return new Customer(
             customerId,
-            salesConsultantId,
+            vendorId,
             cnpj,
             corporateNameTrimmed,
             taxIdTrimmed,

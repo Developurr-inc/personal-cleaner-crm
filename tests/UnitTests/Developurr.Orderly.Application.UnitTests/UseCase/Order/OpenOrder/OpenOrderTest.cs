@@ -3,9 +3,9 @@ using Developurr.Orderly.Application.Command.Order.OpenOrder;
 using Developurr.Orderly.Application.UnitTests.TestUtils.OpenOrder;
 using Developurr.Orderly.Domain.Customer.Repositories;
 using Developurr.Orderly.Domain.Order.Repositories;
-using Developurr.Orderly.Domain.SalesConsultant.Repositories;
 using Developurr.Orderly.Domain.UnitTests.TestUtils.Customer;
-using Developurr.Orderly.Domain.UnitTests.TestUtils.SalesConsultant;
+using Developurr.Orderly.Domain.UnitTests.TestUtils.Vendor;
+using Developurr.Orderly.Domain.Vendor.Repositories;
 using Moq;
 
 namespace Developurr.Orderly.Application.UnitTests.UseCase.Order.OpenOrder;
@@ -18,10 +18,10 @@ public class OpenOrderTest
         // Arrange
         var unitOfWorkMock = new Mock<IUnitOfWork>();
         var orderRepositoryMock = new Mock<IOrderRepository>();
-        var salesConsultantRepositoryMock = new Mock<ISalesConsultantRepository>();
+        var vendorRepositoryMock = new Mock<IVendorRepository>();
         var customerRepositoryMock = new Mock<ICustomerRepository>();
         // Act
-        var openOrderUseCase = new OpenOrderUseCase(unitOfWorkMock.Object, orderRepositoryMock.Object,customerRepositoryMock.Object, salesConsultantRepositoryMock.Object);
+        var openOrderUseCase = new OpenOrderUseCase(unitOfWorkMock.Object, orderRepositoryMock.Object,customerRepositoryMock.Object, vendorRepositoryMock.Object);
 
         // Assert
         Assert.NotNull(openOrderUseCase);
@@ -33,18 +33,18 @@ public class OpenOrderTest
         // Arrange
         var unitOfWorkMock = new Mock<IUnitOfWork>();
         var orderRepositoryMock = new Mock<IOrderRepository>();
-        var salesConsultantRepositoryMock = new Mock<ISalesConsultantRepository>();
+        var vendorRepositoryMock = new Mock<IVendorRepository>();
         var customerRepositoryMock = new Mock<ICustomerRepository>();
-        var openOrderUseCase = new OpenOrderUseCase(unitOfWorkMock.Object, orderRepositoryMock.Object, customerRepositoryMock.Object, salesConsultantRepositoryMock.Object);
+        var openOrderUseCase = new OpenOrderUseCase(unitOfWorkMock.Object, orderRepositoryMock.Object, customerRepositoryMock.Object, vendorRepositoryMock.Object);
         var input = OpenOrderFixture.OpenInput();
 
         customerRepositoryMock.Setup(x => x.GetByIdAsync(
             It.IsAny<string>(), It.IsAny<CancellationToken>())
         ).ReturnsAsync(CustomerFixture.CreateCustomer());
         
-        salesConsultantRepositoryMock.Setup(x => x.GetByIdAsync(
+        vendorRepositoryMock.Setup(x => x.GetByIdAsync(
             It.IsAny<string>(), It.IsAny<CancellationToken>())
-        ).ReturnsAsync(SalesConsultantFixture.CreateSalesConsultant());
+        ).ReturnsAsync(VendorFixture.CreateVendor());
 
         // Act
         _ = await openOrderUseCase.Handle(input, CancellationToken.None);
@@ -54,29 +54,29 @@ public class OpenOrderTest
     }
     
     [Fact]
-    public async void GivenValidInput_WhenCallingExecute_ThenShouldCallSalesConsultantGetByIdAsyncOnce()
+    public async void GivenValidInput_WhenCallingExecute_ThenShouldCallVendorGetByIdAsyncOnce()
     {
         // Arrange
         var unitOfWorkMock = new Mock<IUnitOfWork>();
         var orderRepositoryMock = new Mock<IOrderRepository>();
-        var salesConsultantRepositoryMock = new Mock<ISalesConsultantRepository>();
+        var vendorRepositoryMock = new Mock<IVendorRepository>();
         var customerRepositoryMock = new Mock<ICustomerRepository>();
-        var openOrderUseCase = new OpenOrderUseCase(unitOfWorkMock.Object, orderRepositoryMock.Object, customerRepositoryMock.Object, salesConsultantRepositoryMock.Object);
+        var openOrderUseCase = new OpenOrderUseCase(unitOfWorkMock.Object, orderRepositoryMock.Object, customerRepositoryMock.Object, vendorRepositoryMock.Object);
         var input = OpenOrderFixture.OpenInput();
 
         customerRepositoryMock.Setup(x => x.GetByIdAsync(
             It.IsAny<string>(), It.IsAny<CancellationToken>())
         ).ReturnsAsync(CustomerFixture.CreateCustomer());
         
-        salesConsultantRepositoryMock.Setup(x => x.GetByIdAsync(
+        vendorRepositoryMock.Setup(x => x.GetByIdAsync(
             It.IsAny<string>(), It.IsAny<CancellationToken>())
-        ).ReturnsAsync(SalesConsultantFixture.CreateSalesConsultant());
+        ).ReturnsAsync(VendorFixture.CreateVendor());
 
         // Act
         _ = await openOrderUseCase.Handle(input, CancellationToken.None);
         
         // Assert
-        salesConsultantRepositoryMock.Verify(x => x.GetByIdAsync(It.IsAny<string>(), CancellationToken.None), Times.Once);
+        vendorRepositoryMock.Verify(x => x.GetByIdAsync(It.IsAny<string>(), CancellationToken.None), Times.Once);
     }
 
     [Fact]
@@ -85,18 +85,18 @@ public class OpenOrderTest
         // Arrange
         var unitOfWorkMock = new Mock<IUnitOfWork>();
         var orderRepositoryMock = new Mock<IOrderRepository>();
-        var salesConsultantRepositoryMock = new Mock<ISalesConsultantRepository>();
+        var vendorRepositoryMock = new Mock<IVendorRepository>();
         var customerRepositoryMock = new Mock<ICustomerRepository>();
-        var openOrderUseCase = new OpenOrderUseCase(unitOfWorkMock.Object, orderRepositoryMock.Object, customerRepositoryMock.Object, salesConsultantRepositoryMock.Object);
+        var openOrderUseCase = new OpenOrderUseCase(unitOfWorkMock.Object, orderRepositoryMock.Object, customerRepositoryMock.Object, vendorRepositoryMock.Object);
         var input = OpenOrderFixture.OpenInput();
         
         customerRepositoryMock.Setup(x => x.GetByIdAsync(
             It.IsAny<string>(), It.IsAny<CancellationToken>())
         ).ReturnsAsync(CustomerFixture.CreateCustomer());
         
-        salesConsultantRepositoryMock.Setup(x => x.GetByIdAsync(
+        vendorRepositoryMock.Setup(x => x.GetByIdAsync(
             It.IsAny<string>(), It.IsAny<CancellationToken>())
-        ).ReturnsAsync(SalesConsultantFixture.CreateSalesConsultant());
+        ).ReturnsAsync(VendorFixture.CreateVendor());
 
         // Act
         _ = await openOrderUseCase.Handle(input, CancellationToken.None);
@@ -111,18 +111,18 @@ public class OpenOrderTest
         // Arrange
         var unitOfWorkMock = new Mock<IUnitOfWork>();
         var orderRepositoryMock = new Mock<IOrderRepository>();
-        var salesConsultantRepositoryMock = new Mock<ISalesConsultantRepository>();
+        var vendorRepositoryMock = new Mock<IVendorRepository>();
         var customerRepositoryMock = new Mock<ICustomerRepository>();
-        var openOrderUseCase = new OpenOrderUseCase(unitOfWorkMock.Object, orderRepositoryMock.Object, customerRepositoryMock.Object, salesConsultantRepositoryMock.Object);
+        var openOrderUseCase = new OpenOrderUseCase(unitOfWorkMock.Object, orderRepositoryMock.Object, customerRepositoryMock.Object, vendorRepositoryMock.Object);
         var input = OpenOrderFixture.OpenInput();
         
         customerRepositoryMock.Setup(x => x.GetByIdAsync(
             It.IsAny<string>(), It.IsAny<CancellationToken>())
         ).ReturnsAsync(CustomerFixture.CreateCustomer());
         
-        salesConsultantRepositoryMock.Setup(x => x.GetByIdAsync(
+        vendorRepositoryMock.Setup(x => x.GetByIdAsync(
             It.IsAny<string>(), It.IsAny<CancellationToken>())
-        ).ReturnsAsync(SalesConsultantFixture.CreateSalesConsultant());
+        ).ReturnsAsync(VendorFixture.CreateVendor());
         
         // Act
         _ = await openOrderUseCase.Handle(input, CancellationToken.None);
@@ -165,10 +165,10 @@ public class OpenOrderTest
         // Arrange
         var unitOfWorkMock = new Mock<IUnitOfWork>();
         var orderRepositoryMock = new Mock<IOrderRepository>();
-        var salesConsultantRepositoryMock = new Mock<ISalesConsultantRepository>();
+        var vendorRepositoryMock = new Mock<IVendorRepository>();
         var customerRepositoryMock = new Mock<ICustomerRepository>();
         
-        var openOrderUseCase = new OpenOrderUseCase(unitOfWorkMock.Object, orderRepositoryMock.Object, customerRepositoryMock.Object, salesConsultantRepositoryMock.Object);
+        var openOrderUseCase = new OpenOrderUseCase(unitOfWorkMock.Object, orderRepositoryMock.Object, customerRepositoryMock.Object, vendorRepositoryMock.Object);
         var input = OpenOrderFixture.OpenInput();
         
         // Act
@@ -180,15 +180,15 @@ public class OpenOrderTest
     }
     
     [Fact]
-    public async void GivenInvalidSalesConsultant_WhenCallingExecute_ThenShouldNotCallOrderInsertAsync()
+    public async void GivenInvalidVendor_WhenCallingExecute_ThenShouldNotCallOrderInsertAsync()
     {
         // Arrange
         var unitOfWorkMock = new Mock<IUnitOfWork>();
         var orderRepositoryMock = new Mock<IOrderRepository>();
-        var salesConsultantRepositoryMock = new Mock<ISalesConsultantRepository>();
+        var vendorRepositoryMock = new Mock<IVendorRepository>();
         var customerRepositoryMock = new Mock<ICustomerRepository>();
         
-        var openOrderUseCase = new OpenOrderUseCase(unitOfWorkMock.Object, orderRepositoryMock.Object, customerRepositoryMock.Object, salesConsultantRepositoryMock.Object);
+        var openOrderUseCase = new OpenOrderUseCase(unitOfWorkMock.Object, orderRepositoryMock.Object, customerRepositoryMock.Object, vendorRepositoryMock.Object);
         var input = OpenOrderFixture.OpenInput();
         
         customerRepositoryMock.Setup(x => x.GetByIdAsync(input.CustomerId, It.IsAny<CancellationToken>())).ReturnsAsync(CustomerFixture.CreateCustomer());
@@ -201,15 +201,15 @@ public class OpenOrderTest
     }
     
     [Fact]
-    public async void GivenInvalidSalesConsultant_WhenCallingExecute_ThenShouldNotCallCommitAsync()
+    public async void GivenInvalidVendor_WhenCallingExecute_ThenShouldNotCallCommitAsync()
     {
         // Arrange
         var unitOfWorkMock = new Mock<IUnitOfWork>();
         var orderRepositoryMock = new Mock<IOrderRepository>();
-        var salesConsultantRepositoryMock = new Mock<ISalesConsultantRepository>();
+        var vendorRepositoryMock = new Mock<IVendorRepository>();
         var customerRepositoryMock = new Mock<ICustomerRepository>();
         
-        var openOrderUseCase = new OpenOrderUseCase(unitOfWorkMock.Object, orderRepositoryMock.Object, customerRepositoryMock.Object, salesConsultantRepositoryMock.Object);
+        var openOrderUseCase = new OpenOrderUseCase(unitOfWorkMock.Object, orderRepositoryMock.Object, customerRepositoryMock.Object, vendorRepositoryMock.Object);
         var input = OpenOrderFixture.OpenInput();
         
         customerRepositoryMock.Setup(x => x.GetByIdAsync(input.CustomerId, It.IsAny<CancellationToken>())).ReturnsAsync(CustomerFixture.CreateCustomer());
@@ -227,13 +227,13 @@ public class OpenOrderTest
         // Arrange
         var unitOfWorkMock = new Mock<IUnitOfWork>();
         var orderRepositoryMock = new Mock<IOrderRepository>();
-        var salesConsultantRepositoryMock = new Mock<ISalesConsultantRepository>();
+        var vendorRepositoryMock = new Mock<IVendorRepository>();
         var customerRepositoryMock = new Mock<ICustomerRepository>();
         
-        var openOrderUseCase = new OpenOrderUseCase(unitOfWorkMock.Object, orderRepositoryMock.Object, customerRepositoryMock.Object, salesConsultantRepositoryMock.Object);
+        var openOrderUseCase = new OpenOrderUseCase(unitOfWorkMock.Object, orderRepositoryMock.Object, customerRepositoryMock.Object, vendorRepositoryMock.Object);
         var input = OpenOrderFixture.OpenInput();
         
-        salesConsultantRepositoryMock.Setup(x => x.GetByIdAsync(input.SalesConsultantId, It.IsAny<CancellationToken>())).ReturnsAsync(SalesConsultantFixture.CreateSalesConsultant());
+        vendorRepositoryMock.Setup(x => x.GetByIdAsync(input.VendorId, It.IsAny<CancellationToken>())).ReturnsAsync(VendorFixture.CreateVendor());
 
         // Act
         _ = await Record.ExceptionAsync(() => openOrderUseCase.Handle(input, CancellationToken.None));
@@ -248,13 +248,13 @@ public class OpenOrderTest
         // Arrange
         var unitOfWorkMock = new Mock<IUnitOfWork>();
         var orderRepositoryMock = new Mock<IOrderRepository>();
-        var salesConsultantRepositoryMock = new Mock<ISalesConsultantRepository>();
+        var vendorRepositoryMock = new Mock<IVendorRepository>();
         var customerRepositoryMock = new Mock<ICustomerRepository>();
         
-        var openOrderUseCase = new OpenOrderUseCase(unitOfWorkMock.Object, orderRepositoryMock.Object, customerRepositoryMock.Object, salesConsultantRepositoryMock.Object);
+        var openOrderUseCase = new OpenOrderUseCase(unitOfWorkMock.Object, orderRepositoryMock.Object, customerRepositoryMock.Object, vendorRepositoryMock.Object);
         var input = OpenOrderFixture.OpenInput();
         
-        salesConsultantRepositoryMock.Setup(x => x.GetByIdAsync(input.SalesConsultantId, It.IsAny<CancellationToken>())).ReturnsAsync(SalesConsultantFixture.CreateSalesConsultant());
+        vendorRepositoryMock.Setup(x => x.GetByIdAsync(input.VendorId, It.IsAny<CancellationToken>())).ReturnsAsync(VendorFixture.CreateVendor());
 
         // Act
         _ = await Record.ExceptionAsync(() => openOrderUseCase.Handle(input, CancellationToken.None));

@@ -23,7 +23,7 @@ public sealed class GetCustomerUseCase : IQuery<GetCustomerInput, GetCustomerOut
 
         return new GetCustomerOutput(
             customer.Id.Format(),
-            customer.SalesConsultant.Format(),
+            customer.Vendor.Format(),
             customer.Cnpj.Format(),
             customer.CorporateName,
             customer.TaxId,

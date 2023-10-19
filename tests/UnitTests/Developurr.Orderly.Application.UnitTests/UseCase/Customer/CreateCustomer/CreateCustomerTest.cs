@@ -3,8 +3,8 @@ using Developurr.Orderly.Application.Command.Customer.CreateCustomer;
 using Developurr.Orderly.Application.UnitTests.TestUtils.CreateCustomer;
 using Developurr.Orderly.Domain.Exceptions;
 using Developurr.Orderly.Domain.Customer.Repositories;
-using Developurr.Orderly.Domain.SalesConsultant.Repositories;
-using Developurr.Orderly.Domain.UnitTests.TestUtils.SalesConsultant;
+using Developurr.Orderly.Domain.UnitTests.TestUtils.Vendor;
+using Developurr.Orderly.Domain.Vendor.Repositories;
 using Moq;
 
 namespace Developurr.Orderly.Application.UnitTests.UseCase.Customer.CreateCustomer;
@@ -17,10 +17,10 @@ public class CreateCustomerTest
         // Arrange
         var unitOfWorkMock = new Mock<IUnitOfWork>();
         var customerRepositoryMock = new Mock<ICustomerRepository>();
-        var salesConsultantRepositoryMock = new Mock<ISalesConsultantRepository>();
+        var vendorRepositoryMock = new Mock<IVendorRepository>();
 
         // Act
-        var createCustomerUseCase = new CreateCustomerUseCase(unitOfWorkMock.Object, customerRepositoryMock.Object, salesConsultantRepositoryMock.Object);
+        var createCustomerUseCase = new CreateCustomerUseCase(unitOfWorkMock.Object, customerRepositoryMock.Object, vendorRepositoryMock.Object);
 
         // Assert
         Assert.NotNull(createCustomerUseCase);
@@ -32,13 +32,13 @@ public class CreateCustomerTest
         // Arrange
         var unitOfWorkMock = new Mock<IUnitOfWork>();
         var customerRepositoryMock = new Mock<ICustomerRepository>();
-        var salesConsultantRepositoryMock = new Mock<ISalesConsultantRepository>();
-        var createCustomerUseCase = new CreateCustomerUseCase(unitOfWorkMock.Object, customerRepositoryMock.Object, salesConsultantRepositoryMock.Object);
+        var vendorRepositoryMock = new Mock<IVendorRepository>();
+        var createCustomerUseCase = new CreateCustomerUseCase(unitOfWorkMock.Object, customerRepositoryMock.Object, vendorRepositoryMock.Object);
         var input = CreateCustomerFixture.CreateInput();
         
-        salesConsultantRepositoryMock.Setup(x => x.GetByIdAsync(
+        vendorRepositoryMock.Setup(x => x.GetByIdAsync(
             It.IsAny<string>(), It.IsAny<CancellationToken>())
-        ).ReturnsAsync(SalesConsultantFixture.CreateSalesConsultant());
+        ).ReturnsAsync(VendorFixture.CreateVendor());
         
         // Act
         _ = await createCustomerUseCase.Handle(input, CancellationToken.None);
@@ -53,13 +53,13 @@ public class CreateCustomerTest
         // Arrange
         var unitOfWorkMock = new Mock<IUnitOfWork>();
         var customerRepositoryMock = new Mock<ICustomerRepository>();
-        var salesConsultantRepositoryMock = new Mock<ISalesConsultantRepository>();
-        var createCustomerUseCase = new CreateCustomerUseCase(unitOfWorkMock.Object, customerRepositoryMock.Object, salesConsultantRepositoryMock.Object);
+        var vendorRepositoryMock = new Mock<IVendorRepository>();
+        var createCustomerUseCase = new CreateCustomerUseCase(unitOfWorkMock.Object, customerRepositoryMock.Object, vendorRepositoryMock.Object);
         var input = CreateCustomerFixture.CreateInput();
         
-        salesConsultantRepositoryMock.Setup(x => x.GetByIdAsync(
+        vendorRepositoryMock.Setup(x => x.GetByIdAsync(
             It.IsAny<string>(), It.IsAny<CancellationToken>())
-        ).ReturnsAsync(SalesConsultantFixture.CreateSalesConsultant());
+        ).ReturnsAsync(VendorFixture.CreateVendor());
         
         // Act
         _ = await createCustomerUseCase.Handle(input, CancellationToken.None);
@@ -69,24 +69,24 @@ public class CreateCustomerTest
     }
     
     [Fact]
-    public async void GivenValidInput_WhenCallingExecute_ThenShouldCallSalesConsultantGetByIdAsyncOnce()
+    public async void GivenValidInput_WhenCallingExecute_ThenShouldCallVendorGetByIdAsyncOnce()
     {
         // Arrange
         var unitOfWorkMock = new Mock<IUnitOfWork>();
         var customerRepositoryMock = new Mock<ICustomerRepository>();
-        var salesConsultantRepositoryMock = new Mock<ISalesConsultantRepository>();
-        var createCustomerUseCase = new CreateCustomerUseCase(unitOfWorkMock.Object, customerRepositoryMock.Object, salesConsultantRepositoryMock.Object);
+        var vendorRepositoryMock = new Mock<IVendorRepository>();
+        var createCustomerUseCase = new CreateCustomerUseCase(unitOfWorkMock.Object, customerRepositoryMock.Object, vendorRepositoryMock.Object);
         var input = CreateCustomerFixture.CreateInput();
         
-        salesConsultantRepositoryMock.Setup(x => x.GetByIdAsync(
+        vendorRepositoryMock.Setup(x => x.GetByIdAsync(
             It.IsAny<string>(), It.IsAny<CancellationToken>())
-        ).ReturnsAsync(SalesConsultantFixture.CreateSalesConsultant());
+        ).ReturnsAsync(VendorFixture.CreateVendor());
 
         // Act
         _ = await createCustomerUseCase.Handle(input, CancellationToken.None);
         
         // Assert
-        salesConsultantRepositoryMock.Verify(x => x.GetByIdAsync(It.IsAny<string>(), CancellationToken.None), Times.Once);
+        vendorRepositoryMock.Verify(x => x.GetByIdAsync(It.IsAny<string>(), CancellationToken.None), Times.Once);
     }
     
     [Fact]

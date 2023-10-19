@@ -1,7 +1,7 @@
 namespace Developurr.Orderly.Application.Command.Customer.CreateCustomer;
 
 public record CreateCustomerInput(
-    string SalesConsultantId,
+    string VendorId,
     string Cnpj,
     string CorporateName,
     string TaxId,
