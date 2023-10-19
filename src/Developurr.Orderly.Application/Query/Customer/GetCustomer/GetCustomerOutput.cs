@@ -2,7 +2,7 @@ namespace Developurr.Orderly.Application.Query.Customer.GetCustomer;
 
 public record GetCustomerOutput(
     string Id,
-    string SalesConsultantId,
+    string VendorId,
     string Cnpj,
     string CorporateName,
     string TaxId,

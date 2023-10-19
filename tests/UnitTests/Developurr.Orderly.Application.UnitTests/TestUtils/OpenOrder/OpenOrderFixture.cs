@@ -2,10 +2,10 @@ using Developurr.Orderly.Application.Command;
 using Developurr.Orderly.Application.Command.Order.OpenOrder;
 using Developurr.Orderly.Domain.Customer.Repositories;
 using Developurr.Orderly.Domain.Order.Repositories;
-using Developurr.Orderly.Domain.SalesConsultant.Repositories;
 using Developurr.Orderly.Domain.UnitTests.TestUtils.Constants;
 using Developurr.Orderly.Domain.UnitTests.TestUtils.Customer;
-using Developurr.Orderly.Domain.UnitTests.TestUtils.SalesConsultant;
+using Developurr.Orderly.Domain.UnitTests.TestUtils.Vendor;
+using Developurr.Orderly.Domain.Vendor.Repositories;
 using Moq;
 
 namespace Developurr.Orderly.Application.UnitTests.TestUtils.OpenOrder;
@@ -16,7 +16,7 @@ public static class OpenOrderFixture
     {
         var unitOfWorkMock = new Mock<IUnitOfWork>();
         var orderRepositoryMock = new Mock<IOrderRepository>();
-        var salesConsultantRepositoryMock = new Mock<ISalesConsultantRepository>();
+        var vendorRepositoryMock = new Mock<IVendorRepository>();
         var customerRepositoryMock = new Mock<ICustomerRepository>();
         
         customerRepositoryMock.Setup(x => x.GetByIdAsync(
@@ -24,18 +24,18 @@ public static class OpenOrderFixture
         ).ReturnsAsync(CustomerFixture.CreateCustomer());
 
         
-        salesConsultantRepositoryMock.Setup(x => x.GetByIdAsync(
+        vendorRepositoryMock.Setup(x => x.GetByIdAsync(
             It.IsAny<string>(), It.IsAny<CancellationToken>())
-        ).ReturnsAsync(SalesConsultantFixture.CreateSalesConsultant());
+        ).ReturnsAsync(VendorFixture.CreateVendor());
         
-        return new OpenOrderUseCase(unitOfWorkMock.Object, orderRepositoryMock.Object, customerRepositoryMock.Object, salesConsultantRepositoryMock.Object);
+        return new OpenOrderUseCase(unitOfWorkMock.Object, orderRepositoryMock.Object, customerRepositoryMock.Object, vendorRepositoryMock.Object);
     }
     
     public static OpenOrderInput OpenInput()
     {
         return new OpenOrderInput(
             Constants.CustomerId.Id.Format(),
-            Constants.SalesConsultantId.Id.Format()
+            Constants.VendorId.Id.Format()
         );
     }
     
