@@ -15,6 +15,6 @@ public class GetOrderUseCase : IQuery<GetOrderInput, GetOrderOutput>
     {
         var order = await _orderRepository.GetByIdAsync(input.OrderId, cancellationToken);
 
-        return new GetOrderOutput(order.OrderTotal.Format());
+        return new GetOrderOutput(order.OrderTotal.ToString());
     }
 }

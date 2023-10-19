@@ -1,9 +1,10 @@
 namespace Developurr.Orderly.Application.UseCase.Product.CreateProduct;
 
 public record CreateProductInput(
-    string Code,
     string Name,
-    string Packaging,
-    decimal ExciseTax,
-    decimal PriceValue
+    string Description,
+    string CategoryId,
+    string PackageId,
+    decimal UnitPrice,
+    decimal Imposto
 );
