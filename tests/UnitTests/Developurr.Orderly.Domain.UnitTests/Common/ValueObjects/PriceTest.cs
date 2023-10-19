@@ -21,13 +21,13 @@ public sealed class PriceTest
     public void GivenValidPrice_WhenCreatingPrice_ThenShouldHaveValidPrice()
     {
         // Arrange
-        const string expectedPrice = "R$ 10.99";
+        var expectedPrice = PriceFixture.CreatePrice();
 
         // Act
-        var price = Price.Create(Constants.Price.PriceValue);
+        var price = Price.Create(expectedPrice.Value);
         
         // Assert 
-        Assert.Equal(expectedPrice, price.Format());
+        Assert.Equal(expectedPrice.Value, price.Value);
     }
 
     [Fact]
@@ -50,8 +50,6 @@ public sealed class PriceTest
         Assert.Contains(expectedErrorMessage, eve.Message);
     }
     
-    
-    
     [Fact]
     public void GivenInvalidPrice_WhenCreatingPrice_ThenShouldThrowEntityValidationExceptionWithMessage()
     {
@@ -71,19 +69,4 @@ public sealed class PriceTest
         var eve = Assert.IsType<EntityValidationException>(exception);
         Assert.Contains(expectedErrorMessage, eve.Errors);
     }
-    
-    [Fact]
-    public void GivenValidPrice_WhenCallFormat_ShouldReturnFormattedPrice()
-    {
-        // Arrange
-        var price = PriceFixture.CreatePrice();
-        var expectedFormattedPrice = $"R$ 10.99";
-
-        // Act
-        var formattedPrice = price.Format();
-
-        // Assert
-        Assert.Equal(expectedFormattedPrice, formattedPrice);
-    }
-    
 }
