@@ -166,7 +166,7 @@ public static partial class ValidationRules
         var validatePhoneNumberRegex = new Regex(
             @"^(\+55\s?)?(\(\d{2}\)\s?)?(\d{4,5}-\d{4}|\d{11})$"
         );
-        if (validatePhoneNumberRegex.IsMatch(phone) == false)
+        if (!validatePhoneNumberRegex.IsMatch(phone))
             errors.AddValidationError($"'{fieldName}' is not valid.");
     }
 

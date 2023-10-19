@@ -24,13 +24,13 @@ public sealed class PriceTest
     public void GivenValidPrice_WhenCreatingPrice_ThenShouldHaveValidPrice()
     {
         // Arrange
-        var p = PriceFixture.CreatePrice();
+        var expectedPrice = PriceFixture.CreatePrice();
 
         // Act
-        var price = Price.Create(p.Value);
+        var price = Price.Create(expectedPrice.Value);
         
         // Assert 
-        Assert.Equal(p.Value, price.Value);
+        Assert.Equal(expectedPrice.Value, price.Value);
     }
 
     [Fact]
@@ -117,7 +117,7 @@ public sealed class PriceTest
         // Assert
         Assert.Equal(expectedPrice, subPrice.Value);
     }
-    
+
     [Fact]
     public void GivenPrice_WhenMultiplyingByConstant_ShouldReturnMultipliedValue()
     {
