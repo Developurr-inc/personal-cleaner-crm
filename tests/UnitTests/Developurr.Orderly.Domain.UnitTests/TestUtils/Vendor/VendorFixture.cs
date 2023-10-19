@@ -1,10 +1,10 @@
-namespace Developurr.Orderly.Domain.UnitTests.TestUtils.SalesConsultant;
+namespace Developurr.Orderly.Domain.UnitTests.TestUtils.Vendor;
 
-public static class SalesConsultantFixture
+public static class VendorFixture
 {
-    public static Developurr.Orderly.Domain.SalesConsultant.SalesConsultant CreateSalesConsultant()
+    public static Domain.Vendor.Vendor CreateSalesConsultant()
     {
-        return Developurr.Orderly.Domain.SalesConsultant.SalesConsultant.Create(
+        return Domain.Vendor.Vendor.Create(
             Constants.Constants.Cpf.CpfValue,
             Constants.Constants.Address.Street,
             Constants.Constants.Address.Number,
@@ -14,7 +14,7 @@ public static class SalesConsultantFixture
             Constants.Constants.Address.City,
             Constants.Constants.Address.State,
             Constants.Constants.Address.Country,
-            Constants.Constants.SalesConsultant.Name,
+            Constants.Constants.Vendor.Name,
             Constants.Constants.Email.EmailValue,
             Constants.Constants.Phone.PhoneValue,
             Constants.Constants.Phone.PhoneValue

@@ -1,15 +1,15 @@
 using Developurr.Orderly.Domain.Exceptions;
 using Developurr.Orderly.Domain.UnitTests.TestUtils.Constants;
 
-namespace Developurr.Orderly.Domain.UnitTests.SalesConsultant;
+namespace Developurr.Orderly.Domain.UnitTests.Vendor;
 
-public sealed class SalesConsultantTest
+public sealed class VendorTest
 {
     [Fact]
-    public void GivenValidInput_WhenCreatingSalesConsultant_ThenShouldInstantiateSalesConsultant()
+    public void GivenValidInput_WhenCreatingVendor_ThenShouldInstantiateVendor()
     {
         // Act
-        var salesConsultant = Developurr.Orderly.Domain.SalesConsultant.SalesConsultant.Create(
+        var vendor = Domain.Vendor.Vendor.Create(
             Constants.Cpf.CpfValue,
             Constants.Address.Street,
             Constants.Address.Number,
@@ -19,25 +19,25 @@ public sealed class SalesConsultantTest
             Constants.Address.City,
             Constants.Address.State,
             Constants.Address.Country,
-            Constants.SalesConsultant.Name,
+            Constants.Vendor.Name,
             Constants.Email.EmailValue,
             Constants.Phone.PhoneValue,
             Constants.Phone.PhoneValue
         );
 
         // Assert
-        Assert.NotNull(salesConsultant);
+        Assert.NotNull(vendor);
     }
     
     [Fact]
-    public void GivenValidCpf_WhenCreatingSalesConsultant_ThenShouldHaveValidCpf()
+    public void GivenValidCpf_WhenCreatingVendor_ThenShouldHaveValidCpf()
     {
         // Arrange
         const string cpf = "54647142949";
         const string expectedCpf = "546.471.429-49";
 
         // Act
-        var salesConsultant = Developurr.Orderly.Domain.SalesConsultant.SalesConsultant.Create(
+        var vendor = Domain.Vendor.Vendor.Create(
             cpf,
             Constants.Address.Street,
             Constants.Address.Number,
@@ -47,24 +47,24 @@ public sealed class SalesConsultantTest
             Constants.Address.City,
             Constants.Address.State,
             Constants.Address.Country,
-            Constants.SalesConsultant.Name,
+            Constants.Vendor.Name,
             Constants.Email.EmailValue,
             Constants.Phone.PhoneValue,
             Constants.Phone.PhoneValue
         );
 
         // Assert
-        Assert.Equal(expectedCpf, salesConsultant.Cpf.Format());
+        Assert.Equal(expectedCpf, vendor.Cpf.Format());
     }
     
     [Fact]
-    public void GivenValidStreet_WhenCreatingSalesConsultant_ThenShouldHaveValidStreet()
+    public void GivenValidStreet_WhenCreatingVendor_ThenShouldHaveValidStreet()
     {
         // Arrange
         const string expectedStreet = "Rua john";
 
         // Act
-        var salesConsultant = Developurr.Orderly.Domain.SalesConsultant.SalesConsultant.Create(
+        var vendor = Domain.Vendor.Vendor.Create(
             Constants.Cpf.CpfValue,
             expectedStreet,
             Constants.Address.Number,
@@ -74,24 +74,24 @@ public sealed class SalesConsultantTest
             Constants.Address.City,
             Constants.Address.State,
             Constants.Address.Country,
-            Constants.SalesConsultant.Name,
+            Constants.Vendor.Name,
             Constants.Email.EmailValue,
             Constants.Phone.PhoneValue,
             Constants.Phone.PhoneValue
         );
 
         // Assert
-        Assert.Equal(expectedStreet, salesConsultant.Address.Street);
+        Assert.Equal(expectedStreet, vendor.Address.Street);
     }
     
     [Fact]
-    public void GivenValidNumber_WhenCreatingSalesConsultant_ThenShouldHaveValidNumber()
+    public void GivenValidNumber_WhenCreatingVendor_ThenShouldHaveValidNumber()
     {
         // Arrange
         const int expectedNumber = 123;
 
         // Act
-        var salesConsultant = Developurr.Orderly.Domain.SalesConsultant.SalesConsultant.Create(
+        var vendor = Domain.Vendor.Vendor.Create(
             Constants.Cpf.CpfValue,
             Constants.Address.Street,
             expectedNumber,
@@ -101,24 +101,24 @@ public sealed class SalesConsultantTest
             Constants.Address.City,
             Constants.Address.State,
             Constants.Address.Country,
-            Constants.SalesConsultant.Name,
+            Constants.Vendor.Name,
             Constants.Email.EmailValue,
             Constants.Phone.PhoneValue,
             Constants.Phone.PhoneValue
         );
 
         // Assert
-        Assert.Equal(expectedNumber, salesConsultant.Address.Number);
+        Assert.Equal(expectedNumber, vendor.Address.Number);
     }
     
     [Fact]
-    public void GivenValidComplement_WhenCreatingSalesConsultant_ThenShouldHaveValidComplement()
+    public void GivenValidComplement_WhenCreatingVendor_ThenShouldHaveValidComplement()
     {
         // Arrange
         const string expectedComplement = "Casa";
 
         // Act
-        var salesConsultant = Developurr.Orderly.Domain.SalesConsultant.SalesConsultant.Create(
+        var vendor = Domain.Vendor.Vendor.Create(
             Constants.Cpf.CpfValue,
             Constants.Address.Street,
             Constants.Address.Number,
@@ -128,24 +128,24 @@ public sealed class SalesConsultantTest
             Constants.Address.City,
             Constants.Address.State,
             Constants.Address.Country,
-            Constants.SalesConsultant.Name,
+            Constants.Vendor.Name,
             Constants.Email.EmailValue,
             Constants.Phone.PhoneValue,
             Constants.Phone.PhoneValue
         );
 
         // Assert
-        Assert.Equal(expectedComplement, salesConsultant.Address.Complement);
+        Assert.Equal(expectedComplement, vendor.Address.Complement);
     }
     
     [Fact]
-    public void GivenValidZipCode_WhenCreatingSalesConsultant_ThenShouldHaveValidZipCode()
+    public void GivenValidZipCode_WhenCreatingVendor_ThenShouldHaveValidZipCode()
     {
         // Arrange
         const string expectedZipCode = "22790147";
 
         // Act
-        var salesConsultant = Developurr.Orderly.Domain.SalesConsultant.SalesConsultant.Create(
+        var vendor = Domain.Vendor.Vendor.Create(
             Constants.Cpf.CpfValue,
             Constants.Address.Street,
             Constants.Address.Number,
@@ -155,24 +155,24 @@ public sealed class SalesConsultantTest
             Constants.Address.City,
             Constants.Address.State,
             Constants.Address.Country,
-            Constants.SalesConsultant.Name,
+            Constants.Vendor.Name,
             Constants.Email.EmailValue,
             Constants.Phone.PhoneValue,
             Constants.Phone.PhoneValue
         );
 
         // Assert
-        Assert.Equal(expectedZipCode, salesConsultant.Address.ZipCode);
+        Assert.Equal(expectedZipCode, vendor.Address.ZipCode);
     }
     
     [Fact]
-    public void GivenValidNeighborhood_WhenCreatingSalesConsultant_ThenShouldHaveValidNeighborhood()
+    public void GivenValidNeighborhood_WhenCreatingVendor_ThenShouldHaveValidNeighborhood()
     {
         // Arrange
         const string expectedNeighborhood = "Barra da Tijuca";
 
         // Act
-        var salesConsultant = Developurr.Orderly.Domain.SalesConsultant.SalesConsultant.Create(
+        var vendor = Domain.Vendor.Vendor.Create(
             Constants.Cpf.CpfValue,
             Constants.Address.Street,
             Constants.Address.Number,
@@ -182,24 +182,24 @@ public sealed class SalesConsultantTest
             Constants.Address.City,
             Constants.Address.State,
             Constants.Address.Country,
-            Constants.SalesConsultant.Name,
+            Constants.Vendor.Name,
             Constants.Email.EmailValue,
             Constants.Phone.PhoneValue,
             Constants.Phone.PhoneValue
         );
 
         // Assert
-        Assert.Equal(expectedNeighborhood, salesConsultant.Address.Neighborhood);
+        Assert.Equal(expectedNeighborhood, vendor.Address.Neighborhood);
     }
     
     [Fact]
-    public void GivenValidCity_WhenCreatingSalesConsultant_ThenShouldHaveValidCity()
+    public void GivenValidCity_WhenCreatingVendor_ThenShouldHaveValidCity()
     {
         // Arrange
         const string expectedCity = "Petropolis";
 
         // Act
-        var salesConsultant = Developurr.Orderly.Domain.SalesConsultant.SalesConsultant.Create(
+        var vendor = Domain.Vendor.Vendor.Create(
             Constants.Cpf.CpfValue,
             Constants.Address.Street,
             Constants.Address.Number,
@@ -209,24 +209,24 @@ public sealed class SalesConsultantTest
             expectedCity,
             Constants.Address.State,
             Constants.Address.Country,
-            Constants.SalesConsultant.Name,
+            Constants.Vendor.Name,
             Constants.Email.EmailValue,
             Constants.Phone.PhoneValue,
             Constants.Phone.PhoneValue
         );
 
         // Assert
-        Assert.Equal(expectedCity, salesConsultant.Address.City);
+        Assert.Equal(expectedCity, vendor.Address.City);
     }
     
     [Fact]
-    public void GivenValidState_WhenCreatingSalesConsultant_ThenShouldHaveValidState()
+    public void GivenValidState_WhenCreatingVendor_ThenShouldHaveValidState()
     {
         // Arrange
         const string expectedState = "Rio de Janeiro";
 
         // Act
-        var salesConsultant = Developurr.Orderly.Domain.SalesConsultant.SalesConsultant.Create(
+        var vendor = Domain.Vendor.Vendor.Create(
             Constants.Cpf.CpfValue,
             Constants.Address.Street,
             Constants.Address.Number,
@@ -236,24 +236,24 @@ public sealed class SalesConsultantTest
             Constants.Address.City,
             expectedState,
             Constants.Address.Country,
-            Constants.SalesConsultant.Name,
+            Constants.Vendor.Name,
             Constants.Email.EmailValue,
             Constants.Phone.PhoneValue,
             Constants.Phone.PhoneValue
         );
 
         // Assert
-        Assert.Equal(expectedState, salesConsultant.Address.State);
+        Assert.Equal(expectedState, vendor.Address.State);
     }
     
     [Fact]
-    public void GivenValidCountry_WhenCreatingSalesConsultant_ThenShouldHaveValidCountry()
+    public void GivenValidCountry_WhenCreatingVendor_ThenShouldHaveValidCountry()
     {
         // Arrange
         const string expectedCountry = "Brasil";
 
         // Act
-        var salesConsultant = Developurr.Orderly.Domain.SalesConsultant.SalesConsultant.Create(
+        var vendor = Domain.Vendor.Vendor.Create(
             Constants.Cpf.CpfValue,
             Constants.Address.Street,
             Constants.Address.Number,
@@ -263,24 +263,24 @@ public sealed class SalesConsultantTest
             Constants.Address.City,
             Constants.Address.State,
             expectedCountry,
-            Constants.SalesConsultant.Name,
+            Constants.Vendor.Name,
             Constants.Email.EmailValue,
             Constants.Phone.PhoneValue,
             Constants.Phone.PhoneValue
         );
 
         // Assert
-        Assert.Equal(expectedCountry, salesConsultant.Address.Country);
+        Assert.Equal(expectedCountry, vendor.Address.Country);
     }
     
     [Fact]
-    public void GivenValidName_WhenCreatingSalesConsultant_ThenShouldHaveValidName()
+    public void GivenValidName_WhenCreatingVendor_ThenShouldHaveValidName()
     {
         // Arrange
         const string expectedName = "Joao da Silva";
 
         // Act
-        var salesConsultant = Developurr.Orderly.Domain.SalesConsultant.SalesConsultant.Create(
+        var vendor = Domain.Vendor.Vendor.Create(
             Constants.Cpf.CpfValue,
             Constants.Address.Street,
             Constants.Address.Number,
@@ -297,17 +297,17 @@ public sealed class SalesConsultantTest
         );
 
         // Assert
-        Assert.Equal(expectedName, salesConsultant.Name);
+        Assert.Equal(expectedName, vendor.Name);
     }
     
     [Fact]
-    public void GivenValidEmailValue_WhenCreatingSalesConsultant_ThenShouldHaveValidEmailValue()
+    public void GivenValidEmailValue_WhenCreatingVendor_ThenShouldHaveValidEmailValue()
     {
         // Arrange
         const string expectedEmailValue = "email@email.com";
 
         // Act
-        var salesConsultant = Developurr.Orderly.Domain.SalesConsultant.SalesConsultant.Create(
+        var vendor = Domain.Vendor.Vendor.Create(
             Constants.Cpf.CpfValue,
             Constants.Address.Street,
             Constants.Address.Number,
@@ -317,24 +317,24 @@ public sealed class SalesConsultantTest
             Constants.Address.City,
             Constants.Address.State,
             Constants.Address.Country,
-            Constants.SalesConsultant.Name,
+            Constants.Vendor.Name,
             expectedEmailValue,
             Constants.Phone.PhoneValue,
             Constants.Phone.PhoneValue
         );
 
         // Assert
-        Assert.Equal(expectedEmailValue, salesConsultant.Email.Format());
+        Assert.Equal(expectedEmailValue, vendor.Email.Format());
     }
     
     [Fact]
-    public void GivenValidLandline_WhenCreatingSalesConsultant_ThenShouldHaveValidLandline()
+    public void GivenValidLandline_WhenCreatingVendor_ThenShouldHaveValidLandline()
     {
         // Arrange
         const string expectedLandline = "21998345677";
 
         // Act
-        var salesConsultant = Developurr.Orderly.Domain.SalesConsultant.SalesConsultant.Create(
+        var vendor = Domain.Vendor.Vendor.Create(
             Constants.Cpf.CpfValue,
             Constants.Address.Street,
             Constants.Address.Number,
@@ -344,24 +344,24 @@ public sealed class SalesConsultantTest
             Constants.Address.City,
             Constants.Address.State,
             Constants.Address.Country,
-            Constants.SalesConsultant.Name,
+            Constants.Vendor.Name,
             Constants.Email.EmailValue,
             expectedLandline,
             Constants.Phone.PhoneValue
         );
 
         // Assert
-        Assert.Equal(expectedLandline, salesConsultant.Landline?.Value);
+        Assert.Equal(expectedLandline, vendor.Landline?.Value);
     }
     
     [Fact]
-    public void GivenValidMobile_WhenCreatingSalesConsultant_ThenShouldHaveValidMobile()
+    public void GivenValidMobile_WhenCreatingVendor_ThenShouldHaveValidMobile()
     {
         // Arrange
         const string expectedMobile = "21998345677";
 
         // Act
-        var salesConsultant = Developurr.Orderly.Domain.SalesConsultant.SalesConsultant.Create(
+        var vendor = Domain.Vendor.Vendor.Create(
             Constants.Cpf.CpfValue,
             Constants.Address.Street,
             Constants.Address.Number,
@@ -371,14 +371,14 @@ public sealed class SalesConsultantTest
             Constants.Address.City,
             Constants.Address.State,
             Constants.Address.Country,
-            Constants.SalesConsultant.Name,
+            Constants.Vendor.Name,
             Constants.Email.EmailValue,
             Constants.Phone.PhoneValue,
             expectedMobile
         );
 
         // Assert
-        Assert.Equal(expectedMobile, salesConsultant.Landline?.Value);
+        Assert.Equal(expectedMobile, vendor.Landline?.Value);
     }
     
     [Theory]
@@ -395,7 +395,7 @@ public sealed class SalesConsultantTest
     [InlineData("143.356.745-20", "Rua John", 1234, "Casa", "64546-810", "Barra da Tijuca", "Petropolis", "Rio de Janeiro", "Brasil", "Nomeee", "", "2422546870", "24954365490")]
     [InlineData("143.356.745-20", "Rua John", 1234, "Casa", "64546-810", "Barra da Tijuca", "Petropolis", "Rio de Janeiro", "Brasil", "Nomeee", "email@email.com", "", "24954365490")]
     [InlineData("143.356.745-20", "Rua John", 1234, "Casa", "64546-810", "Barra da Tijuca", "Petropolis", "Rio de Janeiro", "Brasil", "Nomeee", "email@email.com", "2422546870", "")]
-    public void GivenInvalidInput_WhenCreatingSalesConsultant_ThenShouldThrowEntityValidationExceptionWithMessage(
+    public void GivenInvalidInput_WhenCreatingVendor_ThenShouldThrowEntityValidationExceptionWithMessage(
         string cpfValue,
         string street,
         int number,
@@ -417,7 +417,7 @@ public sealed class SalesConsultantTest
         // Act
         var exception = Record.Exception(
             () =>
-                Developurr.Orderly.Domain.SalesConsultant.SalesConsultant.Create(
+                Domain.Vendor.Vendor.Create(
                     cpfValue,
                     street,
                     number,
@@ -440,7 +440,7 @@ public sealed class SalesConsultantTest
     }
     
     [Fact]
-    public void GivenEmptyCpf_WhenCreatingSalesConsultant_ThenShouldThrowEntityValidationExceptionWithMessage()
+    public void GivenEmptyCpf_WhenCreatingVendor_ThenShouldThrowEntityValidationExceptionWithMessage()
     {
         // Assert
         const string emptyCpf = "";
@@ -449,7 +449,7 @@ public sealed class SalesConsultantTest
         // Act
         var exception = Record.Exception(
             () =>
-                Developurr.Orderly.Domain.SalesConsultant.SalesConsultant.Create(
+                Domain.Vendor.Vendor.Create(
                     emptyCpf,
                     Constants.Address.Street,
                     Constants.Address.Number,
@@ -459,7 +459,7 @@ public sealed class SalesConsultantTest
                     Constants.Address.City,
                     Constants.Address.State,
                     Constants.Address.Country,
-                    Constants.SalesConsultant.Name,
+                    Constants.Vendor.Name,
                     Constants.Email.EmailValue,
                     Constants.Phone.PhoneValue,
                     Constants.Phone.PhoneValue
@@ -472,7 +472,7 @@ public sealed class SalesConsultantTest
     }
     
     [Fact]
-    public void GivenWhitespaceCpf_WhenCreatingSalesConsultant_ThenShouldThrowEntityValidationExceptionWithMessage()
+    public void GivenWhitespaceCpf_WhenCreatingVendor_ThenShouldThrowEntityValidationExceptionWithMessage()
     {
         // Assert
         const string whitespaceCpf = "             ";
@@ -481,7 +481,7 @@ public sealed class SalesConsultantTest
         // Act
         var exception = Record.Exception(
             () =>
-                Developurr.Orderly.Domain.SalesConsultant.SalesConsultant.Create(
+                Domain.Vendor.Vendor.Create(
                     whitespaceCpf,
                     Constants.Address.Street,
                     Constants.Address.Number,
@@ -491,7 +491,7 @@ public sealed class SalesConsultantTest
                     Constants.Address.City,
                     Constants.Address.State,
                     Constants.Address.Country,
-                    Constants.SalesConsultant.Name,
+                    Constants.Vendor.Name,
                     Constants.Email.EmailValue,
                     Constants.Phone.PhoneValue,
                     Constants.Phone.PhoneValue
@@ -504,7 +504,7 @@ public sealed class SalesConsultantTest
     }
     
     [Fact]
-    public void GivenShortCpf_WhenCreatingSalesConsultant_ThenShouldThrowEntityValidationExceptionWithMessage()
+    public void GivenShortCpf_WhenCreatingVendor_ThenShouldThrowEntityValidationExceptionWithMessage()
     {
         // Assert
         const string shortCpf = Constants.InvalidCpf.ShortCpf;
@@ -513,7 +513,7 @@ public sealed class SalesConsultantTest
         // Act
         var exception = Record.Exception(
             () =>
-                Developurr.Orderly.Domain.SalesConsultant.SalesConsultant.Create(
+                Domain.Vendor.Vendor.Create(
                     shortCpf,
                     Constants.Address.Street,
                     Constants.Address.Number,
@@ -523,7 +523,7 @@ public sealed class SalesConsultantTest
                     Constants.Address.City,
                     Constants.Address.State,
                     Constants.Address.Country,
-                    Constants.SalesConsultant.Name,
+                    Constants.Vendor.Name,
                     Constants.Email.EmailValue,
                     Constants.Phone.PhoneValue,
                     Constants.Phone.PhoneValue
@@ -536,7 +536,7 @@ public sealed class SalesConsultantTest
     }
     
     [Fact]
-    public void GivenLongCpf_WhenCreatingSalesConsultant_ThenShouldThrowEntityValidationExceptionWithMessage()
+    public void GivenLongCpf_WhenCreatingVendor_ThenShouldThrowEntityValidationExceptionWithMessage()
     {
         // Assert
         const string longCpf = Constants.InvalidCpf.LongCpf;
@@ -545,7 +545,7 @@ public sealed class SalesConsultantTest
         // Act
         var exception = Record.Exception(
             () =>
-                Developurr.Orderly.Domain.SalesConsultant.SalesConsultant.Create(
+                Domain.Vendor.Vendor.Create(
                     longCpf,
                     Constants.Address.Street,
                     Constants.Address.Number,
@@ -555,7 +555,7 @@ public sealed class SalesConsultantTest
                     Constants.Address.City,
                     Constants.Address.State,
                     Constants.Address.Country,
-                    Constants.SalesConsultant.Name,
+                    Constants.Vendor.Name,
                     Constants.Email.EmailValue,
                     Constants.Phone.PhoneValue,
                     Constants.Phone.PhoneValue
@@ -568,7 +568,7 @@ public sealed class SalesConsultantTest
     }
     
     [Fact]
-    public void GivenInvalidLastDigitCpf_WhenCreatingSalesConsultant_ThenShouldThrowEntityValidationExceptionWithMessage()
+    public void GivenInvalidLastDigitCpf_WhenCreatingVendor_ThenShouldThrowEntityValidationExceptionWithMessage()
     {
         // Assert
         const string invalidLastDigitCpf = Constants.InvalidCpf.InvalidCpfLastDigit;
@@ -577,7 +577,7 @@ public sealed class SalesConsultantTest
         // Act
         var exception = Record.Exception(
             () =>
-                Developurr.Orderly.Domain.SalesConsultant.SalesConsultant.Create(
+                Domain.Vendor.Vendor.Create(
                     invalidLastDigitCpf,
                     Constants.Address.Street,
                     Constants.Address.Number,
@@ -587,7 +587,7 @@ public sealed class SalesConsultantTest
                     Constants.Address.City,
                     Constants.Address.State,
                     Constants.Address.Country,
-                    Constants.SalesConsultant.Name,
+                    Constants.Vendor.Name,
                     Constants.Email.EmailValue,
                     Constants.Phone.PhoneValue,
                     Constants.Phone.PhoneValue
@@ -600,7 +600,7 @@ public sealed class SalesConsultantTest
     }
     
     [Fact]
-    public void GivenNonNumericCpf_WhenCreatingSalesConsultant_ThenShouldThrowEntityValidationExceptionWithMessage()
+    public void GivenNonNumericCpf_WhenCreatingVendor_ThenShouldThrowEntityValidationExceptionWithMessage()
     {
         // Assert
         const string nonNumericCpf = Constants.InvalidCpf.NonNumericCpf;
@@ -609,7 +609,7 @@ public sealed class SalesConsultantTest
         // Act
         var exception = Record.Exception(
             () =>
-                Developurr.Orderly.Domain.SalesConsultant.SalesConsultant.Create(
+                Domain.Vendor.Vendor.Create(
                     nonNumericCpf,
                     Constants.Address.Street,
                     Constants.Address.Number,
@@ -619,7 +619,7 @@ public sealed class SalesConsultantTest
                     Constants.Address.City,
                     Constants.Address.State,
                     Constants.Address.Country,
-                    Constants.SalesConsultant.Name,
+                    Constants.Vendor.Name,
                     Constants.Email.EmailValue,
                     Constants.Phone.PhoneValue,
                     Constants.Phone.PhoneValue
@@ -632,7 +632,7 @@ public sealed class SalesConsultantTest
     }
     
     [Fact]
-    public void GivenEmptyStreet_WhenCreatingSalesConsultant_ThenShouldThrowEntityValidationExceptionWithMessage()
+    public void GivenEmptyStreet_WhenCreatingVendor_ThenShouldThrowEntityValidationExceptionWithMessage()
     {
         // Assert
         const string emptyStreet = "";
@@ -641,7 +641,7 @@ public sealed class SalesConsultantTest
         // Act
         var exception = Record.Exception(
             () =>
-                Developurr.Orderly.Domain.SalesConsultant.SalesConsultant.Create(
+                Domain.Vendor.Vendor.Create(
                     Constants.Cpf.CpfValue,
                     emptyStreet,
                     Constants.Address.Number,
@@ -651,7 +651,7 @@ public sealed class SalesConsultantTest
                     Constants.Address.City,
                     Constants.Address.State,
                     Constants.Address.Country,
-                    Constants.SalesConsultant.Name,
+                    Constants.Vendor.Name,
                     Constants.Email.EmailValue,
                     Constants.Phone.PhoneValue,
                     Constants.Phone.PhoneValue
@@ -664,7 +664,7 @@ public sealed class SalesConsultantTest
     }
     
     [Fact]
-    public void GivenWhitespaceStreet_WhenCreatingSalesConsultant_ThenShouldThrowEntityValidationExceptionWithMessage()
+    public void GivenWhitespaceStreet_WhenCreatingVendor_ThenShouldThrowEntityValidationExceptionWithMessage()
     {
         // Assert
         const string whitespaceStreet = "             ";
@@ -673,7 +673,7 @@ public sealed class SalesConsultantTest
         // Act
         var exception = Record.Exception(
             () =>
-                Developurr.Orderly.Domain.SalesConsultant.SalesConsultant.Create(
+                Domain.Vendor.Vendor.Create(
                     Constants.Cpf.CpfValue,
                     whitespaceStreet,
                     Constants.Address.Number,
@@ -683,7 +683,7 @@ public sealed class SalesConsultantTest
                     Constants.Address.City,
                     Constants.Address.State,
                     Constants.Address.Country,
-                    Constants.SalesConsultant.Name,
+                    Constants.Vendor.Name,
                     Constants.Email.EmailValue,
                     Constants.Phone.PhoneValue,
                     Constants.Phone.PhoneValue
@@ -696,7 +696,7 @@ public sealed class SalesConsultantTest
     }
     
     [Fact]
-    public void GivenShortStreet_WhenCreatingSalesConsultant_ThenShouldThrowEntityValidationExceptionWithMessage()
+    public void GivenShortStreet_WhenCreatingVendor_ThenShouldThrowEntityValidationExceptionWithMessage()
     {
         // Assert
         const string shortStreet = Constants.InvalidAddress.ShortStreet;
@@ -705,7 +705,7 @@ public sealed class SalesConsultantTest
         // Act
         var exception = Record.Exception(
             () =>
-                Developurr.Orderly.Domain.SalesConsultant.SalesConsultant.Create(
+                Domain.Vendor.Vendor.Create(
                     Constants.Cpf.CpfValue,
                     shortStreet,
                     Constants.Address.Number,
@@ -715,7 +715,7 @@ public sealed class SalesConsultantTest
                     Constants.Address.City,
                     Constants.Address.State,
                     Constants.Address.Country,
-                    Constants.SalesConsultant.Name,
+                    Constants.Vendor.Name,
                     Constants.Email.EmailValue,
                     Constants.Phone.PhoneValue,
                     Constants.Phone.PhoneValue
@@ -728,7 +728,7 @@ public sealed class SalesConsultantTest
     }
     
     [Fact]
-    public void GivenLongStreet_WhenCreatingSalesConsultant_ThenShouldThrowEntityValidationExceptionWithMessage()
+    public void GivenLongStreet_WhenCreatingVendor_ThenShouldThrowEntityValidationExceptionWithMessage()
     {
         // Assert
         const string longStreet = Constants.InvalidAddress.LongStreet;
@@ -737,7 +737,7 @@ public sealed class SalesConsultantTest
         // Act
         var exception = Record.Exception(
             () =>
-                Developurr.Orderly.Domain.SalesConsultant.SalesConsultant.Create(
+                Domain.Vendor.Vendor.Create(
                     Constants.Cpf.CpfValue,
                     longStreet,
                     Constants.Address.Number,
@@ -747,7 +747,7 @@ public sealed class SalesConsultantTest
                     Constants.Address.City,
                     Constants.Address.State,
                     Constants.Address.Country,
-                    Constants.SalesConsultant.Name,
+                    Constants.Vendor.Name,
                     Constants.Email.EmailValue,
                     Constants.Phone.PhoneValue,
                     Constants.Phone.PhoneValue
@@ -760,7 +760,7 @@ public sealed class SalesConsultantTest
     }
     
     [Fact]
-    public void GivenInvalidNumber_WhenCreatingSalesConsultant_ThenShouldThrowEntityValidationExceptionWithMessage()
+    public void GivenInvalidNumber_WhenCreatingVendor_ThenShouldThrowEntityValidationExceptionWithMessage()
     {
         // Assert
         const int invalidNumber = Constants.InvalidAddress.InvalidNumber;
@@ -769,7 +769,7 @@ public sealed class SalesConsultantTest
         // Act
         var exception = Record.Exception(
             () =>
-                Developurr.Orderly.Domain.SalesConsultant.SalesConsultant.Create(
+                Domain.Vendor.Vendor.Create(
                     Constants.Cpf.CpfValue,
                     Constants.Address.Street,
                     invalidNumber,
@@ -779,7 +779,7 @@ public sealed class SalesConsultantTest
                     Constants.Address.City,
                     Constants.Address.State,
                     Constants.Address.Country,
-                    Constants.SalesConsultant.Name,
+                    Constants.Vendor.Name,
                     Constants.Email.EmailValue,
                     Constants.Phone.PhoneValue,
                     Constants.Phone.PhoneValue
@@ -792,7 +792,7 @@ public sealed class SalesConsultantTest
     }
     
     [Fact]
-    public void GivenLongComplement_WhenCreatingSalesConsultant_ThenShouldThrowEntityValidationExceptionWithMessage()
+    public void GivenLongComplement_WhenCreatingVendor_ThenShouldThrowEntityValidationExceptionWithMessage()
     {
         // Assert
         const string longComplement = Constants.InvalidAddress.LongComplement;
@@ -801,7 +801,7 @@ public sealed class SalesConsultantTest
         // Act
         var exception = Record.Exception(
             () =>
-                Developurr.Orderly.Domain.SalesConsultant.SalesConsultant.Create(
+                Domain.Vendor.Vendor.Create(
                     Constants.Cpf.CpfValue,
                     Constants.Address.Street,
                     Constants.Address.Number,
@@ -811,7 +811,7 @@ public sealed class SalesConsultantTest
                     Constants.Address.City,
                     Constants.Address.State,
                     Constants.Address.Country,
-                    Constants.SalesConsultant.Name,
+                    Constants.Vendor.Name,
                     Constants.Email.EmailValue,
                     Constants.Phone.PhoneValue,
                     Constants.Phone.PhoneValue
@@ -824,7 +824,7 @@ public sealed class SalesConsultantTest
     }
     
     [Fact]
-    public void GivenEmptyZipCode_WhenCreatingSalesConsultant_ThenShouldThrowEntityValidationExceptionWithMessage()
+    public void GivenEmptyZipCode_WhenCreatingVendor_ThenShouldThrowEntityValidationExceptionWithMessage()
     {
         // Assert
         const string emptyZipCode = "";
@@ -833,7 +833,7 @@ public sealed class SalesConsultantTest
         // Act
         var exception = Record.Exception(
             () =>
-                Developurr.Orderly.Domain.SalesConsultant.SalesConsultant.Create(
+                Domain.Vendor.Vendor.Create(
                     Constants.Cpf.CpfValue,
                     Constants.Address.Street,
                     Constants.Address.Number,
@@ -843,7 +843,7 @@ public sealed class SalesConsultantTest
                     Constants.Address.City,
                     Constants.Address.State,
                     Constants.Address.Country,
-                    Constants.SalesConsultant.Name,
+                    Constants.Vendor.Name,
                     Constants.Email.EmailValue,
                     Constants.Phone.PhoneValue,
                     Constants.Phone.PhoneValue
@@ -856,7 +856,7 @@ public sealed class SalesConsultantTest
     }
     
     [Fact]
-    public void GivenWhitespaceZipCode_WhenCreatingSalesConsultant_ThenShouldThrowEntityValidationExceptionWithMessage()
+    public void GivenWhitespaceZipCode_WhenCreatingVendor_ThenShouldThrowEntityValidationExceptionWithMessage()
     {
         // Assert
         const string whitespaceZipCode = "             ";
@@ -865,7 +865,7 @@ public sealed class SalesConsultantTest
         // Act
         var exception = Record.Exception(
             () =>
-                Developurr.Orderly.Domain.SalesConsultant.SalesConsultant.Create(
+                Domain.Vendor.Vendor.Create(
                     Constants.Cpf.CpfValue,
                     Constants.Address.Street,
                     Constants.Address.Number,
@@ -875,7 +875,7 @@ public sealed class SalesConsultantTest
                     Constants.Address.City,
                     Constants.Address.State,
                     Constants.Address.Country,
-                    Constants.SalesConsultant.Name,
+                    Constants.Vendor.Name,
                     Constants.Email.EmailValue,
                     Constants.Phone.PhoneValue,
                     Constants.Phone.PhoneValue
@@ -888,7 +888,7 @@ public sealed class SalesConsultantTest
     }
     
     [Fact]
-    public void GivenShortZipCode_WhenCreatingSalesConsultant_ThenShouldThrowEntityValidationExceptionWithMessage()
+    public void GivenShortZipCode_WhenCreatingVendor_ThenShouldThrowEntityValidationExceptionWithMessage()
     {
         // Assert
         const string shortZipCode = Constants.InvalidAddress.ShortZipCode;
@@ -897,7 +897,7 @@ public sealed class SalesConsultantTest
         // Act
         var exception = Record.Exception(
             () =>
-                Developurr.Orderly.Domain.SalesConsultant.SalesConsultant.Create(
+                Domain.Vendor.Vendor.Create(
                     Constants.Cpf.CpfValue,
                     Constants.Address.Street,
                     Constants.Address.Number,
@@ -907,7 +907,7 @@ public sealed class SalesConsultantTest
                     Constants.Address.City,
                     Constants.Address.State,
                     Constants.Address.Country,
-                    Constants.SalesConsultant.Name,
+                    Constants.Vendor.Name,
                     Constants.Email.EmailValue,
                     Constants.Phone.PhoneValue,
                     Constants.Phone.PhoneValue
@@ -920,7 +920,7 @@ public sealed class SalesConsultantTest
     }
     
     [Fact]
-    public void GivenLongZipCode_WhenCreatingSalesConsultant_ThenShouldThrowEntityValidationExceptionWithMessage()
+    public void GivenLongZipCode_WhenCreatingVendor_ThenShouldThrowEntityValidationExceptionWithMessage()
     {
         // Assert
         const string longZipCode = Constants.InvalidAddress.LongZipCode;
@@ -929,7 +929,7 @@ public sealed class SalesConsultantTest
         // Act
         var exception = Record.Exception(
             () =>
-                Developurr.Orderly.Domain.SalesConsultant.SalesConsultant.Create(
+                Domain.Vendor.Vendor.Create(
                     Constants.Cpf.CpfValue,
                     Constants.Address.Street,
                     Constants.Address.Number,
@@ -939,7 +939,7 @@ public sealed class SalesConsultantTest
                     Constants.Address.City,
                     Constants.Address.State,
                     Constants.Address.Country,
-                    Constants.SalesConsultant.Name,
+                    Constants.Vendor.Name,
                     Constants.Email.EmailValue,
                     Constants.Phone.PhoneValue,
                     Constants.Phone.PhoneValue
@@ -952,7 +952,7 @@ public sealed class SalesConsultantTest
     }
     
     [Fact]
-    public void GivenNonNumericZipCode_WhenCreatingSalesConsultant_ThenShouldThrowEntityValidationExceptionWithMessage()
+    public void GivenNonNumericZipCode_WhenCreatingVendor_ThenShouldThrowEntityValidationExceptionWithMessage()
     {
         // Assert
         const string nonNumericZipCode = Constants.InvalidAddress.NonNumericZipCode;
@@ -961,7 +961,7 @@ public sealed class SalesConsultantTest
         // Act
         var exception = Record.Exception(
             () =>
-                Developurr.Orderly.Domain.SalesConsultant.SalesConsultant.Create(
+                Domain.Vendor.Vendor.Create(
                     Constants.Cpf.CpfValue,
                     Constants.Address.Street,
                     Constants.Address.Number,
@@ -971,7 +971,7 @@ public sealed class SalesConsultantTest
                     Constants.Address.City,
                     Constants.Address.State,
                     Constants.Address.Country,
-                    Constants.SalesConsultant.Name,
+                    Constants.Vendor.Name,
                     Constants.Email.EmailValue,
                     Constants.Phone.PhoneValue,
                     Constants.Phone.PhoneValue
@@ -984,7 +984,7 @@ public sealed class SalesConsultantTest
     }
     
     [Fact]
-    public void GivenEmptyNeighborhood_WhenCreatingSalesConsultant_ThenShouldThrowEntityValidationExceptionWithMessage()
+    public void GivenEmptyNeighborhood_WhenCreatingVendor_ThenShouldThrowEntityValidationExceptionWithMessage()
     {
         // Assert
         const string emptyNeighborhood = "";
@@ -993,7 +993,7 @@ public sealed class SalesConsultantTest
         // Act
         var exception = Record.Exception(
             () =>
-                Developurr.Orderly.Domain.SalesConsultant.SalesConsultant.Create(
+                Domain.Vendor.Vendor.Create(
                     Constants.Cpf.CpfValue,
                     Constants.Address.Street,
                     Constants.Address.Number,
@@ -1003,7 +1003,7 @@ public sealed class SalesConsultantTest
                     Constants.Address.City,
                     Constants.Address.State,
                     Constants.Address.Country,
-                    Constants.SalesConsultant.Name,
+                    Constants.Vendor.Name,
                     Constants.Email.EmailValue,
                     Constants.Phone.PhoneValue,
                     Constants.Phone.PhoneValue
@@ -1016,7 +1016,7 @@ public sealed class SalesConsultantTest
     }
     
     [Fact]
-    public void GivenWhitespaceNeighborhood_WhenCreatingSalesConsultant_ThenShouldThrowEntityValidationExceptionWithMessage()
+    public void GivenWhitespaceNeighborhood_WhenCreatingVendor_ThenShouldThrowEntityValidationExceptionWithMessage()
     {
         // Assert
         const string whitespaceNeighborhood = "             ";
@@ -1025,7 +1025,7 @@ public sealed class SalesConsultantTest
         // Act
         var exception = Record.Exception(
             () =>
-                Developurr.Orderly.Domain.SalesConsultant.SalesConsultant.Create(
+                Domain.Vendor.Vendor.Create(
                     Constants.Cpf.CpfValue,
                     Constants.Address.Street,
                     Constants.Address.Number,
@@ -1035,7 +1035,7 @@ public sealed class SalesConsultantTest
                     Constants.Address.City,
                     Constants.Address.State,
                     Constants.Address.Country,
-                    Constants.SalesConsultant.Name,
+                    Constants.Vendor.Name,
                     Constants.Email.EmailValue,
                     Constants.Phone.PhoneValue,
                     Constants.Phone.PhoneValue
@@ -1048,7 +1048,7 @@ public sealed class SalesConsultantTest
     }
     
     [Fact]
-    public void GivenShortNeighborhood_WhenCreatingSalesConsultant_ThenShouldThrowEntityValidationExceptionWithMessage()
+    public void GivenShortNeighborhood_WhenCreatingVendor_ThenShouldThrowEntityValidationExceptionWithMessage()
     {
         // Assert
         const string shortNeighborhood = Constants.InvalidAddress.ShortNeighborhood;
@@ -1057,7 +1057,7 @@ public sealed class SalesConsultantTest
         // Act
         var exception = Record.Exception(
             () =>
-                Developurr.Orderly.Domain.SalesConsultant.SalesConsultant.Create(
+                Domain.Vendor.Vendor.Create(
                     Constants.Cpf.CpfValue,
                     Constants.Address.Street,
                     Constants.Address.Number,
@@ -1067,7 +1067,7 @@ public sealed class SalesConsultantTest
                     Constants.Address.City,
                     Constants.Address.State,
                     Constants.Address.Country,
-                    Constants.SalesConsultant.Name,
+                    Constants.Vendor.Name,
                     Constants.Email.EmailValue,
                     Constants.Phone.PhoneValue,
                     Constants.Phone.PhoneValue
@@ -1080,7 +1080,7 @@ public sealed class SalesConsultantTest
     }
     
     [Fact]
-    public void GivenLongNeighborhood_WhenCreatingSalesConsultant_ThenShouldThrowEntityValidationExceptionWithMessage()
+    public void GivenLongNeighborhood_WhenCreatingVendor_ThenShouldThrowEntityValidationExceptionWithMessage()
     {
         // Assert
         const string longNeighborhood = Constants.InvalidAddress.LongNeighborhood;
@@ -1089,7 +1089,7 @@ public sealed class SalesConsultantTest
         // Act
         var exception = Record.Exception(
             () =>
-                Developurr.Orderly.Domain.SalesConsultant.SalesConsultant.Create(
+                Domain.Vendor.Vendor.Create(
                     Constants.Cpf.CpfValue,
                     Constants.Address.Street,
                     Constants.Address.Number,
@@ -1099,7 +1099,7 @@ public sealed class SalesConsultantTest
                     Constants.Address.City,
                     Constants.Address.State,
                     Constants.Address.Country,
-                    Constants.SalesConsultant.Name,
+                    Constants.Vendor.Name,
                     Constants.Email.EmailValue,
                     Constants.Phone.PhoneValue,
                     Constants.Phone.PhoneValue
@@ -1112,7 +1112,7 @@ public sealed class SalesConsultantTest
     }
     
     [Fact]
-    public void GivenEmptyCity_WhenCreatingSalesConsultant_ThenShouldThrowEntityValidationExceptionWithMessage()
+    public void GivenEmptyCity_WhenCreatingVendor_ThenShouldThrowEntityValidationExceptionWithMessage()
     {
         // Assert
         const string emptyCity = "";
@@ -1121,7 +1121,7 @@ public sealed class SalesConsultantTest
         // Act
         var exception = Record.Exception(
             () =>
-                Developurr.Orderly.Domain.SalesConsultant.SalesConsultant.Create(
+                Domain.Vendor.Vendor.Create(
                     Constants.Cpf.CpfValue,
                     Constants.Address.Street,
                     Constants.Address.Number,
@@ -1131,7 +1131,7 @@ public sealed class SalesConsultantTest
                     emptyCity,
                     Constants.Address.State,
                     Constants.Address.Country,
-                    Constants.SalesConsultant.Name,
+                    Constants.Vendor.Name,
                     Constants.Email.EmailValue,
                     Constants.Phone.PhoneValue,
                     Constants.Phone.PhoneValue
@@ -1144,7 +1144,7 @@ public sealed class SalesConsultantTest
     }
     
     [Fact]
-    public void GivenWhitespaceCity_WhenCreatingSalesConsultant_ThenShouldThrowEntityValidationExceptionWithMessage()
+    public void GivenWhitespaceCity_WhenCreatingVendor_ThenShouldThrowEntityValidationExceptionWithMessage()
     {
         // Assert
         const string whitespaceCity = "             ";
@@ -1153,7 +1153,7 @@ public sealed class SalesConsultantTest
         // Act
         var exception = Record.Exception(
             () =>
-                Developurr.Orderly.Domain.SalesConsultant.SalesConsultant.Create(
+                Domain.Vendor.Vendor.Create(
                     Constants.Cpf.CpfValue,
                     Constants.Address.Street,
                     Constants.Address.Number,
@@ -1163,7 +1163,7 @@ public sealed class SalesConsultantTest
                     whitespaceCity,
                     Constants.Address.State,
                     Constants.Address.Country,
-                    Constants.SalesConsultant.Name,
+                    Constants.Vendor.Name,
                     Constants.Email.EmailValue,
                     Constants.Phone.PhoneValue,
                     Constants.Phone.PhoneValue
@@ -1176,7 +1176,7 @@ public sealed class SalesConsultantTest
     }
     
     [Fact]
-    public void GivenShortCity_WhenCreatingSalesConsultant_ThenShouldThrowEntityValidationExceptionWithMessage()
+    public void GivenShortCity_WhenCreatingVendor_ThenShouldThrowEntityValidationExceptionWithMessage()
     {
         // Assert
         const string shortCity = Constants.InvalidAddress.ShortCity;
@@ -1185,7 +1185,7 @@ public sealed class SalesConsultantTest
         // Act
         var exception = Record.Exception(
             () =>
-                Developurr.Orderly.Domain.SalesConsultant.SalesConsultant.Create(
+                Domain.Vendor.Vendor.Create(
                     Constants.Cpf.CpfValue,
                     Constants.Address.Street,
                     Constants.Address.Number,
@@ -1195,7 +1195,7 @@ public sealed class SalesConsultantTest
                     shortCity,
                     Constants.Address.State,
                     Constants.Address.Country,
-                    Constants.SalesConsultant.Name,
+                    Constants.Vendor.Name,
                     Constants.Email.EmailValue,
                     Constants.Phone.PhoneValue,
                     Constants.Phone.PhoneValue
@@ -1208,7 +1208,7 @@ public sealed class SalesConsultantTest
     }
     
     [Fact]
-    public void GivenLongCity_WhenCreatingSalesConsultant_ThenShouldThrowEntityValidationExceptionWithMessage()
+    public void GivenLongCity_WhenCreatingVendor_ThenShouldThrowEntityValidationExceptionWithMessage()
     {
         // Assert
         const string longCity = Constants.InvalidAddress.LongCity;
@@ -1217,7 +1217,7 @@ public sealed class SalesConsultantTest
         // Act
         var exception = Record.Exception(
             () =>
-                Developurr.Orderly.Domain.SalesConsultant.SalesConsultant.Create(
+                Domain.Vendor.Vendor.Create(
                     Constants.Cpf.CpfValue,
                     Constants.Address.Street,
                     Constants.Address.Number,
@@ -1227,7 +1227,7 @@ public sealed class SalesConsultantTest
                     longCity,
                     Constants.Address.State,
                     Constants.Address.Country,
-                    Constants.SalesConsultant.Name,
+                    Constants.Vendor.Name,
                     Constants.Email.EmailValue,
                     Constants.Phone.PhoneValue,
                     Constants.Phone.PhoneValue
@@ -1240,7 +1240,7 @@ public sealed class SalesConsultantTest
     }
     
     [Fact]
-    public void GivenEmptyState_WhenCreatingSalesConsultant_ThenShouldThrowEntityValidationExceptionWithMessage()
+    public void GivenEmptyState_WhenCreatingVendor_ThenShouldThrowEntityValidationExceptionWithMessage()
     {
         // Assert
         const string emptyState = "";
@@ -1249,7 +1249,7 @@ public sealed class SalesConsultantTest
         // Act
         var exception = Record.Exception(
             () =>
-                Developurr.Orderly.Domain.SalesConsultant.SalesConsultant.Create(
+                Domain.Vendor.Vendor.Create(
                     Constants.Cpf.CpfValue,
                     Constants.Address.Street,
                     Constants.Address.Number,
@@ -1259,7 +1259,7 @@ public sealed class SalesConsultantTest
                     Constants.Address.City,
                     emptyState,
                     Constants.Address.Country,
-                    Constants.SalesConsultant.Name,
+                    Constants.Vendor.Name,
                     Constants.Email.EmailValue,
                     Constants.Phone.PhoneValue,
                     Constants.Phone.PhoneValue
@@ -1272,7 +1272,7 @@ public sealed class SalesConsultantTest
     }
     
     [Fact]
-    public void GivenWhitespaceState_WhenCreatingSalesConsultant_ThenShouldThrowEntityValidationExceptionWithMessage()
+    public void GivenWhitespaceState_WhenCreatingVendor_ThenShouldThrowEntityValidationExceptionWithMessage()
     {
         // Assert
         const string whitespaceState = "             ";
@@ -1281,7 +1281,7 @@ public sealed class SalesConsultantTest
         // Act
         var exception = Record.Exception(
             () =>
-                Developurr.Orderly.Domain.SalesConsultant.SalesConsultant.Create(
+                Domain.Vendor.Vendor.Create(
                     Constants.Cpf.CpfValue,
                     Constants.Address.Street,
                     Constants.Address.Number,
@@ -1291,7 +1291,7 @@ public sealed class SalesConsultantTest
                     Constants.Address.City,
                     whitespaceState,
                     Constants.Address.Country,
-                    Constants.SalesConsultant.Name,
+                    Constants.Vendor.Name,
                     Constants.Email.EmailValue,
                     Constants.Phone.PhoneValue,
                     Constants.Phone.PhoneValue
@@ -1304,7 +1304,7 @@ public sealed class SalesConsultantTest
     }
     
     [Fact]
-    public void GivenShortState_WhenCreatingSalesConsultant_ThenShouldThrowEntityValidationExceptionWithMessage()
+    public void GivenShortState_WhenCreatingVendor_ThenShouldThrowEntityValidationExceptionWithMessage()
     {
         // Assert
         const string shortState = Constants.InvalidAddress.ShortState;
@@ -1313,7 +1313,7 @@ public sealed class SalesConsultantTest
         // Act
         var exception = Record.Exception(
             () =>
-                Developurr.Orderly.Domain.SalesConsultant.SalesConsultant.Create(
+                Domain.Vendor.Vendor.Create(
                     Constants.Cpf.CpfValue,
                     Constants.Address.Street,
                     Constants.Address.Number,
@@ -1323,7 +1323,7 @@ public sealed class SalesConsultantTest
                     Constants.Address.City,
                     shortState,
                     Constants.Address.Country,
-                    Constants.SalesConsultant.Name,
+                    Constants.Vendor.Name,
                     Constants.Email.EmailValue,
                     Constants.Phone.PhoneValue,
                     Constants.Phone.PhoneValue
@@ -1336,7 +1336,7 @@ public sealed class SalesConsultantTest
     }
     
     [Fact]
-    public void GivenLongState_WhenCreatingSalesConsultant_ThenShouldThrowEntityValidationExceptionWithMessage()
+    public void GivenLongState_WhenCreatingVendor_ThenShouldThrowEntityValidationExceptionWithMessage()
     {
         // Assert
         const string longState = Constants.InvalidAddress.LongState;
@@ -1345,7 +1345,7 @@ public sealed class SalesConsultantTest
         // Act
         var exception = Record.Exception(
             () =>
-                Developurr.Orderly.Domain.SalesConsultant.SalesConsultant.Create(
+                Domain.Vendor.Vendor.Create(
                     Constants.Cpf.CpfValue,
                     Constants.Address.Street,
                     Constants.Address.Number,
@@ -1355,7 +1355,7 @@ public sealed class SalesConsultantTest
                     Constants.Address.City,
                     longState,
                     Constants.Address.Country,
-                    Constants.SalesConsultant.Name,
+                    Constants.Vendor.Name,
                     Constants.Email.EmailValue,
                     Constants.Phone.PhoneValue,
                     Constants.Phone.PhoneValue
@@ -1368,7 +1368,7 @@ public sealed class SalesConsultantTest
     }
     
     [Fact]
-    public void GivenEmptyCountry_WhenCreatingSalesConsultant_ThenShouldThrowEntityValidationExceptionWithMessage()
+    public void GivenEmptyCountry_WhenCreatingVendor_ThenShouldThrowEntityValidationExceptionWithMessage()
     {
         // Assert
         const string emptyCountry = "";
@@ -1377,7 +1377,7 @@ public sealed class SalesConsultantTest
         // Act
         var exception = Record.Exception(
             () =>
-                Developurr.Orderly.Domain.SalesConsultant.SalesConsultant.Create(
+                Domain.Vendor.Vendor.Create(
                     Constants.Cpf.CpfValue,
                     Constants.Address.Street,
                     Constants.Address.Number,
@@ -1387,7 +1387,7 @@ public sealed class SalesConsultantTest
                     Constants.Address.City,
                     Constants.Address.State,
                     emptyCountry,
-                    Constants.SalesConsultant.Name,
+                    Constants.Vendor.Name,
                     Constants.Email.EmailValue,
                     Constants.Phone.PhoneValue,
                     Constants.Phone.PhoneValue
@@ -1400,7 +1400,7 @@ public sealed class SalesConsultantTest
     }
     
     [Fact]
-    public void GivenWhitespaceCountry_WhenCreatingSalesConsultant_ThenShouldThrowEntityValidationExceptionWithMessage()
+    public void GivenWhitespaceCountry_WhenCreatingVendor_ThenShouldThrowEntityValidationExceptionWithMessage()
     {
         // Assert
         const string whitespaceCountry = "             ";
@@ -1409,7 +1409,7 @@ public sealed class SalesConsultantTest
         // Act
         var exception = Record.Exception(
             () =>
-                Developurr.Orderly.Domain.SalesConsultant.SalesConsultant.Create(
+                Domain.Vendor.Vendor.Create(
                     Constants.Cpf.CpfValue,
                     Constants.Address.Street,
                     Constants.Address.Number,
@@ -1419,7 +1419,7 @@ public sealed class SalesConsultantTest
                     Constants.Address.City,
                     Constants.Address.State,
                     whitespaceCountry,
-                    Constants.SalesConsultant.Name,
+                    Constants.Vendor.Name,
                     Constants.Email.EmailValue,
                     Constants.Phone.PhoneValue,
                     Constants.Phone.PhoneValue
@@ -1432,7 +1432,7 @@ public sealed class SalesConsultantTest
     }
     
     [Fact]
-    public void GivenShortCountry_WhenCreatingSalesConsultant_ThenShouldThrowEntityValidationExceptionWithMessage()
+    public void GivenShortCountry_WhenCreatingVendor_ThenShouldThrowEntityValidationExceptionWithMessage()
     {
         // Assert
         const string shortCountry = Constants.InvalidAddress.ShortCountry;
@@ -1441,7 +1441,7 @@ public sealed class SalesConsultantTest
         // Act
         var exception = Record.Exception(
             () =>
-                Developurr.Orderly.Domain.SalesConsultant.SalesConsultant.Create(
+                Domain.Vendor.Vendor.Create(
                     Constants.Cpf.CpfValue,
                     Constants.Address.Street,
                     Constants.Address.Number,
@@ -1451,7 +1451,7 @@ public sealed class SalesConsultantTest
                     Constants.Address.City,
                     Constants.Address.State,
                     shortCountry,
-                    Constants.SalesConsultant.Name,
+                    Constants.Vendor.Name,
                     Constants.Email.EmailValue,
                     Constants.Phone.PhoneValue,
                     Constants.Phone.PhoneValue
@@ -1464,7 +1464,7 @@ public sealed class SalesConsultantTest
     }
     
     [Fact]
-    public void GivenLongCountry_WhenCreatingSalesConsultant_ThenShouldThrowEntityValidationExceptionWithMessage()
+    public void GivenLongCountry_WhenCreatingVendor_ThenShouldThrowEntityValidationExceptionWithMessage()
     {
         // Assert
         const string longCountry = Constants.InvalidAddress.LongCountry;
@@ -1473,7 +1473,7 @@ public sealed class SalesConsultantTest
         // Act
         var exception = Record.Exception(
             () =>
-                Developurr.Orderly.Domain.SalesConsultant.SalesConsultant.Create(
+                Domain.Vendor.Vendor.Create(
                     Constants.Cpf.CpfValue,
                     Constants.Address.Street,
                     Constants.Address.Number,
@@ -1483,7 +1483,7 @@ public sealed class SalesConsultantTest
                     Constants.Address.City,
                     Constants.Address.State,
                     longCountry,
-                    Constants.SalesConsultant.Name,
+                    Constants.Vendor.Name,
                     Constants.Email.EmailValue,
                     Constants.Phone.PhoneValue,
                     Constants.Phone.PhoneValue
@@ -1496,7 +1496,7 @@ public sealed class SalesConsultantTest
     }
     
     [Fact]
-    public void GivenEmptyName_WhenCreatingSalesConsultant_ThenShouldThrowEntityValidationExceptionWithMessage()
+    public void GivenEmptyName_WhenCreatingVendor_ThenShouldThrowEntityValidationExceptionWithMessage()
     {
         // Assert
         const string emptyName = "";
@@ -1505,7 +1505,7 @@ public sealed class SalesConsultantTest
         // Act
         var exception = Record.Exception(
             () =>
-                Developurr.Orderly.Domain.SalesConsultant.SalesConsultant.Create(
+                Domain.Vendor.Vendor.Create(
                     Constants.Cpf.CpfValue,
                     Constants.Address.Street,
                     Constants.Address.Number,
@@ -1528,7 +1528,7 @@ public sealed class SalesConsultantTest
     }
     
     [Fact]
-    public void GivenWhitespaceName_WhenCreatingSalesConsultant_ThenShouldThrowEntityValidationExceptionWithMessage()
+    public void GivenWhitespaceName_WhenCreatingVendor_ThenShouldThrowEntityValidationExceptionWithMessage()
     {
         // Assert
         const string whitespaceName = "             ";
@@ -1537,7 +1537,7 @@ public sealed class SalesConsultantTest
         // Act
         var exception = Record.Exception(
             () =>
-                Developurr.Orderly.Domain.SalesConsultant.SalesConsultant.Create(
+                Domain.Vendor.Vendor.Create(
                     Constants.Cpf.CpfValue,
                     Constants.Address.Street,
                     Constants.Address.Number,
@@ -1560,16 +1560,16 @@ public sealed class SalesConsultantTest
     }
     
     [Fact]
-    public void GivenShortName_WhenCreatingSalesConsultant_ThenShouldThrowEntityValidationExceptionWithMessage()
+    public void GivenShortName_WhenCreatingVendor_ThenShouldThrowEntityValidationExceptionWithMessage()
     {
         // Assert
-        const string shortName = Constants.InvalidSalesConsultant.ShortName;
+        const string shortName = Constants.InvalidVendor.ShortName;
         const string expectedErrorMessage = "'Name' should be between 5 and 255 characters.";
 
         // Act
         var exception = Record.Exception(
             () =>
-                Developurr.Orderly.Domain.SalesConsultant.SalesConsultant.Create(
+                Domain.Vendor.Vendor.Create(
                     Constants.Cpf.CpfValue,
                     Constants.Address.Street,
                     Constants.Address.Number,
@@ -1592,16 +1592,16 @@ public sealed class SalesConsultantTest
     }
     
     [Fact]
-    public void GivenLongName_WhenCreatingSalesConsultant_ThenShouldThrowEntityValidationExceptionWithMessage()
+    public void GivenLongName_WhenCreatingVendor_ThenShouldThrowEntityValidationExceptionWithMessage()
     {
         // Assert
-        const string longName = Constants.InvalidSalesConsultant.LongName;
+        const string longName = Constants.InvalidVendor.LongName;
         const string expectedErrorMessage = "'Name' should be between 5 and 255 characters.";
 
         // Act
         var exception = Record.Exception(
             () =>
-                Developurr.Orderly.Domain.SalesConsultant.SalesConsultant.Create(
+                Domain.Vendor.Vendor.Create(
                     Constants.Cpf.CpfValue,
                     Constants.Address.Street,
                     Constants.Address.Number,
@@ -1624,7 +1624,7 @@ public sealed class SalesConsultantTest
     }
     
     [Fact]
-    public void GivenEmptyEmailValue_WhenCreatingSalesConsultant_ThenShouldThrowEntityValidationExceptionWithMessage()
+    public void GivenEmptyEmailValue_WhenCreatingVendor_ThenShouldThrowEntityValidationExceptionWithMessage()
     {
         // Assert
         const string emptyEmailValue = "";
@@ -1633,7 +1633,7 @@ public sealed class SalesConsultantTest
         // Act
         var exception = Record.Exception(
             () =>
-                Developurr.Orderly.Domain.SalesConsultant.SalesConsultant.Create(
+                Domain.Vendor.Vendor.Create(
                     Constants.Cpf.CpfValue,
                     Constants.Address.Street,
                     Constants.Address.Number,
@@ -1643,7 +1643,7 @@ public sealed class SalesConsultantTest
                     Constants.Address.City,
                     Constants.Address.State,
                     Constants.Address.Country,
-                    Constants.SalesConsultant.Name,
+                    Constants.Vendor.Name,
                     emptyEmailValue,
                     Constants.Phone.PhoneValue,
                     Constants.Phone.PhoneValue
@@ -1656,7 +1656,7 @@ public sealed class SalesConsultantTest
     }
     
     [Fact]
-    public void GivenWhitespaceEmailValue_WhenCreatingSalesConsultant_ThenShouldThrowEntityValidationExceptionWithMessage()
+    public void GivenWhitespaceEmailValue_WhenCreatingVendor_ThenShouldThrowEntityValidationExceptionWithMessage()
     {
         // Assert
         const string whitespaceEmailValue = "             ";
@@ -1665,7 +1665,7 @@ public sealed class SalesConsultantTest
         // Act
         var exception = Record.Exception(
             () =>
-                Developurr.Orderly.Domain.SalesConsultant.SalesConsultant.Create(
+                Domain.Vendor.Vendor.Create(
                     Constants.Cpf.CpfValue,
                     Constants.Address.Street,
                     Constants.Address.Number,
@@ -1675,7 +1675,7 @@ public sealed class SalesConsultantTest
                     Constants.Address.City,
                     Constants.Address.State,
                     Constants.Address.Country,
-                    Constants.SalesConsultant.Name,
+                    Constants.Vendor.Name,
                     whitespaceEmailValue,
                     Constants.Phone.PhoneValue,
                     Constants.Phone.PhoneValue
@@ -1688,7 +1688,7 @@ public sealed class SalesConsultantTest
     }
     
     [Fact]
-    public void GivenShortEmailValue_WhenCreatingSalesConsultant_ThenShouldThrowEntityValidationExceptionWithMessage()
+    public void GivenShortEmailValue_WhenCreatingVendor_ThenShouldThrowEntityValidationExceptionWithMessage()
     {
         // Assert
         const string shortEmailValue = Constants.InvalidEmail.ShortEmailAddress;
@@ -1697,7 +1697,7 @@ public sealed class SalesConsultantTest
         // Act
         var exception = Record.Exception(
             () =>
-                Developurr.Orderly.Domain.SalesConsultant.SalesConsultant.Create(
+                Domain.Vendor.Vendor.Create(
                     Constants.Cpf.CpfValue,
                     Constants.Address.Street,
                     Constants.Address.Number,
@@ -1707,7 +1707,7 @@ public sealed class SalesConsultantTest
                     Constants.Address.City,
                     Constants.Address.State,
                     Constants.Address.Country,
-                    Constants.SalesConsultant.Name,
+                    Constants.Vendor.Name,
                     shortEmailValue,
                     Constants.Phone.PhoneValue,
                     Constants.Phone.PhoneValue
@@ -1720,7 +1720,7 @@ public sealed class SalesConsultantTest
     }
     
     [Fact]
-    public void GivenLongEmailValue_WhenCreatingSalesConsultant_ThenShouldThrowEntityValidationExceptionWithMessage()
+    public void GivenLongEmailValue_WhenCreatingVendor_ThenShouldThrowEntityValidationExceptionWithMessage()
     {
         // Assert
         const string longEmailValue = Constants.InvalidEmail.LongEmailAddress;
@@ -1729,7 +1729,7 @@ public sealed class SalesConsultantTest
         // Act
         var exception = Record.Exception(
             () =>
-                Developurr.Orderly.Domain.SalesConsultant.SalesConsultant.Create(
+                Domain.Vendor.Vendor.Create(
                     Constants.Cpf.CpfValue,
                     Constants.Address.Street,
                     Constants.Address.Number,
@@ -1739,7 +1739,7 @@ public sealed class SalesConsultantTest
                     Constants.Address.City,
                     Constants.Address.State,
                     Constants.Address.Country,
-                    Constants.SalesConsultant.Name,
+                    Constants.Vendor.Name,
                     longEmailValue,
                     Constants.Phone.PhoneValue,
                     Constants.Phone.PhoneValue
@@ -1752,7 +1752,7 @@ public sealed class SalesConsultantTest
     }
     
     [Fact]
-    public void GivenEmptyLandline_WhenCreatingSalesConsultant_ThenShouldThrowEntityValidationExceptionWithMessage()
+    public void GivenEmptyLandline_WhenCreatingVendor_ThenShouldThrowEntityValidationExceptionWithMessage()
     {
         // Assert
         const string emptyLandline = "";
@@ -1761,7 +1761,7 @@ public sealed class SalesConsultantTest
         // Act
         var exception = Record.Exception(
             () =>
-                Developurr.Orderly.Domain.SalesConsultant.SalesConsultant.Create(
+                Domain.Vendor.Vendor.Create(
                     Constants.Cpf.CpfValue,
                     Constants.Address.Street,
                     Constants.Address.Number,
@@ -1771,7 +1771,7 @@ public sealed class SalesConsultantTest
                     Constants.Address.City,
                     Constants.Address.State,
                     Constants.Address.Country,
-                    Constants.SalesConsultant.Name,
+                    Constants.Vendor.Name,
                     Constants.Email.EmailValue,
                     emptyLandline,
                     Constants.Phone.PhoneValue
@@ -1784,7 +1784,7 @@ public sealed class SalesConsultantTest
     }
     
     [Fact]
-    public void GivenWhitespaceLandline_WhenCreatingSalesConsultant_ThenShouldThrowEntityValidationExceptionWithMessage()
+    public void GivenWhitespaceLandline_WhenCreatingVendor_ThenShouldThrowEntityValidationExceptionWithMessage()
     {
         // Assert
         const string whitespaceLandline = "             ";
@@ -1793,7 +1793,7 @@ public sealed class SalesConsultantTest
         // Act
         var exception = Record.Exception(
             () =>
-                Developurr.Orderly.Domain.SalesConsultant.SalesConsultant.Create(
+                Domain.Vendor.Vendor.Create(
                     Constants.Cpf.CpfValue,
                     Constants.Address.Street,
                     Constants.Address.Number,
@@ -1803,7 +1803,7 @@ public sealed class SalesConsultantTest
                     Constants.Address.City,
                     Constants.Address.State,
                     Constants.Address.Country,
-                    Constants.SalesConsultant.Name,
+                    Constants.Vendor.Name,
                     Constants.Email.EmailValue,
                     whitespaceLandline,
                     Constants.Phone.PhoneValue
@@ -1816,7 +1816,7 @@ public sealed class SalesConsultantTest
     }
     
     [Fact]
-    public void GivenShortLandline_WhenCreatingSalesConsultant_ThenShouldThrowEntityValidationExceptionWithMessage()
+    public void GivenShortLandline_WhenCreatingVendor_ThenShouldThrowEntityValidationExceptionWithMessage()
     {
         // Assert
         const string shortLandline = Constants.InvalidPhone.ShortPhone;
@@ -1825,7 +1825,7 @@ public sealed class SalesConsultantTest
         // Act
         var exception = Record.Exception(
             () =>
-                Developurr.Orderly.Domain.SalesConsultant.SalesConsultant.Create(
+                Domain.Vendor.Vendor.Create(
                     Constants.Cpf.CpfValue,
                     Constants.Address.Street,
                     Constants.Address.Number,
@@ -1835,7 +1835,7 @@ public sealed class SalesConsultantTest
                     Constants.Address.City,
                     Constants.Address.State,
                     Constants.Address.Country,
-                    Constants.SalesConsultant.Name,
+                    Constants.Vendor.Name,
                     Constants.Email.EmailValue,
                     shortLandline,
                     Constants.Phone.PhoneValue
@@ -1848,7 +1848,7 @@ public sealed class SalesConsultantTest
     }
     
     [Fact]
-    public void GivenLongLandline_WhenCreatingSalesConsultant_ThenShouldThrowEntityValidationExceptionWithMessage()
+    public void GivenLongLandline_WhenCreatingVendor_ThenShouldThrowEntityValidationExceptionWithMessage()
     {
         // Assert
         const string longLandline = Constants.InvalidPhone.LongPhone;
@@ -1857,7 +1857,7 @@ public sealed class SalesConsultantTest
         // Act
         var exception = Record.Exception(
             () =>
-                Developurr.Orderly.Domain.SalesConsultant.SalesConsultant.Create(
+                Domain.Vendor.Vendor.Create(
                     Constants.Cpf.CpfValue,
                     Constants.Address.Street,
                     Constants.Address.Number,
@@ -1867,7 +1867,7 @@ public sealed class SalesConsultantTest
                     Constants.Address.City,
                     Constants.Address.State,
                     Constants.Address.Country,
-                    Constants.SalesConsultant.Name,
+                    Constants.Vendor.Name,
                     Constants.Email.EmailValue,
                     longLandline,
                     Constants.Phone.PhoneValue
@@ -1880,7 +1880,7 @@ public sealed class SalesConsultantTest
     }
     
     [Fact]
-    public void GivenEmptyMobile_WhenCreatingSalesConsultant_ThenShouldThrowEntityValidationExceptionWithMessage()
+    public void GivenEmptyMobile_WhenCreatingVendor_ThenShouldThrowEntityValidationExceptionWithMessage()
     {
         // Assert
         const string emptyMobile = "";
@@ -1889,7 +1889,7 @@ public sealed class SalesConsultantTest
         // Act
         var exception = Record.Exception(
             () =>
-                Developurr.Orderly.Domain.SalesConsultant.SalesConsultant.Create(
+                Domain.Vendor.Vendor.Create(
                     Constants.Cpf.CpfValue,
                     Constants.Address.Street,
                     Constants.Address.Number,
@@ -1899,7 +1899,7 @@ public sealed class SalesConsultantTest
                     Constants.Address.City,
                     Constants.Address.State,
                     Constants.Address.Country,
-                    Constants.SalesConsultant.Name,
+                    Constants.Vendor.Name,
                     Constants.Email.EmailValue,
                     Constants.Phone.PhoneValue,
                     emptyMobile
@@ -1912,7 +1912,7 @@ public sealed class SalesConsultantTest
     }
     
     [Fact]
-    public void GivenWhitespaceMobile_WhenCreatingSalesConsultant_ThenShouldThrowEntityValidationExceptionWithMessage()
+    public void GivenWhitespaceMobile_WhenCreatingVendor_ThenShouldThrowEntityValidationExceptionWithMessage()
     {
         // Assert
         const string whitespaceMobile = "             ";
@@ -1921,7 +1921,7 @@ public sealed class SalesConsultantTest
         // Act
         var exception = Record.Exception(
             () =>
-                Developurr.Orderly.Domain.SalesConsultant.SalesConsultant.Create(
+                Domain.Vendor.Vendor.Create(
                     Constants.Cpf.CpfValue,
                     Constants.Address.Street,
                     Constants.Address.Number,
@@ -1931,7 +1931,7 @@ public sealed class SalesConsultantTest
                     Constants.Address.City,
                     Constants.Address.State,
                     Constants.Address.Country,
-                    Constants.SalesConsultant.Name,
+                    Constants.Vendor.Name,
                     Constants.Email.EmailValue,
                     Constants.Phone.PhoneValue,
                     whitespaceMobile
@@ -1944,7 +1944,7 @@ public sealed class SalesConsultantTest
     }
     
     [Fact]
-    public void GivenShortMobile_WhenCreatingSalesConsultant_ThenShouldThrowEntityValidationExceptionWithMessage()
+    public void GivenShortMobile_WhenCreatingVendor_ThenShouldThrowEntityValidationExceptionWithMessage()
     {
         // Assert
         const string shortMobile = Constants.InvalidPhone.ShortPhone;
@@ -1953,7 +1953,7 @@ public sealed class SalesConsultantTest
         // Act
         var exception = Record.Exception(
             () =>
-                Developurr.Orderly.Domain.SalesConsultant.SalesConsultant.Create(
+                Domain.Vendor.Vendor.Create(
                     Constants.Cpf.CpfValue,
                     Constants.Address.Street,
                     Constants.Address.Number,
@@ -1963,7 +1963,7 @@ public sealed class SalesConsultantTest
                     Constants.Address.City,
                     Constants.Address.State,
                     Constants.Address.Country,
-                    Constants.SalesConsultant.Name,
+                    Constants.Vendor.Name,
                     Constants.Email.EmailValue,
                     Constants.Phone.PhoneValue,
                     shortMobile
@@ -1976,7 +1976,7 @@ public sealed class SalesConsultantTest
     }
     
     [Fact]
-    public void GivenLongMobile_WhenCreatingSalesConsultant_ThenShouldThrowEntityValidationExceptionWithMessage()
+    public void GivenLongMobile_WhenCreatingVendor_ThenShouldThrowEntityValidationExceptionWithMessage()
     {
         // Assert
         const string longMobile = Constants.InvalidPhone.LongPhone;
@@ -1985,7 +1985,7 @@ public sealed class SalesConsultantTest
         // Act
         var exception = Record.Exception(
             () =>
-                Developurr.Orderly.Domain.SalesConsultant.SalesConsultant.Create(
+                Domain.Vendor.Vendor.Create(
                     Constants.Cpf.CpfValue,
                     Constants.Address.Street,
                     Constants.Address.Number,
@@ -1995,7 +1995,7 @@ public sealed class SalesConsultantTest
                     Constants.Address.City,
                     Constants.Address.State,
                     Constants.Address.Country,
-                    Constants.SalesConsultant.Name,
+                    Constants.Vendor.Name,
                     Constants.Email.EmailValue,
                     Constants.Phone.PhoneValue,
                     longMobile
@@ -2008,14 +2008,14 @@ public sealed class SalesConsultantTest
     }
     
     [Fact]
-    public void GivenUntrimmedCpf_WhenCreatingSalesConsultant_ThenShouldHaveTrimmedCpf()
+    public void GivenUntrimmedCpf_WhenCreatingVendor_ThenShouldHaveTrimmedCpf()
     {
         // Arrange
         const string untrimmedCpf = "    54647142949       ";
         const string expectedCpf = "546.471.429-49";
 
         // Act
-        var salesConsultant = Developurr.Orderly.Domain.SalesConsultant.SalesConsultant.Create(
+        var vendor = Domain.Vendor.Vendor.Create(
             untrimmedCpf,
             Constants.Address.Street,
             Constants.Address.Number,
@@ -2025,25 +2025,25 @@ public sealed class SalesConsultantTest
             Constants.Address.City,
             Constants.Address.State,
             Constants.Address.Country,
-            Constants.SalesConsultant.Name,
+            Constants.Vendor.Name,
             Constants.Email.EmailValue,
             Constants.Phone.PhoneValue,
             Constants.Phone.PhoneValue
         );
 
         // Assert
-        Assert.Equal(expectedCpf, salesConsultant.Cpf.Format());
+        Assert.Equal(expectedCpf, vendor.Cpf.Format());
     }
     
     [Fact]
-    public void GivenUntrimmedStreet_WhenCreatingSalesConsultant_ThenShouldHaveTrimmedStreet()
+    public void GivenUntrimmedStreet_WhenCreatingVendor_ThenShouldHaveTrimmedStreet()
     {
         // Arrange
         const string untrimmedStreet = "    Rua da rua       ";
         const string expectedStreet = "Rua da rua";
 
         // Act
-        var salesConsultant = Developurr.Orderly.Domain.SalesConsultant.SalesConsultant.Create(
+        var vendor = Domain.Vendor.Vendor.Create(
             Constants.Cpf.CpfValue,
             untrimmedStreet,
             Constants.Address.Number,
@@ -2053,25 +2053,25 @@ public sealed class SalesConsultantTest
             Constants.Address.City,
             Constants.Address.State,
             Constants.Address.Country,
-            Constants.SalesConsultant.Name,
+            Constants.Vendor.Name,
             Constants.Email.EmailValue,
             Constants.Phone.PhoneValue,
             Constants.Phone.PhoneValue
         );
 
         // Assert
-        Assert.Equal(expectedStreet, salesConsultant.Address.Street);
+        Assert.Equal(expectedStreet, vendor.Address.Street);
     }
     
     [Fact]
-    public void GivenUntrimmedComplement_WhenCreatingSalesConsultant_ThenShouldHaveTrimmedComplement()
+    public void GivenUntrimmedComplement_WhenCreatingVendor_ThenShouldHaveTrimmedComplement()
     {
         // Arrange
         const string untrimmedComplement = "    Casa       ";
         const string expectedComplement = "Casa";
 
         // Act
-        var salesConsultant = Developurr.Orderly.Domain.SalesConsultant.SalesConsultant.Create(
+        var vendor = Domain.Vendor.Vendor.Create(
             Constants.Cpf.CpfValue,
             Constants.Address.Street,
             Constants.Address.Number,
@@ -2081,25 +2081,25 @@ public sealed class SalesConsultantTest
             Constants.Address.City,
             Constants.Address.State,
             Constants.Address.Country,
-            Constants.SalesConsultant.Name,
+            Constants.Vendor.Name,
             Constants.Email.EmailValue,
             Constants.Phone.PhoneValue,
             Constants.Phone.PhoneValue
         );
 
         // Assert
-        Assert.Equal(expectedComplement, salesConsultant.Address.Complement);
+        Assert.Equal(expectedComplement, vendor.Address.Complement);
     }
     
     [Fact]
-    public void GivenUntrimmedZipCode_WhenCreatingSalesConsultant_ThenShouldHaveTrimmedZipCode()
+    public void GivenUntrimmedZipCode_WhenCreatingVendor_ThenShouldHaveTrimmedZipCode()
     {
         // Arrange
         const string untrimmedZipCode = " 87657-012 ";
         const string expectedZipCode = "87657012";
 
         // Act
-        var salesConsultant = Developurr.Orderly.Domain.SalesConsultant.SalesConsultant.Create(
+        var vendor = Domain.Vendor.Vendor.Create(
             Constants.Cpf.CpfValue,
             Constants.Address.Street,
             Constants.Address.Number,
@@ -2109,25 +2109,25 @@ public sealed class SalesConsultantTest
             Constants.Address.City,
             Constants.Address.State,
             Constants.Address.Country,
-            Constants.SalesConsultant.Name,
+            Constants.Vendor.Name,
             Constants.Email.EmailValue,
             Constants.Phone.PhoneValue,
             Constants.Phone.PhoneValue
         );
 
         // Assert
-        Assert.Equal(expectedZipCode, salesConsultant.Address.ZipCode);
+        Assert.Equal(expectedZipCode, vendor.Address.ZipCode);
     }
     
     [Fact]
-    public void GivenUntrimmedNeighborhood_WhenCreatingSalesConsultant_ThenShouldHaveTrimmedNeighborhood()
+    public void GivenUntrimmedNeighborhood_WhenCreatingVendor_ThenShouldHaveTrimmedNeighborhood()
     {
         // Arrange
         const string untrimmedNeighborhood = "    Barra da tijuca       ";
         const string expectedNeighborhood = "Barra da tijuca";
 
         // Act
-        var salesConsultant = Developurr.Orderly.Domain.SalesConsultant.SalesConsultant.Create(
+        var vendor = Domain.Vendor.Vendor.Create(
             Constants.Cpf.CpfValue,
             Constants.Address.Street,
             Constants.Address.Number,
@@ -2137,25 +2137,25 @@ public sealed class SalesConsultantTest
             Constants.Address.City,
             Constants.Address.State,
             Constants.Address.Country,
-            Constants.SalesConsultant.Name,
+            Constants.Vendor.Name,
             Constants.Email.EmailValue,
             Constants.Phone.PhoneValue,
             Constants.Phone.PhoneValue
         );
 
         // Assert
-        Assert.Equal(expectedNeighborhood, salesConsultant.Address.Neighborhood);
+        Assert.Equal(expectedNeighborhood, vendor.Address.Neighborhood);
     }
     
     [Fact]
-    public void GivenUntrimmedCity_WhenCreatingSalesConsultant_ThenShouldHaveTrimmedCity()
+    public void GivenUntrimmedCity_WhenCreatingVendor_ThenShouldHaveTrimmedCity()
     {
         // Arrange
         const string untrimmedCity = "    Rio de Janeiro       ";
         const string expectedCity = "Rio de Janeiro";
 
         // Act
-        var salesConsultant = Developurr.Orderly.Domain.SalesConsultant.SalesConsultant.Create(
+        var vendor = Domain.Vendor.Vendor.Create(
             Constants.Cpf.CpfValue,
             Constants.Address.Street,
             Constants.Address.Number,
@@ -2165,25 +2165,25 @@ public sealed class SalesConsultantTest
             untrimmedCity,
             Constants.Address.State,
             Constants.Address.Country,
-            Constants.SalesConsultant.Name,
+            Constants.Vendor.Name,
             Constants.Email.EmailValue,
             Constants.Phone.PhoneValue,
             Constants.Phone.PhoneValue
         );
 
         // Assert
-        Assert.Equal(expectedCity, salesConsultant.Address.City);
+        Assert.Equal(expectedCity, vendor.Address.City);
     }
     
     [Fact]
-    public void GivenUntrimmedState_WhenCreatingSalesConsultant_ThenShouldHaveTrimmedState()
+    public void GivenUntrimmedState_WhenCreatingVendor_ThenShouldHaveTrimmedState()
     {
         // Arrange
         const string untrimmedState = "    Rio de Janeiro       ";
         const string expectedState = "Rio de Janeiro";
 
         // Act
-        var salesConsultant = Developurr.Orderly.Domain.SalesConsultant.SalesConsultant.Create(
+        var vendor = Domain.Vendor.Vendor.Create(
             Constants.Cpf.CpfValue,
             Constants.Address.Street,
             Constants.Address.Number,
@@ -2193,25 +2193,25 @@ public sealed class SalesConsultantTest
             Constants.Address.City,
             untrimmedState,
             Constants.Address.Country,
-            Constants.SalesConsultant.Name,
+            Constants.Vendor.Name,
             Constants.Email.EmailValue,
             Constants.Phone.PhoneValue,
             Constants.Phone.PhoneValue
         );
 
         // Assert
-        Assert.Equal(expectedState, salesConsultant.Address.State);
+        Assert.Equal(expectedState, vendor.Address.State);
     }
     
     [Fact]
-    public void GivenUntrimmedCountry_WhenCreatingSalesConsultant_ThenShouldHaveTrimmedCountry()
+    public void GivenUntrimmedCountry_WhenCreatingVendor_ThenShouldHaveTrimmedCountry()
     {
         // Arrange
         const string untrimmedCountry = "    Rio de Janeiro       ";
         const string expectedCountry = "Rio de Janeiro";
 
         // Act
-        var salesConsultant = Developurr.Orderly.Domain.SalesConsultant.SalesConsultant.Create(
+        var vendor = Domain.Vendor.Vendor.Create(
             Constants.Cpf.CpfValue,
             Constants.Address.Street,
             Constants.Address.Number,
@@ -2221,25 +2221,25 @@ public sealed class SalesConsultantTest
             Constants.Address.City,
             Constants.Address.State,
             untrimmedCountry,
-            Constants.SalesConsultant.Name,
+            Constants.Vendor.Name,
             Constants.Email.EmailValue,
             Constants.Phone.PhoneValue,
             Constants.Phone.PhoneValue
         );
 
         // Assert
-        Assert.Equal(expectedCountry, salesConsultant.Address.Country);
+        Assert.Equal(expectedCountry, vendor.Address.Country);
     }
     
     [Fact]
-    public void GivenUntrimmedName_WhenCreatingSalesConsultant_ThenShouldHaveTrimmedName()
+    public void GivenUntrimmedName_WhenCreatingVendor_ThenShouldHaveTrimmedName()
     {
         // Arrange
         const string untrimmedName = "  Joao Silva  ";
         const string expectedName = "Joao Silva";
 
         // Act
-        var salesConsultant = Developurr.Orderly.Domain.SalesConsultant.SalesConsultant.Create(
+        var vendor = Domain.Vendor.Vendor.Create(
             Constants.Cpf.CpfValue,
             Constants.Address.Street,
             Constants.Address.Number,
@@ -2256,18 +2256,18 @@ public sealed class SalesConsultantTest
         );
 
         // Assert
-        Assert.Equal(expectedName, salesConsultant.Name);
+        Assert.Equal(expectedName, vendor.Name);
     }
     
     [Fact]
-    public void GivenUntrimmedEmailValue_WhenCreatingSalesConsultant_ThenShouldHaveTrimmedEmailValue()
+    public void GivenUntrimmedEmailValue_WhenCreatingVendor_ThenShouldHaveTrimmedEmailValue()
     {
         // Arrange
         const string untrimmedEmailValue = "    email@email.com       ";
         const string expectedEmailValue = "email@email.com";
 
         // Act
-        var salesConsultant = Developurr.Orderly.Domain.SalesConsultant.SalesConsultant.Create(
+        var vendor = Domain.Vendor.Vendor.Create(
             Constants.Cpf.CpfValue,
             Constants.Address.Street,
             Constants.Address.Number,
@@ -2277,25 +2277,25 @@ public sealed class SalesConsultantTest
             Constants.Address.City,
             Constants.Address.State,
             Constants.Address.Country,
-            Constants.SalesConsultant.Name,
+            Constants.Vendor.Name,
             untrimmedEmailValue,
             Constants.Phone.PhoneValue,
             Constants.Phone.PhoneValue
         );
 
         // Assert
-        Assert.Equal(expectedEmailValue, salesConsultant.Email.Format());
+        Assert.Equal(expectedEmailValue, vendor.Email.Format());
     }
     
     [Fact]
-    public void GivenUntrimmedLandline_WhenCreatingSalesConsultant_ThenShouldHaveTrimmedLandline()
+    public void GivenUntrimmedLandline_WhenCreatingVendor_ThenShouldHaveTrimmedLandline()
     {
         // Arrange
         const string untrimmedLandline = "    21998345677       ";
         const string expectedLandline = "21998345677";
 
         // Act
-        var salesConsultant = Developurr.Orderly.Domain.SalesConsultant.SalesConsultant.Create(
+        var vendor = Domain.Vendor.Vendor.Create(
             Constants.Cpf.CpfValue,
             Constants.Address.Street,
             Constants.Address.Number,
@@ -2305,25 +2305,25 @@ public sealed class SalesConsultantTest
             Constants.Address.City,
             Constants.Address.State,
             Constants.Address.Country,
-            Constants.SalesConsultant.Name,
+            Constants.Vendor.Name,
             Constants.Email.EmailValue,
             untrimmedLandline,
             Constants.Phone.PhoneValue
         );
 
         // Assert
-        Assert.Equal(expectedLandline, salesConsultant.Landline?.Value);
+        Assert.Equal(expectedLandline, vendor.Landline?.Value);
     }
     
     [Fact]
-    public void GivenUntrimmedMobile_WhenCreatingSalesConsultant_ThenShouldHaveTrimmedMobile()
+    public void GivenUntrimmedMobile_WhenCreatingVendor_ThenShouldHaveTrimmedMobile()
     {
         // Arrange
         const string untrimmedMobile = "    21998345677       ";
         const string expectedMobile = "21998345677";
 
         // Act
-        var salesConsultant = Developurr.Orderly.Domain.SalesConsultant.SalesConsultant.Create(
+        var vendor = Domain.Vendor.Vendor.Create(
             Constants.Cpf.CpfValue,
             Constants.Address.Street,
             Constants.Address.Number,
@@ -2333,13 +2333,13 @@ public sealed class SalesConsultantTest
             Constants.Address.City,
             Constants.Address.State,
             Constants.Address.Country,
-            Constants.SalesConsultant.Name,
+            Constants.Vendor.Name,
             Constants.Email.EmailValue,
             Constants.Phone.PhoneValue,
             untrimmedMobile
         );
 
         // Assert
-        Assert.Equal(expectedMobile, salesConsultant.Mobile?.Value);
+        Assert.Equal(expectedMobile, vendor.Mobile?.Value);
     }
 }

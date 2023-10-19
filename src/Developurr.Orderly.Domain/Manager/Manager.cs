@@ -1,14 +1,14 @@
 using Developurr.Orderly.Domain.Manager.Validators;
 using Developurr.Orderly.Domain.Manager.ValueObjects;
-using Developurr.Orderly.Domain.SalesConsultant.ValueObjects;
 using Developurr.Orderly.Domain.SeedWork;
 using Developurr.Orderly.Domain.Shared.ValueObjects;
+using Developurr.Orderly.Domain.Vendor.ValueObjects;
 
 namespace Developurr.Orderly.Domain.Manager;
 
 public sealed class Manager : Entity<ManagerId>, IAggregateRoot
 {
-    private readonly List<SalesConsultantId> _salesConsultants;
+    private readonly List<VendorId> _salesConsultants;
     public Cpf Cpf { get; }
     public Address Address { get; private set; }
     public string Name { get; private set; }
@@ -27,7 +27,7 @@ public sealed class Manager : Entity<ManagerId>, IAggregateRoot
     )
         : base(managerId)
     {
-        _salesConsultants = new List<SalesConsultantId>();
+        _salesConsultants = new List<VendorId>();
         Cpf = cpf;
         Address = address;
         Name = name;

@@ -1,12 +1,12 @@
 using Developurr.Orderly.Domain.Validation;
 
-namespace Developurr.Orderly.Domain.SalesConsultant.Validators;
+namespace Developurr.Orderly.Domain.Vendor.Validators;
 
-public sealed class SalesConsultantValidator : Validator
+public sealed class VendorValidator : Validator
 {
     private readonly string _name;
 
-    public SalesConsultantValidator(string name)
+    public VendorValidator(string name)
     {
         _name = name;
     }
@@ -25,8 +25,8 @@ public sealed class SalesConsultantValidator : Validator
         ValidationRules.ValidateStringLength(
             _name,
             fieldName,
-            SalesConsultantValidatorConfig.NameMinLength,
-            SalesConsultantValidatorConfig.NameMaxLength,
+            VendorValidatorConfig.NameMinLength,
+            VendorValidatorConfig.NameMaxLength,
             this
         );
     }

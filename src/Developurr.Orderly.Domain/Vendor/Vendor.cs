@@ -1,12 +1,12 @@
 using Developurr.Orderly.Domain.Customer.ValueObjects;
-using Developurr.Orderly.Domain.SalesConsultant.Validators;
-using Developurr.Orderly.Domain.SalesConsultant.ValueObjects;
 using Developurr.Orderly.Domain.SeedWork;
 using Developurr.Orderly.Domain.Shared.ValueObjects;
+using Developurr.Orderly.Domain.Vendor.Validators;
+using Developurr.Orderly.Domain.Vendor.ValueObjects;
 
-namespace Developurr.Orderly.Domain.SalesConsultant;
+namespace Developurr.Orderly.Domain.Vendor;
 
-public sealed class SalesConsultant : Entity<SalesConsultantId>, IAggregateRoot
+public sealed class Vendor : Entity<VendorId>, IAggregateRoot
 {
     private readonly List<CustomerId> _customers;
     public Cpf Cpf { get; }
@@ -16,8 +16,8 @@ public sealed class SalesConsultant : Entity<SalesConsultantId>, IAggregateRoot
     public Phone? Landline { get; private set; }
     public Phone? Mobile { get; private set; }
 
-    private SalesConsultant(
-        SalesConsultantId salesConsultantId,
+    private Vendor(
+        VendorId vendorId,
         Cpf cpf,
         Address address,
         string name,
@@ -25,7 +25,7 @@ public sealed class SalesConsultant : Entity<SalesConsultantId>, IAggregateRoot
         Phone? landline,
         Phone? mobile
     )
-        : base(salesConsultantId)
+        : base(vendorId)
     {
         _customers = new List<CustomerId>();
         Cpf = cpf;
@@ -36,7 +36,7 @@ public sealed class SalesConsultant : Entity<SalesConsultantId>, IAggregateRoot
         Mobile = mobile;
     }
 
-    public static SalesConsultant Create(
+    public static Vendor Create(
         string cpfValue,
         string street,
         int number,
@@ -52,7 +52,7 @@ public sealed class SalesConsultant : Entity<SalesConsultantId>, IAggregateRoot
         string? mobileValue
     )
     {
-        var salesConsultantId = SalesConsultantId.Generate();
+        var salesConsultantId = VendorId.Generate();
         var cpf = Cpf.Create(cpfValue);
         var address = Address.Create(
             street,
@@ -71,12 +71,12 @@ public sealed class SalesConsultant : Entity<SalesConsultantId>, IAggregateRoot
 
         Validate(nameTrimmed);
 
-        return new SalesConsultant(salesConsultantId, cpf, address, nameTrimmed, email, landline, mobile);
+        return new Vendor(salesConsultantId, cpf, address, nameTrimmed, email, landline, mobile);
     }
 
     private static void Validate(string name)
     {
-        var salesConsultantValidator = new SalesConsultantValidator(name);
+        var salesConsultantValidator = new VendorValidator(name);
         salesConsultantValidator.Validate();
     }
 }
