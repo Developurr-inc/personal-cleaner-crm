@@ -1,3 +1,0 @@
-namespace Developurr.Orderly.Application.UseCase.SalesConsultant.DeleteSalesConsultant;
-
-public record DeleteSalesConsultantOutput(string SalesConsultantId);

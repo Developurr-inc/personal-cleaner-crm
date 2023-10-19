@@ -1,15 +1,14 @@
-using Developurr.Orderly.Application.Command;
 using Developurr.Orderly.Domain.SalesConsultant.Repositories;
 
-namespace Developurr.Orderly.Application.UseCase.SalesConsultant.CreateSalesConsultant;
+namespace Developurr.Orderly.Application.Command.Vendor.CreateVendor;
 
-public sealed class CreateSalesConsultantUseCase
-    : IUseCase<CreateSalesConsultantInput, CreateSalesConsultantOutput>
+public sealed class CreateVendorUseCase
+    : IUseCase<CreateVendorInput, CreateVendorOutput>
 {
     private readonly IUnitOfWork _unitOfWork;
     private readonly ISalesConsultantRepository _salesConsultantRepository;
 
-    public CreateSalesConsultantUseCase(
+    public CreateVendorUseCase(
         IUnitOfWork unitOfWork,
         ISalesConsultantRepository salesConsultantRepository
     )
@@ -18,8 +17,8 @@ public sealed class CreateSalesConsultantUseCase
         _salesConsultantRepository = salesConsultantRepository;
     }
 
-    public async Task<CreateSalesConsultantOutput> Handle(
-        CreateSalesConsultantInput input,
+    public async Task<CreateVendorOutput> Handle(
+        CreateVendorInput input,
         CancellationToken cancellationToken
     )
     {
@@ -42,6 +41,6 @@ public sealed class CreateSalesConsultantUseCase
         await _salesConsultantRepository.InsertAsync(salesConsultant, cancellationToken);
         await _unitOfWork.CommitAsync(cancellationToken);
 
-        return new CreateSalesConsultantOutput(salesConsultant.Id.Format());
+        return new CreateVendorOutput(salesConsultant.Id.Format());
     }
 }

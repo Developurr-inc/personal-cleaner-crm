@@ -1,15 +1,14 @@
-using Developurr.Orderly.Application.Command;
 using Developurr.Orderly.Domain.SalesConsultant.Repositories;
 
-namespace Developurr.Orderly.Application.UseCase.SalesConsultant.DeleteSalesConsultant;
+namespace Developurr.Orderly.Application.Command.Vendor.DeleteVendor;
 
-public class DeleteSalesConsultantUseCase
-    : IUseCase<DeleteSalesConsultantInput, DeleteSalesConsultantOutput>
+public class DeleteVendorUseCase
+    : IUseCase<DeleteVendorInput, DeleteVendorOutput>
 {
     private readonly IUnitOfWork _unitOfWork;
     private readonly ISalesConsultantRepository _salesConsultantRepository;
 
-    public DeleteSalesConsultantUseCase(
+    public DeleteVendorUseCase(
         IUnitOfWork unitOfWork,
         ISalesConsultantRepository salesConsultantRepository
     )
@@ -18,8 +17,8 @@ public class DeleteSalesConsultantUseCase
         _salesConsultantRepository = salesConsultantRepository;
     }
 
-    public async Task<DeleteSalesConsultantOutput> Handle(
-        DeleteSalesConsultantInput input,
+    public async Task<DeleteVendorOutput> Handle(
+        DeleteVendorInput input,
         CancellationToken cancellationToken
     )
     {
@@ -31,6 +30,6 @@ public class DeleteSalesConsultantUseCase
         await _salesConsultantRepository.RemoveAsync(salesConsultant, cancellationToken);
         await _unitOfWork.CommitAsync(cancellationToken);
 
-        return new DeleteSalesConsultantOutput(salesConsultant.Id.Format());
+        return new DeleteVendorOutput(salesConsultant.Id.Format());
     }
 }

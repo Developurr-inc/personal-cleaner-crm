@@ -1,6 +1,6 @@
-namespace Developurr.Orderly.Application.UseCase.SalesConsultant.CreateSalesConsultant;
+namespace Developurr.Orderly.Application.Command.Vendor.CreateVendor;
 
-public record CreateSalesConsultantInput(
+public record CreateVendorInput(
     string Cpf,
     string Street,
     int Number,
