@@ -16,17 +16,21 @@ public class GetProductUseCase : IUseCase<GetProductInput, GetProductOutput>
         CancellationToken cancellationToken
     )
     {
-        var product = await _productRepository.GetByIdAsync(
-            input.ProductId,
-            cancellationToken
-        );
-
+        var product = await _productRepository.GetByIdAsync(input.ProductId, cancellationToken);
+        
+        if (product is null)
+        {
+            throw new ArgumentException(input.ProductId);
+        }
+        
         return new GetProductOutput(
-            product.Code,
-            product.Name,
-            product.Packaging,
-            product.ExciseTax,
-            product.Price.Value
+            product.Id.Format(),
+            product.Name.Value,
+            product.Description.Value,
+            product.CategoryId.ToString(),
+            product.PackageId.ToString(),
+            product.UnitPrice.Value,
+            product.Imposto.Value
         );
     }
 }

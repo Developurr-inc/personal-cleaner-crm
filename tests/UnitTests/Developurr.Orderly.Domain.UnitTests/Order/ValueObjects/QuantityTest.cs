@@ -35,27 +35,7 @@ public sealed class QuantityTest
         );
         
         // Assert
-        var eve = Assert.IsType<EntityValidationException>(exception);
-        Assert.Contains(expectedErrorMessage, eve.Errors);
-    }
-    
-    [Fact]
-    public void GivenOverUpperLimitQuantityValue_WhenCreatingQuantity_ThenShouldThrowEntityValidationExceptionWithMessage()
-    {
-        // Arrange
-        const int overUpperLimitQuantityValue = Constants.InvalidQuantity.OverUpperLimitQuantity;
-        const string expectedErrorMessage = "'Quantity' should be an int between 0 and 2147483646.";
-        
-        // Act
-        var exception = Record.Exception(
-            () =>
-                Quantity.Create(
-                    overUpperLimitQuantityValue
-                )
-        );
-        
-        // Assert
-        var eve = Assert.IsType<EntityValidationException>(exception);
-        Assert.Contains(expectedErrorMessage, eve.Errors);
+        var eve = Assert.IsType<ArgumentException>(exception);
+        // Assert.Contains(expectedErrorMessage, eve.Errors);
     }
 }

@@ -1,4 +1,5 @@
-using Developurr.Orderly.Domain.Product.Validators;
+using Developurr.Orderly.Domain.Category.ValueObjects;
+using Developurr.Orderly.Domain.Package.ValueObjects;
 using Developurr.Orderly.Domain.Product.ValueObjects;
 using Developurr.Orderly.Domain.SeedWork;
 using Developurr.Orderly.Domain.Shared.ValueObjects;
@@ -7,49 +8,57 @@ namespace Developurr.Orderly.Domain.Product;
 
 public sealed class Product : Entity<ProductId>, IAggregateRoot
 {
-    public string Code { get; }
-    public string Name { get; private set; }
-    public string Packaging { get; private set; }
-    public decimal ExciseTax { get; private set; }
-    public Price Price { get; private set; }
-
-    private Product(
-        ProductId productId,
-        string code,
-        string name,
-        string packaging,
-        decimal exciseTax,
-        Price price
-    )
+    public readonly Sku Sku;
+    public NonEmptyText Name { get; }
+    public OptionalText Description { get; }
+    public CategoryId CategoryId { get; }
+    public PackageId PackageId { get; }
+    public Price UnitPrice { get; }
+    public Price Imposto { get; }
+    public Quantity StockItems { get; private set; }
+    public ActiveStatus Active { get; private set; }
+    
+    private Product(ProductId productId, Sku sku, NonEmptyText name, OptionalText description, CategoryId categoryId, PackageId packageId, Price unitPrice, Price imposto, Quantity stockItems, ActiveStatus active)
         : base(productId)
     {
-        Code = code;
+        Sku = sku;
         Name = name;
-        Packaging = packaging;
-        ExciseTax = exciseTax;
-        Price = price;
+        Description = description;
+        CategoryId = categoryId;
+        PackageId = packageId;
+        UnitPrice = unitPrice;
+        Imposto = imposto;
+        StockItems = stockItems;
+        Active = active;
+    }
+    
+    public void Deactivate()
+    {
+        if (Active.IsActive)
+            Active = ActiveStatus.Inactive;
+    }
+    
+    public void AddStockItems(int quantity)
+    {
+        StockItems += Quantity.Create(quantity);
+    }
+    
+    public void RemoveStockItems(int quantity)
+    {
+        StockItems -= Quantity.Create(quantity);
     }
 
-    public static Product Create(
-        string code,
-        string name,
-        string packaging,
-        decimal exciseTax,
-        decimal priceValue
-    )
+    public static Product Create(string name, string description, CategoryId categoryId, PackageId packageId, decimal unitPrice, decimal imposto)
     {
         var productId = ProductId.Generate();
-        var nameTrimmed = name.Trim();
-        var price = Price.Create(priceValue);
+        var nameObj = NonEmptyText.Create(name);
+        var descriptionObj = OptionalText.Create(description);
+        var unitPriceObj = Price.Create(unitPrice);
+        var impostoObj = Price.Create(imposto);
+        var stockItemsObj = Quantity.Create(0);
+        var activeObj = ActiveStatus.Active;
+        var sku = Sku.Generate("PRD", nameObj.Value, categoryId.ToString(), packageId.ToString());
 
-        Validate(nameTrimmed);
-
-        return new Product(productId, code, nameTrimmed, packaging, exciseTax, price);
-    }
-
-    private static void Validate(string name)
-    {
-        var productValidator = new ProductValidator(name);
-        productValidator.Validate();
+        return new Product(productId, sku, nameObj, descriptionObj, categoryId, packageId, unitPriceObj, impostoObj, stockItemsObj, activeObj);
     }
 }

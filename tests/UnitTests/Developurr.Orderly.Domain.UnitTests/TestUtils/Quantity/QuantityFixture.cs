@@ -4,8 +4,6 @@ public sealed class QuantityFixture
 {
     public static Shared.ValueObjects.Quantity CreateQuantity()
     {
-        return Shared.ValueObjects.Quantity.Create(
-            Constants.Constants.Quantity.Value    
-        );
+        return Shared.ValueObjects.Quantity.Create(20);
     }
 }

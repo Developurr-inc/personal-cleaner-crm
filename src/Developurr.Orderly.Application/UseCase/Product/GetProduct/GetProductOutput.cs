@@ -1,9 +1,11 @@
 namespace Developurr.Orderly.Application.UseCase.Product.GetProduct;
 
 public class GetProductOutput(
-    string Code,
+    string ProductId,
     string Name,
-    string Packaging,
-    decimal ExciseTax,
-    decimal PriceValue
+    string Description,
+    string CategoryId,
+    string PackageId,
+    decimal UnitPrice,
+    decimal Imposto
 );

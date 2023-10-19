@@ -1,9 +1,4 @@
-using Developurr.Orderly.Application.UnitTests.TestUtils.GetProduct;
-using Developurr.Orderly.Application.UseCase.Product.GetProduct;
-using Developurr.Orderly.Domain.Product;
-using Moq;
-
-namespace Developurr.Orderly.Application.UnitTests.UseCase.Product.GetProduct;
+namespace Developurr.Orderly.Application.UnitTests.Query.Product.GetProduct;
 
 public class GetProductTest
 {
