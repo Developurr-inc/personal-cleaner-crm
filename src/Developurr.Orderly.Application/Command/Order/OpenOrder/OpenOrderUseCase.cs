@@ -1,6 +1,6 @@
 using Developurr.Orderly.Domain.Customer.Repositories;
 using Developurr.Orderly.Domain.Order.Repositories;
-using Developurr.Orderly.Domain.SalesConsultant.Repositories;
+using Developurr.Orderly.Domain.Vendor.Repositories;
 
 namespace Developurr.Orderly.Application.Command.Order.OpenOrder;
 
@@ -9,20 +9,20 @@ public sealed class OpenOrderUseCase : ICommand<OpenOrderInput, OpenOrderOutput>
     private readonly IUnitOfWork _unitOfWork;
     private readonly IOrderRepository _orderRepository;
     private readonly ICustomerRepository _customerRepository;
-    private readonly ISalesConsultantRepository _salesConsultantRepository;
+    private readonly IVendorRepository _vendorRepository;
 
     public OpenOrderUseCase(
         IUnitOfWork unitOfWork,
         IOrderRepository orderRepository,
         ICustomerRepository customerRepository,
-        ISalesConsultantRepository salesConsultantRepository
+        IVendorRepository vendorRepository
         
     )
     {
         _unitOfWork = unitOfWork;
         _orderRepository = orderRepository;
         _customerRepository = customerRepository;
-        _salesConsultantRepository = salesConsultantRepository;
+        _vendorRepository = vendorRepository;
     }
 
     public async Task<OpenOrderOutput> Handle(
@@ -35,19 +35,19 @@ public sealed class OpenOrderUseCase : ICommand<OpenOrderInput, OpenOrderOutput>
             cancellationToken
         );
         
-        var salesConsultant = await _salesConsultantRepository.GetByIdAsync(
-            input.SalesConsultantId,
+        var vendor = await _vendorRepository.GetByIdAsync(
+            input.VendorId,
             cancellationToken
         );
 
-        if (customer is null || salesConsultant is null)
+        if (customer is null || vendor is null)
         {
             throw new Exception();
         }
         
         var order = Domain.Order.Order.Open(
             customer.Id,
-            salesConsultant.Id
+            vendor.Id
         );
 
         await _orderRepository.InsertAsync(order, cancellationToken);

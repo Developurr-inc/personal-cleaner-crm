@@ -1,4 +1,4 @@
-using Developurr.Orderly.Domain.SalesConsultant.Repositories;
+using Developurr.Orderly.Domain.Vendor.Repositories;
 
 namespace Developurr.Orderly.Application.Command.Vendor.DeleteVendor;
 
@@ -6,15 +6,15 @@ public class DeleteVendorUseCase
     : IUseCase<DeleteVendorInput, DeleteVendorOutput>
 {
     private readonly IUnitOfWork _unitOfWork;
-    private readonly ISalesConsultantRepository _salesConsultantRepository;
+    private readonly IVendorRepository _vendorRepository;
 
     public DeleteVendorUseCase(
         IUnitOfWork unitOfWork,
-        ISalesConsultantRepository salesConsultantRepository
+        IVendorRepository vendorRepository
     )
     {
         _unitOfWork = unitOfWork;
-        _salesConsultantRepository = salesConsultantRepository;
+        _vendorRepository = vendorRepository;
     }
 
     public async Task<DeleteVendorOutput> Handle(
@@ -22,14 +22,14 @@ public class DeleteVendorUseCase
         CancellationToken cancellationToken
     )
     {
-        var salesConsultant = await _salesConsultantRepository.GetByIdAsync(
-            input.SalesConsultantId,
+        var vendor = await _vendorRepository.GetByIdAsync(
+            input.VendorId,
             cancellationToken
         );
 
-        await _salesConsultantRepository.RemoveAsync(salesConsultant, cancellationToken);
+        await _vendorRepository.RemoveAsync(vendor, cancellationToken);
         await _unitOfWork.CommitAsync(cancellationToken);
 
-        return new DeleteVendorOutput(salesConsultant.Id.Format());
+        return new DeleteVendorOutput(vendor.Id.Format());
     }
 }

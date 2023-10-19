@@ -1,14 +1,14 @@
-using Developurr.Orderly.Domain.SalesConsultant.Repositories;
+using Developurr.Orderly.Domain.Vendor.Repositories;
 
 namespace Developurr.Orderly.Application.Query.Vendor.GetVendor;
 
 public class GetVendorUseCase : IUseCase<GetVendorInput, GetVendorOutput>
 {
-    private readonly ISalesConsultantRepository _salesConsultantRepository;
+    private readonly IVendorRepository _vendorRepository;
 
-    public GetVendorUseCase(ISalesConsultantRepository salesConsultantRepository)
+    public GetVendorUseCase(IVendorRepository vendorRepository)
     {
-        _salesConsultantRepository = salesConsultantRepository;
+        _vendorRepository = vendorRepository;
     }
 
     public async Task<GetVendorOutput> Handle(
@@ -16,18 +16,18 @@ public class GetVendorUseCase : IUseCase<GetVendorInput, GetVendorOutput>
         CancellationToken cancellationToken
     )
     {
-        var salesConsultant = await _salesConsultantRepository.GetByIdAsync(
-            input.SalesConsultantId,
+        var vendor = await _vendorRepository.GetByIdAsync(
+            input.VendorId,
             cancellationToken
         );
 
         return new GetVendorOutput(
-            salesConsultant.Cpf.Format(),
-            salesConsultant.Address.Format(),
-            salesConsultant.Name,
-            salesConsultant.Email.Format(),
-            salesConsultant.Landline?.Value ?? "",
-            salesConsultant.Mobile?.Value ?? ""
+            vendor.Cpf.Format(),
+            vendor.Address.Format(),
+            vendor.Name,
+            vendor.Email.Format(),
+            vendor.Landline?.Value ?? "",
+            vendor.Mobile?.Value ?? ""
         );
     }
 }

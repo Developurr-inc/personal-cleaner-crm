@@ -1,5 +1,5 @@
 using Developurr.Orderly.Domain.Customer.Repositories;
-using Developurr.Orderly.Domain.SalesConsultant.Repositories;
+using Developurr.Orderly.Domain.Vendor.Repositories;
 
 namespace Developurr.Orderly.Application.Command.Customer.CreateCustomer;
 
@@ -7,26 +7,26 @@ public sealed class CreateCustomerUseCase : ICommand<CreateCustomerInput, Create
 {
     private readonly IUnitOfWork _unitOfWork;
     private readonly ICustomerRepository _customerRepository;
-    private readonly ISalesConsultantRepository _salesConsultantRepository;
+    private readonly IVendorRepository _vendorRepository;
 
-    public CreateCustomerUseCase(IUnitOfWork unitOfWork, ICustomerRepository customerRepository, ISalesConsultantRepository salesConsultantRepository)
+    public CreateCustomerUseCase(IUnitOfWork unitOfWork, ICustomerRepository customerRepository, IVendorRepository vendorRepository)
     {
         _unitOfWork = unitOfWork;
         _customerRepository = customerRepository;
-        _salesConsultantRepository = salesConsultantRepository;
+        _vendorRepository = vendorRepository;
     }
 
     public async Task<CreateCustomerOutput> Handle(CreateCustomerInput input, CancellationToken cancellationToken)
     {
-        var salesConsultant = await _salesConsultantRepository.GetByIdAsync(input.SalesConsultantId, cancellationToken);
+        var vendor = await _vendorRepository.GetByIdAsync(input.VendorId, cancellationToken);
         
-        if (salesConsultant is null)
+        if (vendor is null)
         {
-            throw new Exception(input.SalesConsultantId);
+            throw new Exception(input.VendorId);
         }
         
         var customer = Domain.Customer.Customer.Create(
-            salesConsultant.Id,
+            vendor.Id,
             input.Cnpj,
             input.CorporateName,
             input.TaxId,
