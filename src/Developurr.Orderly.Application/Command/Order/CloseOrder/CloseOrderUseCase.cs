@@ -1,3 +1,4 @@
+using Developurr.Orderly.Application.Exceptions;
 using Developurr.Orderly.Domain.Order.Repositories;
 
 namespace Developurr.Orderly.Application.Command.Order.CloseOrder;
@@ -24,7 +25,7 @@ public class CloseOrderUseCase : ICommand<CloseOrderInput, CloseOrderOutput>
         );
         
         if (order is null)
-            throw new ArgumentException("Ordem não encontrada.", nameof(input.OrderId));
+            throw new NotFoundException("Ordem não encontrada.", nameof(input.OrderId));
 
         order.Close();
         
