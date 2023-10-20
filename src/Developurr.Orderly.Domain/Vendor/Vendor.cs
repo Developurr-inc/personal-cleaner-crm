@@ -15,6 +15,7 @@ public sealed class Vendor : Entity<VendorId>, IAggregateRoot
     public Email Email { get; private set; }
     public Phone? Landline { get; private set; }
     public Phone? Mobile { get; private set; }
+    public bool Active { get; private set; }
 
     private Vendor(
         VendorId vendorId,
@@ -23,7 +24,8 @@ public sealed class Vendor : Entity<VendorId>, IAggregateRoot
         string name,
         Email email,
         Phone? landline,
-        Phone? mobile
+        Phone? mobile,
+        bool active
     )
         : base(vendorId)
     {
@@ -34,6 +36,13 @@ public sealed class Vendor : Entity<VendorId>, IAggregateRoot
         Email = email;
         Landline = landline;
         Mobile = mobile;
+        Active = active;
+    }
+    
+    public void Disable()
+    {
+        if (Active)
+            Active = false;
     }
 
     public static Vendor Create(
@@ -68,10 +77,11 @@ public sealed class Vendor : Entity<VendorId>, IAggregateRoot
         var email = Email.Create(emailValue);
         var landline = landlineValue == null ? null : Phone.Create(landlineValue);
         var mobile = mobileValue == null ? null : Phone.Create(mobileValue);
+        var active = true;
 
         Validate(nameTrimmed);
 
-        return new Vendor(vendorId, cpf, address, nameTrimmed, email, landline, mobile);
+        return new Vendor(vendorId, cpf, address, nameTrimmed, email, landline, mobile, active);
     }
 
     private static void Validate(string name)
