@@ -8,12 +8,6 @@ public abstract class Entity<TIdentifier>
     public TIdentifier Id { get; }
     public IReadOnlyList<IDomainEvent> DomainEvents => _domainEventsReadOnly;
 
-    protected Entity()
-    {
-        Id = default(TIdentifier) ?? throw new InvalidOperationException();
-        _domainEventsReadOnly = new List<IDomainEvent>(_domainEvents.AsReadOnly());
-    }
-
     protected Entity(TIdentifier id)
     {
         if (!IsTransient())

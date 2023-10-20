@@ -1,4 +1,4 @@
-namespace Developurr.Orderly.Application.UseCase.Product.GetProduct;
+namespace Developurr.Orderly.Application.Query.Product.GetProduct;
 
 public class GetProductOutput(
     string ProductId,

@@ -1,6 +1,6 @@
 using Developurr.Orderly.Domain.Product.Repositories;
 
-namespace Developurr.Orderly.Application.UseCase.Product.GetProduct;
+namespace Developurr.Orderly.Application.Query.Product.GetProduct;
 
 public class GetProductUseCase : IUseCase<GetProductInput, GetProductOutput>
 {

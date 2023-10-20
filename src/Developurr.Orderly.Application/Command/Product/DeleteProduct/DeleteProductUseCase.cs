@@ -1,7 +1,6 @@
-using Developurr.Orderly.Application.Command;
 using Developurr.Orderly.Domain.Product.Repositories;
 
-namespace Developurr.Orderly.Application.UseCase.Product.DeleteProduct;
+namespace Developurr.Orderly.Application.Command.Product.DeleteProduct;
 
 public class DeleteProductUseCase : IUseCase<DeleteProductInput, DeleteProductOutput>
 {

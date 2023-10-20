@@ -16,7 +16,7 @@ public class SkuTest
         var packageId = PackageIdFixture.GenerateId();
     
         // Act
-        var sku = Sku.Generate("P", name.Value, categoryId.ToString(), packageId.ToString());
+        var sku = Sku.Generate("SER", name.Value, categoryId.ToString(), packageId.ToString());
 
         // Assert
         Assert.NotNull(sku);

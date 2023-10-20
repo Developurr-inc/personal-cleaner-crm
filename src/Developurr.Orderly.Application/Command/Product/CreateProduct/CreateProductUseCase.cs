@@ -1,9 +1,8 @@
-using Developurr.Orderly.Application.Command;
 using Developurr.Orderly.Domain.Category.Repositories;
 using Developurr.Orderly.Domain.Package.Repositories;
 using Developurr.Orderly.Domain.Product.Repositories;
 
-namespace Developurr.Orderly.Application.UseCase.Product.CreateProduct;
+namespace Developurr.Orderly.Application.Command.Product.CreateProduct;
 
 public sealed class CreateProductUseCase : IUseCase<CreateProductInput, CreateProductOutput>
 {

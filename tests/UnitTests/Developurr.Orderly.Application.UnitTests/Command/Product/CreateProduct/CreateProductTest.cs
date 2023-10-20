@@ -1,6 +1,6 @@
 using Developurr.Orderly.Application.Command;
+using Developurr.Orderly.Application.Command.Product.CreateProduct;
 using Developurr.Orderly.Application.UnitTests.TestUtils.Product.CreateProduct;
-using Developurr.Orderly.Application.UseCase.Product.CreateProduct;
 using Developurr.Orderly.Domain.Category.Repositories;
 using Developurr.Orderly.Domain.Package.Repositories;
 using Developurr.Orderly.Domain.Product.Repositories;

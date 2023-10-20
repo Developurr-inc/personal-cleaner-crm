@@ -8,7 +8,7 @@ namespace Developurr.Orderly.Domain.Shipping;
 
 public sealed class Shipping : Entity<ShippingId>, IAggregateRoot
 {
-    private readonly List<OrderId> _orders;
+    // private readonly List<OrderId> _orders;
     public Cnpj Cnpj { get; }
     public string CorporateName { get; private set; }
     public string TaxId { get; private set; }
@@ -25,7 +25,7 @@ public sealed class Shipping : Entity<ShippingId>, IAggregateRoot
     )
         : base(shippingId)
     {
-        _orders = new List<OrderId>();
+        // _orders = new List<OrderId>();
         Cnpj = cnpj;
         CorporateName = corporateName;
         TaxId = taxId;

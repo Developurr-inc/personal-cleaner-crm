@@ -1,4 +1,4 @@
-using Developurr.Orderly.Application.UseCase.Product.GetProduct;
+using Developurr.Orderly.Application.Query.Product.GetProduct;
 using Developurr.Orderly.Domain.Product.Repositories;
 using Developurr.Orderly.Domain.UnitTests.TestUtils.Constants;
 using Moq;

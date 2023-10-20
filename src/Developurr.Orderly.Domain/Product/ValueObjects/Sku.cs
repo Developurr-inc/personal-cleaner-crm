@@ -11,7 +11,11 @@ public class Sku
     
     public static Sku Generate(string prefix, string name, string category, string package)
     {
+        if (!prefix.Equals("PRD") || !prefix.Equals("SER"))
+        {
+            throw new ArgumentException("Prefix must be PRD or SER", nameof(prefix));
+        }
+        
         return new Sku(prefix, category.GetHashCode().ToString(), package.GetHashCode().ToString(), name.GetHashCode().ToString());
     }
-
 }

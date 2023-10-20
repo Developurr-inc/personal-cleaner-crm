@@ -1,4 +1,4 @@
-namespace Developurr.Orderly.Application.UseCase.Product.CreateProduct;
+namespace Developurr.Orderly.Application.Command.Product.CreateProduct;
 
 public record CreateProductInput(
     string Name,
