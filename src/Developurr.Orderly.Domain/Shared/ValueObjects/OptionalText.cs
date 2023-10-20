@@ -22,7 +22,7 @@ public sealed class OptionalText : ValueObject
         
         if (valueSanitized.Length > 10_000)
         {
-            throw new ArgumentException("Value cannot be longer than 255 characters.", nameof(value));
+            throw new ArgumentException("Value cannot be longer than 10000 characters.", nameof(value));
         }
 
         return new OptionalText(valueSanitized);
