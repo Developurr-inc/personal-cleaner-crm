@@ -1,5 +1,6 @@
 using Developurr.Orderly.Application.Command;
 using Developurr.Orderly.Application.Command.Customer.DeleteCustomer;
+using Developurr.Orderly.Application.Exceptions;
 using Developurr.Orderly.Application.UnitTests.TestUtils.DeleteCustomer;
 using Developurr.Orderly.Domain.Customer.Repositories;
 using Developurr.Orderly.Domain.UnitTests.TestUtils.Customer;
@@ -110,7 +111,7 @@ public sealed class DeleteCustomerTest
         _ = await useCase.Handle(input, CancellationToken.None);
         
         // Assert
-        Assert.False(customer.Active);
+        Assert.False(customer.Active.IsActive);
     }
     
     [Fact]
@@ -126,7 +127,7 @@ public sealed class DeleteCustomerTest
         var exception = await Record.ExceptionAsync(() => useCase.Handle(input, CancellationToken.None));
         
         // Assert
-        Assert.IsType<ArgumentException>(exception);
+        Assert.IsType<NotFoundException>(exception);
         Assert.Equal("Customer not found. (Parameter 'CustomerId')", exception.Message);
     }
     

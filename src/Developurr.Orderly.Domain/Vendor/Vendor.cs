@@ -10,20 +10,22 @@ public sealed class Vendor : Entity<VendorId>, IAggregateRoot
 {
     private readonly List<CustomerId> _customers;
     public Cpf Cpf { get; }
-    public string Name { get; private set; }
+    public NonEmptyText Name { get; private set; }
     public Address Address { get; private set; }
     public Email Email { get; private set; }
     public Phone? Landline { get; private set; }
     public Phone? Mobile { get; private set; }
+    public bool Active { get; private set; }
 
     private Vendor(
         VendorId vendorId,
         Cpf cpf,
         Address address,
-        string name,
+        NonEmptyText name,
         Email email,
         Phone? landline,
-        Phone? mobile
+        Phone? mobile,
+        bool active
     )
         : base(vendorId)
     {
@@ -34,6 +36,13 @@ public sealed class Vendor : Entity<VendorId>, IAggregateRoot
         Email = email;
         Landline = landline;
         Mobile = mobile;
+        Active = active;
+    }
+    
+    public void Disable()
+    {
+        if (Active)
+            Active = false;
     }
 
     public static Vendor Create(
@@ -64,19 +73,12 @@ public sealed class Vendor : Entity<VendorId>, IAggregateRoot
             state,
             country
         );
-        var nameTrimmed = name.Trim();
+        var nameObj = NonEmptyText.Create(name);
         var email = Email.Create(emailValue);
         var landline = landlineValue == null ? null : Phone.Create(landlineValue);
         var mobile = mobileValue == null ? null : Phone.Create(mobileValue);
+        var active = true;
 
-        Validate(nameTrimmed);
-
-        return new Vendor(vendorId, cpf, address, nameTrimmed, email, landline, mobile);
-    }
-
-    private static void Validate(string name)
-    {
-        var vendorValidator = new VendorValidator(name);
-        vendorValidator.Validate();
-    }
+        return new Vendor(vendorId, cpf, address, nameObj, email, landline, mobile, active);
+    }   
 }

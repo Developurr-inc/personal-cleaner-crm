@@ -11,7 +11,7 @@ public sealed class Manager : Entity<ManagerId>, IAggregateRoot
     private readonly List<VendorId> _vendors;
     public Cpf Cpf { get; }
     public Address Address { get; private set; }
-    public string Name { get; private set; }
+    public NonEmptyText Name { get; private set; }
     public Email Email { get; private set; }
     public Phone? Landline { get; private set; }
     public Phone? Mobile { get; private set; }
@@ -20,7 +20,7 @@ public sealed class Manager : Entity<ManagerId>, IAggregateRoot
         ManagerId managerId,
         Cpf cpf,
         Address address,
-        string name,
+        NonEmptyText name,
         Email email,
         Phone? landline,
         Phone? mobile
@@ -69,14 +69,7 @@ public sealed class Manager : Entity<ManagerId>, IAggregateRoot
         var landline = landlineValue == null ? null : Phone.Create(landlineValue);
         var mobile = mobileValue == null ? null : Phone.Create(mobileValue);
 
-        Validate(nameTrimmed);
-
         return new Manager(managerId, cpf, address, nameTrimmed, nfeEmail, landline, mobile);
     }
-
-    private static void Validate(string name)
-    {
-        var managerValidator = new ManagerValidator(name);
-        managerValidator.Validate();
-    }
+    
 }

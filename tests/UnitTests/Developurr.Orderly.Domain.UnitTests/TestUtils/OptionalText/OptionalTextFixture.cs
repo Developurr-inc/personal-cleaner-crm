@@ -2,8 +2,8 @@ namespace Developurr.Orderly.Domain.UnitTests.TestUtils.OptionalText;
 
 public static class OptionalTextFixture
 {
-    public static Shared.ValueObjects.OptionalText CreateOptionalText()
+    public static Domain.Shared.ValueObjects.OptionalText CreateOptionalText()
     {
-        return Shared.ValueObjects.OptionalText.Create("Description");
+        return Domain.Shared.ValueObjects.OptionalText.Create("Description");
     }
 }

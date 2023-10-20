@@ -1,5 +1,6 @@
 using Developurr.Orderly.Application.Command;
 using Developurr.Orderly.Application.Command.Order.CloseOrder;
+using Developurr.Orderly.Application.Exceptions;
 using Developurr.Orderly.Application.UnitTests.TestUtils.CloseOrder;
 using Developurr.Orderly.Domain.Order.Repositories;
 using Developurr.Orderly.Domain.UnitTests.TestUtils.Order;
@@ -111,7 +112,7 @@ public sealed class CloseOrderTest
         _ = await useCase.Handle(input, CancellationToken.None);
         
         // Assert
-        Assert.False(order.Active);
+        Assert.False(order.Active.IsActive);
     }
     
     [Fact]
@@ -127,7 +128,7 @@ public sealed class CloseOrderTest
         var exception = await Record.ExceptionAsync(() => useCase.Handle(input, CancellationToken.None));
         
         // Assert
-        Assert.IsType<ArgumentException>(exception);
+        Assert.IsType<NotFoundException>(exception);
         Assert.Equal("Ordem não encontrada. (Parameter 'OrderId')", exception.Message);
     }
 

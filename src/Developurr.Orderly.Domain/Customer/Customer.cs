@@ -12,31 +12,31 @@ public sealed class Customer : Entity<CustomerId>, IAggregateRoot
     private readonly List<OrderId> _orders;
     public VendorId Vendor { get; private set; }
     public Cnpj Cnpj { get; }
-    public string CorporateName { get; private set; }
-    public string TaxId { get; private set; }
-    public string TradeName { get; private set; }
-    public string Segment { get; private set; }
+    public NonEmptyText CorporateName { get; private set; }
+    public NonEmptyText TaxId { get; private set; }
+    public NonEmptyText TradeName { get; private set; }
+    public NonEmptyText Segment { get; private set; }
     public Email? BillingEmail { get; private set; }
     public Email NfeEmail { get; private set; }
     public Phone? Landline { get; private set; }
     public Phone? Mobile { get; private set; }
-    public string Observation { get; private set; }
-    public bool Active { get; private set; }
+    public NonEmptyText Observation { get; private set; }
+    public ActiveStatus Active { get; private set; }
 
     private Customer(
         CustomerId customerId,
         VendorId vendorId,
         Cnpj cnpj,
-        string corporateName,
-        string taxId,
-        string tradeName,
-        string segment,
+        NonEmptyText corporateName,
+        NonEmptyText taxId,
+        NonEmptyText tradeName,
+        NonEmptyText segment,
         Email? billingEmail,
         Email nfeEmail,
         Phone? landline,
         Phone? mobile,
-        string observation,
-        bool active
+        NonEmptyText observation,
+        ActiveStatus active
     )
         : base(customerId)
     {
@@ -55,10 +55,10 @@ public sealed class Customer : Entity<CustomerId>, IAggregateRoot
         Active = active;
     }
     
-    public void Disable()
+    public void Deactivate()
     {
-        if (Active)
-            Active = false;
+        if (Active.IsActive)
+            Active = ActiveStatus.Inactive;
     }
 
     public static Customer Create(
@@ -86,15 +86,7 @@ public sealed class Customer : Entity<CustomerId>, IAggregateRoot
         var landline = landlineValue == null ? null : Phone.Create(landlineValue);
         var mobile = mobileValue == null ? null : Phone.Create(mobileValue);
         var observationTrimmed = observation.Trim();
-        var active = true;
-
-        Validate(
-            corporateNameTrimmed,
-            taxIdTrimmed,
-            tradeNameTrimmed,
-            segmentTrimmed,
-            observationTrimmed
-        );
+        var active = ActiveStatus.Active;
 
         return new Customer(
             customerId,
@@ -112,22 +104,5 @@ public sealed class Customer : Entity<CustomerId>, IAggregateRoot
             active
         );
     }
-
-    private static void Validate(
-        string corporateName,
-        string taxId,
-        string tradeName,
-        string segment,
-        string observation
-    )
-    {
-        var customerValidator = new CustomerValidator(
-            corporateName,
-            taxId,
-            tradeName,
-            segment,
-            observation
-        );
-        customerValidator.Validate();
-    }
+    
 }

@@ -10,18 +10,18 @@ public sealed class Shipping : Entity<ShippingId>, IAggregateRoot
 {
     // private readonly List<OrderId> _orders;
     public Cnpj Cnpj { get; }
-    public string CorporateName { get; private set; }
-    public string TaxId { get; private set; }
-    public string TradeName { get; private set; }
-    public string Segment { get; private set; }
+    public NonEmptyText CorporateName { get; private set; }
+    public NonEmptyText TaxId { get; private set; }
+    public NonEmptyText TradeName { get; private set; }
+    public NonEmptyText Segment { get; private set; }
 
     private Shipping(
         ShippingId shippingId,
         Cnpj cnpj,
-        string corporateName,
-        string taxId,
-        string tradeName,
-        string segment
+        NonEmptyText corporateName,
+        NonEmptyText taxId,
+        NonEmptyText tradeName,
+        NonEmptyText segment
     )
         : base(shippingId)
     {
@@ -47,9 +47,7 @@ public sealed class Shipping : Entity<ShippingId>, IAggregateRoot
         var taxIdTrimmed = taxId.Trim();
         var tradeNameTrimmed = tradeName.Trim();
         var segmentTrimmed = segment.Trim();
-
-        Validate(corporateNameTrimmed, taxIdTrimmed, tradeNameTrimmed, segmentTrimmed);
-
+        
         return new Shipping(
             shippingId,
             cnpj,
@@ -58,16 +56,5 @@ public sealed class Shipping : Entity<ShippingId>, IAggregateRoot
             tradeNameTrimmed,
             segmentTrimmed
         );
-    }
-
-    private static void Validate(
-        string corporateName,
-        string taxId,
-        string tradeName,
-        string segment
-    )
-    {
-        var shippingValidator = new ShippingValidator(corporateName, taxId, tradeName, segment);
-        shippingValidator.Validate();
     }
 }
