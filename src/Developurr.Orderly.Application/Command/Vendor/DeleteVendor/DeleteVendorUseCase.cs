@@ -26,8 +26,11 @@ public class DeleteVendorUseCase
             input.VendorId,
             cancellationToken
         );
+        if (vendor is null)
+            throw new ArgumentException("Vendor not found.", nameof(input.VendorId));
 
-        await _vendorRepository.RemoveAsync(vendor, cancellationToken);
+        vendor.Disable();
+        await _vendorRepository.UpdateAsync(vendor, cancellationToken);
         await _unitOfWork.CommitAsync(cancellationToken);
 
         return new DeleteVendorOutput(vendor.Id.Format());
