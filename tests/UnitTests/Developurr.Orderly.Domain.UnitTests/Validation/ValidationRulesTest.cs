@@ -1,4 +1,3 @@
-using Developurr.Orderly.Domain.UnitTests.TestUtils.String;
 using Developurr.Orderly.Domain.UnitTests.TestUtils.ValidationRules;
 using Developurr.Orderly.Domain.Validation;
 using Moq;
@@ -258,7 +257,9 @@ public sealed class ValidationRulesTest
     // }
 
     [Theory]
-    [MemberData(nameof(StringGenerator.CreateInvalidStrings), MemberType = typeof(StringGenerator))]
+    [InlineData("")]
+    [InlineData(" ")]
+    [InlineData("  ")]
     public void GivenInvalidRequired_WhenValidatingRequired_ThenShouldCallAddValidatorError(
         string invalidString
     )
@@ -274,7 +275,9 @@ public sealed class ValidationRulesTest
     }
 
     [Theory]
-    [MemberData(nameof(StringGenerator.CreateStrings), MemberType = typeof(StringGenerator))]
+    [InlineData("validString1")]
+    [InlineData("validString2")]
+    [InlineData("validString3")]
     public void GivenValidRequired_WhenValidatingRequired_ThenShouldDoNothing(string testString)
     {
         // Arrange
