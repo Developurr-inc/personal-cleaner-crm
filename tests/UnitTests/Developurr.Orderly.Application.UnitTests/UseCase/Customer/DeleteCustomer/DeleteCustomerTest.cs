@@ -111,7 +111,7 @@ public sealed class DeleteCustomerTest
         _ = await useCase.Handle(input, CancellationToken.None);
         
         // Assert
-        Assert.False(customer.Active);
+        Assert.False(customer.Active.IsActive);
     }
     
     [Fact]

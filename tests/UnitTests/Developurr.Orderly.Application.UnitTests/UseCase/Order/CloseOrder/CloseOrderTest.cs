@@ -112,7 +112,7 @@ public sealed class CloseOrderTest
         _ = await useCase.Handle(input, CancellationToken.None);
         
         // Assert
-        Assert.False(order.Active);
+        Assert.False(order.Active.IsActive);
     }
     
     [Fact]
