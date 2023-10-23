@@ -1,4 +1,5 @@
 using Developurr.Orderly.Domain.Exceptions;
+using Developurr.Orderly.Domain.UnitTests.TestUtils.Category;
 using Developurr.Orderly.Domain.UnitTests.TestUtils.NonEmptyText;
 using Developurr.Orderly.Domain.UnitTests.TestUtils.OptionalText;
 
@@ -81,5 +82,35 @@ public class CategoryTest
 
         // Assert
         Assert.IsType<DomainValidationException>(exception);
+    }
+    
+    [Fact]
+    public void GivenValidInput_WhenCreatingCategory_ThenShouldHaveActiveStatusTrue()
+    {
+        // Arrange
+        var name = NonEmptyTextFixture.CreateNonEmptyText();
+        var description = OptionalTextFixture.CreateOptionalText();
+
+        // Act
+        var category = Domain.Category.Category.Create(
+            name.ToString(),
+            description.ToString()
+        );
+
+        // Assert
+        Assert.True(category.Active.IsActive);
+    }
+    
+    [Fact]
+    public void GivenValidCategory_WhenDeactivatingCategory_ThenShouldBeInactive()
+    {
+        // Arrange
+        var category = CategoryFixture.CreateCategory();
+
+        // Act
+        category.Deactivate();
+
+        // Assert
+        Assert.False(category.Active.IsActive);
     }
 }
