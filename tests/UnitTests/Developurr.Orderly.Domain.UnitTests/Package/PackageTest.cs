@@ -1,5 +1,6 @@
 using Developurr.Orderly.Domain.Exceptions;
 using Developurr.Orderly.Domain.UnitTests.TestUtils.NonEmptyText;
+using Developurr.Orderly.Domain.UnitTests.TestUtils.Package;
 
 namespace Developurr.Orderly.Domain.UnitTests.Package;
 
@@ -64,5 +65,31 @@ public sealed class PackageTest
         // Assert
         var domainValidationException = Assert.IsType<DomainValidationException>(exception);
         Assert.Contains(expectedMessage, domainValidationException.Message);
+    }
+
+    [Fact]
+    public void GivenValidInput_WhenCreatingPackage_ThenShouldHaveActiveStatusTrue()
+    {
+        // Arrange
+        var name = NonEmptyTextFixture.CreateNonEmptyText();
+
+        // Act
+        var package = Domain.Package.Package.Create(name.ToString());
+
+        // Assert
+        Assert.True(package.Active.IsActive);
+    }
+    
+    [Fact]
+    public void GivenValidPackage_WhenDeactivatingPackage_ThenShouldBeInactive()
+    {
+        // Arrange
+        var package = PackageFixture.CreatePackage();
+
+        // Act
+        package.Deactivate();
+
+        // Assert
+        Assert.False(package.Active.IsActive);
     }
 }
