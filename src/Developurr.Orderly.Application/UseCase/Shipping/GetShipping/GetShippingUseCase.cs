@@ -24,9 +24,9 @@ public class GetShippingUseCase : IUseCase<GetShippingInput, GetShippingOutput>
 
         return new GetShippingOutput(
             shipping.Cnpj.ToString(),
-            shipping.CorporateName.ToString(),
-            shipping.TaxId.ToString(),
-            shipping.TradeName.ToString(),
+            shipping.RazaoSocial.ToString(),
+            shipping.InscricaoSocial.ToString(),
+            shipping.NomeFantasia.ToString(),
             shipping.Segment.ToString()
         );
     }
