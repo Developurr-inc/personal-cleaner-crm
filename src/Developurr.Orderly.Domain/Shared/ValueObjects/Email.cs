@@ -22,14 +22,9 @@ public sealed class Email : ValueObject
         return new Email(emailTrimmed);
     }
 
-    public string Format()
-    {
-        return _value;
-    }
-
     public override string ToString()
     {
-        return Format();
+        return _value;
     }
 
     protected override IEnumerable<object> GetEqualityComponents()

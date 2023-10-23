@@ -4,7 +4,6 @@ public abstract class Entity<TIdentifier>
 {
     private readonly List<IDomainEvent> _domainEvents = new();
     private readonly List<IDomainEvent> _domainEventsReadOnly;
-
     public TIdentifier Id { get; }
     public IReadOnlyList<IDomainEvent> DomainEvents => _domainEventsReadOnly;
 
@@ -17,15 +16,15 @@ public abstract class Entity<TIdentifier>
         _domainEventsReadOnly = new List<IDomainEvent>(_domainEvents.AsReadOnly());
     }
 
-    public void AddDomainEvent(IDomainEvent domainEvent)
-    {
-        _domainEvents.Add(domainEvent);
-    }
+    // public void AddDomainEvent(IDomainEvent domainEvent)
+    // {
+    //     _domainEvents.Add(domainEvent);
+    // }
 
-    public void ClearDomainEvents()
-    {
-        _domainEvents.Clear();
-    }
+    // public void ClearDomainEvents()
+    // {
+    //     _domainEvents.Clear();
+    // }
 
     public sealed override bool Equals(object? obj)
     {

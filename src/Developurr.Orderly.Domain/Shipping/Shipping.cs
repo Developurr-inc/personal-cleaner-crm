@@ -1,7 +1,5 @@
-using Developurr.Orderly.Domain.Order.ValueObjects;
 using Developurr.Orderly.Domain.SeedWork;
 using Developurr.Orderly.Domain.Shared.ValueObjects;
-using Developurr.Orderly.Domain.Shipping.Validators;
 using Developurr.Orderly.Domain.Shipping.ValueObjects;
 
 namespace Developurr.Orderly.Domain.Shipping;
@@ -34,7 +32,7 @@ public sealed class Shipping : Entity<ShippingId>, IAggregateRoot
     }
 
     public static Shipping Create(
-        string cnpjValue,
+        string cnpj,
         string corporateName,
         string taxId,
         string tradeName,
@@ -42,19 +40,19 @@ public sealed class Shipping : Entity<ShippingId>, IAggregateRoot
     )
     {
         var shippingId = ShippingId.Generate();
-        var cnpj = Cnpj.Create(cnpjValue);
-        var corporateNameTrimmed = corporateName.Trim();
-        var taxIdTrimmed = taxId.Trim();
-        var tradeNameTrimmed = tradeName.Trim();
-        var segmentTrimmed = segment.Trim();
-        
+        var cnpjObj = Cnpj.Create(cnpj);
+        var corporateNameObj = NonEmptyText.Create(corporateName);
+        var taxIdObj = NonEmptyText.Create(taxId);
+        var tradeNameObj = NonEmptyText.Create(tradeName);
+        var segmentObj = NonEmptyText.Create(segment);
+
         return new Shipping(
             shippingId,
-            cnpj,
-            corporateNameTrimmed,
-            taxIdTrimmed,
-            tradeNameTrimmed,
-            segmentTrimmed
+            cnpjObj,
+            corporateNameObj,
+            taxIdObj,
+            tradeNameObj,
+            segmentObj
         );
     }
 }

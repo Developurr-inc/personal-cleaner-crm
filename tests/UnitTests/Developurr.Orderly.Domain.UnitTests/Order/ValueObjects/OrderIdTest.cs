@@ -13,17 +13,4 @@ public sealed class OrderIdTest
         // Assert
         Assert.NotNull(orderId);
     }
-    
-    [Fact]
-    public void GivenNothing_WhenCallingFormat_ThenShouldNotBeEmpty()
-    {
-        // Arrange
-        var orderId = OrderId.Generate();
-        
-        // Act
-        var id = orderId.Format();
-        
-        // Assert
-        Assert.NotEmpty(id);
-    }
 }

@@ -6,10 +6,6 @@ public sealed class Price : ValueObject
 {
     public readonly decimal Value;
 
-
-
-
-
     private Price(decimal price)
     {
         Value = price;

@@ -13,17 +13,4 @@ public sealed class ShippingIdTest
         // Assert
         Assert.NotNull(shippingId);
     }
-    
-    [Fact]
-    public void GivenNothing_WhenCallingFormat_ThenShouldNotBeEmpty()
-    {
-        // Arrange
-        var shippingId = ShippingId.Generate();
-        
-        // Act
-        var id = shippingId.Format();
-        
-        // Assert
-        Assert.NotEmpty(id);
-    }
 }

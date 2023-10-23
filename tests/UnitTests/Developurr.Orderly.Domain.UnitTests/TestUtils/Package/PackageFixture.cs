@@ -8,6 +8,6 @@ public class PackageFixture
     {
         var name = NonEmptyTextFixture.CreateNonEmptyText();
 
-        return Domain.Package.Package.Create(name.Value);
+        return Domain.Package.Package.Create(name.ToString());
     }
 }

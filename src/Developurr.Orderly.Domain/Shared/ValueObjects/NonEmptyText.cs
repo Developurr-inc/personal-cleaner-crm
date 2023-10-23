@@ -1,28 +1,29 @@
+using Developurr.Orderly.Domain.Exceptions;
 using Developurr.Orderly.Domain.SeedWork;
 
-namespace  Developurr.Orderly.Domain.Shared.ValueObjects;
+namespace Developurr.Orderly.Domain.Shared.ValueObjects;
 
 public sealed class NonEmptyText : ValueObject
 {
-    public readonly string Value;
+    private readonly string _value;
 
     private NonEmptyText(string value)
     {
-        Value = value;
+        _value = value;
     }
 
     public static NonEmptyText Create(string value)
     {
         if (string.IsNullOrWhiteSpace(value))
         {
-            throw new ArgumentException("Value cannot be null or whitespace.", nameof(value));
+            throw new DomainValidationException("Value cannot be null or whitespace.");
         }
-        
+
         var valueSanitized = value.Trim();
-        
+
         if (valueSanitized.Length > 255)
         {
-            throw new ArgumentException("Value cannot be longer than 255 characters.", nameof(value));
+            throw new DomainValidationException("Value cannot be longer than 255 characters.");
         }
 
         return new NonEmptyText(valueSanitized);
@@ -30,21 +31,16 @@ public sealed class NonEmptyText : ValueObject
 
     public static implicit operator string(NonEmptyText text)
     {
-        return text.Value;
-    }
-
-    public static implicit operator NonEmptyText(string text)
-    {
-        return Create(text);
+        return text._value;
     }
 
     public override string ToString()
     {
-        return Value;
+        return _value;
     }
 
     protected override IEnumerable<object> GetEqualityComponents()
     {
-        yield return Value;
+        yield return _value;
     }
 }

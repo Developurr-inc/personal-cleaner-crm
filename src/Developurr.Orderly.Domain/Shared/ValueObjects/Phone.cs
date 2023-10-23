@@ -12,6 +12,11 @@ public sealed class Phone : ValueObject
         Value = phone;
     }
 
+    public override string ToString()
+    {
+        return Value;
+    }
+
     public static Phone Create(string phone)
     {
         var phoneTrimmed = phone.Trim();

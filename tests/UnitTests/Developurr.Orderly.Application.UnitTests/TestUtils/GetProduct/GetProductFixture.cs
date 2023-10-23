@@ -10,22 +10,12 @@ public static class GetProductFixture
     public static GetProductUseCase GetUseCase()
     {
         var productRepositoryMock = new Mock<IProductRepository>();
-        
 
         return new GetProductUseCase(productRepositoryMock.Object);
     }
-    
+
     public static GetProductInput GetInput()
     {
-        return new GetProductInput(
-            Constants.CustomerId.Id.Format()
-        );
+        return new GetProductInput(Constants.CustomerId.Id.ToString());
     }
-    
-    // public static GetProductInput GetInvalidInput()
-    // {
-    //     return new GetProductInput(
-    //         ""
-    //     );
-    // }
 }

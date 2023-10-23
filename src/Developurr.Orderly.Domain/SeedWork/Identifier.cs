@@ -9,18 +9,13 @@ public abstract class Identifier<T> : ValueObject
         Value = value;
     }
 
-    public string Format()
+    public sealed override string ToString()
     {
         return Value?.ToString() ?? string.Empty;
     }
 
-    public sealed override string ToString()
-    {
-        return Format();
-    }
-
     protected sealed override IEnumerable<object> GetEqualityComponents()
     {
-        yield return Value?.GetType().Name ?? string.Empty;
+        yield return ToString();
     }
 }

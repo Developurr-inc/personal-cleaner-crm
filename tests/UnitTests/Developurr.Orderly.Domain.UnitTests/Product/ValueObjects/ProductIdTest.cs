@@ -13,17 +13,4 @@ public sealed class ProductIdTest
         // Assert
         Assert.NotNull(productId);
     }
-    
-    [Fact]
-    public void GivenNothing_WhenCallingFormat_ThenShouldNotBeEmpty()
-    {
-        // Arrange
-        var productId = ProductId.Generate();
-        
-        // Act
-        var id = productId.Format();
-        
-        // Assert
-        Assert.NotEmpty(id);
-    }
 }

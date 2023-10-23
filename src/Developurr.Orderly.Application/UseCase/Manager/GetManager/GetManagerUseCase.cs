@@ -1,3 +1,4 @@
+using Developurr.Orderly.Application.Exceptions;
 using Developurr.Orderly.Domain.Manager.Repositories;
 
 namespace Developurr.Orderly.Application.UseCase.Manager.GetManager;
@@ -18,11 +19,14 @@ public class GetManagerUseCase : IUseCase<GetManagerInput, GetManagerOutput>
     {
         var manager = await _managerRepository.GetByIdAsync(input.ManagerId, cancellationToken);
 
+        if (manager is null)
+            throw new IdNotFoundException(input.ManagerId);
+
         return new GetManagerOutput(
-            manager.Cpf.Format(),
+            manager.Cpf.ToString(),
             manager.Address.ToString(),
             manager.Name,
-            manager.Email.Format(),
+            manager.Email.ToString(),
             manager.Landline?.Value ?? "",
             manager.Mobile?.Value ?? ""
         );

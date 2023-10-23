@@ -20,13 +20,15 @@ public class DeleteCustomerUseCase : ICommand<DeleteCustomerInput, DeleteCustome
     )
     {
         var customer = await _customerRepository.GetByIdAsync(input.CustomerId, cancellationToken);
+
         if (customer is null)
-            throw new NotFoundException("Customer not found.", nameof(input.CustomerId));
+            throw new IdNotFoundException(nameof(input.CustomerId));
 
         customer.Deactivate();
+
         await _customerRepository.UpdateAsync(customer, cancellationToken);
         await _unitOfWork.CommitAsync(cancellationToken);
 
-        return new DeleteCustomerOutput(customer.Id.Format());
+        return new DeleteCustomerOutput(customer.Id.ToString());
     }
 }

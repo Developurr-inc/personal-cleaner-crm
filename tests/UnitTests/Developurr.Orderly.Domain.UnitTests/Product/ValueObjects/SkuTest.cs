@@ -7,16 +7,23 @@ namespace Developurr.Orderly.Domain.UnitTests.Product.ValueObjects;
 
 public class SkuTest
 {
-    [Fact]
-    public void GivenNothing_WhenGeneratingSku_ThenShouldInstantiateSku()
+    [Theory]
+    [InlineData("SER")]
+    [InlineData("PRD")]
+    public void GivenNothing_WhenGeneratingSku_ThenShouldInstantiateSku(string prefix)
     {
         // Arrange
         var name = NonEmptyTextFixture.CreateNonEmptyText();
         var categoryId = CategoryIdFixture.GenerateId();
         var packageId = PackageIdFixture.GenerateId();
-    
+
         // Act
-        var sku = Sku.Generate("SER", name.Value, categoryId.ToString(), packageId.ToString());
+        var sku = Sku.Generate(
+            prefix,
+            name.ToString(),
+            categoryId.ToString(),
+            packageId.ToString()
+        );
 
         // Assert
         Assert.NotNull(sku);

@@ -7,4 +7,4 @@ public class GetVendorOutput(
     string Email,
     string? Landline,
     string? Mobile
-    );
+);

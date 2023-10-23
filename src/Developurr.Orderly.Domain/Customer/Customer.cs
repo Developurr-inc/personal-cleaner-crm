@@ -1,6 +1,4 @@
-using Developurr.Orderly.Domain.Customer.Validators;
 using Developurr.Orderly.Domain.Customer.ValueObjects;
-using Developurr.Orderly.Domain.Order.ValueObjects;
 using Developurr.Orderly.Domain.SeedWork;
 using Developurr.Orderly.Domain.Shared.ValueObjects;
 using Developurr.Orderly.Domain.Vendor.ValueObjects;
@@ -9,7 +7,7 @@ namespace Developurr.Orderly.Domain.Customer;
 
 public sealed class Customer : Entity<CustomerId>, IAggregateRoot
 {
-    private readonly List<OrderId> _orders;
+    // private readonly List<OrderId> _orders;
     public VendorId Vendor { get; private set; }
     public Cnpj Cnpj { get; }
     public NonEmptyText CorporateName { get; private set; }
@@ -20,7 +18,7 @@ public sealed class Customer : Entity<CustomerId>, IAggregateRoot
     public Email NfeEmail { get; private set; }
     public Phone? Landline { get; private set; }
     public Phone? Mobile { get; private set; }
-    public NonEmptyText Observation { get; private set; }
+    public OptionalText Observation { get; private set; }
     public ActiveStatus Active { get; private set; }
 
     private Customer(
@@ -35,12 +33,12 @@ public sealed class Customer : Entity<CustomerId>, IAggregateRoot
         Email nfeEmail,
         Phone? landline,
         Phone? mobile,
-        NonEmptyText observation,
+        OptionalText observation,
         ActiveStatus active
     )
         : base(customerId)
     {
-        _orders = new List<OrderId>();
+        // _orders = new List<OrderId>();
         Vendor = vendorId;
         Cnpj = cnpj;
         CorporateName = corporateName;
@@ -54,7 +52,7 @@ public sealed class Customer : Entity<CustomerId>, IAggregateRoot
         Observation = observation;
         Active = active;
     }
-    
+
     public void Deactivate()
     {
         if (Active.IsActive)
@@ -63,46 +61,45 @@ public sealed class Customer : Entity<CustomerId>, IAggregateRoot
 
     public static Customer Create(
         VendorId vendorId,
-        string cnpjValue,
+        string cnpj,
         string corporateName,
         string taxId,
         string tradeName,
         string segment,
-        string? billingEmailValue,
-        string nfeEmailValue,
-        string? landlineValue,
-        string? mobileValue,
+        string? billingEmail,
+        string nfeEmail,
+        string? landline,
+        string? mobile,
         string observation
     )
     {
         var customerId = CustomerId.Generate();
-        var cnpj = Cnpj.Create(cnpjValue);
-        var corporateNameTrimmed = corporateName.Trim();
-        var taxIdTrimmed = taxId.Trim();
-        var tradeNameTrimmed = tradeName.Trim();
-        var segmentTrimmed = segment.Trim();
-        var billingEmail = billingEmailValue == null ? null : Email.Create(billingEmailValue);
-        var nfeEmail = Email.Create(nfeEmailValue);
-        var landline = landlineValue == null ? null : Phone.Create(landlineValue);
-        var mobile = mobileValue == null ? null : Phone.Create(mobileValue);
-        var observationTrimmed = observation.Trim();
+        var cnpjObj = Cnpj.Create(cnpj);
+        var corporateNameObj = NonEmptyText.Create(corporateName);
+        var taxIdObj = NonEmptyText.Create(taxId);
+        var tradeNameObj = NonEmptyText.Create(tradeName);
+        var segmentObj = NonEmptyText.Create(segment);
+        var billingEmailObj = billingEmail == null ? null : Email.Create(billingEmail);
+        var nfeEmailObj = Email.Create(nfeEmail);
+        var landlineObj = landline == null ? null : Phone.Create(landline);
+        var mobileObj = mobile == null ? null : Phone.Create(mobile);
+        var observationObj = OptionalText.Create(observation);
         var active = ActiveStatus.Active;
 
         return new Customer(
             customerId,
             vendorId,
-            cnpj,
-            corporateNameTrimmed,
-            taxIdTrimmed,
-            tradeNameTrimmed,
-            segmentTrimmed,
-            billingEmail,
-            nfeEmail,
-            landline,
-            mobile,
-            observationTrimmed,
+            cnpjObj,
+            corporateNameObj,
+            taxIdObj,
+            tradeNameObj,
+            segmentObj,
+            billingEmailObj,
+            nfeEmailObj,
+            landlineObj,
+            mobileObj,
+            observationObj,
             active
         );
     }
-    
 }

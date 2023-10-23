@@ -1,5 +1,4 @@
 using Developurr.Orderly.Domain.Customer.ValueObjects;
-using Developurr.Orderly.Domain.Order.Entities;
 using Developurr.Orderly.Domain.Order.Enums;
 using Developurr.Orderly.Domain.Order.ValueObjects;
 using Developurr.Orderly.Domain.SeedWork;
@@ -11,14 +10,14 @@ namespace Developurr.Orderly.Domain.Order;
 
 public sealed class Order : Entity<OrderId>, IAggregateRoot
 {
-    private readonly List<LineItem> _lineItems;
+    // private readonly List<LineItem> _lineItems;
     private NaturezaDaOperacao _naturezaDaOperacao;
-    private Status _status;
+
+    public Status Status;
     public CustomerId CustomerId { get; }
     public VendorId VendorId { get; }
     public ShippingId? ShippingId { get; private set; }
     public Price OrderTotal { get; private set; }
-    
     public ActiveStatus Active { get; private set; }
 
     private Order(
@@ -31,22 +30,28 @@ public sealed class Order : Entity<OrderId>, IAggregateRoot
     )
         : base(orderId)
     {
-        _lineItems = new List<LineItem>();
+        // _lineItems = new List<LineItem>();
         _naturezaDaOperacao = naturezaDaOperacao;
-        _status = Status.Draft;
+        Status = Status.Draft;
         CustomerId = customerId;
         VendorId = vendorId;
         ShippingId = null;
         OrderTotal = price;
         Active = active;
     }
-    
-    public void Close()
+
+    public void Deactivate()
     {
         if (Active.IsActive)
             Active = ActiveStatus.Inactive;
     }
-    
+
+    public void Close()
+    {
+        if (Status == Status.Draft)
+            Status = Status.Closed;
+    }
+
     public static Order Open(CustomerId customerId, VendorId vendorId)
     {
         var orderId = OrderId.Generate();

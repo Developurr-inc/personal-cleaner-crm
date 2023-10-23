@@ -17,16 +17,14 @@ public class GetProductUseCase : IUseCase<GetProductInput, GetProductOutput>
     )
     {
         var product = await _productRepository.GetByIdAsync(input.ProductId, cancellationToken);
-        
+
         if (product is null)
-        {
             throw new ArgumentException(input.ProductId);
-        }
-        
+
         return new GetProductOutput(
-            product.Id.Format(),
-            product.Name.Value,
-            product.Description.Value,
+            product.Id.ToString(),
+            product.Name.ToString(),
+            product.Description.ToString(),
             product.CategoryId.ToString(),
             product.PackageId.ToString(),
             product.UnitPrice.Value,

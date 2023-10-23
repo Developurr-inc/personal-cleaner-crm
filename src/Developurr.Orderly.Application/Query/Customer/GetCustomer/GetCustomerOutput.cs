@@ -8,9 +8,9 @@ public record GetCustomerOutput(
     string TaxId,
     string TradeName,
     string Segment,
-    string? BillingEmail,
+    string BillingEmail,
     string NfeEmail,
-    string? Landline,
-    string? Mobile,
+    string Landline,
+    string Mobile,
     string Observation
 );

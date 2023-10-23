@@ -1,21 +1,19 @@
-using Developurr.Orderly.Domain.Customer.ValueObjects;
 using Developurr.Orderly.Domain.SeedWork;
 using Developurr.Orderly.Domain.Shared.ValueObjects;
-using Developurr.Orderly.Domain.Vendor.Validators;
 using Developurr.Orderly.Domain.Vendor.ValueObjects;
 
 namespace Developurr.Orderly.Domain.Vendor;
 
 public sealed class Vendor : Entity<VendorId>, IAggregateRoot
 {
-    private readonly List<CustomerId> _customers;
+    // private readonly List<CustomerId> _customers;
     public Cpf Cpf { get; }
     public NonEmptyText Name { get; private set; }
     public Address Address { get; private set; }
     public Email Email { get; private set; }
     public Phone? Landline { get; private set; }
     public Phone? Mobile { get; private set; }
-    public bool Active { get; private set; }
+    public ActiveStatus Active { get; private set; }
 
     private Vendor(
         VendorId vendorId,
@@ -25,11 +23,11 @@ public sealed class Vendor : Entity<VendorId>, IAggregateRoot
         Email email,
         Phone? landline,
         Phone? mobile,
-        bool active
+        ActiveStatus active
     )
         : base(vendorId)
     {
-        _customers = new List<CustomerId>();
+        // _customers = new List<CustomerId>();
         Cpf = cpf;
         Address = address;
         Name = name;
@@ -38,15 +36,15 @@ public sealed class Vendor : Entity<VendorId>, IAggregateRoot
         Mobile = mobile;
         Active = active;
     }
-    
-    public void Disable()
+
+    public void Deactivate()
     {
-        if (Active)
-            Active = false;
+        if (Active.IsActive)
+            Active = ActiveStatus.Inactive;
     }
 
     public static Vendor Create(
-        string cpfValue,
+        string cpf,
         string street,
         int number,
         string complement,
@@ -56,14 +54,14 @@ public sealed class Vendor : Entity<VendorId>, IAggregateRoot
         string state,
         string country,
         string name,
-        string emailValue,
-        string? landlineValue,
-        string? mobileValue
+        string email,
+        string? landline,
+        string? mobile
     )
     {
         var vendorId = VendorId.Generate();
-        var cpf = Cpf.Create(cpfValue);
-        var address = Address.Create(
+        var cpfObj = Cpf.Create(cpf);
+        var addressObj = Address.Create(
             street,
             number,
             complement,
@@ -74,11 +72,20 @@ public sealed class Vendor : Entity<VendorId>, IAggregateRoot
             country
         );
         var nameObj = NonEmptyText.Create(name);
-        var email = Email.Create(emailValue);
-        var landline = landlineValue == null ? null : Phone.Create(landlineValue);
-        var mobile = mobileValue == null ? null : Phone.Create(mobileValue);
-        var active = true;
+        var emailObj = Email.Create(email);
+        var landlineObj = landline == null ? null : Phone.Create(landline);
+        var mobileObj = mobile == null ? null : Phone.Create(mobile);
+        var active = ActiveStatus.Active;
 
-        return new Vendor(vendorId, cpf, address, nameObj, email, landline, mobile, active);
-    }   
+        return new Vendor(
+            vendorId,
+            cpfObj,
+            addressObj,
+            nameObj,
+            emailObj,
+            landlineObj,
+            mobileObj,
+            active
+        );
+    }
 }

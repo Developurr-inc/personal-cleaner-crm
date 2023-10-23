@@ -3,7 +3,7 @@ namespace Developurr.Orderly.Application.UseCase.Manager.CreateManager;
 public record CreateManagerInput(
     string Cpf,
     string Street,
-    int  Number,
+    int Number,
     string Complement,
     string ZipCode,
     string Neighborhood,

@@ -1,4 +1,5 @@
 using Developurr.Orderly.Application.Command;
+using Developurr.Orderly.Application.Exceptions;
 using Developurr.Orderly.Domain.Manager.Repositories;
 
 namespace Developurr.Orderly.Application.UseCase.Manager.DeleteManager;
@@ -20,9 +21,13 @@ public class DeleteManagerUseCase : IUseCase<DeleteManagerInput, DeleteManagerOu
     )
     {
         var manager = await _managerRepository.GetByIdAsync(input.ManagerId, cancellationToken);
+
+        if (manager is null)
+            throw new IdNotFoundException(input.ManagerId);
+
         await _managerRepository.RemoveAsync(manager, cancellationToken);
         await _unitOfWork.CommitAsync(cancellationToken);
 
-        return new DeleteManagerOutput(manager.Id.Format());
+        return new DeleteManagerOutput(manager.Id.ToString());
     }
 }

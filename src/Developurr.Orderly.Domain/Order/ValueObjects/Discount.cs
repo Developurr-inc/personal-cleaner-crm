@@ -1,4 +1,4 @@
-using Developurr.Orderly.Domain.Order.Validators;
+using Developurr.Orderly.Domain.Exceptions;
 using Developurr.Orderly.Domain.SeedWork;
 
 namespace Developurr.Orderly.Domain.Order.ValueObjects;
@@ -14,8 +14,8 @@ public sealed class Discount : ValueObject
 
     public static Discount Create(decimal value)
     {
-        var discountValidator = new DiscountValidator(value);
-        discountValidator.Validate();
+        if (value is < 0 or > 100)
+            throw new DomainValidationException("Discount value is invalid");
 
         return new Discount(value);
     }

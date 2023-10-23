@@ -1,17 +1,14 @@
+using Developurr.Orderly.Application.Exceptions;
 using Developurr.Orderly.Domain.Vendor.Repositories;
 
 namespace Developurr.Orderly.Application.Command.Vendor.DeleteVendor;
 
-public class DeleteVendorUseCase
-    : IUseCase<DeleteVendorInput, DeleteVendorOutput>
+public class DeleteVendorUseCase : IUseCase<DeleteVendorInput, DeleteVendorOutput>
 {
     private readonly IUnitOfWork _unitOfWork;
     private readonly IVendorRepository _vendorRepository;
 
-    public DeleteVendorUseCase(
-        IUnitOfWork unitOfWork,
-        IVendorRepository vendorRepository
-    )
+    public DeleteVendorUseCase(IUnitOfWork unitOfWork, IVendorRepository vendorRepository)
     {
         _unitOfWork = unitOfWork;
         _vendorRepository = vendorRepository;
@@ -22,17 +19,15 @@ public class DeleteVendorUseCase
         CancellationToken cancellationToken
     )
     {
-        var vendor = await _vendorRepository.GetByIdAsync(
-            input.VendorId,
-            cancellationToken
-        );
+        var vendor = await _vendorRepository.GetByIdAsync(input.VendorId, cancellationToken);
         if (vendor is null)
-            throw new ArgumentException("Vendor not found.", nameof(input.VendorId));
+            throw new IdNotFoundException(nameof(input.VendorId));
 
-        vendor.Disable();
+        vendor.Deactivate();
+
         await _vendorRepository.UpdateAsync(vendor, cancellationToken);
         await _unitOfWork.CommitAsync(cancellationToken);
 
-        return new DeleteVendorOutput(vendor.Id.Format());
+        return new DeleteVendorOutput(vendor.Id.ToString());
     }
 }

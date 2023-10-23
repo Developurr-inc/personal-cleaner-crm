@@ -8,15 +8,12 @@ public sealed class CreateShippingUseCase : IUseCase<CreateShippingInput, Create
     private readonly IUnitOfWork _unitOfWork;
     private readonly IShippingRepository _shippingRepository;
 
-    public CreateShippingUseCase(
-        IUnitOfWork unitOfWork,
-        IShippingRepository shippingRepository
-    )
+    public CreateShippingUseCase(IUnitOfWork unitOfWork, IShippingRepository shippingRepository)
     {
         _unitOfWork = unitOfWork;
         _shippingRepository = shippingRepository;
     }
-    
+
     public async Task<CreateShippingOutput> Handle(
         CreateShippingInput input,
         CancellationToken cancellationToken
@@ -28,11 +25,11 @@ public sealed class CreateShippingUseCase : IUseCase<CreateShippingInput, Create
             input.TaxId,
             input.TradeName,
             input.Segment
-            );
-        
+        );
+
         await _shippingRepository.InsertAsync(shipping, cancellationToken);
         await _unitOfWork.CommitAsync(cancellationToken);
 
-        return new CreateShippingOutput(shipping.Id.Format());
+        return new CreateShippingOutput(shipping.Id.ToString());
     }
 }

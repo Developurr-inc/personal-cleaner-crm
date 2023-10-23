@@ -10,6 +10,6 @@ public static class CategoryFixture
         var name = NonEmptyTextFixture.CreateNonEmptyText();
         var description = OptionalTextFixture.CreateOptionalText();
 
-        return Domain.Category.Category.Create(name.Value, description.Value);
+        return Domain.Category.Category.Create(name.ToString(), description.ToString());
     }
 }

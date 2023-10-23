@@ -38,6 +38,6 @@ public sealed class CreateManagerUseCase : IUseCase<CreateManagerInput, CreateMa
         await _managerRepository.InsertAsync(manager, cancellationToken);
         await _unitOfWork.CommitAsync(cancellationToken);
 
-        return new CreateManagerOutput(manager.Id.Format());
+        return new CreateManagerOutput(manager.Id.ToString());
     }
 }

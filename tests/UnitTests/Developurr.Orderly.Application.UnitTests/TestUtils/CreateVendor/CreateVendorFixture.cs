@@ -15,7 +15,7 @@ public static class CreateVendorFixture
 
         return new CreateVendorUseCase(unitOfWorkMock.Object, vendorRepositoryMock.Object);
     }
-    
+
     public static CreateVendorInput CreateInput()
     {
         return new CreateVendorInput(
@@ -34,7 +34,7 @@ public static class CreateVendorFixture
             Constants.Phone.PhoneValue
         );
     }
-    
+
     public static CreateVendorInput CreateInvalidInput()
     {
         return new CreateVendorInput(

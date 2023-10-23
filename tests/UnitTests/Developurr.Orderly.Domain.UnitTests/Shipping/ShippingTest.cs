@@ -147,7 +147,7 @@ public sealed class ShippingTest
         );
 
         // Assert
-        var eve = Assert.IsType<EntityValidationException>(exception);
+        var eve = Assert.IsType<DomainValidationException>(exception);
         Assert.Contains(expectedErrorMessage, eve.Message);
     }
 }
