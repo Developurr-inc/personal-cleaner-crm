@@ -12,6 +12,7 @@ public sealed class Shipping : Entity<ShippingId>, IAggregateRoot
     public NonEmptyText TaxId { get; private set; }
     public NonEmptyText TradeName { get; private set; }
     public NonEmptyText Segment { get; private set; }
+    public ActiveStatus Active { get; private set; }
 
     private Shipping(
         ShippingId shippingId,
@@ -19,7 +20,8 @@ public sealed class Shipping : Entity<ShippingId>, IAggregateRoot
         NonEmptyText corporateName,
         NonEmptyText taxId,
         NonEmptyText tradeName,
-        NonEmptyText segment
+        NonEmptyText segment,
+        ActiveStatus active
     )
         : base(shippingId)
     {
@@ -29,6 +31,13 @@ public sealed class Shipping : Entity<ShippingId>, IAggregateRoot
         TaxId = taxId;
         TradeName = tradeName;
         Segment = segment;
+        Active = active;
+    }
+    
+    public void Deactivate()
+    {
+        if (Active.IsActive)
+            Active = ActiveStatus.Inactive;
     }
 
     public static Shipping Create(
@@ -45,6 +54,7 @@ public sealed class Shipping : Entity<ShippingId>, IAggregateRoot
         var taxIdObj = NonEmptyText.Create(taxId);
         var tradeNameObj = NonEmptyText.Create(tradeName);
         var segmentObj = NonEmptyText.Create(segment);
+        var activeObj = ActiveStatus.Active;
 
         return new Shipping(
             shippingId,
@@ -52,7 +62,8 @@ public sealed class Shipping : Entity<ShippingId>, IAggregateRoot
             corporateNameObj,
             taxIdObj,
             tradeNameObj,
-            segmentObj
+            segmentObj,
+            activeObj
         );
     }
 }

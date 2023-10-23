@@ -1,5 +1,9 @@
 using Developurr.Orderly.Domain.Exceptions;
+using Developurr.Orderly.Domain.Shared.ValueObjects;
+using Developurr.Orderly.Domain.UnitTests.TestUtils.Cnpj;
 using Developurr.Orderly.Domain.UnitTests.TestUtils.Constants;
+using Developurr.Orderly.Domain.UnitTests.TestUtils.NonEmptyText;
+using Developurr.Orderly.Domain.UnitTests.TestUtils.Shipping;
 
 namespace Developurr.Orderly.Domain.UnitTests.Shipping;
 
@@ -149,5 +153,41 @@ public sealed class ShippingTest
         // Assert
         var eve = Assert.IsType<DomainValidationException>(exception);
         Assert.Contains(expectedErrorMessage, eve.Message);
+    }
+    
+    [Fact]
+    public void GivenValidInput_WhenCreatingShipping_ThenShouldHaveActiveStatusTrue()
+    {
+        // Arrange
+        var cnpj = CnpjFixture.CreateCnpj();
+        var corporateName = NonEmptyTextFixture.CreateNonEmptyText();
+        var taxId = NonEmptyTextFixture.CreateNonEmptyText();
+        var tradeName = NonEmptyTextFixture.CreateNonEmptyText();
+        var segment = NonEmptyTextFixture.CreateNonEmptyText();
+
+        // Act
+        var shipping = Domain.Shipping.Shipping.Create(
+            cnpj.ToString(),
+        corporateName.ToString(),
+        taxId.ToString(),
+        tradeName.ToString(),
+        segment.ToString()
+        );
+
+        // Assert
+        Assert.True(shipping.Active.IsActive);
+    }
+
+    [Fact]
+    public void GivenValidShipping_WhenDeactivatingShipping_ThenShouldBeInactive()
+    {
+        // Arrange
+        var shipping = ShippingFixture.CreateShipping();
+
+        // Act
+        shipping.Deactivate();
+
+        // Assert
+        Assert.False(shipping.Active.IsActive);
     }
 }
