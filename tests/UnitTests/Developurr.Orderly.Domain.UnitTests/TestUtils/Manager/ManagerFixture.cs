@@ -2,7 +2,7 @@ namespace Developurr.Orderly.Domain.UnitTests.TestUtils.Manager;
 
 public sealed class ManagerFixture
 {
-    private static Developurr.Orderly.Domain.Manager.Manager CreateManager()
+    public static Developurr.Orderly.Domain.Manager.Manager CreateManager()
     {
         return Developurr.Orderly.Domain.Manager.Manager.Create(
             Constants.Constants.Cpf.CpfValue,

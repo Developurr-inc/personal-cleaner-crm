@@ -13,6 +13,7 @@ public sealed class Manager : Entity<ManagerId>, IAggregateRoot
     public Email Email { get; private set; }
     public Phone? Landline { get; private set; }
     public Phone? Mobile { get; private set; }
+    public ActiveStatus Active { get; private set; }
 
     private Manager(
         ManagerId managerId,
@@ -21,7 +22,8 @@ public sealed class Manager : Entity<ManagerId>, IAggregateRoot
         NonEmptyText name,
         Email email,
         Phone? landline,
-        Phone? mobile
+        Phone? mobile, 
+        ActiveStatus active
     )
         : base(managerId)
     {
@@ -32,6 +34,13 @@ public sealed class Manager : Entity<ManagerId>, IAggregateRoot
         Email = email;
         Landline = landline;
         Mobile = mobile;
+        Active = active;
+    }
+    
+    public void Deactivate()
+    {
+        if (Active.IsActive)
+            Active = ActiveStatus.Inactive;
     }
 
     public static Manager Create(
@@ -66,7 +75,8 @@ public sealed class Manager : Entity<ManagerId>, IAggregateRoot
         var emailObj = Email.Create(email);
         var landlineObj = landline == null ? null : Phone.Create(landline);
         var mobileObj = mobile == null ? null : Phone.Create(mobile);
-
+        var activeObj = ActiveStatus.Active;
+        
         return new Manager(
             managerId,
             cpfObj,
@@ -74,7 +84,8 @@ public sealed class Manager : Entity<ManagerId>, IAggregateRoot
             nameObj,
             emailObj,
             landlineObj,
-            mobileObj
+            mobileObj,
+            activeObj    
         );
     }
 }
