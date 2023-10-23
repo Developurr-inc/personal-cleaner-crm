@@ -1,3 +1,4 @@
+using Developurr.Orderly.Application.Exceptions;
 using Developurr.Orderly.Domain.Customer.Repositories;
 
 namespace Developurr.Orderly.Application.Query.Customer.GetCustomer;
@@ -16,24 +17,24 @@ public sealed class GetCustomerUseCase : IQuery<GetCustomerInput, GetCustomerOut
         CancellationToken cancellationToken
     )
     {
-        var customer = await _customerRepository.GetByIdAsync(
-            input.CustomerId,
-            cancellationToken
-        );
+        var customer = await _customerRepository.GetByIdAsync(input.CustomerId, cancellationToken);
+
+        if (customer is null)
+            throw new IdNotFoundException(nameof(input.CustomerId));
 
         return new GetCustomerOutput(
-            customer.Id.Format(),
-            customer.Vendor.Format(),
-            customer.Cnpj.Format(),
-            customer.CorporateName,
-            customer.TaxId,
-            customer.TradeName,
-            customer.Segment,
-            customer.BillingEmail.Format(),
-            customer.NfeEmail.Format(),
-            customer.Landline.Value,
-            customer.Mobile.Value,
-            customer.Observation
+            customer.Id.ToString(),
+            customer.Vendor.ToString(),
+            customer.Cnpj.ToString(),
+            customer.CorporateName.ToString(),
+            customer.TaxId.ToString(),
+            customer.TradeName.ToString(),
+            customer.Segment.ToString(),
+            customer.BillingEmail?.ToString() ?? "",
+            customer.NfeEmail.ToString(),
+            customer.Landline?.Value ?? "",
+            customer.Mobile?.Value ?? "",
+            customer.Observation.ToString()
         );
     }
 }

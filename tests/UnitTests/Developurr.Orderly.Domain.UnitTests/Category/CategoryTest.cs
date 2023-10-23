@@ -1,3 +1,4 @@
+using Developurr.Orderly.Domain.Exceptions;
 using Developurr.Orderly.Domain.UnitTests.TestUtils.NonEmptyText;
 using Developurr.Orderly.Domain.UnitTests.TestUtils.OptionalText;
 
@@ -11,12 +12,9 @@ public class CategoryTest
         // Arrange
         var name = NonEmptyTextFixture.CreateNonEmptyText();
         var description = OptionalTextFixture.CreateOptionalText();
-    
+
         // Act
-        var category = Domain.Category.Category.Create(
-            name.Value,
-            description.Value
-        );
+        var category = Domain.Category.Category.Create(name.ToString(), description.ToString());
 
         // Assert
         Assert.NotNull(category);
@@ -28,13 +26,10 @@ public class CategoryTest
         // Arrange
         var name = NonEmptyTextFixture.CreateNonEmptyText();
         var description = OptionalTextFixture.CreateOptionalText();
-    
+
         // Act
-        var category = Domain.Category.Category.Create(
-            name.Value,
-            description.Value
-        );
-    
+        var category = Domain.Category.Category.Create(name.ToString(), description.ToString());
+
         // Assert
         Assert.NotNull(category.Id);
     }
@@ -45,15 +40,15 @@ public class CategoryTest
         // Arrange
         var expectedName = NonEmptyTextFixture.CreateNonEmptyText();
         var description = OptionalTextFixture.CreateOptionalText();
-    
+
         // Act
         var category = Domain.Category.Category.Create(
-            expectedName.Value,
-            description.Value
+            expectedName.ToString(),
+            description.ToString()
         );
-    
+
         // Assert
-        Assert.Equal(expectedName.Value, category.Name.Value);
+        Assert.Equal(expectedName.ToString(), category.Name.ToString());
     }
 
     [Fact]
@@ -62,14 +57,29 @@ public class CategoryTest
         // Arrange
         var name = NonEmptyTextFixture.CreateNonEmptyText();
         var expectedDescription = OptionalTextFixture.CreateOptionalText();
-    
+
         // Act
         var category = Domain.Category.Category.Create(
-            name.Value,
-            expectedDescription.Value
+            name.ToString(),
+            expectedDescription.ToString()
         );
-    
+
         // Assert
-        Assert.Equal(expectedDescription.Value, category.Description.Value);
+        Assert.Equal(expectedDescription.ToString(), category.Description.ToString());
+    }
+
+    [Fact]
+    public void GivenInvalidInput_WhenCreatingCategory_ThenShouldThrowDomainValidationException()
+    {
+        // Arrange
+        var description = OptionalTextFixture.CreateOptionalText();
+
+        // Act
+        var exception = Record.Exception(
+            () => Domain.Category.Category.Create("", description.ToString())
+        );
+
+        // Assert
+        Assert.IsType<DomainValidationException>(exception);
     }
 }

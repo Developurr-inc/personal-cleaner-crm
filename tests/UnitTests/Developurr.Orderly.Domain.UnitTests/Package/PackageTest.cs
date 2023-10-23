@@ -1,17 +1,18 @@
+using Developurr.Orderly.Domain.Exceptions;
 using Developurr.Orderly.Domain.UnitTests.TestUtils.NonEmptyText;
 
 namespace Developurr.Orderly.Domain.UnitTests.Package;
 
-public class PackageTest
+public sealed class PackageTest
 {
     [Fact]
     public void GivenValidInput_WhenCreatingPackage_ThenShouldInstantiatePackage()
     {
         // Arrange
         var name = NonEmptyTextFixture.CreateNonEmptyText();
-    
+
         // Act
-        var package = Domain.Package.Package.Create(name.Value);
+        var package = Domain.Package.Package.Create(name.ToString());
 
         // Assert
         Assert.NotNull(package);
@@ -22,24 +23,46 @@ public class PackageTest
     {
         // Arrange
         var name = NonEmptyTextFixture.CreateNonEmptyText();
-    
+
         // Act
-        var package = Domain.Package.Package.Create(name.Value);
-    
+        var package = Domain.Package.Package.Create(name.ToString());
+
         // Assert
         Assert.NotNull(package.Id);
     }
 
-    [Fact]
-    public void GivenValidName_WhenCreatingPackage_ThenShouldHaveValidName()
+    [Theory]
+    [InlineData("")]
+    public void GivenInvalidInput_WhenCreatingPackage_ThenShouldThrowEntityValidationExceptionWithMessage(
+        string name
+    )
     {
         // Arrange
-        var name = NonEmptyTextFixture.CreateNonEmptyText();
-    
+        const string expectedErrorMessage =
+            "There are validation errors. See ValidationMessages property for more details.";
+
         // Act
-        var package = Domain.Package.Package.Create(name.Value);
-    
+        var exception = Record.Exception(() => Domain.Package.Package.Create(name));
+
         // Assert
-        Assert.Equal(name.Value, package.Name.Value);
+        var domainValidationException = Assert.IsType<DomainValidationException>(exception);
+        Assert.Contains(expectedErrorMessage, domainValidationException.Message);
+    }
+
+    [Theory]
+    [InlineData("")]
+    public void GivenInvalidInput_WhenCreatingPackage_ThenEntityValidationExceptionShouldContainMessage(
+        string expectedMessage
+    )
+    {
+        // Arrange
+        var name = string.Empty;
+
+        // Act
+        var exception = Record.Exception(() => Domain.Package.Package.Create(name));
+
+        // Assert
+        var domainValidationException = Assert.IsType<DomainValidationException>(exception);
+        Assert.Contains(expectedMessage, domainValidationException.Message);
     }
 }

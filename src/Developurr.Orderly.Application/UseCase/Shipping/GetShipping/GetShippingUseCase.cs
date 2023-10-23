@@ -1,3 +1,4 @@
+using Developurr.Orderly.Application.Exceptions;
 using Developurr.Orderly.Domain.Shipping.Repositories;
 
 namespace Developurr.Orderly.Application.UseCase.Shipping.GetShipping;
@@ -16,18 +17,17 @@ public class GetShippingUseCase : IUseCase<GetShippingInput, GetShippingOutput>
         CancellationToken cancellationToken
     )
     {
-        var shipping = await _shippingRepository.GetByIdAsync(
-            input.ShippingId,
-            cancellationToken
-        );
+        var shipping = await _shippingRepository.GetByIdAsync(input.ShippingId, cancellationToken);
+
+        if (shipping is null)
+            throw new IdNotFoundException(input.ShippingId);
 
         return new GetShippingOutput(
-            shipping.Cnpj.Format(),
-            shipping.CorporateName,
-            shipping.TaxId,
-            shipping.TradeName,
-            shipping.Segment
-            );
+            shipping.Cnpj.ToString(),
+            shipping.CorporateName.ToString(),
+            shipping.TaxId.ToString(),
+            shipping.TradeName.ToString(),
+            shipping.Segment.ToString()
+        );
     }
 }
-    

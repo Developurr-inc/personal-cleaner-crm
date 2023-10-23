@@ -22,12 +22,12 @@ public class GetProductTest
     //     var productRepositoryMock = new Mock<IProductRepository>();
     //     var getProductUseCase = new GetProductUseCase(productRepositoryMock.Object);
     //     var input = GetProductFixture.GetInput();
-    //     
-    //     
+    //
+    //
     //
     //     // Act
     //     _ = await getProductUseCase.Execute(input, CancellationToken.None);
-    //     
+    //
     //     // Assert
     //     productRepositoryMock.Verify(x => x.InsertAsync(It.IsAny<Domain.Product.Product>(), CancellationToken.None), Times.Once);
     // }
@@ -45,19 +45,19 @@ public class GetProductTest
     //     // Assert
     //     Assert.NotNull(output);
     // }
-    
+
     // [Fact]
     // public async void GivenInvalidInput_WhenCallingExecute_ThenShouldReturnDomainValidationExceptionWithMessage()
     // {
     //     // Arrange
     //     var createProductUseCase = GetProductFixture.GetUseCase();
     //     var input = GetProductFixture.GetInvalidInput();
-    //     
+    //
     //     // Act
     //     var exception = await Record.ExceptionAsync(() => createProductUseCase.Execute(input, CancellationToken.None));
     //
     //     // Assert
-    //     var entityValidationException = Assert.IsType<EntityValidationException>(exception);
+    //     var entityValidationException = Assert.IsType<DomainValidationException>(exception);
     //     Assert.NotEmpty(entityValidationException.Errors);
     // }
 }

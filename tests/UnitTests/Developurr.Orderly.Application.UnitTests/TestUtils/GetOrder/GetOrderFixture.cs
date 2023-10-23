@@ -1,4 +1,3 @@
-using Developurr.Orderly.Application.Command;
 using Developurr.Orderly.Application.Query.Order.GetOrder;
 using Developurr.Orderly.Domain.Order.Repositories;
 using Developurr.Orderly.Domain.UnitTests.TestUtils.Order;
@@ -14,7 +13,9 @@ public static class GetOrderFixture
         var input = CreateInput();
         var order = OrderFixture.CreateOrder();
 
-        orderRepositoryMock.Setup(x => x.GetByIdAsync(input.OrderId, It.IsAny<CancellationToken>())).ReturnsAsync(order);
+        orderRepositoryMock
+            .Setup(x => x.GetByIdAsync(input.OrderId, It.IsAny<CancellationToken>()))
+            .ReturnsAsync(order);
 
         return new GetOrderUseCase(orderRepositoryMock.Object);
     }

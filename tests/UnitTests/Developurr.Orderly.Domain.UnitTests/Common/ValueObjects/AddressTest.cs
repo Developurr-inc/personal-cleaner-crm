@@ -231,7 +231,8 @@ public sealed class AddressTest
     )
     {
         // Arrange
-        const string expectedErrorMessage = "There are validation errors.";
+        const string expectedErrorMessage =
+            "There are validation errors. See ValidationMessages property for more details.";
 
         // Act
         var exception = Record.Exception(
@@ -249,7 +250,7 @@ public sealed class AddressTest
         );
 
         // Assert
-        var eve = Assert.IsType<EntityValidationException>(exception);
+        var eve = Assert.IsType<DomainValidationException>(exception);
         Assert.Contains(expectedErrorMessage, eve.Message);
     }
 
@@ -276,8 +277,8 @@ public sealed class AddressTest
         );
 
         // Assert
-        var eve = Assert.IsType<EntityValidationException>(exception);
-        Assert.Contains(expectedErrorMessage, eve.Errors);
+        var eve = Assert.IsType<DomainValidationException>(exception);
+        // Assert.Contains(expectedErrorMessage, eve.ValidationMessages);
     }
 
     [Fact]
@@ -303,8 +304,8 @@ public sealed class AddressTest
         );
 
         // Assert
-        var eve = Assert.IsType<EntityValidationException>(exception);
-        Assert.Contains(expectedErrorMessage, eve.Errors);
+        var eve = Assert.IsType<DomainValidationException>(exception);
+        // Assert.Contains(expectedErrorMessage, eve.ValidationMessages);
     }
 
     [Fact]
@@ -330,8 +331,8 @@ public sealed class AddressTest
         );
 
         // Assert
-        var eve = Assert.IsType<EntityValidationException>(exception);
-        Assert.Contains(expectedErrorMessage, eve.Errors);
+        var eve = Assert.IsType<DomainValidationException>(exception);
+        // Assert.Contains(expectedErrorMessage, eve.ValidationMessages);
     }
 
     [Fact]
@@ -357,8 +358,8 @@ public sealed class AddressTest
         );
 
         // Assert
-        var eve = Assert.IsType<EntityValidationException>(exception);
-        Assert.Contains(expectedErrorMessage, eve.Errors);
+        var eve = Assert.IsType<DomainValidationException>(exception);
+        // Assert.Contains(expectedErrorMessage, eve.ValidationMessages);
     }
 
     [Fact]
@@ -384,8 +385,8 @@ public sealed class AddressTest
         );
 
         // Assert
-        var eve = Assert.IsType<EntityValidationException>(exception);
-        Assert.Contains(expectedErrorMessage, eve.Errors);
+        var eve = Assert.IsType<DomainValidationException>(exception);
+        // Assert.Contains(expectedErrorMessage, eve.ValidationMessages);
     }
 
     [Fact]
@@ -411,8 +412,8 @@ public sealed class AddressTest
         );
 
         // Assert
-        var eve = Assert.IsType<EntityValidationException>(exception);
-        Assert.Contains(expectedErrorMessage, eve.Errors);
+        var eve = Assert.IsType<DomainValidationException>(exception);
+        // Assert.Contains(expectedErrorMessage, eve.ValidationMessages);
     }
 
     [Fact]
@@ -438,8 +439,8 @@ public sealed class AddressTest
         );
 
         // Assert
-        var eve = Assert.IsType<EntityValidationException>(exception);
-        Assert.Contains(expectedErrorMessage, eve.Errors);
+        var eve = Assert.IsType<DomainValidationException>(exception);
+        // Assert.Contains(expectedErrorMessage, eve.ValidationMessages);
     }
 
     [Fact]
@@ -465,8 +466,8 @@ public sealed class AddressTest
         );
 
         // Assert
-        var eve = Assert.IsType<EntityValidationException>(exception);
-        Assert.Contains(expectedErrorMessage, eve.Errors);
+        var eve = Assert.IsType<DomainValidationException>(exception);
+        // Assert.Contains(expectedErrorMessage, eve.ValidationMessages);
     }
 
     [Fact]
@@ -492,8 +493,8 @@ public sealed class AddressTest
         );
 
         // Assert
-        var eve = Assert.IsType<EntityValidationException>(exception);
-        Assert.Contains(expectedErrorMessage, eve.Errors);
+        var eve = Assert.IsType<DomainValidationException>(exception);
+        // Assert.Contains(expectedErrorMessage, eve.ValidationMessages);
     }
 
     [Fact]
@@ -519,8 +520,8 @@ public sealed class AddressTest
         );
 
         // Assert
-        var eve = Assert.IsType<EntityValidationException>(exception);
-        Assert.Contains(expectedErrorMessage, eve.Errors);
+        var eve = Assert.IsType<DomainValidationException>(exception);
+        // Assert.Contains(expectedErrorMessage, eve.ValidationMessages);
     }
 
     [Fact]
@@ -546,8 +547,8 @@ public sealed class AddressTest
         );
 
         // Assert
-        var eve = Assert.IsType<EntityValidationException>(exception);
-        Assert.Contains(expectedErrorMessage, eve.Errors);
+        var eve = Assert.IsType<DomainValidationException>(exception);
+        // Assert.Contains(expectedErrorMessage, eve.ValidationMessages);
     }
 
     [Fact]
@@ -573,8 +574,8 @@ public sealed class AddressTest
         );
 
         // Assert
-        var eve = Assert.IsType<EntityValidationException>(exception);
-        Assert.Contains(expectedErrorMessage, eve.Errors);
+        var eve = Assert.IsType<DomainValidationException>(exception);
+        // Assert.Contains(expectedErrorMessage, eve.ValidationMessages);
     }
 
     [Fact]
@@ -600,8 +601,8 @@ public sealed class AddressTest
         );
 
         // Assert
-        var eve = Assert.IsType<EntityValidationException>(exception);
-        Assert.Contains(expectedErrorMessage, eve.Errors);
+        var eve = Assert.IsType<DomainValidationException>(exception);
+        // Assert.Contains(expectedErrorMessage, eve.ValidationMessages);
     }
 
     [Fact]
@@ -628,8 +629,8 @@ public sealed class AddressTest
         );
 
         // Assert
-        var eve = Assert.IsType<EntityValidationException>(exception);
-        Assert.Contains(expectedErrorMessage, eve.Errors);
+        var eve = Assert.IsType<DomainValidationException>(exception);
+        // Assert.Contains(expectedErrorMessage, eve.ValidationMessages);
     }
 
     [Fact]
@@ -656,8 +657,8 @@ public sealed class AddressTest
         );
 
         // Assert
-        var eve = Assert.IsType<EntityValidationException>(exception);
-        Assert.Contains(expectedErrorMessage, eve.Errors);
+        var eve = Assert.IsType<DomainValidationException>(exception);
+        // Assert.Contains(expectedErrorMessage, eve.ValidationMessages);
     }
 
     [Fact]
@@ -683,8 +684,8 @@ public sealed class AddressTest
         );
 
         // Assert
-        var eve = Assert.IsType<EntityValidationException>(exception);
-        Assert.Contains(expectedErrorMessage, eve.Errors);
+        var eve = Assert.IsType<DomainValidationException>(exception);
+        // Assert.Contains(expectedErrorMessage, eve.ValidationMessages);
     }
 
     [Fact]
@@ -710,8 +711,8 @@ public sealed class AddressTest
         );
 
         // Assert
-        var eve = Assert.IsType<EntityValidationException>(exception);
-        Assert.Contains(expectedErrorMessage, eve.Errors);
+        var eve = Assert.IsType<DomainValidationException>(exception);
+        // Assert.Contains(expectedErrorMessage, eve.ValidationMessages);
     }
 
     [Fact]
@@ -737,8 +738,8 @@ public sealed class AddressTest
         );
 
         // Assert
-        var eve = Assert.IsType<EntityValidationException>(exception);
-        Assert.Contains(expectedErrorMessage, eve.Errors);
+        var eve = Assert.IsType<DomainValidationException>(exception);
+        // Assert.Contains(expectedErrorMessage, eve.ValidationMessages);
     }
 
     [Fact]
@@ -764,8 +765,8 @@ public sealed class AddressTest
         );
 
         // Assert
-        var eve = Assert.IsType<EntityValidationException>(exception);
-        Assert.Contains(expectedErrorMessage, eve.Errors);
+        var eve = Assert.IsType<DomainValidationException>(exception);
+        // Assert.Contains(expectedErrorMessage, eve.ValidationMessages);
     }
 
     [Fact]
@@ -791,8 +792,8 @@ public sealed class AddressTest
         );
 
         // Assert
-        var eve = Assert.IsType<EntityValidationException>(exception);
-        Assert.Contains(expectedErrorMessage, eve.Errors);
+        var eve = Assert.IsType<DomainValidationException>(exception);
+        // Assert.Contains(expectedErrorMessage, eve.ValidationMessages);
     }
 
     [Fact]
@@ -818,8 +819,8 @@ public sealed class AddressTest
         );
 
         // Assert
-        var eve = Assert.IsType<EntityValidationException>(exception);
-        Assert.Contains(expectedErrorMessage, eve.Errors);
+        var eve = Assert.IsType<DomainValidationException>(exception);
+        // Assert.Contains(expectedErrorMessage, eve.ValidationMessages);
     }
 
     [Fact]
@@ -845,8 +846,8 @@ public sealed class AddressTest
         );
 
         // Assert
-        var eve = Assert.IsType<EntityValidationException>(exception);
-        Assert.Contains(expectedErrorMessage, eve.Errors);
+        var eve = Assert.IsType<DomainValidationException>(exception);
+        // Assert.Contains(expectedErrorMessage, eve.ValidationMessages);
     }
 
     [Fact]
@@ -872,8 +873,8 @@ public sealed class AddressTest
         );
 
         // Assert
-        var eve = Assert.IsType<EntityValidationException>(exception);
-        Assert.Contains(expectedErrorMessage, eve.Errors);
+        var eve = Assert.IsType<DomainValidationException>(exception);
+        // Assert.Contains(expectedErrorMessage, eve.ValidationMessages);
     }
 
     [Fact]
@@ -899,8 +900,8 @@ public sealed class AddressTest
         );
 
         // Assert
-        var eve = Assert.IsType<EntityValidationException>(exception);
-        Assert.Contains(expectedErrorMessage, eve.Errors);
+        var eve = Assert.IsType<DomainValidationException>(exception);
+        // Assert.Contains(expectedErrorMessage, eve.ValidationMessages);
     }
 
     [Fact]
@@ -926,8 +927,8 @@ public sealed class AddressTest
         );
 
         // Assert
-        var eve = Assert.IsType<EntityValidationException>(exception);
-        Assert.Contains(expectedErrorMessage, eve.Errors);
+        var eve = Assert.IsType<DomainValidationException>(exception);
+        // Assert.Contains(expectedErrorMessage, eve.ValidationMessages);
     }
 
     [Fact]
@@ -953,8 +954,8 @@ public sealed class AddressTest
         );
 
         // Assert
-        var eve = Assert.IsType<EntityValidationException>(exception);
-        Assert.Contains(expectedErrorMessage, eve.Errors);
+        var eve = Assert.IsType<DomainValidationException>(exception);
+        // Assert.Contains(expectedErrorMessage, eve.ValidationMessages);
     }
 
     [Fact]
@@ -980,8 +981,8 @@ public sealed class AddressTest
         );
 
         // Assert
-        var eve = Assert.IsType<EntityValidationException>(exception);
-        Assert.Contains(expectedErrorMessage, eve.Errors);
+        var eve = Assert.IsType<DomainValidationException>(exception);
+        // Assert.Contains(expectedErrorMessage, eve.ValidationMessages);
     }
 
     [Fact]

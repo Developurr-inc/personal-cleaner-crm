@@ -13,17 +13,4 @@ public sealed class LineItemIdTest
         // Assert
         Assert.NotNull(lineItemId);
     }
-    
-    [Fact]
-    public void GivenNothing_WhenCallingFormat_ThenShouldNotBeEmpty()
-    {
-        // Arrange
-        var lineItemId = LineItemId.Generate();
-        
-        // Act
-        var id = lineItemId.Format();
-        
-        // Assert
-        Assert.NotEmpty(id);
-    }
 }

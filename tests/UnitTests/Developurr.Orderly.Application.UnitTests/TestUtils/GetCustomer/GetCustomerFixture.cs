@@ -12,9 +12,11 @@ public static class GetCustomerFixture
         var customerRepositoryMock = new Mock<ICustomerRepository>();
         var input = CreateInput();
         var customer = CustomerFixture.CreateCustomer();
-        
-        customerRepositoryMock.Setup(x => x.GetByIdAsync(input.CustomerId, It.IsAny<CancellationToken>())).ReturnsAsync(customer);
-        
+
+        customerRepositoryMock
+            .Setup(x => x.GetByIdAsync(input.CustomerId, It.IsAny<CancellationToken>()))
+            .ReturnsAsync(customer);
+
         return new GetCustomerUseCase(customerRepositoryMock.Object);
     }
 

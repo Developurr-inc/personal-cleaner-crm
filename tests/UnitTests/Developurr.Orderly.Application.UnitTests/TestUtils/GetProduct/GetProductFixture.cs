@@ -1,4 +1,4 @@
-using Developurr.Orderly.Application.UseCase.Product.GetProduct;
+using Developurr.Orderly.Application.Query.Product.GetProduct;
 using Developurr.Orderly.Domain.Product.Repositories;
 using Developurr.Orderly.Domain.UnitTests.TestUtils.Constants;
 using Moq;
@@ -10,22 +10,12 @@ public static class GetProductFixture
     public static GetProductUseCase GetUseCase()
     {
         var productRepositoryMock = new Mock<IProductRepository>();
-        
 
         return new GetProductUseCase(productRepositoryMock.Object);
     }
-    
+
     public static GetProductInput GetInput()
     {
-        return new GetProductInput(
-            Constants.CustomerId.Id.Format()
-        );
+        return new GetProductInput(Constants.CustomerId.Id.ToString());
     }
-    
-    // public static GetProductInput GetInvalidInput()
-    // {
-    //     return new GetProductInput(
-    //         ""
-    //     );
-    // }
 }

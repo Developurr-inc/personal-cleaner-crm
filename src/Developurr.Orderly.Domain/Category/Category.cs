@@ -9,7 +9,8 @@ public sealed class Category : Entity<CategoryId>, IAggregateRoot
     public NonEmptyText Name { get; }
     public OptionalText Description { get; }
 
-    private Category(CategoryId categoryId, NonEmptyText name, OptionalText description) : base(categoryId)
+    private Category(CategoryId categoryId, NonEmptyText name, OptionalText description)
+        : base(categoryId)
     {
         Name = name;
         Description = description;

@@ -1,14 +1,12 @@
-using Developurr.Orderly.Domain.Manager.Validators;
 using Developurr.Orderly.Domain.Manager.ValueObjects;
 using Developurr.Orderly.Domain.SeedWork;
 using Developurr.Orderly.Domain.Shared.ValueObjects;
-using Developurr.Orderly.Domain.Vendor.ValueObjects;
 
 namespace Developurr.Orderly.Domain.Manager;
 
 public sealed class Manager : Entity<ManagerId>, IAggregateRoot
 {
-    private readonly List<VendorId> _vendors;
+    // private readonly List<VendorId> _vendors;
     public Cpf Cpf { get; }
     public Address Address { get; private set; }
     public NonEmptyText Name { get; private set; }
@@ -27,7 +25,7 @@ public sealed class Manager : Entity<ManagerId>, IAggregateRoot
     )
         : base(managerId)
     {
-        _vendors = new List<VendorId>();
+        // _vendors = new List<VendorId>();
         Cpf = cpf;
         Address = address;
         Name = name;
@@ -37,7 +35,7 @@ public sealed class Manager : Entity<ManagerId>, IAggregateRoot
     }
 
     public static Manager Create(
-        string cpfValue,
+        string cpf,
         string street,
         int number,
         string complement,
@@ -47,15 +45,15 @@ public sealed class Manager : Entity<ManagerId>, IAggregateRoot
         string state,
         string country,
         string name,
-        string nfeEmailValue,
-        string? landlineValue,
-        string? mobileValue
+        string email,
+        string? landline,
+        string? mobile
     )
     {
         var managerId = ManagerId.Generate();
-        var nameTrimmed = name.Trim();
-        var cpf = Cpf.Create(cpfValue);
-        var address = Address.Create(
+        var nameObj = NonEmptyText.Create(name);
+        var cpfObj = Cpf.Create(cpf);
+        var addressObj = Address.Create(
             street,
             number,
             complement,
@@ -65,11 +63,18 @@ public sealed class Manager : Entity<ManagerId>, IAggregateRoot
             state,
             country
         );
-        var nfeEmail = Email.Create(nfeEmailValue);
-        var landline = landlineValue == null ? null : Phone.Create(landlineValue);
-        var mobile = mobileValue == null ? null : Phone.Create(mobileValue);
+        var emailObj = Email.Create(email);
+        var landlineObj = landline == null ? null : Phone.Create(landline);
+        var mobileObj = mobile == null ? null : Phone.Create(mobile);
 
-        return new Manager(managerId, cpf, address, nameTrimmed, nfeEmail, landline, mobile);
+        return new Manager(
+            managerId,
+            cpfObj,
+            addressObj,
+            nameObj,
+            emailObj,
+            landlineObj,
+            mobileObj
+        );
     }
-    
 }

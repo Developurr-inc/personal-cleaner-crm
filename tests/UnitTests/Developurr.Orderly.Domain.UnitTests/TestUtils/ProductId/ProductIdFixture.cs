@@ -2,9 +2,8 @@ namespace Developurr.Orderly.Domain.UnitTests.TestUtils.ProductId;
 
 public static class ProductIdFixture
 {
-    public static Developurr.Orderly.Domain.Product.ValueObjects.ProductId CreateProductId()
+    public static Domain.Product.ValueObjects.ProductId GenerateId()
     {
-
-        return Developurr.Orderly.Domain.Product.ValueObjects.ProductId.Generate();
+        return Domain.Product.ValueObjects.ProductId.Generate();
     }
 }

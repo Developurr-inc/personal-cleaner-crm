@@ -1,7 +1,6 @@
 namespace Developurr.Orderly.Application.UseCase.Shipping.CreateShipping;
 
-public record CreateShippingInput
-(
+public record CreateShippingInput(
     string Cnpj,
     string CorporateName,
     string TaxId,

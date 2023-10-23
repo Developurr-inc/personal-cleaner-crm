@@ -13,17 +13,4 @@ public sealed class CustomerIdTest
         // Assert
         Assert.NotNull(customerId);
     }
-
-    [Fact]
-    public void GivenNothing_WhenCallingFormat_ThenShouldNotBeEmpty()
-    {
-        // Arrange
-        var customerId = CustomerId.Generate();
-        
-        // Act
-        var id = customerId.Format();
-        
-        // Assert
-        Assert.NotEmpty(id);
-    }
 }

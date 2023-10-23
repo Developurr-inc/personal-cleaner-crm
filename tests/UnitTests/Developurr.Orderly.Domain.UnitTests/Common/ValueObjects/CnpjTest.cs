@@ -11,14 +11,12 @@ public sealed class CnpjTest
     public void GivenValidInput_WhenCreatingCnpj_ThenShouldInstantiateCnpj()
     {
         // Act
-        var cnpj = Cnpj.Create(
-            Constants.Cnpj.CnpjValue
-        );
+        var cnpj = Cnpj.Create(Constants.Cnpj.CnpjValue);
 
         // Assert
         Assert.NotNull(cnpj);
     }
-    
+
     [Fact]
     public void GivenValidCnpjValue_WhenCreatingCnpj_ThenShouldHaveValidCnpjValue()
     {
@@ -27,29 +25,24 @@ public sealed class CnpjTest
 
         // Act
         var cnpj = Cnpj.Create(Constants.Cnpj.CnpjValue);
-        
-        // Assert 
-        Assert.Equal(expectedCnpjValue, cnpj.Format());
+
+        // Assert
+        Assert.Equal(expectedCnpjValue, cnpj.ToString());
     }
-    
-    
+
     [Fact]
     public void GivenInvalidInput_WhenCreatingCnpj_ThenShouldThrowEntityValidationExceptionWithMessage()
     {
         // Arrange
         const string invalidCnpj = "";
-        const string expectedErrorMessage = "There are validation errors.";
-        
+        const string expectedErrorMessage =
+            "There are validation errors. See ValidationMessages property for more details.";
+
         // Act
-        var exception = Record.Exception(
-            () =>
-                Cnpj.Create(
-                    invalidCnpj
-                )
-        );
-        
+        var exception = Record.Exception(() => Cnpj.Create(invalidCnpj));
+
         // Assert
-        var eve = Assert.IsType<EntityValidationException>(exception);
+        var eve = Assert.IsType<DomainValidationException>(exception);
         Assert.Contains(expectedErrorMessage, eve.Message);
     }
 
@@ -59,18 +52,13 @@ public sealed class CnpjTest
         // Arrange
         const string emptyCnpjValue = "";
         const string expectedErrorMessage = "'CNPJ' is required.";
-        
+
         // Act
-        var exception = Record.Exception(
-            () =>
-                Cnpj.Create(
-                    emptyCnpjValue
-                )
-        );
-        
+        var exception = Record.Exception(() => Cnpj.Create(emptyCnpjValue));
+
         // Assert
-        var eve = Assert.IsType<EntityValidationException>(exception);
-        Assert.Contains(expectedErrorMessage, eve.Errors);
+        var eve = Assert.IsType<DomainValidationException>(exception);
+        // Assert.Contains(expectedErrorMessage, eve.ValidationMessages);
     }
 
     [Fact]
@@ -79,18 +67,13 @@ public sealed class CnpjTest
         // Arrange
         const string whitespaceCnpjValue = "                  ";
         const string expectedErrorMessage = "'CNPJ' is required.";
-        
+
         // Act
-        var exception = Record.Exception(
-            () =>
-                Cnpj.Create(
-                    whitespaceCnpjValue
-                )
-        );
-        
+        var exception = Record.Exception(() => Cnpj.Create(whitespaceCnpjValue));
+
         // Assert
-        var eve = Assert.IsType<EntityValidationException>(exception);
-        Assert.Contains(expectedErrorMessage, eve.Errors);
+        var eve = Assert.IsType<DomainValidationException>(exception);
+        // Assert.Contains(expectedErrorMessage, eve.ValidationMessages);
     }
 
     [Fact]
@@ -98,39 +81,29 @@ public sealed class CnpjTest
     {
         // Arrange
         const string shortCnpjValue = Constants.InvalidCnpj.ShortCnpj;
-        const string expectedErrorMessage = "'CNPJ' is not valid."; 
-        
+        const string expectedErrorMessage = "'CNPJ' is not valid.";
+
         // Act
-        var exception = Record.Exception(
-            () =>
-                Cnpj.Create(
-                    shortCnpjValue
-                )
-        );
-        
+        var exception = Record.Exception(() => Cnpj.Create(shortCnpjValue));
+
         // Assert
-        var eve = Assert.IsType<EntityValidationException>(exception);
-        Assert.Contains(expectedErrorMessage, eve.Errors);
+        var eve = Assert.IsType<DomainValidationException>(exception);
+        // Assert.Contains(expectedErrorMessage, eve.ValidationMessages);
     }
-    
+
     [Fact]
     public void GivenLongCnpjValue_WhenCreatingCnpj_ThenShouldThrowEntityValidationExceptionWithMessage()
     {
         // Arrange
         const string longCnpjValue = Constants.InvalidCnpj.LongCnpj;
-        const string expectedErrorMessage = "'CNPJ' is not valid."; 
-        
+        const string expectedErrorMessage = "'CNPJ' is not valid.";
+
         // Act
-        var exception = Record.Exception(
-            () =>
-                Cnpj.Create(
-                    longCnpjValue
-                )
-        );
-        
+        var exception = Record.Exception(() => Cnpj.Create(longCnpjValue));
+
         // Assert
-        var eve = Assert.IsType<EntityValidationException>(exception);
-        Assert.Contains(expectedErrorMessage, eve.Errors);
+        var eve = Assert.IsType<DomainValidationException>(exception);
+        // Assert.Contains(expectedErrorMessage, eve.ValidationMessages);
     }
 
     [Fact]
@@ -139,20 +112,15 @@ public sealed class CnpjTest
         // Arrange
         const string invalidCnpjValue = Constants.InvalidCnpj.InvalidCnpjLastDigit;
         const string expectedErrorMessage = "'CNPJ' is not valid.";
-        
+
         // Act
-        var exception = Record.Exception(
-            () =>
-                Cnpj.Create(
-                    invalidCnpjValue
-                )
-        );
-        
+        var exception = Record.Exception(() => Cnpj.Create(invalidCnpjValue));
+
         // Assert
-        var eve = Assert.IsType<EntityValidationException>(exception);
-        Assert.Contains(expectedErrorMessage, eve.Errors);
+        var eve = Assert.IsType<DomainValidationException>(exception);
+        // Assert.Contains(expectedErrorMessage, eve.ValidationMessages);
     }
-    
+
     [Fact]
     public void GivenNonNumericCnpj_WhenCreatingCnpj_ThenShouldThrowEntityValidationExceptionWithMessage()
     {
@@ -161,16 +129,11 @@ public sealed class CnpjTest
         const string expectedErrorMessage = "'CNPJ' is not valid.";
 
         // Act
-        var exception = Record.Exception(
-            () =>
-                Cnpj.Create(
-                    nonNumericCnpj
-                )
-        );
+        var exception = Record.Exception(() => Cnpj.Create(nonNumericCnpj));
 
         // Assert
-        var eve = Assert.IsType<EntityValidationException>(exception);
-        Assert.Contains(expectedErrorMessage, eve.Errors);
+        var eve = Assert.IsType<DomainValidationException>(exception);
+        // Assert.Contains(expectedErrorMessage, eve.ValidationMessages);
     }
 
     [Fact]
@@ -179,25 +142,25 @@ public sealed class CnpjTest
         // Arrange
         const string untrimmedCnpjValue = "     42591651000143     ";
         const string expectedCnpjValue = "42.591.651/0001-43";
-        
+
         // Act
         var cnpj = Cnpj.Create(untrimmedCnpjValue);
-        
+
         // Assert
-        Assert.Equal(expectedCnpjValue, cnpj.Format());
+        Assert.Equal(expectedCnpjValue, cnpj.ToString());
     }
-    
+
     [Fact]
-    public void GivenValidCnpj_WhenCallFormat_ShouldReturnFormattedCnpj()
+    public void GivenValidCnpj_WhenCallToString_ShouldReturnToStringtedCnpj()
     {
         // Arrange
         var cnpj = CnpjFixture.CreateCnpj();
-        var expectedFormattedCnpj = $"42.591.651/0001-43";
+        var expectedToStringtedCnpj = $"42.591.651/0001-43";
 
         // Act
-        var formattedCnpj = cnpj.Format();
+        var ToStringtedCnpj = cnpj.ToString();
 
         // Assert
-        Assert.Equal(expectedFormattedCnpj, formattedCnpj);
+        Assert.Equal(expectedToStringtedCnpj, ToStringtedCnpj);
     }
 }

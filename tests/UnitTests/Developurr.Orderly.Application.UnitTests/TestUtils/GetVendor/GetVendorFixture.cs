@@ -12,9 +12,11 @@ public static class GetVendorFixture
         var vendorRepositoryMock = new Mock<IVendorRepository>();
         var input = CreateInput();
         var vendor = VendorFixture.CreateVendor();
-        
-        vendorRepositoryMock.Setup(x => x.GetByIdAsync(input.VendorId, It.IsAny<CancellationToken>())).ReturnsAsync(vendor);
-        
+
+        vendorRepositoryMock
+            .Setup(x => x.GetByIdAsync(input.VendorId, It.IsAny<CancellationToken>()))
+            .ReturnsAsync(vendor);
+
         return new GetVendorUseCase(vendorRepositoryMock.Object);
     }
 

@@ -1,28 +1,29 @@
+using Developurr.Orderly.Domain.Exceptions;
 using Developurr.Orderly.Domain.SeedWork;
 
 namespace Developurr.Orderly.Domain.Shared.ValueObjects;
 
 public sealed class OptionalText : ValueObject
 {
-    public readonly string Value;
+    private readonly string _value;
 
     private OptionalText(string value)
     {
-        Value = value;
+        _value = value;
     }
 
     public static OptionalText Create(string value)
     {
         if (value.Equals(null))
         {
-            throw new ArgumentException("Value cannot be null.", nameof(value));
+            throw new DomainValidationException("Value cannot be null.");
         }
 
         var valueSanitized = value.Trim();
-        
+
         if (valueSanitized.Length > 10_000)
         {
-            throw new ArgumentException("Value cannot be longer than 10000 characters.", nameof(value));
+            throw new DomainValidationException("Value cannot be longer than 10000 characters.");
         }
 
         return new OptionalText(valueSanitized);
@@ -30,21 +31,16 @@ public sealed class OptionalText : ValueObject
 
     public static implicit operator string(OptionalText text)
     {
-        return text.Value;
-    }
-
-    public static implicit operator OptionalText(string text)
-    {
-        return Create(text);
+        return text._value;
     }
 
     public override string ToString()
     {
-        return Value;
+        return _value;
     }
 
     protected override IEnumerable<object> GetEqualityComponents()
     {
-        yield return Value;
+        yield return _value;
     }
 }

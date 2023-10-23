@@ -6,4 +6,4 @@ public class GetShippingOutput(
     string TaxId,
     string TradeName,
     string Segment
-    );
+);

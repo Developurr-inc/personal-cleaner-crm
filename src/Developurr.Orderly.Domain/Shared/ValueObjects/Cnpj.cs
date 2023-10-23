@@ -24,14 +24,9 @@ public sealed class Cnpj : ValueObject
         return new Cnpj(cnpjTrimmed);
     }
 
-    public string Format()
-    {
-        return Convert.ToUInt64(_value).ToString(@"00\.000\.000\/0000\-00");
-    }
-
     public override string ToString()
     {
-        return Format();
+        return Convert.ToUInt64(_value).ToString(@"00\.000\.000\/0000\-00");
     }
 
     protected override IEnumerable<object> GetEqualityComponents()

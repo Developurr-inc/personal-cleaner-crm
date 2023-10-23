@@ -2,8 +2,8 @@ namespace Developurr.Orderly.Domain.UnitTests.TestUtils.CategoryId;
 
 public static class CategoryIdFixture
 {
-    public static Developurr.Orderly.Domain.Category.ValueObjects.CategoryId GenerateId()
+    public static Domain.Category.ValueObjects.CategoryId GenerateId()
     {
-        return Developurr.Orderly.Domain.Category.ValueObjects.CategoryId.Generate();
+        return Domain.Category.ValueObjects.CategoryId.Generate();
     }
 }

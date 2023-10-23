@@ -2,7 +2,6 @@ using Developurr.Orderly.Application.Command;
 using Developurr.Orderly.Application.Command.Customer.CreateCustomer;
 using Developurr.Orderly.Domain.Customer.Repositories;
 using Developurr.Orderly.Domain.UnitTests.TestUtils.Constants;
-using Developurr.Orderly.Domain.UnitTests.TestUtils.Customer;
 using Developurr.Orderly.Domain.UnitTests.TestUtils.Vendor;
 using Developurr.Orderly.Domain.Vendor.Repositories;
 using Moq;
@@ -17,17 +16,22 @@ public static class CreateCustomerFixture
         var customerRepositoryMock = new Mock<ICustomerRepository>();
         var vendorRepositoryMock = new Mock<IVendorRepository>();
         var input = CreateInput();
-        
-        vendorRepositoryMock.Setup(x => x.GetByIdAsync(input.VendorId, It.IsAny<CancellationToken>()))
+
+        vendorRepositoryMock
+            .Setup(x => x.GetByIdAsync(input.VendorId, It.IsAny<CancellationToken>()))
             .ReturnsAsync(VendorFixture.CreateVendor());
 
-        return new CreateCustomerUseCase(unitOfWorkMock.Object, customerRepositoryMock.Object, vendorRepositoryMock.Object);
+        return new CreateCustomerUseCase(
+            unitOfWorkMock.Object,
+            customerRepositoryMock.Object,
+            vendorRepositoryMock.Object
+        );
     }
-    
+
     public static CreateCustomerInput CreateInput()
     {
         return new CreateCustomerInput(
-            Constants.VendorId.Id.Format(),
+            Constants.VendorId.Id.ToString(),
             Constants.Cnpj.CnpjValue,
             Constants.Customer.CorporateName,
             Constants.Customer.TaxId,
@@ -40,11 +44,11 @@ public static class CreateCustomerFixture
             Constants.Customer.Observation
         );
     }
-    
+
     public static CreateCustomerInput CreateInvalidInput()
     {
         return new CreateCustomerInput(
-            Constants.VendorId.Id.Format(),
+            Constants.VendorId.Id.ToString(),
             Constants.Cnpj.CnpjValue,
             Constants.Customer.CorporateName,
             Constants.Customer.TaxId,

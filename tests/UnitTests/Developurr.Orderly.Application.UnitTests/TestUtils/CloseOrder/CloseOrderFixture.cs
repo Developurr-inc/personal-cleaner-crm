@@ -15,7 +15,9 @@ public static class CloseOrderFixture
         var input = CreateInput();
         var order = OrderFixture.CreateOrder();
 
-        orderRepositoryMock.Setup(x => x.GetByIdAsync(input.OrderId, It.IsAny<CancellationToken>())).ReturnsAsync(order);
+        orderRepositoryMock
+            .Setup(x => x.GetByIdAsync(input.OrderId, It.IsAny<CancellationToken>()))
+            .ReturnsAsync(order);
 
         return new CloseOrderUseCase(unitOfWorkMock.Object, orderRepositoryMock.Object);
     }

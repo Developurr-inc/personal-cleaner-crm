@@ -11,9 +11,9 @@ public sealed class ActiveStatus : ValueObject
         IsActive = isActive;
     }
 
-    public static ActiveStatus Active => new ActiveStatus(true);
+    public static ActiveStatus Active => new(true);
 
-    public static ActiveStatus Inactive => new ActiveStatus(false);
+    public static ActiveStatus Inactive => new(false);
 
     protected override IEnumerable<object> GetEqualityComponents()
     {

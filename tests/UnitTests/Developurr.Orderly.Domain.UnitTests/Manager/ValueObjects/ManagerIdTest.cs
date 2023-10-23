@@ -13,17 +13,4 @@ public sealed class ManagerIdTest
         // Assert
         Assert.NotNull(managerId);
     }
-    
-    [Fact]
-    public void GivenNothing_WhenCallingFormat_ThenShouldNotBeEmpty()
-    {
-        // Arrange
-        var managerId = ManagerId.Generate();
-        
-        // Act
-        var id = managerId.Format();
-        
-        // Assert
-        Assert.NotEmpty(id);
-    }
 }

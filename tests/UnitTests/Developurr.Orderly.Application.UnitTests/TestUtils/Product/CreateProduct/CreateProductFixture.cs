@@ -1,5 +1,5 @@
 using Developurr.Orderly.Application.Command;
-using Developurr.Orderly.Application.UseCase.Product.CreateProduct;
+using Developurr.Orderly.Application.Command.Product.CreateProduct;
 using Developurr.Orderly.Domain.Category.Repositories;
 using Developurr.Orderly.Domain.Package.Repositories;
 using Developurr.Orderly.Domain.Product.Repositories;
@@ -18,11 +18,20 @@ public static class CreateProductFixture
         var categoryRepositoryMock = new Mock<ICategoryRepository>();
         var packageRepositoryMock = new Mock<IPackageRepository>();
         var input = CreateInput();
-        
-        categoryRepositoryMock.Setup(x => x.GetByIdAsync(input.CategoryId, It.IsAny<CancellationToken>())).ReturnsAsync(CategoryFixture.CreateCategory());
-        packageRepositoryMock.Setup(x => x.GetByIdAsync(input.PackageId, It.IsAny<CancellationToken>())).ReturnsAsync(PackageFixture.CreatePackage());
 
-        return new CreateProductUseCase(unitOfWorkMock.Object, productRepositoryMock.Object, categoryRepositoryMock.Object, packageRepositoryMock.Object);
+        categoryRepositoryMock
+            .Setup(x => x.GetByIdAsync(input.CategoryId, It.IsAny<CancellationToken>()))
+            .ReturnsAsync(CategoryFixture.CreateCategory());
+        packageRepositoryMock
+            .Setup(x => x.GetByIdAsync(input.PackageId, It.IsAny<CancellationToken>()))
+            .ReturnsAsync(PackageFixture.CreatePackage());
+
+        return new CreateProductUseCase(
+            unitOfWorkMock.Object,
+            productRepositoryMock.Object,
+            categoryRepositoryMock.Object,
+            packageRepositoryMock.Object
+        );
     }
 
     public static CreateProductInput CreateInput()

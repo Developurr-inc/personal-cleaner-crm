@@ -22,14 +22,9 @@ public sealed class Cpf : ValueObject
         return new Cpf(cpfTrimmed);
     }
 
-    public string Format()
-    {
-        return Convert.ToUInt64(_value).ToString(@"000\.000\.000\-00");
-    }
-
     public override string ToString()
     {
-        return Format();
+        return Convert.ToUInt64(_value).ToString(@"000\.000\.000\-00");
     }
 
     protected override IEnumerable<object> GetEqualityComponents()

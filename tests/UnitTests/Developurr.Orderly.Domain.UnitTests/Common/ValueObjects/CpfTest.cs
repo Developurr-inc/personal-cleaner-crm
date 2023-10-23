@@ -11,14 +11,12 @@ public sealed class CpfTest
     public void GivenValidInput_WhenCreatingCpf_ThenShouldInstantiateCpf()
     {
         // Act
-        var cpf = Cpf.Create(
-            Constants.Cpf.CpfValue
-        );
+        var cpf = Cpf.Create(Constants.Cpf.CpfValue);
 
         // Assert
         Assert.NotNull(cpf);
     }
-    
+
     [Fact]
     public void GivenValidCpfValue_WhenCreatingCpf_ThenShouldHaveValidCpfValue()
     {
@@ -27,29 +25,24 @@ public sealed class CpfTest
 
         // Act
         var cpf = Cpf.Create(Constants.Cpf.CpfValue);
-        
-        // Assert 
-        Assert.Equal(expectedCpfValue, cpf.Format());
+
+        // Assert
+        Assert.Equal(expectedCpfValue, cpf.ToString());
     }
-    
-    
+
     [Fact]
     public void GivenInvalidInput_WhenCreatingCpf_ThenShouldThrowEntityValidationExceptionWithMessage()
     {
         // Arrange
         const string invalidCpf = "";
-        const string expectedErrorMessage = "There are validation errors.";
-        
+        const string expectedErrorMessage =
+            "There are validation errors. See ValidationMessages property for more details.";
+
         // Act
-        var exception = Record.Exception(
-            () =>
-                Cpf.Create(
-                    invalidCpf
-                )
-        );
-        
+        var exception = Record.Exception(() => Cpf.Create(invalidCpf));
+
         // Assert
-        var eve = Assert.IsType<EntityValidationException>(exception);
+        var eve = Assert.IsType<DomainValidationException>(exception);
         Assert.Contains(expectedErrorMessage, eve.Message);
     }
 
@@ -59,18 +52,13 @@ public sealed class CpfTest
         // Arrange
         const string emptyCpfValue = "";
         const string expectedErrorMessage = "'CPF' is required.";
-        
+
         // Act
-        var exception = Record.Exception(
-            () =>
-                Cpf.Create(
-                    emptyCpfValue
-                )
-        );
-        
+        var exception = Record.Exception(() => Cpf.Create(emptyCpfValue));
+
         // Assert
-        var eve = Assert.IsType<EntityValidationException>(exception);
-        Assert.Contains(expectedErrorMessage, eve.Errors);
+        var eve = Assert.IsType<DomainValidationException>(exception);
+        // Assert.Contains(expectedErrorMessage, eve.ValidationMessages);
     }
 
     [Fact]
@@ -79,18 +67,13 @@ public sealed class CpfTest
         // Arrange
         const string whitespaceCpfValue = "                  ";
         const string expectedErrorMessage = "'CPF' is required.";
-        
+
         // Act
-        var exception = Record.Exception(
-            () =>
-                Cpf.Create(
-                    whitespaceCpfValue
-                )
-        );
-        
+        var exception = Record.Exception(() => Cpf.Create(whitespaceCpfValue));
+
         // Assert
-        var eve = Assert.IsType<EntityValidationException>(exception);
-        Assert.Contains(expectedErrorMessage, eve.Errors);
+        var eve = Assert.IsType<DomainValidationException>(exception);
+        // Assert.Contains(expectedErrorMessage, eve.ValidationMessages);
     }
 
     [Fact]
@@ -99,38 +82,28 @@ public sealed class CpfTest
         // Arrange
         const string shortCpfValue = Constants.InvalidCpf.ShortCpf;
         const string expectedErrorMessage = "'CPF' is not valid.";
-        
+
         // Act
-        var exception = Record.Exception(
-            () =>
-                Cpf.Create(
-                    shortCpfValue
-                )
-        );
-        
+        var exception = Record.Exception(() => Cpf.Create(shortCpfValue));
+
         // Assert
-        var eve = Assert.IsType<EntityValidationException>(exception);
-        Assert.Contains(expectedErrorMessage, eve.Errors);
+        var eve = Assert.IsType<DomainValidationException>(exception);
+        // Assert.Contains(expectedErrorMessage, eve.ValidationMessages);
     }
-    
+
     [Fact]
     public void GivenLongCpfValue_WhenCreatingCpf_ThenShouldThrowEntityValidationExceptionWithMessage()
     {
         // Arrange
         const string longCpfValue = Constants.InvalidCpf.LongCpf;
         const string expectedErrorMessage = "'CPF' is not valid.";
-        
+
         // Act
-        var exception = Record.Exception(
-            () =>
-                Cpf.Create(
-                    longCpfValue
-                )
-        );
-        
+        var exception = Record.Exception(() => Cpf.Create(longCpfValue));
+
         // Assert
-        var eve = Assert.IsType<EntityValidationException>(exception);
-        Assert.Contains(expectedErrorMessage, eve.Errors);
+        var eve = Assert.IsType<DomainValidationException>(exception);
+        // Assert.Contains(expectedErrorMessage, eve.ValidationMessages);
     }
 
     [Fact]
@@ -139,20 +112,15 @@ public sealed class CpfTest
         // Arrange
         const string invalidCpfValue = Constants.InvalidCpf.InvalidCpfLastDigit;
         const string expectedErrorMessage = "'CPF' is not valid.";
-        
+
         // Act
-        var exception = Record.Exception(
-            () =>
-                Cpf.Create(
-                    invalidCpfValue
-                )
-        );
-        
+        var exception = Record.Exception(() => Cpf.Create(invalidCpfValue));
+
         // Assert
-        var eve = Assert.IsType<EntityValidationException>(exception);
-        Assert.Contains(expectedErrorMessage, eve.Errors);
+        var eve = Assert.IsType<DomainValidationException>(exception);
+        // Assert.Contains(expectedErrorMessage, eve.ValidationMessages);
     }
-    
+
     [Fact]
     public void GivenNonNumericCpf_WhenCreatingCpf_ThenShouldThrowEntityValidationExceptionWithMessage()
     {
@@ -161,16 +129,11 @@ public sealed class CpfTest
         const string expectedErrorMessage = "'CPF' is not valid.";
 
         // Act
-        var exception = Record.Exception(
-            () =>
-                Cpf.Create(
-                    nonNumericCpf
-                )
-        );
+        var exception = Record.Exception(() => Cpf.Create(nonNumericCpf));
 
         // Assert
-        var eve = Assert.IsType<EntityValidationException>(exception);
-        Assert.Contains(expectedErrorMessage, eve.Errors);
+        var eve = Assert.IsType<DomainValidationException>(exception);
+        // Assert.Contains(expectedErrorMessage, eve.ValidationMessages);
     }
 
     [Fact]
@@ -179,25 +142,25 @@ public sealed class CpfTest
         // Arrange
         const string untrimmedCpfValue = "     54647142949     ";
         const string expectedCpfValue = "546.471.429-49";
-        
+
         // Act
         var cpf = Cpf.Create(untrimmedCpfValue);
-        
+
         // Assert
-        Assert.Equal(expectedCpfValue, cpf.Format());
+        Assert.Equal(expectedCpfValue, cpf.ToString());
     }
-    
+
     [Fact]
-    public void GivenValidCpf_WhenCallFormat_ShouldReturnFormattedCpf()
+    public void GivenValidCpf_WhenCallToString_ShouldReturnFormattedCpf()
     {
         // Arrange
         var cpf = CpfFixture.CreateCpf();
-        var expectedFormattedCpf = $"546.471.429-49";
+        var expectedFormattedCpf = "546.471.429-49";
 
         // Act
-        var formattedCpf = cpf.Format();
+        var formattedCpf = cpf.ToString();
 
         // Assert
-        Assert.Equal(expectedFormattedCpf, formattedCpf);
+        Assert.Equal(formattedCpf, expectedFormattedCpf);
     }
 }

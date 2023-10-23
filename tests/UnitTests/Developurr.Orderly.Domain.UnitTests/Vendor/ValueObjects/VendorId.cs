@@ -13,17 +13,4 @@ public sealed class VendorIdTest
         // Assert
         Assert.NotNull(vendorId);
     }
-    
-    [Fact]
-    public void GivenNothing_WhenCallingFormat_ThenShouldNotBeEmpty()
-    {
-        // Arrange
-        var vendorId = VendorId.Generate();
-        
-        // Act
-        var id = vendorId.Format();
-        
-        // Assert
-        Assert.NotEmpty(id);
-    }
 }

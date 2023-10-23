@@ -18,25 +18,25 @@ public static class OpenOrderFixture
         var orderRepositoryMock = new Mock<IOrderRepository>();
         var vendorRepositoryMock = new Mock<IVendorRepository>();
         var customerRepositoryMock = new Mock<ICustomerRepository>();
-        
-        customerRepositoryMock.Setup(x => x.GetByIdAsync(
-            It.IsAny<string>(), It.IsAny<CancellationToken>())
-        ).ReturnsAsync(CustomerFixture.CreateCustomer());
 
-        
-        vendorRepositoryMock.Setup(x => x.GetByIdAsync(
-            It.IsAny<string>(), It.IsAny<CancellationToken>())
-        ).ReturnsAsync(VendorFixture.CreateVendor());
-        
-        return new OpenOrderUseCase(unitOfWorkMock.Object, orderRepositoryMock.Object, customerRepositoryMock.Object, vendorRepositoryMock.Object);
-    }
-    
-    public static OpenOrderInput OpenInput()
-    {
-        return new OpenOrderInput(
-            Constants.CustomerId.Id.Format(),
-            Constants.VendorId.Id.Format()
+        customerRepositoryMock
+            .Setup(x => x.GetByIdAsync(It.IsAny<string>(), It.IsAny<CancellationToken>()))
+            .ReturnsAsync(CustomerFixture.CreateCustomer());
+
+        vendorRepositoryMock
+            .Setup(x => x.GetByIdAsync(It.IsAny<string>(), It.IsAny<CancellationToken>()))
+            .ReturnsAsync(VendorFixture.CreateVendor());
+
+        return new OpenOrderUseCase(
+            unitOfWorkMock.Object,
+            orderRepositoryMock.Object,
+            customerRepositoryMock.Object,
+            vendorRepositoryMock.Object
         );
     }
-    
+
+    public static OpenOrderInput OpenInput()
+    {
+        return new OpenOrderInput(Constants.CustomerId.Id.ToString(), Constants.VendorId.Id.ToString());
+    }
 }

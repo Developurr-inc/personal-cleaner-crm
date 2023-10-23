@@ -2,16 +2,12 @@ using Developurr.Orderly.Domain.Vendor.Repositories;
 
 namespace Developurr.Orderly.Application.Command.Vendor.CreateVendor;
 
-public sealed class CreateVendorUseCase
-    : IUseCase<CreateVendorInput, CreateVendorOutput>
+public sealed class CreateVendorUseCase : IUseCase<CreateVendorInput, CreateVendorOutput>
 {
     private readonly IUnitOfWork _unitOfWork;
     private readonly IVendorRepository _vendorRepository;
 
-    public CreateVendorUseCase(
-        IUnitOfWork unitOfWork,
-        IVendorRepository vendorRepository
-    )
+    public CreateVendorUseCase(IUnitOfWork unitOfWork, IVendorRepository vendorRepository)
     {
         _unitOfWork = unitOfWork;
         _vendorRepository = vendorRepository;
@@ -41,6 +37,6 @@ public sealed class CreateVendorUseCase
         await _vendorRepository.InsertAsync(vendor, cancellationToken);
         await _unitOfWork.CommitAsync(cancellationToken);
 
-        return new CreateVendorOutput(vendor.Id.Format());
+        return new CreateVendorOutput(vendor.Id.ToString());
     }
 }

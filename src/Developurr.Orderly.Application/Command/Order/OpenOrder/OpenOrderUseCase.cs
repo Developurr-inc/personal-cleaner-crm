@@ -1,3 +1,4 @@
+using Developurr.Orderly.Application.Exceptions;
 using Developurr.Orderly.Domain.Customer.Repositories;
 using Developurr.Orderly.Domain.Order.Repositories;
 using Developurr.Orderly.Domain.Vendor.Repositories;
@@ -16,7 +17,6 @@ public sealed class OpenOrderUseCase : ICommand<OpenOrderInput, OpenOrderOutput>
         IOrderRepository orderRepository,
         ICustomerRepository customerRepository,
         IVendorRepository vendorRepository
-        
     )
     {
         _unitOfWork = unitOfWork;
@@ -30,29 +30,20 @@ public sealed class OpenOrderUseCase : ICommand<OpenOrderInput, OpenOrderOutput>
         CancellationToken cancellationToken
     )
     {
-        var customer = await _customerRepository.GetByIdAsync(
-            input.CustomerId,
-            cancellationToken
-        );
-        
-        var vendor = await _vendorRepository.GetByIdAsync(
-            input.VendorId,
-            cancellationToken
-        );
+        var customer = await _customerRepository.GetByIdAsync(input.CustomerId, cancellationToken);
+        var vendor = await _vendorRepository.GetByIdAsync(input.VendorId, cancellationToken);
 
-        if (customer is null || vendor is null)
-        {
-            throw new Exception();
-        }
-        
-        var order = Domain.Order.Order.Open(
-            customer.Id,
-            vendor.Id
-        );
+        if (customer is null)
+            throw new IdNotFoundException(nameof(input.CustomerId));
+
+        if (vendor is null)
+            throw new IdNotFoundException(nameof(input.VendorId));
+
+        var order = Domain.Order.Order.Open(customer.Id, vendor.Id);
 
         await _orderRepository.InsertAsync(order, cancellationToken);
         await _unitOfWork.CommitAsync(cancellationToken);
 
-        return new OpenOrderOutput(order.Id.Format());
+        return new OpenOrderOutput(order.Id.ToString());
     }
 }

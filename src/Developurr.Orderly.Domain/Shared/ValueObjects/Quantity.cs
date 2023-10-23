@@ -20,12 +20,12 @@ public sealed class Quantity : ValueObject
 
         return new Quantity(quantity);
     }
-    
+
     public static Quantity operator +(Quantity left, Quantity right)
     {
         return new Quantity(left.Value + right.Value);
     }
-    
+
     public static Quantity operator -(Quantity left, Quantity right)
     {
         return new Quantity(left.Value - right.Value);
