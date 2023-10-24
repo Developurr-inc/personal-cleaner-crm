@@ -27,7 +27,7 @@ public class GetShippingUseCase : IUseCase<GetShippingInput, GetShippingOutput>
             shipping.RazaoSocial.ToString(),
             shipping.InscricaoSocial.ToString(),
             shipping.NomeFantasia.ToString(),
-            shipping.Segment.ToString()
+            shipping.Segmento.ToString()
         );
     }
 }
