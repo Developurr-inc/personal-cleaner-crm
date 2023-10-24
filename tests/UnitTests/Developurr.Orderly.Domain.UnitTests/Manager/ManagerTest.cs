@@ -1,6 +1,9 @@
+using System.Drawing;
 using Developurr.Orderly.Domain.Exceptions;
+using Developurr.Orderly.Domain.UnitTests.TestUtils.Address;
 using Developurr.Orderly.Domain.UnitTests.TestUtils.Cpf;
 using Developurr.Orderly.Domain.UnitTests.TestUtils.Email;
+using Developurr.Orderly.Domain.UnitTests.TestUtils.Manager;
 using Developurr.Orderly.Domain.UnitTests.TestUtils.NonEmptyText;
 using Developurr.Orderly.Domain.UnitTests.TestUtils.OptionalText;
 using Developurr.Orderly.Domain.UnitTests.TestUtils.Phone;
@@ -342,5 +345,57 @@ public sealed class ManagerTest
         // Assert
         var domainValidationException = Assert.IsType<DomainValidationException>(exception);
         // Assert.Contains(expectedMessage, domainValidationException.Message);
+    }
+    
+    [Fact]
+    public void GivenValidInput_WhenCreatingManager_ThenShouldHaveActiveStatusTrue()
+    {
+        // Arrange
+        var cpf = CpfFixture.CreateCpf();
+        var street = NonEmptyTextFixture.CreateNonEmptyText();
+        const int number = 110;
+        var complement = OptionalTextFixture.CreateOptionalText();
+        const string zipCode = "12345-678"; // ZipCodeFixture.CreateZipCode();
+        var neighborhood = NonEmptyTextFixture.CreateNonEmptyText();
+        var city = NonEmptyTextFixture.CreateNonEmptyText();
+        var state = NonEmptyTextFixture.CreateNonEmptyText();
+        var country = NonEmptyTextFixture.CreateNonEmptyText();
+        var name = NonEmptyTextFixture.CreateNonEmptyText();
+        var email = EmailFixture.CreateEmail();
+        var landline = PhoneFixture.CreatePhone();
+        var mobile = PhoneFixture.CreatePhone();
+
+        // Act
+        var manager = Domain.Manager.Manager.Create(
+            cpf.ToString(),
+            street.ToString(),
+            number,
+            complement.ToString(),
+            zipCode.ToString(),
+            neighborhood.ToString(),
+            city.ToString(),
+            state.ToString(),
+            country.ToString(),
+            name.ToString(),
+            email.ToString(),
+            landline.ToString(),
+            mobile.ToString()
+        );
+
+        // Assert
+        Assert.True(manager.Active.IsActive);
+    }
+    
+    [Fact]
+    public void GivenValidManager_WhenDeactivatingManager_ThenShouldBeInactive()
+    {
+        // Arrange
+        var manager = ManagerFixture.CreateManager();
+
+        // Act
+        manager.Deactivate();
+
+        // Assert
+        Assert.False(manager.Active.IsActive);
     }
 }

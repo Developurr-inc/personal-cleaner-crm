@@ -61,7 +61,7 @@ public sealed class ShippingTest
         );
 
         // Assert
-        Assert.Equal(expectedCorporateName, shipping.CorporateName);
+        Assert.Equal(expectedCorporateName, shipping.RazaoSocial);
     }
 
     [Fact]
@@ -80,7 +80,7 @@ public sealed class ShippingTest
         );
 
         // Assert
-        Assert.Equal(expectedTaxId, shipping.TaxId);
+        Assert.Equal(expectedTaxId, shipping.InscricaoSocial);
     }
 
     [Fact]
@@ -99,7 +99,7 @@ public sealed class ShippingTest
         );
 
         // Assert
-        Assert.Equal(expectedTradeName, shipping.TradeName);
+        Assert.Equal(expectedTradeName, shipping.NomeFantasia);
     }
 
     [Fact]
@@ -118,7 +118,7 @@ public sealed class ShippingTest
         );
 
         // Assert
-        Assert.Equal(expectedSegment, shipping.Segment);
+        Assert.Equal(expectedSegment, shipping.Segmento);
     }
 
     [Theory]
