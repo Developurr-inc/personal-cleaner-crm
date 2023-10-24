@@ -5,7 +5,7 @@ using Developurr.Orderly.Domain.UnitTests.TestUtils.OptionalText;
 
 namespace Developurr.Orderly.Domain.UnitTests.Category;
 
-public class CategoryTest
+public sealed class CategoryTest
 {
     [Fact]
     public void GivenValidInput_WhenCreatingCategory_ThenShouldInstantiateCategory()
@@ -81,9 +81,9 @@ public class CategoryTest
         );
 
         // Assert
-        Assert.IsType<DomainValidationException>(exception);
+        Assert.IsType<ValidationException>(exception);
     }
-    
+
     [Fact]
     public void GivenValidInput_WhenCreatingCategory_ThenShouldHaveActiveStatusTrue()
     {
@@ -92,15 +92,12 @@ public class CategoryTest
         var description = OptionalTextFixture.CreateOptionalText();
 
         // Act
-        var category = Domain.Category.Category.Create(
-            name.ToString(),
-            description.ToString()
-        );
+        var category = Domain.Category.Category.Create(name.ToString(), description.ToString());
 
         // Assert
         Assert.True(category.Active.IsActive);
     }
-    
+
     [Fact]
     public void GivenValidCategory_WhenDeactivatingCategory_ThenShouldBeInactive()
     {
