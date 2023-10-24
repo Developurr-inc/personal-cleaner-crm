@@ -1,3 +1,4 @@
+using Developurr.Orderly.Domain.Exceptions;
 using Developurr.Orderly.Domain.SeedWork;
 
 namespace Developurr.Orderly.Domain.Shared.ValueObjects;
@@ -26,7 +27,7 @@ public sealed class Price : ValueObject
     {
         if (decimal.IsNegative(price))
         {
-            throw new ArgumentException("Decimal cannot be negative.", nameof(price));
+            throw new DomainValidationException("There are validation errors.");
         }
 
         return new Price(price);
@@ -34,21 +35,21 @@ public sealed class Price : ValueObject
 
     public static Price operator +(Price left, Price right)
     {
-        return new Price(left.Value + right.Value);
+        return Create(left.Value + right.Value);
     }
 
     public static Price operator -(Price left, Price right)
     {
-        return new Price(left.Value - right.Value);
+        return Create(left.Value - right.Value);
     }
 
     public static Price operator *(Price price, decimal multiplier)
     {
-        return new Price(price.Value * multiplier);
+        return Create(price.Value * multiplier);
     }
 
     public static Price operator /(Price price, decimal divisor)
     {
-        return new Price(price.Value / divisor);
+        return Create(price.Value / divisor);
     }
 }

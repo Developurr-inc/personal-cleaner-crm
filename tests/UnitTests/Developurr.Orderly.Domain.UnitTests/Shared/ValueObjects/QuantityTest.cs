@@ -1,32 +1,118 @@
+using Developurr.Orderly.Domain.Exceptions;
 using Developurr.Orderly.Domain.Shared.ValueObjects;
-using Developurr.Orderly.Domain.UnitTests.TestUtils.Constants;
 
 namespace Developurr.Orderly.Domain.UnitTests.Shared.ValueObjects;
 
 public sealed class QuantityTest
 {
-    [Fact]
-    public void GivenValidInput_WhenCreatingQuantity_ThenShouldInstantiateQuantity()
+    [Theory]
+    [InlineData(0)]
+    [InlineData(1)]
+    [InlineData(2)]
+    public void GivenValidInput_WhenCreatingQuantity_ThenShouldInstantiateQuantity(
+        int quantityValue
+    )
     {
         // Act
-        var quantity = Quantity.Create(Constants.Quantity.Value);
+        var quantity = Quantity.Create(quantityValue);
 
         // Assert
         Assert.NotNull(quantity);
     }
 
     [Fact]
-    public void GivenNegativeQuantityValue_WhenCreatingQuantity_ThenShouldThrowEntityValidationExceptionWithMessage()
+    public void GivenValidInput_WhenCreatingQuantity_ThenShouldHaveValidQuantity()
     {
         // Arrange
-        const int negativeQuantityValue = Constants.InvalidQuantity.NegativeQuantity;
-        // const string expectedErrorMessage = "'Quantity' should be an int between 0 and 2147483646.";
+        const int quantityValue = 118;
+
+        // Act
+        var quantity = Quantity.Create(quantityValue);
+
+        // Assert
+        Assert.Equal(quantityValue, quantity.Value);
+    }
+
+    [Theory]
+    [InlineData(-1)]
+    [InlineData(-2)]
+    [InlineData(-3)]
+    public void GivenNegativeQuantityValue_WhenCreatingQuantity_ThenShouldThrowEntityValidationExceptionWithMessage(
+        int negativeQuantityValue
+    )
+    {
+        // Arrange
+        const string expectedMessage =
+            "There are validation errors. See ValidationMessages property for more details.";
 
         // Act
         var exception = Record.Exception(() => Quantity.Create(negativeQuantityValue));
 
         // Assert
-        var eve = Assert.IsType<ArgumentException>(exception);
-        // Assert.Contains(expectedErrorMessage, eve.Errors);
+        var domainValidationException = Assert.IsType<DomainValidationException>(exception);
+        Assert.Contains(expectedMessage, domainValidationException.Message);
+    }
+
+    [Theory]
+    [InlineData(3, 2, 5)]
+    [InlineData(4, 3, 7)]
+    public void GivenValidInput_WhenAddingQuantity_ThenShouldSumQuantities(
+        int quantityValue1,
+        int quantityValue2,
+        int expectedQuantityValue
+    )
+    {
+        // Arrange
+        var quantity1 = Quantity.Create(quantityValue1);
+        var quantity2 = Quantity.Create(quantityValue2);
+
+        // Act
+        var quantity = quantity1 + quantity2;
+
+        // Assert
+        Assert.Equal(expectedQuantityValue, quantity.Value);
+    }
+
+    [Theory]
+    [InlineData(10, 2, 8)]
+    [InlineData(38, 12, 26)]
+    public void GivenValidInput_WhenSubtractingQuantity_ThenShouldSubtractQuantities(
+        int quantityValue1,
+        int quantityValue2,
+        int expectedQuantityValue
+    )
+    {
+        // Arrange
+        var quantity1 = Quantity.Create(quantityValue1);
+        var quantity2 = Quantity.Create(quantityValue2);
+
+        // Act
+        var quantity = quantity1 - quantity2;
+
+        // Assert
+        Assert.Equal(expectedQuantityValue, quantity.Value);
+    }
+
+    [Theory]
+    [InlineData(10, 15)]
+    [InlineData(20, 32)]
+    [InlineData(13, 22)]
+    public void GivenValidInput_WhenSubtractResultsNegativeQuantity_ThenShouldThrowEntityValidationExceptionWithMessage(
+        int quantityValue1,
+        int quantityValue2
+    )
+    {
+        // Arrange
+        var quantity1 = Quantity.Create(quantityValue1);
+        var quantity2 = Quantity.Create(quantityValue2);
+        const string expectedMessage =
+            "There are validation errors. See ValidationMessages property for more details.";
+
+        // Act
+        var exception = Record.Exception(() => quantity1 - quantity2);
+
+        // Assert
+        var domainValidationException = Assert.IsType<DomainValidationException>(exception);
+        Assert.Contains(expectedMessage, domainValidationException.Message);
     }
 }

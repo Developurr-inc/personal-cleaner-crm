@@ -18,6 +18,22 @@ public sealed class OptionalTextTest
         Assert.NotNull(optionalText);
     }
 
+    [Fact]
+    public void GivenInvalidInput_WhenCreatingNonEmptyText_ThenShouldThrowEntityValidationExceptionWithMessage()
+    {
+        // Assert
+        const string expectedErrorMessage =
+            "There are validation errors. See ValidationMessages property for more details.";
+
+        // Act
+        var exception = Record.Exception(
+            () => Domain.Shared.ValueObjects.NonEmptyText.Create(null!)
+        );
+        // Assert
+        var domainValidationException = Assert.IsType<DomainValidationException>(exception);
+        Assert.Contains(expectedErrorMessage, domainValidationException.Message);
+    }
+
     [Theory]
     [InlineData("", "")]
     [InlineData(" ", "")]

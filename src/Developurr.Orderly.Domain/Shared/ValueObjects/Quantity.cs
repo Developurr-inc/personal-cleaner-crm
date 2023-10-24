@@ -1,3 +1,4 @@
+using Developurr.Orderly.Domain.Exceptions;
 using Developurr.Orderly.Domain.SeedWork;
 
 namespace Developurr.Orderly.Domain.Shared.ValueObjects;
@@ -15,7 +16,7 @@ public sealed class Quantity : ValueObject
     {
         if (int.IsNegative(quantity))
         {
-            throw new ArgumentException("Value cannot be negative.", nameof(quantity));
+            throw new DomainValidationException(nameof(quantity));
         }
 
         return new Quantity(quantity);
@@ -23,12 +24,12 @@ public sealed class Quantity : ValueObject
 
     public static Quantity operator +(Quantity left, Quantity right)
     {
-        return new Quantity(left.Value + right.Value);
+        return Create(left.Value + right.Value);
     }
 
     public static Quantity operator -(Quantity left, Quantity right)
     {
-        return new Quantity(left.Value - right.Value);
+        return Create(left.Value - right.Value);
     }
 
     public override string ToString()
