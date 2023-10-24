@@ -10,10 +10,10 @@ public sealed class Customer : Entity<CustomerId>, IAggregateRoot
     // private readonly List<OrderId> _orders;
     public VendorId Vendor { get; private set; }
     public Cnpj Cnpj { get; }
-    public NonEmptyText CorporateName { get; private set; }
-    public NonEmptyText TaxId { get; private set; }
-    public NonEmptyText TradeName { get; private set; }
-    public NonEmptyText Segment { get; private set; }
+    public NonEmptyText RazaoSocial { get; private set; }
+    public NonEmptyText InscricaoSocial { get; private set; }
+    public NonEmptyText NomeFantasia { get; private set; }
+    public NonEmptyText Segmento { get; private set; }
     public Email? BillingEmail { get; private set; }
     public Email NfeEmail { get; private set; }
     public Phone? Landline { get; private set; }
@@ -25,10 +25,10 @@ public sealed class Customer : Entity<CustomerId>, IAggregateRoot
         CustomerId customerId,
         VendorId vendorId,
         Cnpj cnpj,
-        NonEmptyText corporateName,
-        NonEmptyText taxId,
-        NonEmptyText tradeName,
-        NonEmptyText segment,
+        NonEmptyText razaoSocial,
+        NonEmptyText inscricaoSocial,
+        NonEmptyText nomeFantasia,
+        NonEmptyText segmento,
         Email? billingEmail,
         Email nfeEmail,
         Phone? landline,
@@ -41,10 +41,10 @@ public sealed class Customer : Entity<CustomerId>, IAggregateRoot
         // _orders = new List<OrderId>();
         Vendor = vendorId;
         Cnpj = cnpj;
-        CorporateName = corporateName;
-        TaxId = taxId;
-        TradeName = tradeName;
-        Segment = segment;
+        RazaoSocial = razaoSocial;
+        InscricaoSocial = inscricaoSocial;
+        NomeFantasia = nomeFantasia;
+        Segmento = segmento;
         BillingEmail = billingEmail;
         NfeEmail = nfeEmail;
         Landline = landline;
@@ -62,10 +62,10 @@ public sealed class Customer : Entity<CustomerId>, IAggregateRoot
     public static Customer Create(
         VendorId vendorId,
         string cnpj,
-        string corporateName,
-        string taxId,
-        string tradeName,
-        string segment,
+        string razaoSocial,
+        string inscricaoSocial,
+        string nomeFantasia,
+        string segmento,
         string? billingEmail,
         string nfeEmail,
         string? landline,
@@ -75,10 +75,10 @@ public sealed class Customer : Entity<CustomerId>, IAggregateRoot
     {
         var customerId = CustomerId.Generate();
         var cnpjObj = Cnpj.Create(cnpj);
-        var corporateNameObj = NonEmptyText.Create(corporateName);
-        var taxIdObj = NonEmptyText.Create(taxId);
-        var tradeNameObj = NonEmptyText.Create(tradeName);
-        var segmentObj = NonEmptyText.Create(segment);
+        var razaoSocialObj = NonEmptyText.Create(razaoSocial);
+        var inscricaoSocialObj = NonEmptyText.Create(inscricaoSocial);
+        var nomeFantasiaObj = NonEmptyText.Create(nomeFantasia);
+        var segmentoObj = NonEmptyText.Create(segmento);
         var billingEmailObj = billingEmail == null ? null : Email.Create(billingEmail);
         var nfeEmailObj = Email.Create(nfeEmail);
         var landlineObj = landline == null ? null : Phone.Create(landline);
@@ -90,10 +90,10 @@ public sealed class Customer : Entity<CustomerId>, IAggregateRoot
             customerId,
             vendorId,
             cnpjObj,
-            corporateNameObj,
-            taxIdObj,
-            tradeNameObj,
-            segmentObj,
+            razaoSocialObj,
+            inscricaoSocialObj,
+            nomeFantasiaObj,
+            segmentoObj,
             billingEmailObj,
             nfeEmailObj,
             landlineObj,
