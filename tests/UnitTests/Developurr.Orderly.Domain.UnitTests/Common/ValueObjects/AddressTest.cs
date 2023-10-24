@@ -2,6 +2,9 @@ using Developurr.Orderly.Domain.Exceptions;
 using Developurr.Orderly.Domain.Shared.ValueObjects;
 using Developurr.Orderly.Domain.UnitTests.TestUtils.Address;
 using Developurr.Orderly.Domain.UnitTests.TestUtils.Constants;
+using Developurr.Orderly.Domain.UnitTests.TestUtils.NonEmptyText;
+using Developurr.Orderly.Domain.UnitTests.TestUtils.OptionalText;
+using Developurr.Orderly.Domain.UnitTests.TestUtils.ZipCode;
 
 namespace Developurr.Orderly.Domain.UnitTests.Common.ValueObjects;
 
@@ -10,16 +13,26 @@ public sealed class AddressTest
     [Fact]
     public void GivenValidInput_WhenCreatingAddress_ThenShouldInstantiateAddress()
     {
+        // Arrange
+        var street = NonEmptyTextFixture.CreateNonEmptyText();
+        const int number = 110;
+        var complement = OptionalTextFixture.CreateOptionalText();
+        var zipCode = ZipCodeFixture.CreateZipCode();
+        var neighborhood = NonEmptyTextFixture.CreateNonEmptyText();
+        var city = NonEmptyTextFixture.CreateNonEmptyText();
+        var state = NonEmptyTextFixture.CreateNonEmptyText();
+        var country = NonEmptyTextFixture.CreateNonEmptyText();
+        
         // Act
         var address = Address.Create(
-            Constants.Address.Street,
-            Constants.Address.Number,
-            Constants.Address.Complement,
-            Constants.Address.ZipCode,
-            Constants.Address.Neighborhood,
-            Constants.Address.City,
-            Constants.Address.State,
-            Constants.Address.Country
+            street.ToString(),
+            number,
+            complement.ToString(),
+            zipCode.ToString(),
+            neighborhood.ToString(),
+            city.ToString(),
+            state.ToString(),
+            country.ToString()
         );
 
         // Assert
@@ -31,17 +44,24 @@ public sealed class AddressTest
     {
         // Arrange
         const string expectedStreet = "Rua daquiasdasda";
+        const int number = 110;
+        var complement = OptionalTextFixture.CreateOptionalText();
+        var zipCode = ZipCodeFixture.CreateZipCode();
+        var neighborhood = NonEmptyTextFixture.CreateNonEmptyText();
+        var city = NonEmptyTextFixture.CreateNonEmptyText();
+        var state = NonEmptyTextFixture.CreateNonEmptyText();
+        var country = NonEmptyTextFixture.CreateNonEmptyText();
 
         // Act
         var address = Address.Create(
             expectedStreet,
-            Constants.Address.Number,
-            Constants.Address.Complement,
-            Constants.Address.ZipCode,
-            Constants.Address.Neighborhood,
-            Constants.Address.City,
-            Constants.Address.State,
-            Constants.Address.Country
+            number,
+            complement.ToString(),
+            zipCode.ToString(),
+            neighborhood.ToString(),
+            city.ToString(),
+            state.ToString(),
+            country.ToString()
         );
 
         // Assert
@@ -52,18 +72,25 @@ public sealed class AddressTest
     public void GivenValidNumber_WhenCreatingAddress_ThenShouldHaveValidNumber()
     {
         // Arrange
+        var street = NonEmptyTextFixture.CreateNonEmptyText();
         const int expectedNumber = 123;
+        var complement = OptionalTextFixture.CreateOptionalText();
+        var zipCode = ZipCodeFixture.CreateZipCode();
+        var neighborhood = NonEmptyTextFixture.CreateNonEmptyText();
+        var city = NonEmptyTextFixture.CreateNonEmptyText();
+        var state = NonEmptyTextFixture.CreateNonEmptyText();
+        var country = NonEmptyTextFixture.CreateNonEmptyText();
 
         // Act
         var address = Address.Create(
-            Constants.Address.Street,
+            street.ToString(),
             expectedNumber,
-            Constants.Address.Complement,
-            Constants.Address.ZipCode,
-            Constants.Address.Neighborhood,
-            Constants.Address.City,
-            Constants.Address.State,
-            Constants.Address.Country
+            complement.ToString(),
+            zipCode.ToString(),
+            neighborhood.ToString(),
+            city.ToString(),
+            state.ToString(),
+            country.ToString()
         );
 
         // Assert
@@ -74,18 +101,25 @@ public sealed class AddressTest
     public void GivenValidComplement_WhenCreatingAddress_ThenShouldHaveValidComplement()
     {
         // Arrange
+        var street = NonEmptyTextFixture.CreateNonEmptyText();
+        const int number = 110;
         const string expectedComplement = "Complement";
+        var zipCode = ZipCodeFixture.CreateZipCode();
+        var neighborhood = NonEmptyTextFixture.CreateNonEmptyText();
+        var city = NonEmptyTextFixture.CreateNonEmptyText();
+        var state = NonEmptyTextFixture.CreateNonEmptyText();
+        var country = NonEmptyTextFixture.CreateNonEmptyText();
 
         // Act
         var address = Address.Create(
-            Constants.Address.Street,
-            Constants.Address.Number,
+            street.ToString(),
+            number,
             expectedComplement,
-            Constants.Address.ZipCode,
-            Constants.Address.Neighborhood,
-            Constants.Address.City,
-            Constants.Address.State,
-            Constants.Address.Country
+            zipCode.ToString(),
+            neighborhood.ToString(),
+            city.ToString(),
+            state.ToString(),
+            country.ToString()
         );
 
         // Assert
@@ -96,18 +130,25 @@ public sealed class AddressTest
     public void GivenValidZipCode_WhenCreatingAddress_ThenShouldHaveValidZipCode()
     {
         // Arrange
+        var street = NonEmptyTextFixture.CreateNonEmptyText();
+        const int number = 110;
+        var complement = OptionalTextFixture.CreateOptionalText();
         const string expectedZipCode = "22790147";
+        var neighborhood = NonEmptyTextFixture.CreateNonEmptyText();
+        var city = NonEmptyTextFixture.CreateNonEmptyText();
+        var state = NonEmptyTextFixture.CreateNonEmptyText();
+        var country = NonEmptyTextFixture.CreateNonEmptyText();
 
         // Act
         var address = Address.Create(
-            Constants.Address.Street,
-            Constants.Address.Number,
-            Constants.Address.Complement,
+            street.ToString(),
+            number,
+            complement.ToString(),
             expectedZipCode,
-            Constants.Address.Neighborhood,
-            Constants.Address.City,
-            Constants.Address.State,
-            Constants.Address.Country
+            neighborhood.ToString(),
+            city.ToString(),
+            state.ToString(),
+            country.ToString()
         );
 
         // Assert
@@ -118,18 +159,25 @@ public sealed class AddressTest
     public void GivenValidNeighborhood_WhenCreatingAddress_ThenShouldHaveValidNeighborhood()
     {
         // Arrange
+        var street = NonEmptyTextFixture.CreateNonEmptyText();
+        const int number = 110;
+        var complement = OptionalTextFixture.CreateOptionalText();
+        var zipCode = ZipCodeFixture.CreateZipCode();
         const string expectedNeighborhood = "Neighborhood";
+        var city = NonEmptyTextFixture.CreateNonEmptyText();
+        var state = NonEmptyTextFixture.CreateNonEmptyText();
+        var country = NonEmptyTextFixture.CreateNonEmptyText();
 
         // Act
         var address = Address.Create(
-            Constants.Address.Street,
-            Constants.Address.Number,
-            Constants.Address.Complement,
-            Constants.Address.ZipCode,
+            street.ToString(),
+            number,
+            complement.ToString(),
+            zipCode.ToString(),
             expectedNeighborhood,
-            Constants.Address.City,
-            Constants.Address.State,
-            Constants.Address.Country
+            city.ToString(),
+            state.ToString(),
+            country.ToString()
         );
 
         // Assert
@@ -140,18 +188,25 @@ public sealed class AddressTest
     public void GivenValidCity_WhenCreatingAddress_ThenShouldHaveValidCity()
     {
         // Arrange
+        var street = NonEmptyTextFixture.CreateNonEmptyText();
+        const int number = 110;
+        var complement = OptionalTextFixture.CreateOptionalText();
+        var zipCode = ZipCodeFixture.CreateZipCode();
+        var neighborhood = NonEmptyTextFixture.CreateNonEmptyText();
         const string expectedCity = "City";
+        var state = NonEmptyTextFixture.CreateNonEmptyText();
+        var country = NonEmptyTextFixture.CreateNonEmptyText();
 
         // Act
         var address = Address.Create(
-            Constants.Address.Street,
-            Constants.Address.Number,
-            Constants.Address.Complement,
-            Constants.Address.ZipCode,
-            Constants.Address.Neighborhood,
+            street.ToString(),
+            number,
+            complement.ToString(),
+            zipCode.ToString(),
+            neighborhood.ToString(),
             expectedCity,
-            Constants.Address.State,
-            Constants.Address.Country
+            state.ToString(),
+            country.ToString()
         );
 
         // Assert
@@ -162,18 +217,25 @@ public sealed class AddressTest
     public void GivenValidState_WhenCreatingAddress_ThenShouldHaveValidState()
     {
         // Arrange
+        var street = NonEmptyTextFixture.CreateNonEmptyText();
+        const int number = 110;
+        var complement = OptionalTextFixture.CreateOptionalText();
+        var zipCode = ZipCodeFixture.CreateZipCode();
+        var neighborhood = NonEmptyTextFixture.CreateNonEmptyText();
+        var city = NonEmptyTextFixture.CreateNonEmptyText();
         const string expectedState = "State";
+        var country = NonEmptyTextFixture.CreateNonEmptyText();
 
         // Act
         var address = Address.Create(
-            Constants.Address.Street,
-            Constants.Address.Number,
-            Constants.Address.Complement,
-            Constants.Address.ZipCode,
-            Constants.Address.Neighborhood,
-            Constants.Address.City,
+            street.ToString(),
+            number,
+            complement.ToString(),
+            zipCode.ToString(),
+            neighborhood.ToString(),
+            city.ToString(),
             expectedState,
-            Constants.Address.Country
+            country.ToString()
         );
 
         // Assert
@@ -184,17 +246,24 @@ public sealed class AddressTest
     public void GivenValidCountry_WhenCreatingAddress_ThenShouldHaveValidCountry()
     {
         // Arrange
+        var street = NonEmptyTextFixture.CreateNonEmptyText();
+        const int number = 110;
+        var complement = OptionalTextFixture.CreateOptionalText();
+        var zipCode = ZipCodeFixture.CreateZipCode();
+        var neighborhood = NonEmptyTextFixture.CreateNonEmptyText();
+        var city = NonEmptyTextFixture.CreateNonEmptyText();
+        var state = NonEmptyTextFixture.CreateNonEmptyText();
         const string expectedCountry = "Country";
 
         // Act
         var address = Address.Create(
-            Constants.Address.Street,
-            Constants.Address.Number,
-            Constants.Address.Complement,
-            Constants.Address.ZipCode,
-            Constants.Address.Neighborhood,
-            Constants.Address.City,
-            Constants.Address.State,
+            street.ToString(),
+            number,
+            complement.ToString(),
+            zipCode.ToString(),
+            neighborhood.ToString(),
+            city.ToString(),
+            state.ToString(),
             expectedCountry
         );
 
@@ -259,6 +328,13 @@ public sealed class AddressTest
     {
         // Assert
         const string emptyStreet = "";
+        const int number = 110;
+        var complement = OptionalTextFixture.CreateOptionalText();
+        var zipCode = ZipCodeFixture.CreateZipCode();
+        var neighborhood = NonEmptyTextFixture.CreateNonEmptyText();
+        var city = NonEmptyTextFixture.CreateNonEmptyText();
+        var state = NonEmptyTextFixture.CreateNonEmptyText();
+        var country = NonEmptyTextFixture.CreateNonEmptyText();
         const string expectedErrorMessage = "'Street' is required.";
 
         // Act
@@ -266,13 +342,13 @@ public sealed class AddressTest
             () =>
                 Address.Create(
                     emptyStreet,
-                    Constants.Address.Number,
-                    Constants.Address.Complement,
-                    Constants.Address.ZipCode,
-                    Constants.Address.Neighborhood,
-                    Constants.Address.City,
-                    Constants.Address.State,
-                    Constants.Address.Country
+                    number,
+                    complement.ToString(),
+                    zipCode.ToString(),
+                    neighborhood.ToString(),
+                    city.ToString(),
+                    state.ToString(),
+                    country.ToString()
                 )
         );
 
@@ -286,6 +362,13 @@ public sealed class AddressTest
     {
         // Assert
         const string whitespaceStreet = "             ";
+        const int number = 110;
+        var complement = OptionalTextFixture.CreateOptionalText();
+        var zipCode = ZipCodeFixture.CreateZipCode();
+        var neighborhood = NonEmptyTextFixture.CreateNonEmptyText();
+        var city = NonEmptyTextFixture.CreateNonEmptyText();
+        var state = NonEmptyTextFixture.CreateNonEmptyText();
+        var country = NonEmptyTextFixture.CreateNonEmptyText();
         const string expectedErrorMessage = "'Street' is required.";
 
         // Act
@@ -293,13 +376,13 @@ public sealed class AddressTest
             () =>
                 Address.Create(
                     whitespaceStreet,
-                    Constants.Address.Number,
-                    Constants.Address.Complement,
-                    Constants.Address.ZipCode,
-                    Constants.Address.Neighborhood,
-                    Constants.Address.City,
-                    Constants.Address.State,
-                    Constants.Address.Country
+                    number,
+                    complement.ToString(),
+                    zipCode.ToString(),
+                    neighborhood.ToString(),
+                    city.ToString(),
+                    state.ToString(),
+                    country.ToString()
                 )
         );
 
@@ -313,6 +396,13 @@ public sealed class AddressTest
     {
         // Assert
         const string shortStreet = Constants.InvalidAddress.ShortStreet;
+        const int number = 110;
+        var complement = OptionalTextFixture.CreateOptionalText();
+        var zipCode = ZipCodeFixture.CreateZipCode();
+        var neighborhood = NonEmptyTextFixture.CreateNonEmptyText();
+        var city = NonEmptyTextFixture.CreateNonEmptyText();
+        var state = NonEmptyTextFixture.CreateNonEmptyText();
+        var country = NonEmptyTextFixture.CreateNonEmptyText();
         const string expectedErrorMessage = "'Street' should be between 3 and 255 characters.";
 
         // Act
@@ -320,13 +410,13 @@ public sealed class AddressTest
             () =>
                 Address.Create(
                     shortStreet,
-                    Constants.Address.Number,
-                    Constants.Address.Complement,
-                    Constants.Address.ZipCode,
-                    Constants.Address.Neighborhood,
-                    Constants.Address.City,
-                    Constants.Address.State,
-                    Constants.Address.Country
+                    number,
+                    complement.ToString(),
+                    zipCode.ToString(),
+                    neighborhood.ToString(),
+                    city.ToString(),
+                    state.ToString(),
+                    country.ToString()
                 )
         );
 
@@ -340,6 +430,13 @@ public sealed class AddressTest
     {
         // Assert
         const string longStreet = Constants.InvalidAddress.LongStreet;
+        const int number = 110;
+        var complement = OptionalTextFixture.CreateOptionalText();
+        var zipCode = ZipCodeFixture.CreateZipCode();
+        var neighborhood = NonEmptyTextFixture.CreateNonEmptyText();
+        var city = NonEmptyTextFixture.CreateNonEmptyText();
+        var state = NonEmptyTextFixture.CreateNonEmptyText();
+        var country = NonEmptyTextFixture.CreateNonEmptyText();
         const string expectedErrorMessage = "'Street' should be between 3 and 255 characters.";
 
         // Act
@@ -347,13 +444,13 @@ public sealed class AddressTest
             () =>
                 Address.Create(
                     longStreet,
-                    Constants.Address.Number,
-                    Constants.Address.Complement,
-                    Constants.Address.ZipCode,
-                    Constants.Address.Neighborhood,
-                    Constants.Address.City,
-                    Constants.Address.State,
-                    Constants.Address.Country
+                    number,
+                    complement.ToString(),
+                    zipCode.ToString(),
+                    neighborhood.ToString(),
+                    city.ToString(),
+                    state.ToString(),
+                    country.ToString()
                 )
         );
 
@@ -366,21 +463,28 @@ public sealed class AddressTest
     public void GivenInvalidNumber_WhenCreatingAddress_ThenShouldThrowEntityValidationExceptionWithMessage()
     {
         // Assert
+        var street = NonEmptyTextFixture.CreateNonEmptyText();
         const int invalidNumber = Constants.InvalidAddress.InvalidNumber;
+        var complement = OptionalTextFixture.CreateOptionalText();
+        var zipCode = ZipCodeFixture.CreateZipCode();
+        var neighborhood = NonEmptyTextFixture.CreateNonEmptyText();
+        var city = NonEmptyTextFixture.CreateNonEmptyText();
+        var state = NonEmptyTextFixture.CreateNonEmptyText();
+        var country = NonEmptyTextFixture.CreateNonEmptyText();
         const string expectedErrorMessage = "'Number' should be a positive int.";
 
         // Act
         var exception = Record.Exception(
             () =>
                 Address.Create(
-                    Constants.Address.Street,
+                    street.ToString(),
                     invalidNumber,
-                    Constants.Address.Complement,
-                    Constants.Address.ZipCode,
-                    Constants.Address.Neighborhood,
-                    Constants.Address.City,
-                    Constants.Address.State,
-                    Constants.Address.Country
+                    complement.ToString(),
+                    zipCode.ToString(),
+                    neighborhood.ToString(),
+                    city.ToString(),
+                    state.ToString(),
+                    country.ToString()
                 )
         );
 
@@ -393,21 +497,28 @@ public sealed class AddressTest
     public void GivenLongComplement_WhenCreatingAddress_ThenShouldThrowEntityValidationExceptionWithMessage()
     {
         // Assert
+        var street = NonEmptyTextFixture.CreateNonEmptyText();
+        const int number = 110;
         const string longComplement = Constants.InvalidAddress.LongComplement;
+        var zipCode = ZipCodeFixture.CreateZipCode();
+        var neighborhood = NonEmptyTextFixture.CreateNonEmptyText();
+        var city = NonEmptyTextFixture.CreateNonEmptyText();
+        var state = NonEmptyTextFixture.CreateNonEmptyText();
+        var country = NonEmptyTextFixture.CreateNonEmptyText();
         const string expectedErrorMessage = "'Complement' should be between 0 and 255 characters.";
 
         // Act
         var exception = Record.Exception(
             () =>
                 Address.Create(
-                    Constants.Address.Street,
-                    Constants.Address.Number,
+                    street.ToString(),
+                    number,
                     longComplement,
-                    Constants.Address.ZipCode,
-                    Constants.Address.Neighborhood,
-                    Constants.Address.City,
-                    Constants.Address.State,
-                    Constants.Address.Country
+                    zipCode.ToString(),
+                    neighborhood.ToString(),
+                    city.ToString(),
+                    state.ToString(),
+                    country.ToString()
                 )
         );
 
@@ -420,21 +531,28 @@ public sealed class AddressTest
     public void GivenEmptyZipCode_WhenCreatingAddress_ThenShouldThrowEntityValidationExceptionWithMessage()
     {
         // Assert
+        var street = NonEmptyTextFixture.CreateNonEmptyText();
+        const int number = 110;
+        var complement = OptionalTextFixture.CreateOptionalText();
         const string emptyZipCode = "";
+        var neighborhood = NonEmptyTextFixture.CreateNonEmptyText();
+        var city = NonEmptyTextFixture.CreateNonEmptyText();
+        var state = NonEmptyTextFixture.CreateNonEmptyText();
+        var country = NonEmptyTextFixture.CreateNonEmptyText();
         const string expectedErrorMessage = "'Zip Code' is required.";
 
         // Act
         var exception = Record.Exception(
             () =>
                 Address.Create(
-                    Constants.Address.Street,
-                    Constants.Address.Number,
-                    Constants.Address.Complement,
+                    street.ToString(),
+                    number,
+                    complement.ToString(),
                     emptyZipCode,
-                    Constants.Address.Neighborhood,
-                    Constants.Address.City,
-                    Constants.Address.State,
-                    Constants.Address.Country
+                    neighborhood.ToString(),
+                    city.ToString(),
+                    state.ToString(),
+                    country.ToString()
                 )
         );
 
@@ -447,21 +565,28 @@ public sealed class AddressTest
     public void GivenWhitespaceZipCode_WhenCreatingAddress_ThenShouldThrowEntityValidationExceptionWithMessage()
     {
         // Assert
+        var street = NonEmptyTextFixture.CreateNonEmptyText();
+        const int number = 110;
+        var complement = OptionalTextFixture.CreateOptionalText();
         const string whitespaceZipCode = "        ";
+        var neighborhood = NonEmptyTextFixture.CreateNonEmptyText();
+        var city = NonEmptyTextFixture.CreateNonEmptyText();
+        var state = NonEmptyTextFixture.CreateNonEmptyText();
+        var country = NonEmptyTextFixture.CreateNonEmptyText();
         const string expectedErrorMessage = "'Zip Code' is required.";
 
         // Act
         var exception = Record.Exception(
             () =>
                 Address.Create(
-                    Constants.Address.Street,
-                    Constants.Address.Number,
-                    Constants.Address.Complement,
+                    street.ToString(),
+                    number,
+                    complement.ToString(),
                     whitespaceZipCode,
-                    Constants.Address.Neighborhood,
-                    Constants.Address.City,
-                    Constants.Address.State,
-                    Constants.Address.Country
+                    neighborhood.ToString(),
+                    city.ToString(),
+                    state.ToString(),
+                    country.ToString()
                 )
         );
 
@@ -474,21 +599,28 @@ public sealed class AddressTest
     public void GivenShortZipCode_WhenCreatingAddress_ThenShouldThrowEntityValidationExceptionWithMessage()
     {
         // Assert
+        var street = NonEmptyTextFixture.CreateNonEmptyText();
+        const int number = 110;
+        var complement = OptionalTextFixture.CreateOptionalText();
         const string shortZipCode = Constants.InvalidAddress.ShortZipCode;
+        var neighborhood = NonEmptyTextFixture.CreateNonEmptyText();
+        var city = NonEmptyTextFixture.CreateNonEmptyText();
+        var state = NonEmptyTextFixture.CreateNonEmptyText();
+        var country = NonEmptyTextFixture.CreateNonEmptyText();
         const string expectedErrorMessage = "Invalid 'Zip Code' format.";
 
         // Act
         var exception = Record.Exception(
             () =>
                 Address.Create(
-                    Constants.Address.Street,
-                    Constants.Address.Number,
-                    Constants.Address.Complement,
+                    street.ToString(),
+                    number,
+                    complement.ToString(),
                     shortZipCode,
-                    Constants.Address.Neighborhood,
-                    Constants.Address.City,
-                    Constants.Address.State,
-                    Constants.Address.Country
+                    neighborhood.ToString(),
+                    city.ToString(),
+                    state.ToString(),
+                    country.ToString()
                 )
         );
 
@@ -501,21 +633,28 @@ public sealed class AddressTest
     public void GivenLongZipCode_WhenCreatingAddress_ThenShouldThrowEntityValidationExceptionWithMessage()
     {
         // Assert
+        var street = NonEmptyTextFixture.CreateNonEmptyText();
+        const int number = 110;
+        var complement = OptionalTextFixture.CreateOptionalText();
         const string longZipCode = Constants.InvalidAddress.LongZipCode;
+        var neighborhood = NonEmptyTextFixture.CreateNonEmptyText();
+        var city = NonEmptyTextFixture.CreateNonEmptyText();
+        var state = NonEmptyTextFixture.CreateNonEmptyText();
+        var country = NonEmptyTextFixture.CreateNonEmptyText();
         const string expectedErrorMessage = "Invalid 'Zip Code' format.";
 
         // Act
         var exception = Record.Exception(
             () =>
                 Address.Create(
-                    Constants.Address.Street,
-                    Constants.Address.Number,
-                    Constants.Address.Complement,
+                    street.ToString(),
+                    number,
+                    complement.ToString(),
                     longZipCode,
-                    Constants.Address.Neighborhood,
-                    Constants.Address.City,
-                    Constants.Address.State,
-                    Constants.Address.Country
+                    neighborhood.ToString(),
+                    city.ToString(),
+                    state.ToString(),
+                    country.ToString()
                 )
         );
 
@@ -528,21 +667,28 @@ public sealed class AddressTest
     public void GivenNonNumericZipCode_WhenCreatingAddress_ThenShouldThrowEntityValidationExceptionWithMessage()
     {
         // Assert
+        var street = NonEmptyTextFixture.CreateNonEmptyText();
+        const int number = 110;
+        var complement = OptionalTextFixture.CreateOptionalText();
         const string nonNumericZipCode = Constants.InvalidAddress.NonNumericZipCode;
+        var neighborhood = NonEmptyTextFixture.CreateNonEmptyText();
+        var city = NonEmptyTextFixture.CreateNonEmptyText();
+        var state = NonEmptyTextFixture.CreateNonEmptyText();
+        var country = NonEmptyTextFixture.CreateNonEmptyText();
         const string expectedErrorMessage = "Invalid 'Zip Code' format.";
 
         // Act
         var exception = Record.Exception(
             () =>
                 Address.Create(
-                    Constants.Address.Street,
-                    Constants.Address.Number,
-                    Constants.Address.Complement,
+                    street.ToString(),
+                    number,
+                    complement.ToString(),
                     nonNumericZipCode,
-                    Constants.Address.Neighborhood,
-                    Constants.Address.City,
-                    Constants.Address.State,
-                    Constants.Address.Country
+                    neighborhood.ToString(),
+                    city.ToString(),
+                    state.ToString(),
+                    country.ToString()
                 )
         );
 
@@ -555,21 +701,28 @@ public sealed class AddressTest
     public void GivenEmptyNeighborhood_WhenCreatingAddress_ThenShouldThrowEntityValidationExceptionWithMessage()
     {
         // Assert
+        var street = NonEmptyTextFixture.CreateNonEmptyText();
+        const int number = 110;
+        var complement = OptionalTextFixture.CreateOptionalText();
+        var zipCode = ZipCodeFixture.CreateZipCode();
         const string emptyNeighborhood = "";
+        var city = NonEmptyTextFixture.CreateNonEmptyText();
+        var state = NonEmptyTextFixture.CreateNonEmptyText();
+        var country = NonEmptyTextFixture.CreateNonEmptyText();
         const string expectedErrorMessage = "'Neighborhood' is required.";
 
         // Act
         var exception = Record.Exception(
             () =>
                 Address.Create(
-                    Constants.Address.Street,
-                    Constants.Address.Number,
-                    Constants.Address.Complement,
-                    Constants.Address.ZipCode,
+                    street.ToString(),
+                    number,
+                    complement.ToString(),
+                    zipCode.ToString(),
                     emptyNeighborhood,
-                    Constants.Address.City,
-                    Constants.Address.State,
-                    Constants.Address.Country
+                    city.ToString(),
+                    state.ToString(),
+                    country.ToString()
                 )
         );
 
@@ -582,21 +735,28 @@ public sealed class AddressTest
     public void GivenWhitespaceNeighborhood_WhenCreatingAddress_ThenShouldThrowEntityValidationExceptionWithMessage()
     {
         // Assert
+        var street = NonEmptyTextFixture.CreateNonEmptyText();
+        const int number = 110;
+        var complement = OptionalTextFixture.CreateOptionalText();
+        var zipCode = ZipCodeFixture.CreateZipCode();
         const string whitespaceNeighborhood = "      ";
+        var city = NonEmptyTextFixture.CreateNonEmptyText();
+        var state = NonEmptyTextFixture.CreateNonEmptyText();
+        var country = NonEmptyTextFixture.CreateNonEmptyText();
         const string expectedErrorMessage = "'Neighborhood' is required.";
 
         // Act
         var exception = Record.Exception(
             () =>
                 Address.Create(
-                    Constants.Address.Street,
-                    Constants.Address.Number,
-                    Constants.Address.Complement,
-                    Constants.Address.ZipCode,
+                    street.ToString(),
+                    number,
+                    complement.ToString(),
+                    zipCode.ToString(),
                     whitespaceNeighborhood,
-                    Constants.Address.City,
-                    Constants.Address.State,
-                    Constants.Address.Country
+                    city.ToString(),
+                    state.ToString(),
+                    country.ToString()
                 )
         );
 
@@ -609,7 +769,14 @@ public sealed class AddressTest
     public void GivenShortNeighborhood_WhenCreatingAddress_ThenShouldThrowEntityValidationExceptionWithMessage()
     {
         // Assert
+        var street = NonEmptyTextFixture.CreateNonEmptyText();
+        const int number = 110;
+        var complement = OptionalTextFixture.CreateOptionalText();
+        var zipCode = ZipCodeFixture.CreateZipCode();
         const string shortNeighborhood = Constants.InvalidAddress.ShortNeighborhood;
+        var city = NonEmptyTextFixture.CreateNonEmptyText();
+        var state = NonEmptyTextFixture.CreateNonEmptyText();
+        var country = NonEmptyTextFixture.CreateNonEmptyText();
         const string expectedErrorMessage =
             "'Neighborhood' should be between 3 and 255 characters.";
 
@@ -617,14 +784,14 @@ public sealed class AddressTest
         var exception = Record.Exception(
             () =>
                 Address.Create(
-                    Constants.Address.Street,
-                    Constants.Address.Number,
-                    Constants.Address.Complement,
-                    Constants.Address.ZipCode,
+                    street.ToString(),
+                    number,
+                    complement.ToString(),
+                    zipCode.ToString(),
                     shortNeighborhood,
-                    Constants.Address.City,
-                    Constants.Address.State,
-                    Constants.Address.Country
+                    city.ToString(),
+                    state.ToString(),
+                    country.ToString()
                 )
         );
 
@@ -637,7 +804,14 @@ public sealed class AddressTest
     public void GivenLongNeighborhood_WhenCreatingAddress_ThenShouldThrowEntityValidationExceptionWithMessage()
     {
         // Assert
+        var street = NonEmptyTextFixture.CreateNonEmptyText();
+        const int number = 110;
+        var complement = OptionalTextFixture.CreateOptionalText();
+        var zipCode = ZipCodeFixture.CreateZipCode();
         const string longNeighborhood = Constants.InvalidAddress.LongNeighborhood;
+        var city = NonEmptyTextFixture.CreateNonEmptyText();
+        var state = NonEmptyTextFixture.CreateNonEmptyText();
+        var country = NonEmptyTextFixture.CreateNonEmptyText();
         const string expectedErrorMessage =
             "'Neighborhood' should be between 3 and 255 characters.";
 
@@ -645,14 +819,14 @@ public sealed class AddressTest
         var exception = Record.Exception(
             () =>
                 Address.Create(
-                    Constants.Address.Street,
-                    Constants.Address.Number,
-                    Constants.Address.Complement,
-                    Constants.Address.ZipCode,
+                    street.ToString(),
+                    number,
+                    complement.ToString(),
+                    zipCode.ToString(),
                     longNeighborhood,
-                    Constants.Address.City,
-                    Constants.Address.State,
-                    Constants.Address.Country
+                    city.ToString(),
+                    state.ToString(),
+                    country.ToString()
                 )
         );
 
@@ -665,21 +839,28 @@ public sealed class AddressTest
     public void GivenEmptyCity_WhenCreatingAddress_ThenShouldThrowEntityValidationExceptionWithMessage()
     {
         // Assert
+        var street = NonEmptyTextFixture.CreateNonEmptyText();
+        const int number = 110;
+        var complement = OptionalTextFixture.CreateOptionalText();
+        var zipCode = ZipCodeFixture.CreateZipCode();
+        var neighborhood = NonEmptyTextFixture.CreateNonEmptyText();
         const string emptyCity = "";
+        var state = NonEmptyTextFixture.CreateNonEmptyText();
+        var country = NonEmptyTextFixture.CreateNonEmptyText();
         const string expectedErrorMessage = "'City' is required.";
 
         // Act
         var exception = Record.Exception(
             () =>
                 Address.Create(
-                    Constants.Address.Street,
-                    Constants.Address.Number,
-                    Constants.Address.Complement,
-                    Constants.Address.ZipCode,
-                    Constants.Address.Neighborhood,
+                    street.ToString(),
+                    number,
+                    complement.ToString(),
+                    zipCode.ToString(),
+                    neighborhood.ToString(),
                     emptyCity,
-                    Constants.Address.State,
-                    Constants.Address.Country
+                    state.ToString(),
+                    country.ToString()
                 )
         );
 
@@ -692,21 +873,28 @@ public sealed class AddressTest
     public void GivenWhitespaceCity_WhenCreatingAddress_ThenShouldThrowEntityValidationExceptionWithMessage()
     {
         // Assert
+        var street = NonEmptyTextFixture.CreateNonEmptyText();
+        const int number = 110;
+        var complement = OptionalTextFixture.CreateOptionalText();
+        var zipCode = ZipCodeFixture.CreateZipCode();
+        var neighborhood = NonEmptyTextFixture.CreateNonEmptyText();
         const string whitespaceCity = "      ";
+        var state = NonEmptyTextFixture.CreateNonEmptyText();
+        var country = NonEmptyTextFixture.CreateNonEmptyText();
         const string expectedErrorMessage = "'City' is required.";
 
         // Act
         var exception = Record.Exception(
             () =>
                 Address.Create(
-                    Constants.Address.Street,
-                    Constants.Address.Number,
-                    Constants.Address.Complement,
-                    Constants.Address.ZipCode,
-                    Constants.Address.Neighborhood,
+                    street.ToString(),
+                    number,
+                    complement.ToString(),
+                    zipCode.ToString(),
+                    neighborhood.ToString(),
                     whitespaceCity,
-                    Constants.Address.State,
-                    Constants.Address.Country
+                    state.ToString(),
+                    country.ToString()
                 )
         );
 
@@ -719,21 +907,28 @@ public sealed class AddressTest
     public void GivenShortCity_WhenCreatingAddress_ThenShouldThrowEntityValidationExceptionWithMessage()
     {
         // Assert
+        var street = NonEmptyTextFixture.CreateNonEmptyText();
+        const int number = 110;
+        var complement = OptionalTextFixture.CreateOptionalText();
+        var zipCode = ZipCodeFixture.CreateZipCode();
+        var neighborhood = NonEmptyTextFixture.CreateNonEmptyText();
         const string shortCity = Constants.InvalidAddress.ShortCity;
+        var state = NonEmptyTextFixture.CreateNonEmptyText();
+        var country = NonEmptyTextFixture.CreateNonEmptyText();
         const string expectedErrorMessage = "'City' should be between 3 and 255 characters.";
 
         // Act
         var exception = Record.Exception(
             () =>
                 Address.Create(
-                    Constants.Address.Street,
-                    Constants.Address.Number,
-                    Constants.Address.Complement,
-                    Constants.Address.ZipCode,
-                    Constants.Address.Neighborhood,
+                    street.ToString(),
+                    number,
+                    complement.ToString(),
+                    zipCode.ToString(),
+                    neighborhood.ToString(),
                     shortCity,
-                    Constants.Address.State,
-                    Constants.Address.Country
+                    state.ToString(),
+                    country.ToString()
                 )
         );
 
@@ -746,21 +941,28 @@ public sealed class AddressTest
     public void GivenLongCity_WhenCreatingAddress_ThenShouldThrowEntityValidationExceptionWithMessage()
     {
         // Assert
+        var street = NonEmptyTextFixture.CreateNonEmptyText();
+        const int number = 110;
+        var complement = OptionalTextFixture.CreateOptionalText();
+        var zipCode = ZipCodeFixture.CreateZipCode();
+        var neighborhood = NonEmptyTextFixture.CreateNonEmptyText();
         const string longCity = Constants.InvalidAddress.LongCity;
+        var state = NonEmptyTextFixture.CreateNonEmptyText();
+        var country = NonEmptyTextFixture.CreateNonEmptyText();
         const string expectedErrorMessage = "'City' should be between 3 and 255 characters.";
 
         // Act
         var exception = Record.Exception(
             () =>
                 Address.Create(
-                    Constants.Address.Street,
-                    Constants.Address.Number,
-                    Constants.Address.Complement,
-                    Constants.Address.ZipCode,
-                    Constants.Address.Neighborhood,
+                    street.ToString(),
+                    number,
+                    complement.ToString(),
+                    zipCode.ToString(),
+                    neighborhood.ToString(),
                     longCity,
-                    Constants.Address.State,
-                    Constants.Address.Country
+                    state.ToString(),
+                    country.ToString()
                 )
         );
 
@@ -773,21 +975,28 @@ public sealed class AddressTest
     public void GivenEmptyState_WhenCreatingAddress_ThenShouldThrowEntityValidationExceptionWithMessage()
     {
         // Assert
+        var street = NonEmptyTextFixture.CreateNonEmptyText();
+        const int number = 110;
+        var complement = OptionalTextFixture.CreateOptionalText();
+        var zipCode = ZipCodeFixture.CreateZipCode();
+        var neighborhood = NonEmptyTextFixture.CreateNonEmptyText();
+        var city = NonEmptyTextFixture.CreateNonEmptyText();
         const string emptyState = "";
+        var country = NonEmptyTextFixture.CreateNonEmptyText();
         const string expectedErrorMessage = "'State' is required.";
 
         // Act
         var exception = Record.Exception(
             () =>
                 Address.Create(
-                    Constants.Address.Street,
-                    Constants.Address.Number,
-                    Constants.Address.Complement,
-                    Constants.Address.ZipCode,
-                    Constants.Address.Neighborhood,
-                    Constants.Address.City,
+                    street.ToString(),
+                    number,
+                    complement.ToString(),
+                    zipCode.ToString(),
+                    neighborhood.ToString(),
+                    city.ToString(),
                     emptyState,
-                    Constants.Address.Country
+                    country.ToString()
                 )
         );
 
@@ -800,21 +1009,28 @@ public sealed class AddressTest
     public void GivenWhitespaceState_WhenCreatingAddress_ThenShouldThrowEntityValidationExceptionWithMessage()
     {
         // Assert
+        var street = NonEmptyTextFixture.CreateNonEmptyText();
+        const int number = 110;
+        var complement = OptionalTextFixture.CreateOptionalText();
+        var zipCode = ZipCodeFixture.CreateZipCode();
+        var neighborhood = NonEmptyTextFixture.CreateNonEmptyText();
+        var city = NonEmptyTextFixture.CreateNonEmptyText();
         const string whitespaceState = "      ";
+        var country = NonEmptyTextFixture.CreateNonEmptyText();
         const string expectedErrorMessage = "'State' is required.";
 
         // Act
         var exception = Record.Exception(
             () =>
                 Address.Create(
-                    Constants.Address.Street,
-                    Constants.Address.Number,
-                    Constants.Address.Complement,
-                    Constants.Address.ZipCode,
-                    Constants.Address.Neighborhood,
-                    Constants.Address.City,
+                    street.ToString(),
+                    number,
+                    complement.ToString(),
+                    zipCode.ToString(),
+                    neighborhood.ToString(),
+                    city.ToString(),
                     whitespaceState,
-                    Constants.Address.Country
+                    country.ToString()
                 )
         );
 
@@ -827,21 +1043,28 @@ public sealed class AddressTest
     public void GivenShortState_WhenCreatingAddress_ThenShouldThrowEntityValidationExceptionWithMessage()
     {
         // Assert
+        var street = NonEmptyTextFixture.CreateNonEmptyText();
+        const int number = 110;
+        var complement = OptionalTextFixture.CreateOptionalText();
+        var zipCode = ZipCodeFixture.CreateZipCode();
+        var neighborhood = NonEmptyTextFixture.CreateNonEmptyText();
+        var city = NonEmptyTextFixture.CreateNonEmptyText();
         const string shortState = Constants.InvalidAddress.ShortState;
+        var country = NonEmptyTextFixture.CreateNonEmptyText();
         const string expectedErrorMessage = "'State' should be between 3 and 255 characters.";
 
         // Act
         var exception = Record.Exception(
             () =>
                 Address.Create(
-                    Constants.Address.Street,
-                    Constants.Address.Number,
-                    Constants.Address.Complement,
-                    Constants.Address.ZipCode,
-                    Constants.Address.Neighborhood,
-                    Constants.Address.City,
+                    street.ToString(),
+                    number,
+                    complement.ToString(),
+                    zipCode.ToString(),
+                    neighborhood.ToString(),
+                    city.ToString(),
                     shortState,
-                    Constants.Address.Country
+                    country.ToString()
                 )
         );
 
@@ -854,21 +1077,28 @@ public sealed class AddressTest
     public void GivenLongState_WhenCreatingAddress_ThenShouldThrowEntityValidationExceptionWithMessage()
     {
         // Assert
+        var street = NonEmptyTextFixture.CreateNonEmptyText();
+        const int number = 110;
+        var complement = OptionalTextFixture.CreateOptionalText();
+        var zipCode = ZipCodeFixture.CreateZipCode();
+        var neighborhood = NonEmptyTextFixture.CreateNonEmptyText();
+        var city = NonEmptyTextFixture.CreateNonEmptyText();
         const string longState = Constants.InvalidAddress.LongState;
+        var country = NonEmptyTextFixture.CreateNonEmptyText();
         const string expectedErrorMessage = "'State' should be between 3 and 255 characters.";
 
         // Act
         var exception = Record.Exception(
             () =>
                 Address.Create(
-                    Constants.Address.Street,
-                    Constants.Address.Number,
-                    Constants.Address.Complement,
-                    Constants.Address.ZipCode,
-                    Constants.Address.Neighborhood,
-                    Constants.Address.City,
+                    street.ToString(),
+                    number,
+                    complement.ToString(),
+                    zipCode.ToString(),
+                    neighborhood.ToString(),
+                    city.ToString(),
                     longState,
-                    Constants.Address.Country
+                    country.ToString()
                 )
         );
 
@@ -881,6 +1111,13 @@ public sealed class AddressTest
     public void GivenEmptyCountry_WhenCreatingAddress_ThenShouldThrowEntityValidationExceptionWithMessage()
     {
         // Assert
+        var street = NonEmptyTextFixture.CreateNonEmptyText();
+        const int number = 110;
+        var complement = OptionalTextFixture.CreateOptionalText();
+        var zipCode = ZipCodeFixture.CreateZipCode();
+        var neighborhood = NonEmptyTextFixture.CreateNonEmptyText();
+        var city = NonEmptyTextFixture.CreateNonEmptyText();
+        var state = NonEmptyTextFixture.CreateNonEmptyText();
         const string emptyCountry = "";
         const string expectedErrorMessage = "'Country' is required.";
 
@@ -888,13 +1125,13 @@ public sealed class AddressTest
         var exception = Record.Exception(
             () =>
                 Address.Create(
-                    Constants.Address.Street,
-                    Constants.Address.Number,
-                    Constants.Address.Complement,
-                    Constants.Address.ZipCode,
-                    Constants.Address.Neighborhood,
-                    Constants.Address.City,
-                    Constants.Address.State,
+                    street.ToString(),
+                    number,
+                    complement.ToString(),
+                    zipCode.ToString(),
+                    neighborhood.ToString(),
+                    city.ToString(),
+                    state.ToString(),
                     emptyCountry
                 )
         );
@@ -908,6 +1145,13 @@ public sealed class AddressTest
     public void GivenWhitespaceCountry_WhenCreatingAddress_ThenShouldThrowEntityValidationExceptionWithMessage()
     {
         // Assert
+        var street = NonEmptyTextFixture.CreateNonEmptyText();
+        const int number = 110;
+        var complement = OptionalTextFixture.CreateOptionalText();
+        var zipCode = ZipCodeFixture.CreateZipCode();
+        var neighborhood = NonEmptyTextFixture.CreateNonEmptyText();
+        var city = NonEmptyTextFixture.CreateNonEmptyText();
+        var state = NonEmptyTextFixture.CreateNonEmptyText();
         const string whitespaceCountry = "      ";
         const string expectedErrorMessage = "'Country' is required.";
 
@@ -915,13 +1159,13 @@ public sealed class AddressTest
         var exception = Record.Exception(
             () =>
                 Address.Create(
-                    Constants.Address.Street,
-                    Constants.Address.Number,
-                    Constants.Address.Complement,
-                    Constants.Address.ZipCode,
-                    Constants.Address.Neighborhood,
-                    Constants.Address.City,
-                    Constants.Address.State,
+                    street.ToString(),
+                    number,
+                    complement.ToString(),
+                    zipCode.ToString(),
+                    neighborhood.ToString(),
+                    city.ToString(),
+                    state.ToString(),
                     whitespaceCountry
                 )
         );
@@ -935,6 +1179,13 @@ public sealed class AddressTest
     public void GivenShortCountry_WhenCreatingAddress_ThenShouldThrowEntityValidationExceptionWithMessage()
     {
         // Assert
+        var street = NonEmptyTextFixture.CreateNonEmptyText();
+        const int number = 110;
+        var complement = OptionalTextFixture.CreateOptionalText();
+        var zipCode = ZipCodeFixture.CreateZipCode();
+        var neighborhood = NonEmptyTextFixture.CreateNonEmptyText();
+        var city = NonEmptyTextFixture.CreateNonEmptyText();
+        var state = NonEmptyTextFixture.CreateNonEmptyText();
         const string shortCountry = Constants.InvalidAddress.ShortCountry;
         const string expectedErrorMessage = "'Country' should be between 3 and 255 characters.";
 
@@ -942,13 +1193,13 @@ public sealed class AddressTest
         var exception = Record.Exception(
             () =>
                 Address.Create(
-                    Constants.Address.Street,
-                    Constants.Address.Number,
-                    Constants.Address.Complement,
-                    Constants.Address.ZipCode,
-                    Constants.Address.Neighborhood,
-                    Constants.Address.City,
-                    Constants.Address.State,
+                    street.ToString(),
+                    number,
+                    complement.ToString(),
+                    zipCode.ToString(),
+                    neighborhood.ToString(),
+                    city.ToString(),
+                    state.ToString(),
                     shortCountry
                 )
         );
@@ -962,6 +1213,13 @@ public sealed class AddressTest
     public void GivenLongCountry_WhenCreatingAddress_ThenShouldThrowEntityValidationExceptionWithMessage()
     {
         // Assert
+        var street = NonEmptyTextFixture.CreateNonEmptyText();
+        const int number = 110;
+        var complement = OptionalTextFixture.CreateOptionalText();
+        var zipCode = ZipCodeFixture.CreateZipCode();
+        var neighborhood = NonEmptyTextFixture.CreateNonEmptyText();
+        var city = NonEmptyTextFixture.CreateNonEmptyText();
+        var state = NonEmptyTextFixture.CreateNonEmptyText();
         const string longCountry = Constants.InvalidAddress.LongCountry;
         const string expectedErrorMessage = "'Country' should be between 3 and 255 characters.";
 
@@ -969,13 +1227,13 @@ public sealed class AddressTest
         var exception = Record.Exception(
             () =>
                 Address.Create(
-                    Constants.Address.Street,
-                    Constants.Address.Number,
-                    Constants.Address.Complement,
-                    Constants.Address.ZipCode,
-                    Constants.Address.Neighborhood,
-                    Constants.Address.City,
-                    Constants.Address.State,
+                    street.ToString(),
+                    number,
+                    complement.ToString(),
+                    zipCode.ToString(),
+                    neighborhood.ToString(),
+                    city.ToString(),
+                    state.ToString(),
                     longCountry
                 )
         );
@@ -990,18 +1248,25 @@ public sealed class AddressTest
     {
         // Arrange
         const string untrimmedStreet = "    Rua da praça       ";
+        const int number = 110;
+        var complement = OptionalTextFixture.CreateOptionalText();
+        var zipCode = ZipCodeFixture.CreateZipCode();
+        var neighborhood = NonEmptyTextFixture.CreateNonEmptyText();
+        var city = NonEmptyTextFixture.CreateNonEmptyText();
+        var state = NonEmptyTextFixture.CreateNonEmptyText();
+        var country = NonEmptyTextFixture.CreateNonEmptyText();
         const string expectedStreet = "Rua da praça";
 
         // Act
         var address = Address.Create(
             untrimmedStreet,
-            Constants.Address.Number,
-            Constants.Address.Complement,
-            Constants.Address.ZipCode,
-            Constants.Address.Neighborhood,
-            Constants.Address.City,
-            Constants.Address.State,
-            Constants.Address.Country
+            number,
+            complement.ToString(),
+            zipCode.ToString(),
+            neighborhood.ToString(),
+            city.ToString(),
+            state.ToString(),
+            country.ToString()
         );
 
         // Assert
@@ -1012,19 +1277,26 @@ public sealed class AddressTest
     public void GivenUntrimmedComplement_WhenCreatingAddress_ThenShouldHaveTrimmedComplement()
     {
         // Arrange
+        var street = NonEmptyTextFixture.CreateNonEmptyText();
+        const int number = 110;
         const string untrimmedComplement = "     Casa 75      ";
+        var zipCode = ZipCodeFixture.CreateZipCode();
+        var neighborhood = NonEmptyTextFixture.CreateNonEmptyText();
+        var city = NonEmptyTextFixture.CreateNonEmptyText();
+        var state = NonEmptyTextFixture.CreateNonEmptyText();
+        var country = NonEmptyTextFixture.CreateNonEmptyText();
         const string expectedComplement = "Casa 75";
 
         // Act
         var address = Address.Create(
-            Constants.Address.Street,
-            Constants.Address.Number,
+            street.ToString(),
+            number,
             untrimmedComplement,
-            Constants.Address.ZipCode,
-            Constants.Address.Neighborhood,
-            Constants.Address.City,
-            Constants.Address.State,
-            Constants.Address.Country
+            zipCode.ToString(),
+            neighborhood.ToString(),
+            city.ToString(),
+            state.ToString(),
+            country.ToString()
         );
 
         // Assert
@@ -1035,19 +1307,26 @@ public sealed class AddressTest
     public void GivenUntrimmedZipCode_WhenCreatingAddress_ThenShouldHaveTrimmedZipCode()
     {
         // Arrange
+        var street = NonEmptyTextFixture.CreateNonEmptyText();
+        const int number = 110;
+        var complement = OptionalTextFixture.CreateOptionalText();
         const string untrimmedZipCode = " 87657-012 ";
+        var neighborhood = NonEmptyTextFixture.CreateNonEmptyText();
+        var city = NonEmptyTextFixture.CreateNonEmptyText();
+        var state = NonEmptyTextFixture.CreateNonEmptyText();
+        var country = NonEmptyTextFixture.CreateNonEmptyText();
         const string expectedZipCode = "87657012";
 
         // Act
         var address = Address.Create(
-            Constants.Address.Street,
-            Constants.Address.Number,
-            Constants.Address.Complement,
+            street.ToString(),
+            number,
+            complement.ToString(),
             untrimmedZipCode,
-            Constants.Address.Neighborhood,
-            Constants.Address.City,
-            Constants.Address.State,
-            Constants.Address.Country
+            neighborhood.ToString(),
+            city.ToString(),
+            state.ToString(),
+            country.ToString()
         );
 
         // Assert
@@ -1058,19 +1337,26 @@ public sealed class AddressTest
     public void GivenUntrimmedNeighborhood_WhenCreatingAddress_ThenShouldHaveTrimmedNeighborhood()
     {
         // Arrange
+        var street = NonEmptyTextFixture.CreateNonEmptyText();
+        const int number = 110;
+        var complement = OptionalTextFixture.CreateOptionalText();
+        var zipCode = ZipCodeFixture.CreateZipCode();
         const string untrimmedNeighborhood = "    Barra da Tijuca     ";
+        var city = NonEmptyTextFixture.CreateNonEmptyText();
+        var state = NonEmptyTextFixture.CreateNonEmptyText();
+        var country = NonEmptyTextFixture.CreateNonEmptyText();
         const string expectedNeighborhood = "Barra da Tijuca";
 
         // Act
         var address = Address.Create(
-            Constants.Address.Street,
-            Constants.Address.Number,
-            Constants.Address.Complement,
-            Constants.Address.ZipCode,
+            street.ToString(),
+            number,
+            complement.ToString(),
+            zipCode.ToString(),
             untrimmedNeighborhood,
-            Constants.Address.City,
-            Constants.Address.State,
-            Constants.Address.Country
+            city.ToString(),
+            state.ToString(),
+            country.ToString()
         );
 
         // Assert
@@ -1081,19 +1367,26 @@ public sealed class AddressTest
     public void GivenUntrimmedCity_WhenCreatingAddress_ThenShouldHaveTrimmedCity()
     {
         // Arrange
+        var street = NonEmptyTextFixture.CreateNonEmptyText();
+        const int number = 110;
+        var complement = OptionalTextFixture.CreateOptionalText();
+        var zipCode = ZipCodeFixture.CreateZipCode();
+        var neighborhood = NonEmptyTextFixture.CreateNonEmptyText();
         const string untrimmedCity = "   São Paulo       ";
+        var state = NonEmptyTextFixture.CreateNonEmptyText();
+        var country = NonEmptyTextFixture.CreateNonEmptyText();
         const string expectedCity = "São Paulo";
 
         // Act
         var address = Address.Create(
-            Constants.Address.Street,
-            Constants.Address.Number,
-            Constants.Address.Complement,
-            Constants.Address.ZipCode,
-            Constants.Address.Neighborhood,
+            street.ToString(),
+            number,
+            complement.ToString(),
+            zipCode.ToString(),
+            neighborhood.ToString(),
             untrimmedCity,
-            Constants.Address.State,
-            Constants.Address.Country
+            state.ToString(),
+            country.ToString()
         );
 
         // Assert
@@ -1104,19 +1397,26 @@ public sealed class AddressTest
     public void GivenUntrimmedState_WhenCreatingAddress_ThenShouldHaveTrimmedState()
     {
         // Arrange
+        var street = NonEmptyTextFixture.CreateNonEmptyText();
+        const int number = 110;
+        var complement = OptionalTextFixture.CreateOptionalText();
+        var zipCode = ZipCodeFixture.CreateZipCode();
+        var neighborhood = NonEmptyTextFixture.CreateNonEmptyText();
+        var city = NonEmptyTextFixture.CreateNonEmptyText();
         const string untrimmedState = "      Paraná    ";
+        var country = NonEmptyTextFixture.CreateNonEmptyText();
         const string expectedState = "Paraná";
 
         // Act
         var address = Address.Create(
-            Constants.Address.Street,
-            Constants.Address.Number,
-            Constants.Address.Complement,
-            Constants.Address.ZipCode,
-            Constants.Address.Neighborhood,
-            Constants.Address.City,
+            street.ToString(),
+            number,
+            complement.ToString(),
+            zipCode.ToString(),
+            neighborhood.ToString(),
+            city.ToString(),
             untrimmedState,
-            Constants.Address.Country
+            country.ToString()
         );
 
         // Assert
@@ -1127,19 +1427,26 @@ public sealed class AddressTest
     public void GivenUntrimmedCountry_WhenCreatingAddress_ThenShouldHaveTrimmedCountry()
     {
         // Arrange
+        var street = NonEmptyTextFixture.CreateNonEmptyText();
+        const int number = 110;
+        var complement = OptionalTextFixture.CreateOptionalText();
+        var zipCode = ZipCodeFixture.CreateZipCode();
+        var neighborhood = NonEmptyTextFixture.CreateNonEmptyText();
+        var city = NonEmptyTextFixture.CreateNonEmptyText();
+        var state = NonEmptyTextFixture.CreateNonEmptyText();
         const string untrimmedCountry = "       Itália  ";
         const string expectedCountry = "Itália";
 
         // Act
         var address = Address.Create(
-            Constants.Address.Street,
-            Constants.Address.Number,
-            Constants.Address.Complement,
-            Constants.Address.ZipCode,
-            Constants.Address.Neighborhood,
-            Constants.Address.City,
-            Constants.Address.State,
-            untrimmedCountry
+            street.ToString(),
+            number,
+            complement.ToString(),
+            zipCode.ToString(),
+            neighborhood.ToString(),
+            city.ToString(),
+            state.ToString(),
+            expectedCountry
         );
 
         // Assert
@@ -1150,13 +1457,21 @@ public sealed class AddressTest
     public void GivenValidAddress_WhenCallFormat_ShouldReturnFormattedAddress()
     {
         // Arrange
-        var address = AddressFixture.CreateAddress();
+        var street = NonEmptyTextFixture.CreateNonEmptyText();
+        const int number = 110;
+        var complement = OptionalTextFixture.CreateOptionalText();
+        var zipCode = ZipCodeFixture.CreateZipCode();
+        var neighborhood = NonEmptyTextFixture.CreateNonEmptyText();
+        var city = NonEmptyTextFixture.CreateNonEmptyText();
+        var state = NonEmptyTextFixture.CreateNonEmptyText();
+        var country = NonEmptyTextFixture.CreateNonEmptyText();
+        var address = Address.Create(street, number, complement, zipCode.ToString(), neighborhood, city, state,
+            country);
         var expectedFormattedAddress = $"""
-                                        {Constants.Address.Street}, {Constants.Address.Number}, {Constants.Address.Complement}
-                                        {Constants.Address.Neighborhood}, {Constants.Address.City}, {Constants.Address.State}
-                                        {Constants.Address.Country} - {Constants.Address.ZipCode.Replace("-", string.Empty)}
+                                        {street}, {number}, {complement}
+                                        {neighborhood}, {city}, {state}
+                                        {country} - {zipCode.ToString().Replace("-", string.Empty)}
                                         """;
-
         // Act
         var formattedAddress = address.Format();
 
