@@ -7,18 +7,29 @@ namespace Developurr.Orderly.Domain.Package;
 public sealed class Package : Entity<PackageId>, IAggregateRoot
 {
     public NonEmptyText Name { get; }
+    public ActiveStatus Active { get; private set; }
 
-    private Package(PackageId packageId, NonEmptyText name)
+    private Package(
+        PackageId packageId,
+        NonEmptyText name,
+        ActiveStatus active
+        )
         : base(packageId)
     {
         Name = name;
+        Active = active;
     }
-
+    
+    public void Deactivate()
+    {
+        if (Active.IsActive)
+            Active = ActiveStatus.Inactive;
+    }
     public static Package Create(string name)
     {
         var packageId = PackageId.Generate();
         var nameObj = NonEmptyText.Create(name);
-
-        return new Package(packageId, nameObj);
+        var activeObj = ActiveStatus.Active;
+        return new Package(packageId, nameObj, activeObj);
     }
 }
