@@ -29,7 +29,7 @@ public sealed class GetCustomerUseCase : IQuery<GetCustomerInput, GetCustomerOut
             customer.RazaoSocial.ToString(),
             customer.InscricaoSocial.ToString(),
             customer.NomeFantasia.ToString(),
-            customer.Segment.ToString(),
+            customer.Segmento.ToString(),
             customer.BillingEmail?.ToString() ?? "",
             customer.NfeEmail.ToString(),
             customer.Landline?.Value ?? "",
