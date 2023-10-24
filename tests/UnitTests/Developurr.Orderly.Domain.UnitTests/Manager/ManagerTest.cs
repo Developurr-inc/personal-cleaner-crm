@@ -7,6 +7,7 @@ using Developurr.Orderly.Domain.UnitTests.TestUtils.Manager;
 using Developurr.Orderly.Domain.UnitTests.TestUtils.NonEmptyText;
 using Developurr.Orderly.Domain.UnitTests.TestUtils.OptionalText;
 using Developurr.Orderly.Domain.UnitTests.TestUtils.Phone;
+using Developurr.Orderly.Domain.UnitTests.TestUtils.ZipCode;
 
 namespace Developurr.Orderly.Domain.UnitTests.Manager;
 
@@ -20,7 +21,7 @@ public sealed class ManagerTest
         var street = NonEmptyTextFixture.CreateNonEmptyText();
         const int number = 110;
         var complement = OptionalTextFixture.CreateOptionalText();
-        const string zipCode = "12345-678"; // ZipCodeFixture.CreateZipCode();
+        var zipCode = ZipCodeFixture.CreateZipCode();
         var neighborhood = NonEmptyTextFixture.CreateNonEmptyText();
         var city = NonEmptyTextFixture.CreateNonEmptyText();
         var state = NonEmptyTextFixture.CreateNonEmptyText();
@@ -312,7 +313,7 @@ public sealed class ManagerTest
         var street = NonEmptyTextFixture.CreateInvalidNonEmptyText();
         const int number = -10;
         var complement = OptionalTextFixture.CreateInvalidOptionalText();
-        const string zipCode = "12345-678"; // ZipCodeFixture.CreateInvalidZipCode();
+        var zipCode = ZipCodeFixture.CreateInvalidZipCode();
         var neighborhood = NonEmptyTextFixture.CreateInvalidNonEmptyText();
         var city = NonEmptyTextFixture.CreateInvalidNonEmptyText();
         var state = NonEmptyTextFixture.CreateInvalidNonEmptyText();
@@ -355,7 +356,7 @@ public sealed class ManagerTest
         var street = NonEmptyTextFixture.CreateNonEmptyText();
         const int number = 110;
         var complement = OptionalTextFixture.CreateOptionalText();
-        const string zipCode = "12345-678"; // ZipCodeFixture.CreateZipCode();
+        var zipCode = ZipCodeFixture.CreateZipCode();
         var neighborhood = NonEmptyTextFixture.CreateNonEmptyText();
         var city = NonEmptyTextFixture.CreateNonEmptyText();
         var state = NonEmptyTextFixture.CreateNonEmptyText();
