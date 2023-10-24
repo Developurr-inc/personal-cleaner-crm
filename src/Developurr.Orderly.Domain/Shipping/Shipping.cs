@@ -4,7 +4,7 @@ using Developurr.Orderly.Domain.Shipping.ValueObjects;
 
 namespace Developurr.Orderly.Domain.Shipping;
 
-public sealed class Shipping : Entity<ShippingId>, IAggregateRoot
+public sealed partial class Shipping : Entity<ShippingId>, IAggregateRoot
 {
     // private readonly List<OrderId> _orders;
     public Cnpj Cnpj { get; }

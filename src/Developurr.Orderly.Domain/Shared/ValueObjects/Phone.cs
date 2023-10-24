@@ -7,6 +7,7 @@ public sealed class Phone : ValueObject
 {
     public readonly string Value;
 
+    private Phone(){ }
     private Phone(string phone)
     {
         Value = phone;

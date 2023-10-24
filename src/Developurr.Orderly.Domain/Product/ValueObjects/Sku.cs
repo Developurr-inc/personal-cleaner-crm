@@ -4,6 +4,8 @@ public class Sku
 {
     public readonly string Value;
 
+    private Sku() { }
+
     private Sku(string prefix, string categoryCode, string packageCode, string nameCode)
     {
         Value = $"{prefix}{categoryCode}{packageCode}{nameCode}";

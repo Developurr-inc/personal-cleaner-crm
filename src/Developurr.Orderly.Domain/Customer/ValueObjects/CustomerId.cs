@@ -4,6 +4,8 @@ namespace Developurr.Orderly.Domain.Customer.ValueObjects;
 
 public sealed class CustomerId : Identifier<Guid>
 {
+    private CustomerId()
+        : base(Guid.Empty){ }
     private CustomerId(Guid value)
         : base(value) { }
 

@@ -5,7 +5,7 @@ using Developurr.Orderly.Domain.Shared.ValueObjects;
 
 namespace Developurr.Orderly.Domain.Order.Entities;
 
-public class LineItem : Entity<LineItemId>
+public partial class LineItem : Entity<LineItemId>
 {
     public ProductId ProductId { get; private set; }
     public Price UnitPrice { get; private set; }

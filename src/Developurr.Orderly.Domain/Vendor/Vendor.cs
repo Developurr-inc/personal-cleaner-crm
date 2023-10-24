@@ -4,7 +4,7 @@ using Developurr.Orderly.Domain.Vendor.ValueObjects;
 
 namespace Developurr.Orderly.Domain.Vendor;
 
-public sealed class Vendor : Entity<VendorId>, IAggregateRoot
+public sealed partial class Vendor : Entity<VendorId>, IAggregateRoot
 {
     // private readonly List<CustomerId> _customers;
     public Cpf Cpf { get; }

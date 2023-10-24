@@ -6,6 +6,8 @@ public sealed class ActiveStatus : ValueObject
 {
     public bool IsActive { get; }
 
+    private ActiveStatus(){ }
+    
     private ActiveStatus(bool isActive)
     {
         IsActive = isActive;

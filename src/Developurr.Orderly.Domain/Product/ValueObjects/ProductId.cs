@@ -4,6 +4,9 @@ namespace Developurr.Orderly.Domain.Product.ValueObjects;
 
 public sealed class ProductId : Identifier<Guid>
 {
+    private ProductId()
+        : base(Guid.Empty){ }
+    
     private ProductId(Guid value)
         : base(value) { }
 

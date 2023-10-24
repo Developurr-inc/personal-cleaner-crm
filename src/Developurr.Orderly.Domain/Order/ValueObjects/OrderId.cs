@@ -4,6 +4,9 @@ namespace Developurr.Orderly.Domain.Order.ValueObjects;
 
 public sealed class OrderId : Identifier<Guid>
 {
+    private OrderId()
+        : base(Guid.Empty){ }
+    
     private OrderId(Guid value)
         : base(value) { }
 

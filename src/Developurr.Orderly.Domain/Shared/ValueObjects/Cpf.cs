@@ -7,6 +7,8 @@ public sealed class Cpf : ValueObject
 {
     private readonly string _value;
 
+    private Cpf() { }
+
     private Cpf(string cpf)
     {
         _value = cpf.Replace(".", string.Empty).Replace("-", string.Empty);

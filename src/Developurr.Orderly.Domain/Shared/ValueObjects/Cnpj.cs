@@ -7,6 +7,8 @@ public sealed class Cnpj : ValueObject
 {
     private readonly string _value;
 
+    private Cnpj() { }
+
     private Cnpj(string cnpj)
     {
         _value = cnpj.Replace(".", string.Empty)

@@ -14,6 +14,8 @@ public sealed class Address : ValueObject
     public string State { get; }
     public string Country { get; }
 
+    private Address() { }
+
     private Address(
         string street,
         int number,
