@@ -168,10 +168,10 @@ public sealed class ShippingTest
         // Act
         var shipping = Domain.Shipping.Shipping.Create(
             cnpj.ToString(),
-        corporateName.ToString(),
-        taxId.ToString(),
-        tradeName.ToString(),
-        segment.ToString()
+            corporateName.ToString(),
+            taxId.ToString(),
+            tradeName.ToString(),
+            segment.ToString()
         );
 
         // Assert
