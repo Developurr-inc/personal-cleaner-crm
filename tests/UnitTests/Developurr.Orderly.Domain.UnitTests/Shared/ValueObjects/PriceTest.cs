@@ -48,7 +48,7 @@ public sealed class PriceTest
         var exception = Record.Exception(() => Price.Create(invalidPrice));
 
         // Assert
-        var domainValidationException = Assert.IsType<DomainValidationException>(exception);
+        var domainValidationException = Assert.IsType<ValidationException>(exception);
         Assert.Equal(expectedMessage, domainValidationException.Message);
     }
 
@@ -123,7 +123,7 @@ public sealed class PriceTest
         var exception = Record.Exception(() => price1 - price2);
 
         // Assert
-        var domainValidationException = Assert.IsType<DomainValidationException>(exception);
+        var domainValidationException = Assert.IsType<ValidationException>(exception);
         Assert.Equal(expectedMessage, domainValidationException.Message);
     }
 
@@ -139,7 +139,7 @@ public sealed class PriceTest
         var exception = Record.Exception(() => price1 / -9);
 
         // Assert
-        var domainValidationException = Assert.IsType<DomainValidationException>(exception);
+        var domainValidationException = Assert.IsType<ValidationException>(exception);
         Assert.Equal(expectedMessage, domainValidationException.Message);
     }
 }

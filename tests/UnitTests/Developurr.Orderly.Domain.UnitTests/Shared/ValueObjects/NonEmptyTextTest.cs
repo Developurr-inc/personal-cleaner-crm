@@ -50,7 +50,7 @@ public sealed class NonEmptyTextTest
             () => Domain.Shared.ValueObjects.NonEmptyText.Create(invalidText)
         );
         // Assert
-        var domainValidationException = Assert.IsType<DomainValidationException>(exception);
+        var domainValidationException = Assert.IsType<ValidationException>(exception);
         Assert.Contains(expectedErrorMessage, domainValidationException.Message);
     }
 
@@ -66,7 +66,7 @@ public sealed class NonEmptyTextTest
             () => Domain.Shared.ValueObjects.NonEmptyText.Create(longText)
         );
         // Assert
-        var domainValidationException = Assert.IsType<DomainValidationException>(exception);
+        var domainValidationException = Assert.IsType<ValidationException>(exception);
         // Assert.Contains(expectedErrorMessage, domainValidationException.Message);
     }
 }

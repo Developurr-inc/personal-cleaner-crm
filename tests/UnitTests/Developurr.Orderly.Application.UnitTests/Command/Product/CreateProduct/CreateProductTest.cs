@@ -204,7 +204,7 @@ public class CreateProductTest
         );
 
         // Assert
-        Assert.IsType<IdNotFoundException>(exception);
+        Assert.IsType<NotFoundException>(exception);
         Assert.Equal(expectedMessage, exception.Message);
     }
 
@@ -235,7 +235,7 @@ public class CreateProductTest
         );
 
         // Assert
-        Assert.IsType<IdNotFoundException>(exception);
+        Assert.IsType<NotFoundException>(exception);
         Assert.Equal(expectedMessage, exception.Message);
     }
 

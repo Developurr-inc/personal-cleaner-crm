@@ -42,7 +42,7 @@ public sealed class CnpjTest
         var exception = Record.Exception(() => Cnpj.Create(invalidCnpj));
 
         // Assert
-        var eve = Assert.IsType<DomainValidationException>(exception);
+        var eve = Assert.IsType<ValidationException>(exception);
         Assert.Contains(expectedErrorMessage, eve.Message);
     }
 
@@ -57,7 +57,7 @@ public sealed class CnpjTest
         var exception = Record.Exception(() => Cnpj.Create(emptyCnpjValue));
 
         // Assert
-        var eve = Assert.IsType<DomainValidationException>(exception);
+        var eve = Assert.IsType<ValidationException>(exception);
         // Assert.Contains(expectedErrorMessage, eve.ValidationMessages);
     }
 
@@ -72,7 +72,7 @@ public sealed class CnpjTest
         var exception = Record.Exception(() => Cnpj.Create(whitespaceCnpjValue));
 
         // Assert
-        var eve = Assert.IsType<DomainValidationException>(exception);
+        var eve = Assert.IsType<ValidationException>(exception);
         // Assert.Contains(expectedErrorMessage, eve.ValidationMessages);
     }
 
@@ -87,7 +87,7 @@ public sealed class CnpjTest
         var exception = Record.Exception(() => Cnpj.Create(shortCnpjValue));
 
         // Assert
-        var eve = Assert.IsType<DomainValidationException>(exception);
+        var eve = Assert.IsType<ValidationException>(exception);
         // Assert.Contains(expectedErrorMessage, eve.ValidationMessages);
     }
 
@@ -102,7 +102,7 @@ public sealed class CnpjTest
         var exception = Record.Exception(() => Cnpj.Create(longCnpjValue));
 
         // Assert
-        var eve = Assert.IsType<DomainValidationException>(exception);
+        var eve = Assert.IsType<ValidationException>(exception);
         // Assert.Contains(expectedErrorMessage, eve.ValidationMessages);
     }
 
@@ -117,7 +117,7 @@ public sealed class CnpjTest
         var exception = Record.Exception(() => Cnpj.Create(invalidCnpjValue));
 
         // Assert
-        var eve = Assert.IsType<DomainValidationException>(exception);
+        var eve = Assert.IsType<ValidationException>(exception);
         // Assert.Contains(expectedErrorMessage, eve.ValidationMessages);
     }
 
@@ -132,7 +132,7 @@ public sealed class CnpjTest
         var exception = Record.Exception(() => Cnpj.Create(nonNumericCnpj));
 
         // Assert
-        var eve = Assert.IsType<DomainValidationException>(exception);
+        var eve = Assert.IsType<ValidationException>(exception);
         // Assert.Contains(expectedErrorMessage, eve.ValidationMessages);
     }
 

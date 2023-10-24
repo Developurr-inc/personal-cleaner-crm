@@ -34,10 +34,10 @@ public sealed class CreateProductUseCase : IUseCase<CreateProductInput, CreatePr
         var package = await _packageRepository.GetByIdAsync(input.PackageId, cancellationToken);
 
         if (category is null)
-            throw new IdNotFoundException(nameof(input.CategoryId));
+            throw new NotFoundException(nameof(input.CategoryId));
 
         if (package is null)
-            throw new IdNotFoundException(nameof(input.PackageId));
+            throw new NotFoundException(nameof(input.PackageId));
 
         var product = Domain.Product.Product.Create(
             input.Name,

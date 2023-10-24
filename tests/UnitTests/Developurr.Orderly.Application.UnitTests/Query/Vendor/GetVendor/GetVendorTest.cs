@@ -73,7 +73,7 @@ public sealed class GetVendorTest
         );
 
         // Assert
-        Assert.IsType<IdNotFoundException>(exception);
+        Assert.IsType<NotFoundException>(exception);
         Assert.Equal("Id not found. (Parameter 'VendorId')", exception.Message);
     }
 }

@@ -147,7 +147,7 @@ public sealed class CloseOrderTest
         );
 
         // Assert
-        Assert.IsType<IdNotFoundException>(exception);
+        Assert.IsType<NotFoundException>(exception);
         Assert.Equal("Id not found. (Parameter 'OrderId')", exception.Message);
     }
 

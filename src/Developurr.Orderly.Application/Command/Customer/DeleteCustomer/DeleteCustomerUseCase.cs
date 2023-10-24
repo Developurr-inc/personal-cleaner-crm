@@ -22,7 +22,7 @@ public class DeleteCustomerUseCase : ICommand<DeleteCustomerInput, DeleteCustome
         var customer = await _customerRepository.GetByIdAsync(input.CustomerId, cancellationToken);
 
         if (customer is null)
-            throw new IdNotFoundException(nameof(input.CustomerId));
+            throw new NotFoundException(nameof(input.CustomerId));
 
         customer.Deactivate();
 

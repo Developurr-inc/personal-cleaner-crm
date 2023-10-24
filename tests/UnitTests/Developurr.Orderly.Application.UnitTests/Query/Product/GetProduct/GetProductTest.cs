@@ -57,7 +57,7 @@ public class GetProductTest
     //     var exception = await Record.ExceptionAsync(() => createProductUseCase.Execute(input, CancellationToken.None));
     //
     //     // Assert
-    //     var entityValidationException = Assert.IsType<DomainValidationException>(exception);
+    //     var entityValidationException = Assert.IsType<ValidationException>(exception);
     //     Assert.NotEmpty(entityValidationException.Errors);
     // }
 }

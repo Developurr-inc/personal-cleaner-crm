@@ -23,7 +23,7 @@ public class DeleteShippingUseCase : IUseCase<DeleteShippingInput, DeleteShippin
         var shipping = await _shippingRepository.GetByIdAsync(input.ShippingId, cancellationToken);
 
         if (shipping is null)
-            throw new IdNotFoundException(input.ShippingId);
+            throw new NotFoundException(input.ShippingId);
 
         await _shippingRepository.RemoveAsync(shipping, cancellationToken);
         await _unitOfWork.CommitAsync(cancellationToken);

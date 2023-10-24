@@ -16,7 +16,7 @@ public sealed class Quantity : ValueObject
     {
         if (int.IsNegative(quantity))
         {
-            throw new DomainValidationException(nameof(quantity));
+            throw new ValidationException(nameof(quantity));
         }
 
         return new Quantity(quantity);

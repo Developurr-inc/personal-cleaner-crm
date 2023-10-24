@@ -30,7 +30,7 @@ public sealed class OptionalTextTest
             () => Domain.Shared.ValueObjects.NonEmptyText.Create(null!)
         );
         // Assert
-        var domainValidationException = Assert.IsType<DomainValidationException>(exception);
+        var domainValidationException = Assert.IsType<ValidationException>(exception);
         Assert.Contains(expectedErrorMessage, domainValidationException.Message);
     }
 
@@ -64,7 +64,7 @@ public sealed class OptionalTextTest
         );
 
         // Assert
-        var domainValidationException = Assert.IsType<DomainValidationException>(exception);
+        var domainValidationException = Assert.IsType<ValidationException>(exception);
         Assert.Contains(expectedErrorMessage, domainValidationException.Message);
     }
 }

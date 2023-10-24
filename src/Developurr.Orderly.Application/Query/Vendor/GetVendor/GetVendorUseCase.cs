@@ -20,7 +20,7 @@ public class GetVendorUseCase : IUseCase<GetVendorInput, GetVendorOutput>
         var vendor = await _vendorRepository.GetByIdAsync(input.VendorId, cancellationToken);
 
         if (vendor is null)
-            throw new IdNotFoundException(nameof(input.VendorId));
+            throw new NotFoundException(nameof(input.VendorId));
 
         return new GetVendorOutput(
             vendor.Cpf.ToString(),

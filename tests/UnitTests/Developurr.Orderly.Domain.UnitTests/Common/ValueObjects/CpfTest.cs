@@ -42,7 +42,7 @@ public sealed class CpfTest
         var exception = Record.Exception(() => Cpf.Create(invalidCpf));
 
         // Assert
-        var eve = Assert.IsType<DomainValidationException>(exception);
+        var eve = Assert.IsType<ValidationException>(exception);
         Assert.Contains(expectedErrorMessage, eve.Message);
     }
 
@@ -57,7 +57,7 @@ public sealed class CpfTest
         var exception = Record.Exception(() => Cpf.Create(emptyCpfValue));
 
         // Assert
-        var eve = Assert.IsType<DomainValidationException>(exception);
+        var eve = Assert.IsType<ValidationException>(exception);
         // Assert.Contains(expectedErrorMessage, eve.ValidationMessages);
     }
 
@@ -72,7 +72,7 @@ public sealed class CpfTest
         var exception = Record.Exception(() => Cpf.Create(whitespaceCpfValue));
 
         // Assert
-        var eve = Assert.IsType<DomainValidationException>(exception);
+        var eve = Assert.IsType<ValidationException>(exception);
         // Assert.Contains(expectedErrorMessage, eve.ValidationMessages);
     }
 
@@ -87,7 +87,7 @@ public sealed class CpfTest
         var exception = Record.Exception(() => Cpf.Create(shortCpfValue));
 
         // Assert
-        var eve = Assert.IsType<DomainValidationException>(exception);
+        var eve = Assert.IsType<ValidationException>(exception);
         // Assert.Contains(expectedErrorMessage, eve.ValidationMessages);
     }
 
@@ -102,7 +102,7 @@ public sealed class CpfTest
         var exception = Record.Exception(() => Cpf.Create(longCpfValue));
 
         // Assert
-        var eve = Assert.IsType<DomainValidationException>(exception);
+        var eve = Assert.IsType<ValidationException>(exception);
         // Assert.Contains(expectedErrorMessage, eve.ValidationMessages);
     }
 
@@ -117,7 +117,7 @@ public sealed class CpfTest
         var exception = Record.Exception(() => Cpf.Create(invalidCpfValue));
 
         // Assert
-        var eve = Assert.IsType<DomainValidationException>(exception);
+        var eve = Assert.IsType<ValidationException>(exception);
         // Assert.Contains(expectedErrorMessage, eve.ValidationMessages);
     }
 
@@ -132,7 +132,7 @@ public sealed class CpfTest
         var exception = Record.Exception(() => Cpf.Create(nonNumericCpf));
 
         // Assert
-        var eve = Assert.IsType<DomainValidationException>(exception);
+        var eve = Assert.IsType<ValidationException>(exception);
         // Assert.Contains(expectedErrorMessage, eve.ValidationMessages);
     }
 

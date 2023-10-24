@@ -20,7 +20,7 @@ public class GetManagerUseCase : IUseCase<GetManagerInput, GetManagerOutput>
         var manager = await _managerRepository.GetByIdAsync(input.ManagerId, cancellationToken);
 
         if (manager is null)
-            throw new IdNotFoundException(input.ManagerId);
+            throw new NotFoundException(input.ManagerId);
 
         return new GetManagerOutput(
             manager.Cpf.ToString(),

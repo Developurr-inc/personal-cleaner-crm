@@ -1,5 +1,4 @@
 using Developurr.Orderly.Domain.Exceptions;
-using Developurr.Orderly.Domain.UnitTests.TestUtils.Constants;
 using Developurr.Orderly.Domain.UnitTests.TestUtils.Cpf;
 using Developurr.Orderly.Domain.UnitTests.TestUtils.Email;
 using Developurr.Orderly.Domain.UnitTests.TestUtils.NonEmptyText;
@@ -325,7 +324,7 @@ public sealed class VendorTest
         );
 
         // Assert
-        var domainValidationException = Assert.IsType<DomainValidationException>(exception);
+        var domainValidationException = Assert.IsType<ValidationException>(exception);
         Assert.Contains(expectedErrorMessage, domainValidationException.Message);
     }
 
@@ -371,7 +370,7 @@ public sealed class VendorTest
         );
 
         // Assert
-        var domainValidationException = Assert.IsType<DomainValidationException>(exception);
+        var domainValidationException = Assert.IsType<ValidationException>(exception);
         Assert.Contains(expectedMessage, domainValidationException.Message);
     }
 }

@@ -27,12 +27,13 @@ public sealed class DiscountTest
         var exception = Record.Exception(() => Discount.Create(negativeDiscountValue));
 
         // Assert
-        var eve = Assert.IsType<DomainValidationException>(exception);
+        var eve = Assert.IsType<ValidationException>(exception);
         // Assert.Contains(expectedErrorMessage, eve.ValidationMessages);
     }
 
     [Fact]
-    public void GivenOverUpperLimitDiscountValue_WhenCreatingDiscount_ThenShouldThrowEntityValidationExceptionWithMessage()
+    public void
+        GivenOverUpperLimitDiscountValue_WhenCreatingDiscount_ThenShouldThrowEntityValidationExceptionWithMessage()
     {
         // Arrange
         const decimal overUpperLimitDiscountValue = Constants
@@ -44,7 +45,7 @@ public sealed class DiscountTest
         var exception = Record.Exception(() => Discount.Create(overUpperLimitDiscountValue));
 
         // Assert
-        var eve = Assert.IsType<DomainValidationException>(exception);
+        var eve = Assert.IsType<ValidationException>(exception);
         // Assert.Contains(expectedErrorMessage, eve.ValidationMessages);
     }
 }

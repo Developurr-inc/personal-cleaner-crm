@@ -1,5 +1,4 @@
 using Developurr.Orderly.Domain.Exceptions;
-using Developurr.Orderly.Domain.Shared.ValueObjects;
 using Developurr.Orderly.Domain.UnitTests.TestUtils.Cnpj;
 using Developurr.Orderly.Domain.UnitTests.TestUtils.Constants;
 using Developurr.Orderly.Domain.UnitTests.TestUtils.NonEmptyText;
@@ -151,10 +150,10 @@ public sealed class ShippingTest
         );
 
         // Assert
-        var eve = Assert.IsType<DomainValidationException>(exception);
+        var eve = Assert.IsType<ValidationException>(exception);
         Assert.Contains(expectedErrorMessage, eve.Message);
     }
-    
+
     [Fact]
     public void GivenValidInput_WhenCreatingShipping_ThenShouldHaveActiveStatusTrue()
     {

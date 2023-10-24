@@ -16,14 +16,14 @@ public sealed class OptionalText : ValueObject
     {
         if (value.Equals(null))
         {
-            throw new DomainValidationException("Value cannot be null.");
+            throw new ValidationException("Value cannot be null.");
         }
 
         var valueSanitized = value.Trim();
 
         if (valueSanitized.Length > 10_000)
         {
-            throw new DomainValidationException("Value cannot be longer than 10000 characters.");
+            throw new ValidationException("Value cannot be longer than 10000 characters.");
         }
 
         return new OptionalText(valueSanitized);

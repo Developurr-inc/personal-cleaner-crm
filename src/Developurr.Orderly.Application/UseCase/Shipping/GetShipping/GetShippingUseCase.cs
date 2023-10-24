@@ -20,7 +20,7 @@ public class GetShippingUseCase : IUseCase<GetShippingInput, GetShippingOutput>
         var shipping = await _shippingRepository.GetByIdAsync(input.ShippingId, cancellationToken);
 
         if (shipping is null)
-            throw new IdNotFoundException(input.ShippingId);
+            throw new NotFoundException(input.ShippingId);
 
         return new GetShippingOutput(
             shipping.Cnpj.ToString(),

@@ -22,7 +22,7 @@ public class DeleteProductUseCase : IUseCase<DeleteProductInput, DeleteProductOu
         var product = await _productRepository.GetByIdAsync(input.ProductId, cancellationToken);
 
         if (product is null)
-            throw new IdNotFoundException(nameof(input.ProductId));
+            throw new NotFoundException(nameof(input.ProductId));
 
         product.Deactivate();
 

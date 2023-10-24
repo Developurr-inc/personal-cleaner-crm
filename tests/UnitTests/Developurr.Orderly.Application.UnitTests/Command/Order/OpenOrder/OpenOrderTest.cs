@@ -2,7 +2,6 @@ using Developurr.Orderly.Application.Command;
 using Developurr.Orderly.Application.Command.Order.OpenOrder;
 using Developurr.Orderly.Application.UnitTests.TestUtils.OpenOrder;
 using Developurr.Orderly.Domain.Customer.Repositories;
-using Developurr.Orderly.Domain.Exceptions;
 using Developurr.Orderly.Domain.Order.Repositories;
 using Developurr.Orderly.Domain.UnitTests.TestUtils.Customer;
 using Developurr.Orderly.Domain.UnitTests.TestUtils.Vendor;
@@ -207,7 +206,7 @@ public class OpenOrderTest
         );
 
         // Assert
-        // _ = Assert.IsType<DomainValidationException>(exception);
+        // _ = Assert.IsType<ValidationException>(exception);
         //Assert.NotEmpty(entityValidationException.Errors);
     }
 

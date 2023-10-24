@@ -49,7 +49,7 @@ public sealed class QuantityTest
         var exception = Record.Exception(() => Quantity.Create(negativeQuantityValue));
 
         // Assert
-        var domainValidationException = Assert.IsType<DomainValidationException>(exception);
+        var domainValidationException = Assert.IsType<ValidationException>(exception);
         Assert.Contains(expectedMessage, domainValidationException.Message);
     }
 
@@ -112,7 +112,7 @@ public sealed class QuantityTest
         var exception = Record.Exception(() => quantity1 - quantity2);
 
         // Assert
-        var domainValidationException = Assert.IsType<DomainValidationException>(exception);
+        var domainValidationException = Assert.IsType<ValidationException>(exception);
         Assert.Contains(expectedMessage, domainValidationException.Message);
     }
 }

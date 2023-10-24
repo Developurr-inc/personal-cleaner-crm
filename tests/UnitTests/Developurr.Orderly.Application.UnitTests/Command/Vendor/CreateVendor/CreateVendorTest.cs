@@ -117,7 +117,7 @@ public class CreateVendorTest
         );
 
         // Assert
-        var entityValidationException = Assert.IsType<DomainValidationException>(exception);
+        var entityValidationException = Assert.IsType<ValidationException>(exception);
         // Assert.NotEmpty(entityValidationException.ValidationMessages);
     }
 }

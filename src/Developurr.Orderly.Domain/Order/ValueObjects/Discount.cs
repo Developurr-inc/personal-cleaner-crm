@@ -15,7 +15,7 @@ public sealed class Discount : ValueObject
     public static Discount Create(decimal value)
     {
         if (value is < 0 or > 100)
-            throw new DomainValidationException("Discount value is invalid");
+            throw new ValidationException("Discount value is invalid");
 
         return new Discount(value);
     }

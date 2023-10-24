@@ -46,7 +46,7 @@ public sealed class PackageTest
         var exception = Record.Exception(() => Domain.Package.Package.Create(name));
 
         // Assert
-        var domainValidationException = Assert.IsType<DomainValidationException>(exception);
+        var domainValidationException = Assert.IsType<ValidationException>(exception);
         Assert.Contains(expectedErrorMessage, domainValidationException.Message);
     }
 
@@ -63,7 +63,7 @@ public sealed class PackageTest
         var exception = Record.Exception(() => Domain.Package.Package.Create(name));
 
         // Assert
-        var domainValidationException = Assert.IsType<DomainValidationException>(exception);
+        var domainValidationException = Assert.IsType<ValidationException>(exception);
         Assert.Contains(expectedMessage, domainValidationException.Message);
     }
 
@@ -79,7 +79,7 @@ public sealed class PackageTest
         // Assert
         Assert.True(package.Active.IsActive);
     }
-    
+
     [Fact]
     public void GivenValidPackage_WhenDeactivatingPackage_ThenShouldBeInactive()
     {

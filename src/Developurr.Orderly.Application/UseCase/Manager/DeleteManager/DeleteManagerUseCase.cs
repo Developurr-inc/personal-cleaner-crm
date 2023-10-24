@@ -23,7 +23,7 @@ public class DeleteManagerUseCase : IUseCase<DeleteManagerInput, DeleteManagerOu
         var manager = await _managerRepository.GetByIdAsync(input.ManagerId, cancellationToken);
 
         if (manager is null)
-            throw new IdNotFoundException(input.ManagerId);
+            throw new NotFoundException(input.ManagerId);
 
         await _managerRepository.RemoveAsync(manager, cancellationToken);
         await _unitOfWork.CommitAsync(cancellationToken);

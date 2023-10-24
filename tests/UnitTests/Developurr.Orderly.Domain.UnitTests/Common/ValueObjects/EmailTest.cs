@@ -1,7 +1,6 @@
 ﻿using Developurr.Orderly.Domain.Exceptions;
 using Developurr.Orderly.Domain.Shared.ValueObjects;
 using Developurr.Orderly.Domain.UnitTests.TestUtils.Constants;
-using Developurr.Orderly.Domain.UnitTests.TestUtils.Email;
 
 namespace Developurr.Orderly.Domain.UnitTests.Common.ValueObjects;
 
@@ -41,7 +40,7 @@ public sealed class EmailTest
         var exception = Record.Exception(() => Email.Create(invalidEmail));
 
         // Assert
-        var eve = Assert.IsType<DomainValidationException>(exception);
+        var eve = Assert.IsType<ValidationException>(exception);
         Assert.Contains(expectedErrorMessage, eve.Message);
     }
 
@@ -56,7 +55,7 @@ public sealed class EmailTest
         var exception = Record.Exception(() => Email.Create(emptyEmail));
 
         // Assert
-        var eve = Assert.IsType<DomainValidationException>(exception);
+        var eve = Assert.IsType<ValidationException>(exception);
         // Assert.Contains(expectedErrorMessage, eve.ValidationMessages);
     }
 
@@ -71,7 +70,7 @@ public sealed class EmailTest
         var exception = Record.Exception(() => Email.Create(whitespaceEmail));
 
         // Assert
-        var eve = Assert.IsType<DomainValidationException>(exception);
+        var eve = Assert.IsType<ValidationException>(exception);
         // Assert.Contains(expectedErrorMessage, eve.ValidationMessages);
     }
 
@@ -87,7 +86,7 @@ public sealed class EmailTest
         var exception = Record.Exception(() => Email.Create(shortEmail));
 
         // Assert
-        var eve = Assert.IsType<DomainValidationException>(exception);
+        var eve = Assert.IsType<ValidationException>(exception);
         // Assert.Contains(expectedErrorMessage, eve.ValidationMessages);
     }
 
@@ -103,7 +102,7 @@ public sealed class EmailTest
         var exception = Record.Exception(() => Email.Create(longEmail));
 
         // Assert
-        var eve = Assert.IsType<DomainValidationException>(exception);
+        var eve = Assert.IsType<ValidationException>(exception);
         // Assert.Contains(expectedErrorMessage, eve.ValidationMessages);
     }
 
@@ -118,7 +117,7 @@ public sealed class EmailTest
         var exception = Record.Exception(() => Email.Create(invalidAtEmail));
 
         // Assert
-        var eve = Assert.IsType<DomainValidationException>(exception);
+        var eve = Assert.IsType<ValidationException>(exception);
         // Assert.Contains(expectedErrorMessage, eve.ValidationMessages);
     }
 
@@ -133,7 +132,7 @@ public sealed class EmailTest
         var exception = Record.Exception(() => Email.Create(invalidDotEmailAddress));
 
         // Assert
-        var eve = Assert.IsType<DomainValidationException>(exception);
+        var eve = Assert.IsType<ValidationException>(exception);
         // Assert.Contains(expectedErrorMessage, eve.ValidationMessages);
     }
 
@@ -150,7 +149,7 @@ public sealed class EmailTest
         var exception = Record.Exception(() => Email.Create(invalidAtAndDotEmailAddress));
 
         // Assert
-        var eve = Assert.IsType<DomainValidationException>(exception);
+        var eve = Assert.IsType<ValidationException>(exception);
         // Assert.Contains(expectedErrorMessage, eve.ValidationMessages);
     }
 

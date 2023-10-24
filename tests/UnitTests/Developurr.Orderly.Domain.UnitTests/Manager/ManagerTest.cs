@@ -1,6 +1,4 @@
-using System.Drawing;
 using Developurr.Orderly.Domain.Exceptions;
-using Developurr.Orderly.Domain.UnitTests.TestUtils.Address;
 using Developurr.Orderly.Domain.UnitTests.TestUtils.Cpf;
 using Developurr.Orderly.Domain.UnitTests.TestUtils.Email;
 using Developurr.Orderly.Domain.UnitTests.TestUtils.Manager;
@@ -288,7 +286,7 @@ public sealed class ManagerTest
         );
 
         // Assert
-        var domainValidationException = Assert.IsType<DomainValidationException>(exception);
+        var domainValidationException = Assert.IsType<ValidationException>(exception);
         Assert.Equal(expectedErrorMessage, domainValidationException.Message);
     }
 
@@ -343,10 +341,10 @@ public sealed class ManagerTest
         );
 
         // Assert
-        var domainValidationException = Assert.IsType<DomainValidationException>(exception);
+        var domainValidationException = Assert.IsType<ValidationException>(exception);
         // Assert.Contains(expectedMessage, domainValidationException.Message);
     }
-    
+
     [Fact]
     public void GivenValidInput_WhenCreatingManager_ThenShouldHaveActiveStatusTrue()
     {
@@ -385,7 +383,7 @@ public sealed class ManagerTest
         // Assert
         Assert.True(manager.Active.IsActive);
     }
-    
+
     [Fact]
     public void GivenValidManager_WhenDeactivatingManager_ThenShouldBeInactive()
     {

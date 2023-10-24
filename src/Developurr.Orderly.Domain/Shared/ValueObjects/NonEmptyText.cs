@@ -16,14 +16,14 @@ public sealed class NonEmptyText : ValueObject
     {
         if (string.IsNullOrWhiteSpace(value))
         {
-            throw new DomainValidationException("Value cannot be null or whitespace.");
+            throw new ValidationException("Value cannot be null or whitespace.");
         }
 
         var valueSanitized = value.Trim();
 
         if (valueSanitized.Length > 255)
         {
-            throw new DomainValidationException("Value cannot be longer than 255 characters.");
+            throw new ValidationException("Value cannot be longer than 255 characters.");
         }
 
         return new NonEmptyText(valueSanitized);

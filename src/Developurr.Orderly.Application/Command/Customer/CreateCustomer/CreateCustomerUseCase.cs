@@ -29,7 +29,7 @@ public sealed class CreateCustomerUseCase : ICommand<CreateCustomerInput, Create
         var vendor = await _vendorRepository.GetByIdAsync(input.VendorId, cancellationToken);
 
         if (vendor is null)
-            throw new IdNotFoundException(input.VendorId);
+            throw new NotFoundException(input.VendorId);
 
         var customer = Domain.Customer.Customer.Create(
             vendor.Id,

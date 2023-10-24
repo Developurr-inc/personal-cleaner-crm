@@ -1,7 +1,9 @@
 namespace Developurr.Orderly.Domain.Exceptions;
 
-public class BusinessRuleException : Exception
+public class BusinessRuleException : DomainException
 {
     public BusinessRuleException(string message)
-        : base(message) { }
+        : base(message)
+    {
+    }
 }

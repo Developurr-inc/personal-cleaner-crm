@@ -162,7 +162,7 @@ public sealed class DeleteCustomerTest
         );
 
         // Assert
-        Assert.IsType<IdNotFoundException>(exception);
+        Assert.IsType<NotFoundException>(exception);
         Assert.Equal(expectedMessage, exception.Message);
     }
 

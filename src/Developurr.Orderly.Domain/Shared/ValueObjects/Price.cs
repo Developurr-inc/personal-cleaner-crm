@@ -27,7 +27,7 @@ public sealed class Price : ValueObject
     {
         if (decimal.IsNegative(price))
         {
-            throw new DomainValidationException("There are validation errors.");
+            throw new ValidationException("There are validation errors.");
         }
 
         return new Price(price);

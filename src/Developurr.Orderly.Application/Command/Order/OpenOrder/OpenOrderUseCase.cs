@@ -34,10 +34,10 @@ public sealed class OpenOrderUseCase : ICommand<OpenOrderInput, OpenOrderOutput>
         var vendor = await _vendorRepository.GetByIdAsync(input.VendorId, cancellationToken);
 
         if (customer is null)
-            throw new IdNotFoundException(nameof(input.CustomerId));
+            throw new NotFoundException(nameof(input.CustomerId));
 
         if (vendor is null)
-            throw new IdNotFoundException(nameof(input.VendorId));
+            throw new NotFoundException(nameof(input.VendorId));
 
         var order = Domain.Order.Order.Open(customer.Id, vendor.Id);
 

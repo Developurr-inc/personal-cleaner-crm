@@ -21,7 +21,7 @@ public class DeleteVendorUseCase : IUseCase<DeleteVendorInput, DeleteVendorOutpu
     {
         var vendor = await _vendorRepository.GetByIdAsync(input.VendorId, cancellationToken);
         if (vendor is null)
-            throw new IdNotFoundException(nameof(input.VendorId));
+            throw new NotFoundException(nameof(input.VendorId));
 
         vendor.Deactivate();
 

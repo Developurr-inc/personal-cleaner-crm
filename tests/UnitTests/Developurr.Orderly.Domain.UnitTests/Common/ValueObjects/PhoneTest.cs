@@ -41,7 +41,7 @@ public sealed class PhoneTest
         var exception = Record.Exception(() => Phone.Create(invalidPhone));
 
         // Assert
-        var eve = Assert.IsType<DomainValidationException>(exception);
+        var eve = Assert.IsType<ValidationException>(exception);
         Assert.Contains(expectedErrorMessage, eve.Message);
     }
 
@@ -56,7 +56,7 @@ public sealed class PhoneTest
         var exception = Record.Exception(() => Phone.Create(emptyPhoneValue));
 
         // Assert
-        var eve = Assert.IsType<DomainValidationException>(exception);
+        var eve = Assert.IsType<ValidationException>(exception);
         // Assert.Contains(expectedErrorMessage, eve.ValidationMessages);
     }
 
@@ -71,7 +71,7 @@ public sealed class PhoneTest
         var exception = Record.Exception(() => Phone.Create(whitespacePhoneValue));
 
         // Assert
-        var eve = Assert.IsType<DomainValidationException>(exception);
+        var eve = Assert.IsType<ValidationException>(exception);
         // Assert.Contains(expectedErrorMessage, eve.ValidationMessages);
     }
 
@@ -86,7 +86,7 @@ public sealed class PhoneTest
         var exception = Record.Exception(() => Phone.Create(shortPhoneValue));
 
         // Assert
-        var eve = Assert.IsType<DomainValidationException>(exception);
+        var eve = Assert.IsType<ValidationException>(exception);
         // Assert.Contains(expectedErrorMessage, eve.ValidationMessages);
     }
 
@@ -101,7 +101,7 @@ public sealed class PhoneTest
         var exception = Record.Exception(() => Phone.Create(longPhoneValue));
 
         // Assert
-        var eve = Assert.IsType<DomainValidationException>(exception);
+        var eve = Assert.IsType<ValidationException>(exception);
         // Assert.Contains(expectedErrorMessage, eve.ValidationMessages);
     }
 
@@ -116,7 +116,7 @@ public sealed class PhoneTest
         var exception = Record.Exception(() => Phone.Create(nonNumericPhone));
 
         // Assert
-        var eve = Assert.IsType<DomainValidationException>(exception);
+        var eve = Assert.IsType<ValidationException>(exception);
         // Assert.Contains(expectedErrorMessage, eve.ValidationMessages);
     }
 

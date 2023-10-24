@@ -22,7 +22,7 @@ public class CloseOrderUseCase : ICommand<CloseOrderInput, CloseOrderOutput>
         var order = await _orderRepository.GetByIdAsync(input.OrderId, cancellationToken);
 
         if (order is null)
-            throw new IdNotFoundException(nameof(input.OrderId));
+            throw new NotFoundException(nameof(input.OrderId));
 
         order.Close();
 

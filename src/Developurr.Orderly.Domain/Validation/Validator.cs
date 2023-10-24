@@ -21,7 +21,7 @@ public abstract class Validator : IValidator
     protected void ThrowEntityValidationExceptionWithValidationErrors()
     {
         if (HasErrors())
-            throw new DomainValidationException(
+            throw new ValidationException(
                 "There are validation errors. See ValidationMessages property for more details."
             );
     }
