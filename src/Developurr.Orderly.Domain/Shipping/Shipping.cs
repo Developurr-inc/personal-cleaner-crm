@@ -11,7 +11,7 @@ public sealed class Shipping : Entity<ShippingId>, IAggregateRoot
     public NonEmptyText RazaoSocial { get; private set; }
     public NonEmptyText InscricaoSocial { get; private set; }
     public NonEmptyText NomeFantasia { get; private set; }
-    public NonEmptyText Segment { get; private set; }
+    public NonEmptyText Segmento { get; private set; }
 
     private Shipping(
         ShippingId shippingId,
@@ -19,7 +19,7 @@ public sealed class Shipping : Entity<ShippingId>, IAggregateRoot
         NonEmptyText razaoSocial,
         NonEmptyText inscricaoSocial,
         NonEmptyText nomeFantasia,
-        NonEmptyText segment
+        NonEmptyText segmento
     )
         : base(shippingId)
     {
@@ -28,7 +28,7 @@ public sealed class Shipping : Entity<ShippingId>, IAggregateRoot
         RazaoSocial = razaoSocial;
         InscricaoSocial = inscricaoSocial;
         NomeFantasia = nomeFantasia;
-        Segment = segment;
+        Segmento = segmento;
     }
 
     public static Shipping Create(
@@ -36,7 +36,7 @@ public sealed class Shipping : Entity<ShippingId>, IAggregateRoot
         string razaoSocial,
         string inscricaoSocial,
         string nomeFantasia,
-        string segment
+        string segmento
     )
     {
         var shippingId = ShippingId.Generate();
@@ -44,7 +44,7 @@ public sealed class Shipping : Entity<ShippingId>, IAggregateRoot
         var razaoSocialObj = NonEmptyText.Create(razaoSocial);
         var inscricaoSocialObj = NonEmptyText.Create(inscricaoSocial);
         var nomeFantasiaObj = NonEmptyText.Create(nomeFantasia);
-        var segmentObj = NonEmptyText.Create(segment);
+        var segmentoObj = NonEmptyText.Create(segmento);
 
         return new Shipping(
             shippingId,
@@ -52,7 +52,7 @@ public sealed class Shipping : Entity<ShippingId>, IAggregateRoot
             razaoSocialObj,
             inscricaoSocialObj,
             nomeFantasiaObj,
-            segmentObj
+            segmentoObj
         );
     }
 }
