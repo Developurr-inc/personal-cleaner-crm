@@ -13,7 +13,7 @@ public sealed class Customer : Entity<CustomerId>, IAggregateRoot
     public NonEmptyText RazaoSocial { get; private set; }
     public NonEmptyText InscricaoSocial { get; private set; }
     public NonEmptyText NomeFantasia { get; private set; }
-    public NonEmptyText Segment { get; private set; }
+    public NonEmptyText Segmento { get; private set; }
     public Email? BillingEmail { get; private set; }
     public Email NfeEmail { get; private set; }
     public Phone? Landline { get; private set; }
@@ -28,7 +28,7 @@ public sealed class Customer : Entity<CustomerId>, IAggregateRoot
         NonEmptyText razaoSocial,
         NonEmptyText inscricaoSocial,
         NonEmptyText nomeFantasia,
-        NonEmptyText segment,
+        NonEmptyText segmento,
         Email? billingEmail,
         Email nfeEmail,
         Phone? landline,
@@ -44,7 +44,7 @@ public sealed class Customer : Entity<CustomerId>, IAggregateRoot
         RazaoSocial = razaoSocial;
         InscricaoSocial = inscricaoSocial;
         NomeFantasia = nomeFantasia;
-        Segment = segment;
+        Segmento = segmento;
         BillingEmail = billingEmail;
         NfeEmail = nfeEmail;
         Landline = landline;
@@ -65,7 +65,7 @@ public sealed class Customer : Entity<CustomerId>, IAggregateRoot
         string razaoSocial,
         string inscricaoSocial,
         string nomeFantasia,
-        string segment,
+        string segmento,
         string? billingEmail,
         string nfeEmail,
         string? landline,
@@ -78,7 +78,7 @@ public sealed class Customer : Entity<CustomerId>, IAggregateRoot
         var razaoSocialObj = NonEmptyText.Create(razaoSocial);
         var inscricaoSocialObj = NonEmptyText.Create(inscricaoSocial);
         var nomeFantasiaObj = NonEmptyText.Create(nomeFantasia);
-        var segmentObj = NonEmptyText.Create(segment);
+        var segmentoObj = NonEmptyText.Create(segmento);
         var billingEmailObj = billingEmail == null ? null : Email.Create(billingEmail);
         var nfeEmailObj = Email.Create(nfeEmail);
         var landlineObj = landline == null ? null : Phone.Create(landline);
@@ -93,7 +93,7 @@ public sealed class Customer : Entity<CustomerId>, IAggregateRoot
             razaoSocialObj,
             inscricaoSocialObj,
             nomeFantasiaObj,
-            segmentObj,
+            segmentoObj,
             billingEmailObj,
             nfeEmailObj,
             landlineObj,
