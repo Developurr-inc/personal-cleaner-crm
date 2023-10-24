@@ -8,6 +8,7 @@ public sealed class Shipping : Entity<ShippingId>, IAggregateRoot
 {
     // private readonly List<OrderId> _orders;
     public Cnpj Cnpj { get; }
+    public ActiveStatus Active { get; private set; }
     public NonEmptyText RazaoSocial { get; private set; }
     public NonEmptyText InscricaoSocial { get; private set; }
     public NonEmptyText NomeFantasia { get; private set; }
@@ -19,7 +20,8 @@ public sealed class Shipping : Entity<ShippingId>, IAggregateRoot
         NonEmptyText razaoSocial,
         NonEmptyText inscricaoSocial,
         NonEmptyText nomeFantasia,
-        NonEmptyText segmento
+        NonEmptyText segmento,
+        ActiveStatus active
     )
         : base(shippingId)
     {
@@ -29,6 +31,13 @@ public sealed class Shipping : Entity<ShippingId>, IAggregateRoot
         InscricaoSocial = inscricaoSocial;
         NomeFantasia = nomeFantasia;
         Segmento = segmento;
+        Active = active;
+    }
+    
+    public void Deactivate()
+    {
+        if (Active.IsActive)
+            Active = ActiveStatus.Inactive;
     }
 
     public static Shipping Create(
@@ -45,6 +54,7 @@ public sealed class Shipping : Entity<ShippingId>, IAggregateRoot
         var inscricaoSocialObj = NonEmptyText.Create(inscricaoSocial);
         var nomeFantasiaObj = NonEmptyText.Create(nomeFantasia);
         var segmentoObj = NonEmptyText.Create(segmento);
+        var activeObj = ActiveStatus.Active;
 
         return new Shipping(
             shippingId,
@@ -52,7 +62,8 @@ public sealed class Shipping : Entity<ShippingId>, IAggregateRoot
             razaoSocialObj,
             inscricaoSocialObj,
             nomeFantasiaObj,
-            segmentoObj
+            segmentoObj,
+            activeObj
         );
     }
 }
