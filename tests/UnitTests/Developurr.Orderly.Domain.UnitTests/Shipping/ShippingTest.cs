@@ -114,7 +114,7 @@ public sealed class ShippingTest
         );
 
         // Assert
-        Assert.Equal(expectedSegmento, shipping.Segmento);
+        Assert.Equal(expectedSegment, shipping.Segmento);
     }
 
     [Theory]
