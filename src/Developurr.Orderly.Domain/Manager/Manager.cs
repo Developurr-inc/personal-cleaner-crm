@@ -4,7 +4,7 @@ using Developurr.Orderly.Domain.Shared.ValueObjects;
 
 namespace Developurr.Orderly.Domain.Manager;
 
-public sealed class Manager : Entity<ManagerId>, IAggregateRoot
+public sealed partial class Manager : Entity<ManagerId>, IAggregateRoot
 {
     // private readonly List<VendorId> _vendors;
     public Cpf Cpf { get; }

@@ -4,7 +4,7 @@ using Developurr.Orderly.Domain.Shared.ValueObjects;
 
 namespace Developurr.Orderly.Domain.Package;
 
-public sealed class Package : Entity<PackageId>, IAggregateRoot
+public sealed partial class Package : Entity<PackageId>, IAggregateRoot
 {
     public NonEmptyText Name { get; }
     public ActiveStatus Active { get; private set; }

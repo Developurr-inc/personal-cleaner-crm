@@ -3,7 +3,7 @@ using Developurr.Orderly.Domain.Shared.ValueObjects;
 using Developurr.Orderly.Domain.UnitTests.TestUtils.Address;
 using Developurr.Orderly.Domain.UnitTests.TestUtils.Constants;
 
-namespace Developurr.Orderly.Domain.UnitTests.Common.ValueObjects;
+namespace Developurr.Orderly.Domain.UnitTests.Shared.ValueObjects;
 
 public sealed class AddressTest
 {
@@ -135,7 +135,7 @@ public sealed class AddressTest
         // Assert
         Assert.Equal(expectedNeighborhood, address.Neighborhood);
     }
-
+    
     [Fact]
     public void GivenValidCity_WhenCreatingAddress_ThenShouldHaveValidCity()
     {

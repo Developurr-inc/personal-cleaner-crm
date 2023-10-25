@@ -3,7 +3,7 @@ using Developurr.Orderly.Domain.Shared.ValueObjects;
 using Developurr.Orderly.Domain.UnitTests.TestUtils.Cnpj;
 using Developurr.Orderly.Domain.UnitTests.TestUtils.Constants;
 
-namespace Developurr.Orderly.Domain.UnitTests.Common.ValueObjects;
+namespace Developurr.Orderly.Domain.UnitTests.Shared.ValueObjects;
 
 public sealed class CnpjTest
 {

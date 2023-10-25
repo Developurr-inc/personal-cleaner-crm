@@ -7,6 +7,8 @@ public sealed class Quantity : ValueObject
 {
     public readonly int Value;
 
+    private Quantity(){ }
+
     private Quantity(int value)
     {
         Value = value;

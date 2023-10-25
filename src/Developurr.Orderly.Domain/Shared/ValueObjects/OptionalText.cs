@@ -7,6 +7,8 @@ public sealed class OptionalText : ValueObject
 {
     private readonly string _value;
 
+    private OptionalText(){ }
+    
     private OptionalText(string value)
     {
         _value = value;

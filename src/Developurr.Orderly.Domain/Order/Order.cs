@@ -8,7 +8,7 @@ using Developurr.Orderly.Domain.Vendor.ValueObjects;
 
 namespace Developurr.Orderly.Domain.Order;
 
-public sealed class Order : Entity<OrderId>, IAggregateRoot
+public sealed partial class Order : Entity<OrderId>, IAggregateRoot
 {
     // private readonly List<LineItem> _lineItems;
     private NaturezaDaOperacao _naturezaDaOperacao;

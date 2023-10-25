@@ -11,7 +11,9 @@ public sealed class NonEmptyText : ValueObject
     {
         _value = value;
     }
-
+    
+    private NonEmptyText(){ }
+    
     public static NonEmptyText Create(string value)
     {
         if (string.IsNullOrWhiteSpace(value))

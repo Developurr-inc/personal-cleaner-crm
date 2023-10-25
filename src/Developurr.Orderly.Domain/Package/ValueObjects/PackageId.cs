@@ -4,6 +4,9 @@ namespace Developurr.Orderly.Domain.Package.ValueObjects;
 
 public sealed class PackageId : Identifier<Guid>
 {
+    private PackageId()
+        : base(Guid.Empty){ }
+    
     private PackageId(Guid value)
         : base(value) { }
 

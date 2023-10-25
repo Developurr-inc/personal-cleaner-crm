@@ -4,7 +4,7 @@ using Developurr.Orderly.Domain.Shared.ValueObjects;
 
 namespace Developurr.Orderly.Domain.Category;
 
-public sealed class Category : Entity<CategoryId>, IAggregateRoot
+public sealed partial class Category : Entity<CategoryId>, IAggregateRoot
 {
     public NonEmptyText Name { get; }
     public OptionalText Description { get; }
