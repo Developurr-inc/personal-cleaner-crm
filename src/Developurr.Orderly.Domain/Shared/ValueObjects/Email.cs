@@ -7,6 +7,8 @@ public sealed class Email : ValueObject
 {
     private readonly string _value;
 
+    private Email() { }
+
     private Email(string email)
     {
         _value = email;

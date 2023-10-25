@@ -7,6 +7,8 @@ public sealed class Discount : ValueObject
 {
     public readonly decimal Value;
 
+    private Discount() { }
+
     private Discount(decimal value)
     {
         Value = value;

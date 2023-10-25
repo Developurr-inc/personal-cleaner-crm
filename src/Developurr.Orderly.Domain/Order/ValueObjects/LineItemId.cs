@@ -4,6 +4,9 @@ namespace Developurr.Orderly.Domain.Order.ValueObjects;
 
 public sealed class LineItemId : Identifier<Guid>
 {
+    private LineItemId()
+        : base(Guid.Empty){ }
+
     private LineItemId(Guid value)
         : base(value) { }
 

@@ -7,6 +7,7 @@ public sealed class ZipCode : ValueObject
 {
     private readonly string _value;
 
+    private ZipCode(){ }
     private ZipCode(string zipCode)
     {
         _value = zipCode;

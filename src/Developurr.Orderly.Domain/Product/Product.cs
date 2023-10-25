@@ -6,7 +6,7 @@ using Developurr.Orderly.Domain.Shared.ValueObjects;
 
 namespace Developurr.Orderly.Domain.Product;
 
-public sealed class Product : Entity<ProductId>, IAggregateRoot
+public sealed partial class Product : Entity<ProductId>, IAggregateRoot
 {
     public readonly Sku Sku;
     public NonEmptyText Name { get; }

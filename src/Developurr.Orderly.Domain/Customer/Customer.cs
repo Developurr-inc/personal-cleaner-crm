@@ -5,7 +5,7 @@ using Developurr.Orderly.Domain.Vendor.ValueObjects;
 
 namespace Developurr.Orderly.Domain.Customer;
 
-public sealed class Customer : Entity<CustomerId>, IAggregateRoot
+public sealed partial class Customer : Entity<CustomerId>, IAggregateRoot
 {
     // private readonly List<OrderId> _orders;
     public VendorId Vendor { get; private set; }

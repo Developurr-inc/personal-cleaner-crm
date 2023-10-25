@@ -4,6 +4,8 @@ namespace Developurr.Orderly.Domain.Manager.ValueObjects;
 
 public sealed class ManagerId : Identifier<Guid>
 {
+    private ManagerId()
+        : base(Guid.Empty){ }
     private ManagerId(Guid value)
         : base(value) { }
 
