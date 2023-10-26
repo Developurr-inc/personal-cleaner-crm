@@ -17,6 +17,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Developurr.Orderly.Applicat
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Developurr.Orderly.Application.UnitTests", "tests\UnitTests\Developurr.Orderly.Application.UnitTests\Developurr.Orderly.Application.UnitTests.csproj", "{A4F867EF-5723-40D7-ABAA-39C2604CE223}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "EndToEndTests", "EndToEndTests", "{C2237DA9-5E03-4679-A442-8B0FBA3E1EE1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Developurr.Orderly.API.REST.EndToEndTests", "tests\Developurr.Orderly.API.REST.EndToEndTests\Developurr.Orderly.API.REST.EndToEndTests.csproj", "{02F39E0C-8686-4972-A33E-F694D24D25BF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +43,10 @@ Global
 		{A4F867EF-5723-40D7-ABAA-39C2604CE223}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A4F867EF-5723-40D7-ABAA-39C2604CE223}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A4F867EF-5723-40D7-ABAA-39C2604CE223}.Release|Any CPU.Build.0 = Release|Any CPU
+		{02F39E0C-8686-4972-A33E-F694D24D25BF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{02F39E0C-8686-4972-A33E-F694D24D25BF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{02F39E0C-8686-4972-A33E-F694D24D25BF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{02F39E0C-8686-4972-A33E-F694D24D25BF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -52,5 +60,7 @@ Global
 		{4A9F8F7C-C734-4351-BDE3-466DDE5B3154} = {EA701952-9D70-484A-AA94-C4192D0AE9B5}
 		{83146084-DD2E-4C15-8ABD-853358F61EF2} = {3E98453A-2E86-476E-8441-966943BBC3E6}
 		{A4F867EF-5723-40D7-ABAA-39C2604CE223} = {EA701952-9D70-484A-AA94-C4192D0AE9B5}
+		{C2237DA9-5E03-4679-A442-8B0FBA3E1EE1} = {CEC21282-7F4A-4125-87E1-B6AEB28692DD}
+		{02F39E0C-8686-4972-A33E-F694D24D25BF} = {C2237DA9-5E03-4679-A442-8B0FBA3E1EE1}
 	EndGlobalSection
 EndGlobal
